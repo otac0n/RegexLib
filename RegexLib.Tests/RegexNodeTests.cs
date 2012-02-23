@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="RegexNode.cs" company="(none)">
+// <copyright file="RegexNodeTests.cs" company="(none)">
 //  Copyright © 2012 John Gietzen.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
