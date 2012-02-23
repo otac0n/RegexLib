@@ -128,6 +128,16 @@ namespace RegexLib.Tests
             Assert.That(() => subject.GetMatches("OK", 3), Throws.InstanceOf<ArgumentOutOfRangeException>());
         }
 
+        [Test]
+        public void GetMatches_WithAValidStringAndIndex_ReturnsTheEnumerable()
+        {
+            var subject = new StubRegexNode();
+
+            var result = subject.GetMatches("OK", 1);
+
+            Assert.That(result, Is.Not.Null);
+        }
+
         public class StubRegexNode : RegexNode
         {
             private readonly bool? returnEquals;
