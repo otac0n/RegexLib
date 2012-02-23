@@ -25,7 +25,6 @@
 
 namespace RegexLib.Tests
 {
-    using System;
     using System.Linq;
     using NUnit.Framework;
 
@@ -124,30 +123,6 @@ namespace RegexLib.Tests
             var result = subject.GetMatches("OK", 2);
 
             Assert.That(result, Is.Empty);
-        }
-
-        [Test]
-        public void GetMatches_WithANullString_ThrowsArgumentNullException()
-        {
-            var subject = new CharacterNode('O');
-
-            Assert.That(() => subject.GetMatches(null, 0), Throws.InstanceOf<ArgumentNullException>());
-        }
-
-        [Test]
-        public void GetMatches_WithAnNegativeIndex_ThrowsArgumentOutOfRangeException()
-        {
-            var subject = new CharacterNode('O');
-
-            Assert.That(() => subject.GetMatches("OK", -1), Throws.InstanceOf<ArgumentOutOfRangeException>());
-        }
-
-        [Test]
-        public void GetMatches_WithAnIndexPassedTheEndOfTheString_ThrowsArgumentOutOfRangeException()
-        {
-            var subject = new CharacterNode('O');
-
-            Assert.That(() => subject.GetMatches("OK", 3), Throws.InstanceOf<ArgumentOutOfRangeException>());
         }
     }
 }

@@ -49,6 +49,22 @@ namespace RegexLib
 
         public abstract override int GetHashCode();
 
-        public abstract IEnumerable<RegexMatch> GetMatches(string subject, int index);
+        protected abstract IEnumerable<RegexMatch> GetMatchesImpl(string subject, int index);
+
+        public IEnumerable<RegexMatch> GetMatches(string subject, int index)
+        {
+            if (subject == null)
+            {
+                throw new ArgumentNullException("subject");
+            }
+
+            if (index < 0 ||
+                index > subject.Length)
+            {
+                throw new ArgumentOutOfRangeException("index");
+            }
+
+            return this.GetMatchesImpl(subject, index);
+        }
     }
 }

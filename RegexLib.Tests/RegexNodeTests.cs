@@ -25,6 +25,7 @@
 
 namespace RegexLib.Tests
 {
+    using System;
     using System.Collections.Generic;
     using NUnit.Framework;
 
@@ -103,6 +104,30 @@ namespace RegexLib.Tests
             Assert.That(result, Is.False);
         }
 
+        [Test]
+        public void GetMatches_WithANullString_ThrowsArgumentNullException()
+        {
+            var subject = new StubRegexNode();
+
+            Assert.That(() => subject.GetMatches(null, 0), Throws.InstanceOf<ArgumentNullException>());
+        }
+
+        [Test]
+        public void GetMatches_WithAnNegativeIndex_ThrowsArgumentOutOfRangeException()
+        {
+            var subject = new StubRegexNode();
+
+            Assert.That(() => subject.GetMatches("OK", -1), Throws.InstanceOf<ArgumentOutOfRangeException>());
+        }
+
+        [Test]
+        public void GetMatches_WithAnIndexPassedTheEndOfTheString_ThrowsArgumentOutOfRangeException()
+        {
+            var subject = new StubRegexNode();
+
+            Assert.That(() => subject.GetMatches("OK", 3), Throws.InstanceOf<ArgumentOutOfRangeException>());
+        }
+
         public class StubRegexNode : RegexNode
         {
             private readonly bool? returnEquals;
@@ -122,9 +147,9 @@ namespace RegexLib.Tests
                 return 0;
             }
 
-            public override IEnumerable<RegexMatch> GetMatches(string subject, int index)
+            protected override IEnumerable<RegexMatch> GetMatchesImpl(string subject, int index)
             {
-                throw new System.NotImplementedException();
+                return new RegexMatch[0];
             }
         }
     }
