@@ -25,6 +25,8 @@
 
 namespace RegexLib.Tests
 {
+    using System;
+    using System.Linq;
     using NUnit.Framework;
 
     [TestFixture]
@@ -90,6 +92,62 @@ namespace RegexLib.Tests
             var expected = (c1 == c2);
 
             Assert.That(subject.Equals(other), Is.EqualTo(expected));
+        }
+
+        [Theory]
+        public void GetMatches_WhenTheCharacterDoesNotMatch_YieldsNoElements(char c)
+        {
+            Assume.That(c, Is.Not.EqualTo('O'));
+
+            var subject = new CharacterNode(c);
+
+            var result = subject.GetMatches("OK", 0);
+
+            Assert.That(result, Is.Empty);
+        }
+
+        [Test]
+        public void GetMatches_WhenTheCharacterDoesNotMatch_YieldsASingleMatchingElement()
+        {
+            var subject = new CharacterNode('O');
+
+            var result = subject.GetMatches("OK", 0).Single();
+
+            Assert.That(result.Value, Is.EqualTo("O"));
+        }
+
+        [Test]
+        public void GetMatches_AtTheEndOfTheString_YieldsNoElements()
+        {
+            var subject = new CharacterNode('O');
+
+            var result = subject.GetMatches("OK", 2);
+
+            Assert.That(result, Is.Empty);
+        }
+
+        [Test]
+        public void GetMatches_WithANullString_ThrowsArgumentNullException()
+        {
+            var subject = new CharacterNode('O');
+
+            Assert.That(() => subject.GetMatches(null, 0), Throws.InstanceOf<ArgumentNullException>());
+        }
+
+        [Test]
+        public void GetMatches_WithAnNegativeIndex_ThrowsArgumentOutOfRangeException()
+        {
+            var subject = new CharacterNode('O');
+
+            Assert.That(() => subject.GetMatches("OK", -1), Throws.InstanceOf<ArgumentOutOfRangeException>());
+        }
+
+        [Test]
+        public void GetMatches_WithAnIndexPassedTheEndOfTheString_ThrowsArgumentOutOfRangeException()
+        {
+            var subject = new CharacterNode('O');
+
+            Assert.That(() => subject.GetMatches("OK", 3), Throws.InstanceOf<ArgumentOutOfRangeException>());
         }
     }
 }

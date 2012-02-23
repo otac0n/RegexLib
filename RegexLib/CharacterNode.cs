@@ -25,6 +25,9 @@
 
 namespace RegexLib
 {
+    using System;
+    using System.Collections.Generic;
+
     public class CharacterNode : RegexNode
     {
         private readonly char character;
@@ -51,6 +54,31 @@ namespace RegexLib
         public override int GetHashCode()
         {
             return this.character.GetHashCode();
+        }
+
+        public override IEnumerable<RegexMatch> GetMatches(string subject, int index)
+        {
+            if (subject == null)
+            {
+                throw new ArgumentNullException("subject");
+            }
+
+            if (index < 0 ||
+                index > subject.Length)
+            {
+                throw new ArgumentOutOfRangeException("index");
+            }
+
+            return GetMatchesImpl(subject, index);
+        }
+
+        private IEnumerable<RegexMatch> GetMatchesImpl(string subject, int index)
+        {
+            if (index < subject.Length &&
+                this.character == subject[index])
+            {
+                yield return new RegexMatch(subject, index, 1);
+            }
         }
     }
 }

@@ -25,6 +25,7 @@
 
 namespace RegexLib.Tests
 {
+    using System.Collections.Generic;
     using NUnit.Framework;
 
     [TestFixture]
@@ -119,6 +120,11 @@ namespace RegexLib.Tests
             public override int GetHashCode()
             {
                 return 0;
+            }
+
+            public override IEnumerable<RegexMatch> GetMatches(string subject, int index)
+            {
+                throw new System.NotImplementedException();
             }
         }
     }

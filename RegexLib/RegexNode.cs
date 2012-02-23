@@ -26,6 +26,7 @@
 namespace RegexLib
 {
     using System;
+    using System.Collections.Generic;
 
     public abstract class RegexNode : IEquatable<RegexNode>
     {
@@ -47,5 +48,7 @@ namespace RegexLib
         }
 
         public abstract override int GetHashCode();
+
+        public abstract IEnumerable<RegexMatch> GetMatches(string subject, int index);
     }
 }
