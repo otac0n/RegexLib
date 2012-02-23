@@ -53,10 +53,12 @@
   <ItemGroup>
     <Compile Include="CharacterNodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegexMatchTests.cs" />
     <Compile Include="RegexNodeTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Settings.StyleCop" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RegexLib\RegexLib.csproj">

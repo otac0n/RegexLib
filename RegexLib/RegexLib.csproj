@@ -43,6 +43,7 @@
     <Compile Include="CharacterNode.cs" />
     <Compile Include="Regex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegexMatch.cs" />
     <Compile Include="RegexNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
