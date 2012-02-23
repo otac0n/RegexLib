@@ -33,10 +33,93 @@ namespace RegexLib.Tests
         [Test]
         public void OpEquality_WithBothNodesNullReference_ReturnsTrue()
         {
-            var subjectA = (CharacterNode)null;
-            var subjectB = (CharacterNode)null;
+            var subjectA = (RegexNode)null;
+            var subjectB = (RegexNode)null;
 
             Assert.That(subjectA == subjectB, Is.True);
+        }
+
+        [Theory]
+        public void Equals_WithAnyOtherNode_ReturnsValueOfIEqualityEquals(bool expected)
+        {
+            var subject = new StubRegexNode(expected);
+            var other = new StubRegexNode();
+
+            var result = ((object)subject).Equals(other);
+
+            Assert.That(result, Is.EqualTo(expected));
+        }
+
+        [Theory]
+        public void Equals_WithNullReference_ReturnsValueOfIEqualityEquals(bool expected)
+        {
+            var subject = new StubRegexNode(expected);
+
+            var result = ((object)subject).Equals(null);
+
+            Assert.That(result, Is.EqualTo(expected));
+        }
+
+        [Theory]
+        public void ObjectEquals_WithAnyOtherNode_ReturnsValueOfIEqualityEquals(bool expected)
+        {
+            var subject = new StubRegexNode(expected);
+            var other = new StubRegexNode();
+
+            var result = object.Equals(subject, other);
+
+            Assert.That(result, Is.EqualTo(expected));
+        }
+
+        [Theory]
+        public void ObjectEquals_WithNullReference_ReturnsFalse(bool returnEquals)
+        {
+            var subject = new StubRegexNode(returnEquals);
+
+            var result = object.Equals(subject, null);
+
+            Assert.That(result, Is.False);
+        }
+
+        [Theory]
+        public void OpEquality_WithAnyOtherNode_ReturnsValueOfIEqualityEquals(bool expected)
+        {
+            var subject = new StubRegexNode(expected);
+            var other = new StubRegexNode();
+
+            var result = (subject == other);
+
+            Assert.That(result, Is.EqualTo(expected));
+        }
+
+        [Theory]
+        public void OpEquality_WithNullReference_ReturnsFalse(bool returnEquals)
+        {
+            var subject = new StubRegexNode(returnEquals);
+
+            var result = (subject == null);
+
+            Assert.That(result, Is.False);
+        }
+
+        public class StubRegexNode : RegexNode
+        {
+            private readonly bool? returnEquals;
+
+            public StubRegexNode(bool? returnEquals = null)
+            {
+                this.returnEquals = returnEquals;
+            }
+
+            public override bool Equals(RegexNode other)
+            {
+                return this.returnEquals.Value;
+            }
+
+            public override int GetHashCode()
+            {
+                return 0;
+            }
         }
     }
 }

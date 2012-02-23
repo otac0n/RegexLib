@@ -91,33 +91,5 @@ namespace RegexLib.Tests
 
             Assert.That(subject.Equals(other), Is.EqualTo(expected));
         }
-
-        [Test]
-        public void ObjectEquals_WithNullReference_ReturnsFalse()
-        {
-            var subject = new CharacterNode('a');
-
-            Assert.That(((object)subject).Equals(null), Is.False);
-        }
-
-        [Test]
-        public void ObjectEquals_WithOtherObject_ReturnsFalse()
-        {
-            var subject = new CharacterNode('a');
-            var other = new object();
-
-            Assert.That(((object)subject).Equals(other), Is.False);
-        }
-
-        [Theory]
-        public void ObjectEquals_WithDifferentCharacterNode_ReturnsFalse(char c1, char c2)
-        {
-            var subject = new CharacterNode(c1);
-            var other = new CharacterNode(c2);
-
-            var expected = (c1 == c2);
-
-            Assert.That(((object)subject).Equals(other), Is.EqualTo(expected));
-        }
     }
 }
