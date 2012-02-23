@@ -92,5 +92,50 @@ namespace RegexLib.Tests
 
             Assert.That(result.Value, Is.EqualTo(string.Empty));
         }
+
+        [Test]
+        public void Equals_WithNullMatch_ReturnsFalse()
+        {
+            var subject = new RegexMatch("OK", 0, 2);
+            var other = (RegexMatch)null;
+
+            Assert.That(subject.Equals(other), Is.False);
+        }
+
+        [Test]
+        public void Equals_WithIdenticalMatch_ReturnsTrue()
+        {
+            var subject = new RegexMatch("OK", 0, 2);
+            var other = new RegexMatch("OK", 0, 2);
+
+            Assert.That(subject.Equals(other), Is.True);
+        }
+
+        [Test]
+        public void Equals_WithSameResultInDifferentSubject_ReturnsFalse()
+        {
+            var subject = new RegexMatch("OK", 0, 2);
+            var other = new RegexMatch("OK-Different", 0, 2);
+
+            Assert.That(subject.Equals(other), Is.False);
+        }
+
+        [Test]
+        public void Equals_WithSameValueFromDifferentStart_ReturnsFalse()
+        {
+            var subject = new RegexMatch("OK-OK", 0, 2);
+            var other = new RegexMatch("OK-OK", 3, 2);
+
+            Assert.That(subject.Equals(other), Is.False);
+        }
+
+        [Test]
+        public void Equals_WithDifferentLength_ReturnsFalse()
+        {
+            var subject = new RegexMatch("OK", 0, 2);
+            var other = new RegexMatch("OK", 0, 1);
+
+            Assert.That(subject.Equals(other), Is.False);
+        }
     }
 }

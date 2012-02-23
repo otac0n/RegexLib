@@ -27,7 +27,7 @@ namespace RegexLib
 {
     using System;
 
-    public class RegexMatch
+    public class RegexMatch : IEquatable<RegexMatch>
     {
         private readonly string subject;
         private readonly int startIndex;
@@ -77,9 +77,37 @@ namespace RegexLib
             get { return this.value; }
         }
 
+        public static bool operator ==(RegexMatch nodeA, RegexMatch nodeB)
+        {
+            return object.Equals(nodeA, nodeB);
+        }
+
+        public static bool operator !=(RegexMatch nodeA, RegexMatch nodeB)
+        {
+            return !object.Equals(nodeA, nodeB);
+        }
+
+        public bool Equals(RegexMatch other)
+        {
+            return !object.ReferenceEquals(other, null) &&
+                other.subject == this.subject &&
+                other.startIndex == this.startIndex &&
+                other.length == this.length;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return this.Equals(obj as RegexMatch);
+        }
+
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            int hash = 0x51ED270B;
+            hash = (hash * -0x25555529) + this.subject.GetHashCode();
+            hash = (hash * -0x25555529) + this.value.GetHashCode();
+            hash = (hash * -0x25555529) + this.startIndex.GetHashCode();
+
+            return hash;
         }
     }
 }
