@@ -26,7 +26,6 @@
 namespace RegexLib.Tests
 {
     using System;
-    using System.Collections.Generic;
     using NUnit.Framework;
 
     [TestFixture]
@@ -136,31 +135,6 @@ namespace RegexLib.Tests
             var result = subject.GetMatches("OK", 1);
 
             Assert.That(result, Is.Not.Null);
-        }
-
-        public class StubRegexNode : RegexNode
-        {
-            private readonly bool? returnEquals;
-
-            public StubRegexNode(bool? returnEquals = null)
-            {
-                this.returnEquals = returnEquals;
-            }
-
-            public override bool Equals(RegexNode other)
-            {
-                return this.returnEquals.Value;
-            }
-
-            public override int GetHashCode()
-            {
-                return 0;
-            }
-
-            protected override IEnumerable<RegexMatch> GetMatchesImpl(string subject, int index)
-            {
-                return new RegexMatch[0];
-            }
         }
     }
 }
