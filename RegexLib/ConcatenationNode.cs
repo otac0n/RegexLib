@@ -69,11 +69,11 @@ namespace RegexLib
 
         protected override IEnumerable<RegexMatch> GetMatchesImpl(string subject, int index)
         {
-            foreach (var aMatch in this.a.GetMatches(subject, index))
+            foreach (var matchA in this.a.GetMatches(subject, index))
             {
-                foreach (var bMatch in this.b.GetMatches(subject, index + aMatch.Length))
+                foreach (var matchB in this.b.GetMatches(subject, index + matchA.Length))
                 {
-                    yield return new RegexMatch(subject, index, aMatch.Length + bMatch.Length, new[] { aMatch, bMatch });
+                    yield return new RegexMatch(subject, index, matchA.Length + matchB.Length, new[] { matchA, matchB });
                 }
             }
         }
