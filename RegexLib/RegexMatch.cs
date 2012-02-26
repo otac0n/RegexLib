@@ -60,9 +60,22 @@ namespace RegexLib
             }
 
             var matchesCopy = subMatches == null ? new RegexMatch[0] : subMatches.ToArray();
-            if (matchesCopy.Any(m => m == null))
+            var requiredStartIndex = startIndex;
+            for (int i = 0; i < matchesCopy.Length; i++)
             {
-                throw new ArgumentOutOfRangeException("matches");
+                var subMatch = matchesCopy[i];
+                if (subMatch == null ||
+                    subMatch.startIndex != requiredStartIndex)
+                {
+                    throw new ArgumentOutOfRangeException("subMatches");
+                }
+
+                requiredStartIndex = subMatch.startIndex + subMatch.length;
+            }
+
+            if (matchesCopy.Length > 0 && requiredStartIndex != startIndex + length)
+            {
+                throw new ArgumentOutOfRangeException("subMatches");
             }
 
             this.subject = subject;
@@ -139,6 +152,11 @@ namespace RegexLib
             hash = (hash * -0x25555529) + this.startIndex.GetHashCode();
 
             return hash;
+        }
+
+        public override string ToString()
+        {
+            return string.Format("\"{0}\"({1},{2})", this.Value, this.startIndex, this.length);
         }
     }
 }

@@ -68,6 +68,74 @@ namespace RegexLib.Tests
         }
 
         [Test]
+        public void ctor_WhenGivenASubMatchesCollectionWithMatchBeforeThisMatch_ThrowsArgumentOutOfRangeException()
+        {
+            var subMatches = new[]
+            {
+                new RegexMatch("OK", 0, 1),
+            };
+
+            Assert.That(() => new RegexMatch("OK", 1, 1, subMatches), Throws.InstanceOf<ArgumentOutOfRangeException>());
+        }
+
+        [Test]
+        public void ctor_WhenGivenASubMatchesCollectionWithMatchAfterThisMatch_ThrowsArgumentOutOfRangeException()
+        {
+            var subMatches = new[]
+            {
+                new RegexMatch("OK", 1, 1),
+            };
+
+            Assert.That(() => new RegexMatch("OK", 0, 1, subMatches), Throws.InstanceOf<ArgumentOutOfRangeException>());
+        }
+
+        [Test]
+        public void ctor_WhenGivenASubMatchesCollectionWithMatchesOutOfOrder_ThrowsArgumentOutOfRangeException()
+        {
+            var subMatches = new[]
+            {
+                new RegexMatch("OK", 1, 1),
+                new RegexMatch("OK", 0, 1),
+            };
+
+            Assert.That(() => new RegexMatch("OK", 0, 2, subMatches), Throws.InstanceOf<ArgumentOutOfRangeException>());
+        }
+
+        [Test]
+        public void ctor_WhenGivenASubMatchesCollectionWithGapInMatches_ThrowsArgumentOutOfRangeException()
+        {
+            var subMatches = new[]
+            {
+                new RegexMatch("OK", 0, 0),
+                new RegexMatch("OK", 1, 1),
+            };
+
+            Assert.That(() => new RegexMatch("OK", 0, 2, subMatches), Throws.InstanceOf<ArgumentOutOfRangeException>());
+        }
+
+        [Test]
+        public void ctor_WhenGivenASubMatchesCollectionWithMatchesStartingAfterStart_ThrowsArgumentOutOfRangeException()
+        {
+            var subMatches = new[]
+            {
+                new RegexMatch("OK", 1, 1),
+            };
+
+            Assert.That(() => new RegexMatch("OK", 0, 2, subMatches), Throws.InstanceOf<ArgumentOutOfRangeException>());
+        }
+
+        [Test]
+        public void ctor_WhenGivenASubMatchesCollectionWithMatchesEndingBeforeEnd_ThrowsArgumentOutOfRangeException()
+        {
+            var subMatches = new[]
+            {
+                new RegexMatch("OK", 0, 1),
+            };
+
+            Assert.That(() => new RegexMatch("OK", 0, 2, subMatches), Throws.InstanceOf<ArgumentOutOfRangeException>());
+        }
+
+        [Test]
         public void ctor_WhenGivenAStartAndLengthWithinTheSubject_Succeeds()
         {
             var result = new RegexMatch("OK", 1, 1);
@@ -95,6 +163,22 @@ namespace RegexLib.Tests
         public void ctor_WhenGivenAnEmptySubMatchesCollection_Succeeds()
         {
             var result = new RegexMatch("OK", 0, 1, new RegexMatch[0]);
+
+            Assert.Pass();
+        }
+
+        [Test]
+        public void ctor_WhenGivenASubMatchesCollectionWithCompleteMatchesInOrder_Succeeds()
+        {
+            var subMatches = new[]
+            {
+                new RegexMatch("OK", 0, 0),
+                new RegexMatch("OK", 0, 1),
+                new RegexMatch("OK", 1, 1),
+                new RegexMatch("OK", 2, 0),
+            };
+
+            var result = new RegexMatch("OK", 0, 2, subMatches);
 
             Assert.Pass();
         }
@@ -163,7 +247,7 @@ namespace RegexLib.Tests
         [Test]
         public void Equals_WithDifferentSubMatchesCollections_ReturnsFalse()
         {
-            var subject = new RegexMatch("OK", 0, 2, new[] { new RegexMatch("OK", 0, 1) });
+            var subject = new RegexMatch("OK", 0, 2, new[] { new RegexMatch("OK", 0, 1), new RegexMatch("OK", 1, 1) });
             var other = new RegexMatch("OK", 0, 2, new[] { new RegexMatch("OK", 0, 2) });
 
             Assert.That(subject.Equals(other), Is.False);
@@ -172,7 +256,7 @@ namespace RegexLib.Tests
         [Test]
         public void Equals_WithDifferentSizedSubMatchesCollections_ReturnsFalse()
         {
-            var subject = new RegexMatch("OK", 0, 2, new[] { new RegexMatch("OK", 0, 2), new RegexMatch("OK", 0, 1) });
+            var subject = new RegexMatch("OK", 0, 2, new[] { new RegexMatch("OK", 0, 2), new RegexMatch("OK", 2, 0) });
             var other = new RegexMatch("OK", 0, 2, new[] { new RegexMatch("OK", 0, 2) });
 
             Assert.That(subject.Equals(other), Is.False);
