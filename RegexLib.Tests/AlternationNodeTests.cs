@@ -25,12 +25,25 @@
 
 namespace RegexLib.Tests
 {
+    using System;
     using System.Linq;
     using NUnit.Framework;
 
     [TestFixture]
     public class AlternationNodeTests
     {
+        [Test]
+        public void ctor_WithNullA_ThrowsArgumentNullException()
+        {
+            Assert.That(() => new AlternationNode(null, new StubRegexNode()), Throws.InstanceOf<ArgumentNullException>());
+        }
+
+        [Test]
+        public void ctor_WithNullB_ThrowsArgumentNullException()
+        {
+            Assert.That(() => new AlternationNode(new StubRegexNode(), null), Throws.InstanceOf<ArgumentNullException>());
+        }
+
         [Test]
         public void Equals_WithNullReference_ReturnsFalse()
         {
