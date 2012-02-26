@@ -26,6 +26,8 @@
 namespace RegexLib
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class RegexMatch : IEquatable<RegexMatch>
     {
@@ -33,8 +35,14 @@ namespace RegexLib
         private readonly int startIndex;
         private readonly int length;
         private readonly string value;
+        private readonly RegexMatch[] subMatches;
 
         public RegexMatch(string subject, int startIndex, int length)
+            : this(subject, startIndex, length, null)
+        {
+        }
+
+        public RegexMatch(string subject, int startIndex, int length, IEnumerable<RegexMatch> subMatches)
         {
             if (subject == null)
             {
@@ -48,13 +56,20 @@ namespace RegexLib
 
             if (length < 0 || (startIndex + length) > subject.Length)
             {
-                throw new ArgumentOutOfRangeException("startIndex");
+                throw new ArgumentOutOfRangeException("length");
+            }
+
+            var matchesCopy = subMatches == null ? new RegexMatch[0] : subMatches.ToArray();
+            if (matchesCopy.Any(m => m == null))
+            {
+                throw new ArgumentOutOfRangeException("matches");
             }
 
             this.subject = subject;
             this.startIndex = startIndex;
             this.length = length;
             this.value = subject.Substring(startIndex, length);
+            this.subMatches = matchesCopy;
         }
 
         public string Subject
@@ -89,10 +104,26 @@ namespace RegexLib
 
         public bool Equals(RegexMatch other)
         {
-            return !object.ReferenceEquals(other, null) &&
+            bool possiblyEqual = !object.ReferenceEquals(other, null) &&
                 other.subject == this.subject &&
                 other.startIndex == this.startIndex &&
-                other.length == this.length;
+                other.length == this.length &&
+                other.subMatches.Length == this.subMatches.Length;
+
+            if (!possiblyEqual)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < this.subMatches.Length; i++)
+            {
+                if (this.subMatches[i] != other.subMatches[i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         public override bool Equals(object obj)

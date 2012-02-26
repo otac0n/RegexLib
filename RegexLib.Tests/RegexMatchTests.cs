@@ -62,6 +62,12 @@ namespace RegexLib.Tests
         }
 
         [Test]
+        public void ctor_WhenGivenASubMatchesCollectionWithANullMatch_ThrowsArgumentOutOfRangeException()
+        {
+            Assert.That(() => new RegexMatch("OK", 0, 1, new RegexMatch[1]), Throws.InstanceOf<ArgumentOutOfRangeException>());
+        }
+
+        [Test]
         public void ctor_WhenGivenAStartAndLengthWithinTheSubject_Succeeds()
         {
             var result = new RegexMatch("OK", 1, 1);
@@ -73,6 +79,22 @@ namespace RegexLib.Tests
         public void ctor_WithEmptySubjectAndZeroStartAndLength_Succeeds()
         {
             var result = new RegexMatch(string.Empty, 0, 0);
+
+            Assert.Pass();
+        }
+
+        [Test]
+        public void ctor_WhenGivenANullSubMatchesCollection_Succeeds()
+        {
+            var result = new RegexMatch("OK", 0, 1, null);
+
+            Assert.Pass();
+        }
+
+        [Test]
+        public void ctor_WhenGivenAnEmptySubMatchesCollection_Succeeds()
+        {
+            var result = new RegexMatch("OK", 0, 1, new RegexMatch[0]);
 
             Assert.Pass();
         }
@@ -136,6 +158,42 @@ namespace RegexLib.Tests
             var other = new RegexMatch("OK", 0, 1);
 
             Assert.That(subject.Equals(other), Is.False);
+        }
+
+        [Test]
+        public void Equals_WithDifferentSubMatchesCollections_ReturnsFalse()
+        {
+            var subject = new RegexMatch("OK", 0, 2, new[] { new RegexMatch("OK", 0, 1) });
+            var other = new RegexMatch("OK", 0, 2, new[] { new RegexMatch("OK", 0, 2) });
+
+            Assert.That(subject.Equals(other), Is.False);
+        }
+
+        [Test]
+        public void Equals_WithDifferentSizedSubMatchesCollections_ReturnsFalse()
+        {
+            var subject = new RegexMatch("OK", 0, 2, new[] { new RegexMatch("OK", 0, 2), new RegexMatch("OK", 0, 1) });
+            var other = new RegexMatch("OK", 0, 2, new[] { new RegexMatch("OK", 0, 2) });
+
+            Assert.That(subject.Equals(other), Is.False);
+        }
+
+        [Test]
+        public void Equals_WithEmptyCollections_ReturnsTrue()
+        {
+            var subject = new RegexMatch("OK", 0, 2, new RegexMatch[0]);
+            var other = new RegexMatch("OK", 0, 2, new RegexMatch[0]);
+
+            Assert.That(subject.Equals(other), Is.True);
+        }
+
+        [Test]
+        public void Equals_WithOneEmptyCollectionAndOneNullCollection_ReturnsTrue()
+        {
+            var subject = new RegexMatch("OK", 0, 2, new RegexMatch[0]);
+            var other = new RegexMatch("OK", 0, 2, null);
+
+            Assert.That(subject.Equals(other), Is.True);
         }
     }
 }
