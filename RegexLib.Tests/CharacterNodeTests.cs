@@ -106,7 +106,7 @@ namespace RegexLib.Tests
         }
 
         [Test]
-        public void GetMatches_WhenTheCharacterDoesNotMatch_YieldsASingleMatchingElement()
+        public void GetMatches_WhenTheCharacterMatches_YieldsASingleMatchingElement()
         {
             var subject = new CharacterNode('O');
 
