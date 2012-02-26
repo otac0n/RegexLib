@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AlternationNodeTests.cs" />
     <Compile Include="CharacterNodeTests.cs" />
+    <Compile Include="ConcatenationNodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegexMatchTests.cs" />
     <Compile Include="RegexNodeTests.cs" />
