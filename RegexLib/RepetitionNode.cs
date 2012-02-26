@@ -95,7 +95,7 @@ namespace RegexLib
                 yield break;
             }
 
-            if (!this.eager && WithinMinMax(rep))
+            if (!this.eager && this.WithinMinMax(rep))
             {
                 var match = ComposeMatch(subject, originalIndex, subMatches);
                 yield return match;
@@ -113,7 +113,7 @@ namespace RegexLib
                 subMatches.RemoveAt(subMatches.Count - 1);
             }
 
-            if (this.eager && WithinMinMax(rep))
+            if (this.eager && this.WithinMinMax(rep))
             {
                 var match = ComposeMatch(subject, originalIndex, subMatches);
                 yield return match;
@@ -127,7 +127,7 @@ namespace RegexLib
             return rep >= this.min && (this.max == null || rep <= this.max);
         }
 
-        private RegexMatch ComposeMatch(string subject, int originalIndex, List<RegexMatch> subMatches)
+        private static RegexMatch ComposeMatch(string subject, int originalIndex, List<RegexMatch> subMatches)
         {
             var length = subMatches.Sum(m => m.Length);
             return new RegexMatch(subject, originalIndex, length, subMatches);
