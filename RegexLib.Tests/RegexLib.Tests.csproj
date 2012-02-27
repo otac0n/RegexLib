@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlternationNodeTests.cs" />
+    <Compile Include="AnyCharacterNodeTests.cs" />
     <Compile Include="CharacterNodeTests.cs" />
     <Compile Include="CharacterRangeNodeTests.cs" />
     <Compile Include="ConcatenationNodeTests.cs" />
