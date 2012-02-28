@@ -60,6 +60,7 @@
     <Compile Include="RegexMatchTests.cs" />
     <Compile Include="RegexNodeTests.cs" />
     <Compile Include="RepetitionNodeTests.cs" />
+    <Compile Include="StringEndAnchorNodeTests.cs" />
     <Compile Include="StringStartAnchorNodeTests.cs" />
     <Compile Include="StubRegexNode.cs" />
   </ItemGroup>
