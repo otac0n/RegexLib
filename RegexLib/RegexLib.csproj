@@ -50,6 +50,7 @@
     <Compile Include="RegexMatch.cs" />
     <Compile Include="RegexNode.cs" />
     <Compile Include="RepetitionNode.cs" />
+    <Compile Include="StringEndAnchorNode.cs" />
     <Compile Include="StringStartAnchorNode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
