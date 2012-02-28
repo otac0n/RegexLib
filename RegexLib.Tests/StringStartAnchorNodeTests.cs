@@ -25,6 +25,7 @@
 
 namespace RegexLib.Tests
 {
+    using System.Linq;
     using NUnit.Framework;
 
     [TestFixture]
