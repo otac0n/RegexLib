@@ -21,12 +21,14 @@
 //  THE SOFTWARE.
 // </copyright>
 // <author>Katie Gietzen</author>
+// <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
 namespace RegexLib
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class AtomicGroupNode : RegexNode
     {
@@ -59,10 +61,11 @@ namespace RegexLib
 
         protected override IEnumerable<RegexMatch> GetMatchesImpl(string subject, int index)
         {
-            foreach (var match in this.regexNode.GetMatches(subject, index))
+            var match = this.regexNode.GetMatches(subject, index).FirstOrDefault();
+
+            if (match != null)
             {
                 yield return match;
-                yield break;
             }
         }
     }
