@@ -95,6 +95,11 @@ namespace RegexLib
                 yield break;
             }
 
+            if (rep > this.min && rep > 1 && subMatches[subMatches.Count - 1].Length == 0)
+            {
+                yield break;
+            }
+
             if (!this.eager && this.WithinMinMax(rep))
             {
                 var match = ComposeMatch(subject, originalIndex, subMatches);

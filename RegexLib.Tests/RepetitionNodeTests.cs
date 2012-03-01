@@ -287,5 +287,87 @@ namespace RegexLib.Tests
 
             Assert.That(actual, Is.EquivalentTo(expected));
         }
+
+        [Theory]
+        public void Matches_ZeroWidthMatchWithMinimumAndMaximum_YieldsTheMinimum(bool eager)
+        {
+            var matches = new[]
+            {
+                new RegexMatch("aaa", 0, 0),
+            };
+
+            var subject = new RepetitionNode(new StubRegexNode(matches: matches), 2, 3, eager);
+
+            var actual = subject.GetMatches("aaa", 0).ToArray();
+
+            var expected = new[]
+            {
+                new RegexMatch("aaa", 0, 0, matches.Concat(matches)),
+            };
+
+            Assert.That(actual, Is.EquivalentTo(expected));
+        }
+
+        [Theory]
+        public void Matches_ZeroWidthMatchWithMinimumAndNoMaximum_YieldsTheMinimum(bool eager)
+        {
+            var matches = new[]
+            {
+                new RegexMatch("aaa", 0, 0),
+            };
+
+            var subject = new RepetitionNode(new StubRegexNode(matches: matches), 2, null, eager);
+
+            var actual = subject.GetMatches("aaa", 0).ToArray();
+
+            var expected = new[]
+            {
+                new RegexMatch("aaa", 0, 0, matches.Concat(matches)),
+            };
+
+            Assert.That(actual, Is.EquivalentTo(expected));
+        }
+
+        [Test]
+        public void Matches_EagerZeroWidthMatchWithZeroMinimum_YieldsOneMatch()
+        {
+            var matches = new[]
+            {
+                new RegexMatch("aaa", 0, 0),
+            };
+
+            var subject = new RepetitionNode(new StubRegexNode(matches: matches), 0, null, true);
+
+            var actual = subject.GetMatches("aaa", 0).ToArray();
+
+            var expected = new[]
+            {
+                new RegexMatch("aaa", 0, 0, matches),
+                new RegexMatch("aaa", 0, 0),
+            };
+
+            Assert.That(actual, Is.EquivalentTo(expected));
+        }
+
+        [Test]
+        public void Matches_LazyZeroWidthMatchWithZeroMinimum_YieldsOneMatch()
+        {
+            var matches = new[]
+            {
+                new RegexMatch("aaa", 0, 0),
+            };
+
+            var subject = new RepetitionNode(new StubRegexNode(matches: matches), 0, null, false);
+
+            var actual = subject.GetMatches("aaa", 0).ToArray();
+
+            var expected = new[]
+            {
+                new RegexMatch("aaa", 0, 0),
+                new RegexMatch("aaa", 0, 0, matches),
+            };
+
+            Assert.That(actual, Is.EquivalentTo(expected));
+        }
     }
 }
