@@ -136,6 +136,15 @@ namespace RegexLib.Tests
             Assert.That(subject.Equals(other), Is.False);
         }
 
+        [Test]
+        public void Equals_WithOtherAnyCharacterNode_ReturnsTrue()
+        {
+            var subject = new CharacterNode();
+            var other = new CharacterNode();
+
+            Assert.That(subject.Equals(other), Is.True);
+        }
+
         [Theory]
         public void GetMatches_WhenTheCharacterDoesNotMatch_YieldsNoElements(char c)
         {
@@ -192,6 +201,16 @@ namespace RegexLib.Tests
         public void GetMatches_WhenTheCharacterRangeMatchesMax_YieldsASingleMatchingElement()
         {
             var subject = new CharacterNode('A', 'O');
+
+            var result = subject.GetMatches("OK", 0).Single();
+
+            Assert.That(result.Value, Is.EqualTo("O"));
+        }
+
+        [Test]
+        public void GetMatches_WhenCharacterIsAvailable_YieldsASingleMatchingElement()
+        {
+            var subject = new CharacterNode();
 
             var result = subject.GetMatches("OK", 0).Single();
 

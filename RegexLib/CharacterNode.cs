@@ -32,6 +32,11 @@ namespace RegexLib
     {
         private readonly CharacterMatcher matcher;
 
+        public CharacterNode()
+        {
+            this.matcher = new AnyCharacterMatcher();
+        }
+
         public CharacterNode(char character)
         {
             this.matcher = new SingleCharacterMatcher(character);
@@ -69,6 +74,24 @@ namespace RegexLib
             public abstract override int GetHashCode();
 
             public abstract bool Matches(char character);
+        }
+
+        private class AnyCharacterMatcher : CharacterMatcher
+        {
+            public override bool Equals(object obj)
+            {
+                return obj is AnyCharacterMatcher;
+            }
+
+            public override int GetHashCode()
+            {
+                return 0;
+            }
+
+            public override bool Matches(char character)
+            {
+                return true;
+            }
         }
 
         private class SingleCharacterMatcher : CharacterMatcher

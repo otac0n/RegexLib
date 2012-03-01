@@ -52,7 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlternationNodeTests.cs" />
-    <Compile Include="AnyCharacterNodeTests.cs" />
     <Compile Include="AtomicGroupNodeTests.cs" />
     <Compile Include="CharacterNodeTests.cs" />
     <Compile Include="ConcatenationNodeTests.cs" />
