@@ -25,6 +25,7 @@
 
 namespace RegexLib
 {
+    using System;
     using System.Collections.Generic;
 
     public class CharacterNode : RegexNode
@@ -34,6 +35,11 @@ namespace RegexLib
         public CharacterNode(char character)
         {
             this.matcher = new SingleCharacterMatcher(character);
+        }
+
+        public CharacterNode(char minChar, char maxChar)
+        {
+            this.matcher = new CharacterRangeMatcher(minChar, maxChar);
         }
 
         public override bool Equals(RegexNode other)
@@ -89,6 +95,47 @@ namespace RegexLib
             public override bool Matches(char character)
             {
                 return this.character == character;
+            }
+        }
+
+        private class CharacterRangeMatcher : CharacterMatcher
+        {
+            private readonly char minChar;
+            private readonly char maxChar;
+
+            public CharacterRangeMatcher(char minChar, char maxChar)
+            {
+                if (maxChar < minChar)
+                {
+                    throw new ArgumentOutOfRangeException("maxChar");
+                }
+
+                this.minChar = minChar;
+                this.maxChar = maxChar;
+            }
+
+            public override bool Equals(object obj)
+            {
+                var range = obj as CharacterRangeMatcher;
+
+                return range != null &&
+                       range.minChar == this.minChar &&
+                       range.maxChar == this.maxChar;
+            }
+
+            public override int GetHashCode()
+            {
+                int hash = 0x51ED270B;
+                hash = (hash * -0x25555529) + this.minChar.GetHashCode();
+                hash = (hash * -0x25555529) + this.maxChar.GetHashCode();
+
+                return hash;
+            }
+
+            public override bool Matches(char character)
+            {
+                return this.minChar <= character &&
+                       this.maxChar >= character;
             }
         }
     }

@@ -25,6 +25,7 @@
 
 namespace RegexLib.Tests
 {
+    using System;
     using System.Linq;
     using NUnit.Framework;
 
@@ -66,6 +67,12 @@ namespace RegexLib.Tests
         };
 
         [Test]
+        public void ctor_WithCharactersOutOfOrder_ThrowsArgumentOutOfRangeException()
+        {
+            Assert.That(() => new CharacterNode('z', 'a'), Throws.InstanceOf<ArgumentOutOfRangeException>());
+        }
+
+        [Test]
         public void Equals_WithNullReference_ReturnsFalse()
         {
             var subject = new CharacterNode('a');
@@ -93,6 +100,42 @@ namespace RegexLib.Tests
             Assert.That(subject.Equals(other), Is.EqualTo(expected));
         }
 
+        [Test]
+        public void Equals_WithEqualRanges_ReturnsTrue()
+        {
+            var subject = new CharacterNode('a', 'z');
+            var other = new CharacterNode('a', 'z');
+
+            Assert.That(subject.Equals(other), Is.True);
+        }
+
+        [Test]
+        public void Equals_WithDifferentMinCharacter_ReturnsFalse()
+        {
+            var subject = new CharacterNode('a', 'z');
+            var other = new CharacterNode(char.MinValue, 'z');
+
+            Assert.That(subject.Equals(other), Is.False);
+        }
+
+        [Test]
+        public void Equals_WithDifferentMaxCharacter_ReturnsFalse()
+        {
+            var subject = new CharacterNode('a', 'z');
+            var other = new CharacterNode('a', char.MaxValue);
+
+            Assert.That(subject.Equals(other), Is.False);
+        }
+
+        [Test]
+        public void Equals_WithDifferentRange_ReturnsFalse()
+        {
+            var subject = new CharacterNode('a', 'z');
+            var other = new CharacterNode(char.MinValue, char.MaxValue);
+
+            Assert.That(subject.Equals(other), Is.False);
+        }
+
         [Theory]
         public void GetMatches_WhenTheCharacterDoesNotMatch_YieldsNoElements(char c)
         {
@@ -109,6 +152,46 @@ namespace RegexLib.Tests
         public void GetMatches_WhenTheCharacterMatches_YieldsASingleMatchingElement()
         {
             var subject = new CharacterNode('O');
+
+            var result = subject.GetMatches("OK", 0).Single();
+
+            Assert.That(result.Value, Is.EqualTo("O"));
+        }
+
+        [Test]
+        public void GetMatches_WhenTheCharacterRangeDoesNotMatch_YieldsNoElements()
+        {
+            var subject = new CharacterNode('1', '9');
+
+            var result = subject.GetMatches("OK", 0);
+
+            Assert.That(result, Is.Empty);
+        }
+
+        [Test]
+        public void GetMatches_WhenTheCharacterRangeMatches_YieldsASingleMatchingElement()
+        {
+            var subject = new CharacterNode('A', 'Z');
+
+            var result = subject.GetMatches("OK", 0).Single();
+
+            Assert.That(result.Value, Is.EqualTo("O"));
+        }
+
+        [Test]
+        public void GetMatches_WhenTheCharacterRangeMatchesMin_YieldsASingleMatchingElement()
+        {
+            var subject = new CharacterNode('O', 'Z');
+
+            var result = subject.GetMatches("OK", 0).Single();
+
+            Assert.That(result.Value, Is.EqualTo("O"));
+        }
+
+        [Test]
+        public void GetMatches_WhenTheCharacterRangeMatchesMax_YieldsASingleMatchingElement()
+        {
+            var subject = new CharacterNode('A', 'O');
 
             var result = subject.GetMatches("OK", 0).Single();
 

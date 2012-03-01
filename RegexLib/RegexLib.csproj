@@ -44,7 +44,6 @@
     <Compile Include="AnyCharacterNode.cs" />
     <Compile Include="AtomicGroupNode.cs" />
     <Compile Include="CharacterNode.cs" />
-    <Compile Include="CharacterRangeNode.cs" />
     <Compile Include="ConcatenationNode.cs" />
     <Compile Include="Regex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
