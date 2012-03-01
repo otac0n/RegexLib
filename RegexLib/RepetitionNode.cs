@@ -82,13 +82,13 @@ namespace RegexLib
 
         protected override IEnumerable<RegexMatch> GetMatchesImpl(string subject, int index)
         {
-            foreach (var blah in this.Foo(0, subject, index, index, new List<RegexMatch>()))
+            foreach (var blah in this.GetMatchesRecursive(0, subject, index, index, new List<RegexMatch>()))
             {
                 yield return blah;
             }
         }
 
-        private IEnumerable<RegexMatch> Foo(int rep, string subject, int originalIndex, int index, List<RegexMatch> subMatches)
+        private IEnumerable<RegexMatch> GetMatchesRecursive(int rep, string subject, int originalIndex, int index, List<RegexMatch> subMatches)
         {
             if (this.max != null && rep > this.max)
             {
@@ -102,15 +102,14 @@ namespace RegexLib
 
             if (!this.eager && this.WithinMinMax(rep))
             {
-                var match = ComposeMatch(subject, originalIndex, subMatches);
-                yield return match;
+                yield return ComposeMatch(subject, originalIndex, subMatches);
             }
 
             foreach (var m in this.repeated.GetMatches(subject, index))
             {
                 subMatches.Add(m);
 
-                foreach (var composite in this.Foo(rep + 1, subject, originalIndex, index + m.Length, subMatches))
+                foreach (var composite in this.GetMatchesRecursive(rep + 1, subject, originalIndex, index + m.Length, subMatches))
                 {
                     yield return composite;
                 }
@@ -120,8 +119,7 @@ namespace RegexLib
 
             if (this.eager && this.WithinMinMax(rep))
             {
-                var match = ComposeMatch(subject, originalIndex, subMatches);
-                yield return match;
+                yield return ComposeMatch(subject, originalIndex, subMatches);
             }
 
             yield break;
