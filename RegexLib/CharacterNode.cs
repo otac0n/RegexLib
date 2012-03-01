@@ -29,38 +29,66 @@ namespace RegexLib
 
     public class CharacterNode : RegexNode
     {
-        private readonly char character;
+        private readonly CharacterMatcher matcher;
 
         public CharacterNode(char character)
         {
-            this.character = character;
-        }
-
-        public char Character
-        {
-            get
-            {
-                return this.character;
-            }
+            this.matcher = new SingleCharacterMatcher(character);
         }
 
         public override bool Equals(RegexNode other)
         {
             return (other is CharacterNode) &&
-                ((CharacterNode)other).character == this.character;
+                ((CharacterNode)other).matcher.Equals(this.matcher);
         }
 
         public override int GetHashCode()
         {
-            return this.character.GetHashCode();
+            return this.matcher.GetHashCode();
         }
 
         protected override IEnumerable<RegexMatch> GetMatchesImpl(string subject, int index)
         {
             if (index < subject.Length &&
-                this.character == subject[index])
+                this.matcher.Matches(subject[index]))
             {
                 yield return new RegexMatch(subject, index, 1);
+            }
+        }
+
+        private abstract class CharacterMatcher
+        {
+            public abstract override bool Equals(object obj);
+
+            public abstract override int GetHashCode();
+
+            public abstract bool Matches(char character);
+        }
+
+        private class SingleCharacterMatcher : CharacterMatcher
+        {
+            private readonly char character;
+
+            public SingleCharacterMatcher(char character)
+            {
+                this.character = character;
+            }
+
+            public override bool Equals(object obj)
+            {
+                var single = obj as SingleCharacterMatcher;
+                return single != null &&
+                       single.character == this.character;
+            }
+
+            public override int GetHashCode()
+            {
+                return this.character.GetHashCode();
+            }
+
+            public override bool Matches(char character)
+            {
+                return this.character == character;
             }
         }
     }
