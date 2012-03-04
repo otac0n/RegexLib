@@ -145,6 +145,55 @@ namespace RegexLib.Tests
             Assert.That(subject.Equals(other), Is.True);
         }
 
+        [Test]
+        public void Equals_WhenRangesAreMerged_ReturnsTrue()
+        {
+            var subject = new CharacterClassNode(
+                new CharacterClassNode.CharacterRange('a', 'a'),
+                new CharacterClassNode.CharacterRange('b', 'b'),
+                new CharacterClassNode.CharacterRange('c', 'c'));
+            var other = new CharacterClassNode('a', 'c');
+
+            Assert.That(subject.Equals(other), Is.True);
+        }
+
+        [Test]
+        public void Equals_WhenRangesAreSuppressed_ReturnsTrue()
+        {
+            var subject = new CharacterClassNode(
+                new CharacterClassNode.CharacterRange('a', 'c'),
+                new CharacterClassNode.CharacterRange('a', 'b'),
+                new CharacterClassNode.CharacterRange('b', 'c'));
+            var other = new CharacterClassNode('a', 'c');
+
+            Assert.That(subject.Equals(other), Is.True);
+        }
+
+        [Test]
+        public void Equals_WhenRangesAreEquivalent_ReturnsTrue()
+        {
+            var subject = new CharacterClassNode(
+                new CharacterClassNode.CharacterRange(char.MinValue, 'a'),
+                new CharacterClassNode.CharacterRange('a', 'v'),
+                new CharacterClassNode.CharacterRange('m', 'q'),
+                new CharacterClassNode.CharacterRange('w', 'w'),
+                new CharacterClassNode.CharacterRange('x', 'x'),
+                new CharacterClassNode.CharacterRange('y', 'y'),
+                new CharacterClassNode.CharacterRange('z', char.MaxValue));
+            var other = new CharacterClassNode();
+
+            Assert.That(subject.Equals(other), Is.True);
+        }
+
+        [Test]
+        public void Equals_WhenRangesAreNotEquivalent_ReturnsFalse()
+        {
+            var subject = new CharacterClassNode();
+            var other = new CharacterClassNode();
+
+            Assert.That(subject.Equals(other), Is.True);
+        }
+
         [Theory]
         public void GetMatches_WhenTheCharacterDoesNotMatch_YieldsNoElements(char c)
         {
