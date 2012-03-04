@@ -42,7 +42,7 @@ namespace RegexLib.Tests
         {
             var actual = RegexParser.Parse(@"a", RegexFlavor.JavaScript, RegexOptions.None);
 
-            var expected = new CharacterNode('a');
+            var expected = new CharacterClassNode('a');
 
             Assert.That(actual, Is.EqualTo(expected));
         }
@@ -98,7 +98,7 @@ namespace RegexLib.Tests
         {
             var actual = RegexParser.Parse(pattern, RegexFlavor.JavaScript, RegexOptions.None);
 
-            var expected = new CharacterNode(specialChar);
+            var expected = new CharacterClassNode(specialChar);
 
             Assert.That(actual, Is.EqualTo(expected));
         }
@@ -110,12 +110,12 @@ namespace RegexLib.Tests
 
             var expected =
                 new AlternationNode(
-                    new CharacterNode('a', 'z'),
+                    new CharacterClassNode('a', 'z'),
                     new AlternationNode(
-                        new CharacterNode('A', 'Z'),
+                        new CharacterClassNode('A', 'Z'),
                         new AlternationNode(
-                            new CharacterNode('0', '9'),
-                            new CharacterNode('_'))));
+                            new CharacterClassNode('0', '9'),
+                            new CharacterClassNode('_'))));
 
             Assert.That(actual, Is.EqualTo(expected));
         }
@@ -127,10 +127,10 @@ namespace RegexLib.Tests
 
             var expected =
                 new ConcatenationNode(
-                    new CharacterNode('a'),
+                    new CharacterClassNode('a'),
                     new ConcatenationNode(
-                        new CharacterNode('b'),
-                        new CharacterNode('c')));
+                        new CharacterClassNode('b'),
+                        new CharacterClassNode('c')));
 
             Assert.That(actual, Is.EqualTo(expected));
         }
@@ -142,10 +142,10 @@ namespace RegexLib.Tests
 
             var expected =
                 new AlternationNode(
-                    new CharacterNode('a'),
+                    new CharacterClassNode('a'),
                     new ConcatenationNode(
-                        new CharacterNode('a'),
-                        new CharacterNode('b')));
+                        new CharacterClassNode('a'),
+                        new CharacterClassNode('b')));
 
             Assert.That(actual, Is.EqualTo(expected));
         }

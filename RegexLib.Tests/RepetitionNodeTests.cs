@@ -81,7 +81,7 @@ namespace RegexLib.Tests
         [Test]
         public void Matches_WithEagerMatching_BacktracksToFewerMatches()
         {
-            var subject = new RepetitionNode(new CharacterNode('a'), 0, null, true);
+            var subject = new RepetitionNode(new CharacterClassNode('a'), 0, null, true);
 
             var actual = subject.GetMatches("aaa", 0).ToArray();
 
@@ -106,7 +106,7 @@ namespace RegexLib.Tests
         [Test]
         public void Matches_WithLazyMatching_BacktracksToMoreMatches()
         {
-            var subject = new RepetitionNode(new CharacterNode('a'), 0, null, false);
+            var subject = new RepetitionNode(new CharacterClassNode('a'), 0, null, false);
 
             var actual = subject.GetMatches("aaa", 0).ToArray();
 
@@ -131,7 +131,7 @@ namespace RegexLib.Tests
         [Test]
         public void Matches_EagerWithMinimum_YieldsAtLeastTheMinimum()
         {
-            var subject = new RepetitionNode(new CharacterNode('a'), 2, null, true);
+            var subject = new RepetitionNode(new CharacterClassNode('a'), 2, null, true);
 
             var actual = subject.GetMatches("aaa", 0).ToArray();
 
@@ -154,7 +154,7 @@ namespace RegexLib.Tests
         [Test]
         public void Matches_LazyWithMinimum_YieldsAtLeastTheMinimum()
         {
-            var subject = new RepetitionNode(new CharacterNode('a'), 2, null, false);
+            var subject = new RepetitionNode(new CharacterClassNode('a'), 2, null, false);
 
             var actual = subject.GetMatches("aaa", 0).ToArray();
 
@@ -177,7 +177,7 @@ namespace RegexLib.Tests
         [Test]
         public void Matches_EagerWithMinimumMoreThanAvailable_YieldsNone()
         {
-            var subject = new RepetitionNode(new CharacterNode('a'), 4, null, true);
+            var subject = new RepetitionNode(new CharacterClassNode('a'), 4, null, true);
 
             var actual = subject.GetMatches("aaa", 0).ToArray();
 
@@ -187,7 +187,7 @@ namespace RegexLib.Tests
         [Test]
         public void Matches_LazyWithMinimumMoreThanAvailable_YieldsNone()
         {
-            var subject = new RepetitionNode(new CharacterNode('a'), 4, null, false);
+            var subject = new RepetitionNode(new CharacterClassNode('a'), 4, null, false);
 
             var actual = subject.GetMatches("aaa", 0).ToArray();
 
@@ -197,7 +197,7 @@ namespace RegexLib.Tests
         [Test]
         public void Matches_EagerWithMaximum_YieldsAtLeastTheMaximum()
         {
-            var subject = new RepetitionNode(new CharacterNode('a'), 0, 2, true);
+            var subject = new RepetitionNode(new CharacterClassNode('a'), 0, 2, true);
 
             var actual = subject.GetMatches("aaa", 0).ToArray();
 
@@ -221,7 +221,7 @@ namespace RegexLib.Tests
         [Test]
         public void Matches_LazyWithMaximum_YieldsAtLeastTheMaximum()
         {
-            var subject = new RepetitionNode(new CharacterNode('a'), 0, 2, false);
+            var subject = new RepetitionNode(new CharacterClassNode('a'), 0, 2, false);
 
             var actual = subject.GetMatches("aaa", 0).ToArray();
 
@@ -245,7 +245,7 @@ namespace RegexLib.Tests
         [Test]
         public void Matches_EagerWithMinimumAndMaximum_YieldsBetweenTheMinimumAndMaximum()
         {
-            var subject = new RepetitionNode(new CharacterNode('a'), 1, 2, true);
+            var subject = new RepetitionNode(new CharacterClassNode('a'), 1, 2, true);
 
             var actual = subject.GetMatches("aaa", 0).ToArray();
 
@@ -268,7 +268,7 @@ namespace RegexLib.Tests
         [Test]
         public void Matches_LazyWithMinimumAndMaximum_YieldsBetweenTheMinimumAndMaximum()
         {
-            var subject = new RepetitionNode(new CharacterNode('a'), 1, 2, false);
+            var subject = new RepetitionNode(new CharacterClassNode('a'), 1, 2, false);
 
             var actual = subject.GetMatches("aaa", 0).ToArray();
 
