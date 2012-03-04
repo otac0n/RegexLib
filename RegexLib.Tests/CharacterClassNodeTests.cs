@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="CharacterNodeTests.cs" company="(none)">
+// <copyright file="CharacterClassNodeTests.cs" company="(none)">
 //  Copyright © 2012 John Gietzen.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,7 +30,7 @@ namespace RegexLib.Tests
     using NUnit.Framework;
 
     [TestFixture]
-    public class CharacterNodeTests
+    public class CharacterClassNodeTests
     {
         [Datapoints]
         public char[] chars =
@@ -69,13 +69,13 @@ namespace RegexLib.Tests
         [Test]
         public void ctor_WithCharactersOutOfOrder_ThrowsArgumentOutOfRangeException()
         {
-            Assert.That(() => new CharacterNode('z', 'a'), Throws.InstanceOf<ArgumentOutOfRangeException>());
+            Assert.That(() => new CharacterClassNode('z', 'a'), Throws.InstanceOf<ArgumentOutOfRangeException>());
         }
 
         [Test]
         public void Equals_WithNullReference_ReturnsFalse()
         {
-            var subject = new CharacterNode('a');
+            var subject = new CharacterClassNode('a');
 
             Assert.That(subject.Equals(null), Is.False);
         }
@@ -83,7 +83,7 @@ namespace RegexLib.Tests
         [Test]
         public void Equals_WithOtherObject_ReturnsFalse()
         {
-            var subject = new CharacterNode('a');
+            var subject = new CharacterClassNode('a');
             var other = new object();
 
             Assert.That(subject.Equals(other), Is.False);
@@ -92,8 +92,8 @@ namespace RegexLib.Tests
         [Theory]
         public void Equals_WithOtherCharacterNode_MatchesCharacterEquality(char c1, char c2)
         {
-            var subject = new CharacterNode(c1);
-            var other = new CharacterNode(c2);
+            var subject = new CharacterClassNode(c1);
+            var other = new CharacterClassNode(c2);
 
             var expected = (c1 == c2);
 
@@ -103,8 +103,8 @@ namespace RegexLib.Tests
         [Test]
         public void Equals_WithEqualRanges_ReturnsTrue()
         {
-            var subject = new CharacterNode('a', 'z');
-            var other = new CharacterNode('a', 'z');
+            var subject = new CharacterClassNode('a', 'z');
+            var other = new CharacterClassNode('a', 'z');
 
             Assert.That(subject.Equals(other), Is.True);
         }
@@ -112,8 +112,8 @@ namespace RegexLib.Tests
         [Test]
         public void Equals_WithDifferentMinCharacter_ReturnsFalse()
         {
-            var subject = new CharacterNode('a', 'z');
-            var other = new CharacterNode(char.MinValue, 'z');
+            var subject = new CharacterClassNode('a', 'z');
+            var other = new CharacterClassNode(char.MinValue, 'z');
 
             Assert.That(subject.Equals(other), Is.False);
         }
@@ -121,8 +121,8 @@ namespace RegexLib.Tests
         [Test]
         public void Equals_WithDifferentMaxCharacter_ReturnsFalse()
         {
-            var subject = new CharacterNode('a', 'z');
-            var other = new CharacterNode('a', char.MaxValue);
+            var subject = new CharacterClassNode('a', 'z');
+            var other = new CharacterClassNode('a', char.MaxValue);
 
             Assert.That(subject.Equals(other), Is.False);
         }
@@ -130,8 +130,8 @@ namespace RegexLib.Tests
         [Test]
         public void Equals_WithDifferentRange_ReturnsFalse()
         {
-            var subject = new CharacterNode('a', 'z');
-            var other = new CharacterNode(char.MinValue, char.MaxValue);
+            var subject = new CharacterClassNode('a', 'z');
+            var other = new CharacterClassNode(char.MinValue, char.MaxValue);
 
             Assert.That(subject.Equals(other), Is.False);
         }
@@ -139,8 +139,8 @@ namespace RegexLib.Tests
         [Test]
         public void Equals_WithOtherAnyCharacterNode_ReturnsTrue()
         {
-            var subject = new CharacterNode();
-            var other = new CharacterNode();
+            var subject = new CharacterClassNode();
+            var other = new CharacterClassNode();
 
             Assert.That(subject.Equals(other), Is.True);
         }
@@ -150,7 +150,7 @@ namespace RegexLib.Tests
         {
             Assume.That(c, Is.Not.EqualTo('O'));
 
-            var subject = new CharacterNode(c);
+            var subject = new CharacterClassNode(c);
 
             var result = subject.GetMatches("OK", 0);
 
@@ -160,7 +160,7 @@ namespace RegexLib.Tests
         [Test]
         public void GetMatches_WhenTheCharacterMatches_YieldsASingleMatchingElement()
         {
-            var subject = new CharacterNode('O');
+            var subject = new CharacterClassNode('O');
 
             var result = subject.GetMatches("OK", 0).Single();
 
@@ -170,7 +170,7 @@ namespace RegexLib.Tests
         [Test]
         public void GetMatches_WhenTheCharacterRangeDoesNotMatch_YieldsNoElements()
         {
-            var subject = new CharacterNode('1', '9');
+            var subject = new CharacterClassNode('1', '9');
 
             var result = subject.GetMatches("OK", 0);
 
@@ -180,7 +180,7 @@ namespace RegexLib.Tests
         [Test]
         public void GetMatches_WhenTheCharacterRangeMatches_YieldsASingleMatchingElement()
         {
-            var subject = new CharacterNode('A', 'Z');
+            var subject = new CharacterClassNode('A', 'Z');
 
             var result = subject.GetMatches("OK", 0).Single();
 
@@ -190,7 +190,7 @@ namespace RegexLib.Tests
         [Test]
         public void GetMatches_WhenTheCharacterRangeMatchesMin_YieldsASingleMatchingElement()
         {
-            var subject = new CharacterNode('O', 'Z');
+            var subject = new CharacterClassNode('O', 'Z');
 
             var result = subject.GetMatches("OK", 0).Single();
 
@@ -200,7 +200,7 @@ namespace RegexLib.Tests
         [Test]
         public void GetMatches_WhenTheCharacterRangeMatchesMax_YieldsASingleMatchingElement()
         {
-            var subject = new CharacterNode('A', 'O');
+            var subject = new CharacterClassNode('A', 'O');
 
             var result = subject.GetMatches("OK", 0).Single();
 
@@ -210,7 +210,7 @@ namespace RegexLib.Tests
         [Test]
         public void GetMatches_WhenCharacterIsAvailable_YieldsASingleMatchingElement()
         {
-            var subject = new CharacterNode();
+            var subject = new CharacterClassNode();
 
             var result = subject.GetMatches("OK", 0).Single();
 
@@ -220,7 +220,7 @@ namespace RegexLib.Tests
         [Test]
         public void GetMatches_AtTheEndOfTheString_YieldsNoElements()
         {
-            var subject = new CharacterNode('O');
+            var subject = new CharacterClassNode('O');
 
             var result = subject.GetMatches("OK", 2);
 
