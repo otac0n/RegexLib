@@ -26,6 +26,8 @@
 namespace RegexLib
 {
     using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
     public class Regex
     {
@@ -39,6 +41,107 @@ namespace RegexLib
             }
 
             this.rootNode = rootNode;
+        }
+
+        private static void ValidateParameters(string subject, int startIndex)
+        {
+            if (subject == null)
+            {
+                throw new ArgumentNullException("subject");
+            }
+
+            if (startIndex < 0 ||
+                startIndex > subject.Length)
+            {
+                throw new ArgumentOutOfRangeException("startIndex");
+            }
+        }
+
+        public RegexMatch MatchAt(string subject, int index)
+        {
+            ValidateParameters(subject, index);
+
+            return this.rootNode.GetMatches(subject, index).FirstOrDefault();
+        }
+
+        public IList<RegexMatch> MatchesAt(string subject, int index)
+        {
+            ValidateParameters(subject, index);
+
+            return this.rootNode.GetMatches(subject, index).ToList();
+        }
+
+        public bool IsMatchAt(string subject, int index)
+        {
+            ValidateParameters(subject, index);
+
+            return this.rootNode.GetMatches(subject, index).Any();
+        }
+
+        public RegexMatch Match(string subject, int startIndex)
+        {
+            ValidateParameters(subject, startIndex);
+
+            var result = (RegexMatch)null;
+
+            for (int i = startIndex; i < subject.Length && result == null; i++)
+            {
+                result = this.rootNode.GetMatches(subject, i).FirstOrDefault();
+            }
+
+            return result;
+        }
+
+        public RegexMatch Match(string subject)
+        {
+            return this.Match(subject, 0);
+        }
+
+        public bool IsMatch(string subject, int startIndex)
+        {
+            ValidateParameters(subject, startIndex);
+
+            for (int i = startIndex; i < subject.Length; i++)
+            {
+                if (this.rootNode.GetMatches(subject, i).Any())
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public bool IsMatch(string subject)
+        {
+            return this.IsMatch(subject, 0);
+        }
+
+        public IList<RegexMatch> Matches(string subject, int startIndex)
+        {
+            ValidateParameters(subject, startIndex);
+
+            var matches = new List<RegexMatch>();
+
+            for (int i = startIndex; i < subject.Length; i++)
+            {
+                foreach (var result in this.rootNode.GetMatches(subject, startIndex))
+                {
+                    matches.Add(result);
+
+                    if (result.Length > 0)
+                    {
+                        i += result.Length - 1;
+                    }
+                }
+            }
+
+            return matches;
+        }
+
+        public IList<RegexMatch> Matches(string subject)
+        {
+            return this.Matches(subject, 0);
         }
     }
 }
