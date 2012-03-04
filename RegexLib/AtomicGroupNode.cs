@@ -68,5 +68,10 @@ namespace RegexLib
                 yield return match;
             }
         }
+
+        public override string GenerateString(Random rand)
+        {
+            return this.regexNode.GenerateString(rand);
+        }
     }
 }

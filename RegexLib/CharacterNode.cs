@@ -27,6 +27,7 @@ namespace RegexLib
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
 
     public class CharacterNode : RegexNode
     {
@@ -67,6 +68,11 @@ namespace RegexLib
             }
         }
 
+        public override string GenerateString(Random rand)
+        {
+            return new string(this.matcher.GenerateCharacter(rand), 1);
+        }
+
         private abstract class CharacterMatcher
         {
             public abstract override bool Equals(object obj);
@@ -74,6 +80,8 @@ namespace RegexLib
             public abstract override int GetHashCode();
 
             public abstract bool Matches(char character);
+
+            public abstract char GenerateCharacter(Random rand);
         }
 
         private class AnyCharacterMatcher : CharacterMatcher
@@ -91,6 +99,26 @@ namespace RegexLib
             public override bool Matches(char character)
             {
                 return true;
+            }
+
+            public override char GenerateCharacter(Random rand)
+            {
+                var range = char.MaxValue - char.MinValue;
+
+                char c;
+                UnicodeCategory cat;
+                do
+                {
+                    var offset = rand.Next(range + 1);
+                    c = (char)(char.MinValue + offset);
+                    cat = char.GetUnicodeCategory(c);
+                } while (cat == UnicodeCategory.PrivateUse ||
+                         cat == UnicodeCategory.OtherNotAssigned ||
+                         cat == UnicodeCategory.Surrogate ||
+                         cat == UnicodeCategory.Control ||
+                         cat == UnicodeCategory.Format);
+
+                return c;
             }
         }
 
@@ -118,6 +146,11 @@ namespace RegexLib
             public override bool Matches(char character)
             {
                 return this.character == character;
+            }
+
+            public override char GenerateCharacter(Random rand)
+            {
+                return this.character;
             }
         }
 
@@ -159,6 +192,13 @@ namespace RegexLib
             {
                 return this.minChar <= character &&
                        this.maxChar >= character;
+            }
+
+            public override char GenerateCharacter(Random rand)
+            {
+                var range = this.maxChar - this.minChar;
+                var offset = rand.Next(range + 1);
+                return (char)(this.minChar + offset);
             }
         }
     }

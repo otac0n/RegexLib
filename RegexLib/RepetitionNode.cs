@@ -28,6 +28,7 @@ namespace RegexLib
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Text;
 
     public class RepetitionNode : RegexNode
     {
@@ -134,6 +135,32 @@ namespace RegexLib
         {
             var length = subMatches.Sum(m => m.Length);
             return new RegexMatch(subject, originalIndex, length, subMatches);
+        }
+
+        public override string GenerateString(Random rand)
+        {
+            int count;
+            if (this.max.HasValue)
+            {
+                var range = this.max.Value - this.min;
+                count = rand.Next(range + 1) + this.min;
+            }
+            else
+            {
+                count = this.min;
+                while (rand.Next(2) == 0)
+                {
+                    count++;
+                }
+            }
+
+            var result = new StringBuilder();
+            for (int i = 0; i < count; i++)
+            {
+                result.Append(this.repeated.GenerateString(rand));
+            }
+
+            return result.ToString();
         }
     }
 }

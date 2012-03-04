@@ -25,6 +25,7 @@
 
 namespace RegexLib.Tests
 {
+    using System;
     using System.Collections.Generic;
 
     public class StubRegexNode : RegexNode
@@ -51,6 +52,11 @@ namespace RegexLib.Tests
         protected override IEnumerable<RegexMatch> GetMatchesImpl(string subject, int index)
         {
             return this.matches;
+        }
+
+        public override string GenerateString(Random rand)
+        {
+            throw new NotImplementedException();
         }
     }
 }

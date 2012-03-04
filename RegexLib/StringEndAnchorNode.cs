@@ -25,6 +25,7 @@
 
 namespace RegexLib
 {
+    using System;
     using System.Collections.Generic;
 
     public class StringEndAnchorNode : RegexNode
@@ -45,6 +46,11 @@ namespace RegexLib
             {
                 yield return new RegexMatch(subject, index, 0);
             }
+        }
+
+        public override string GenerateString(Random rand)
+        {
+            throw new NotImplementedException();
         }
     }
 }

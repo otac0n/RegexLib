@@ -79,5 +79,17 @@ namespace RegexLib
                 yield return match;
             }
         }
+
+        public override string GenerateString(Random rand)
+        {
+            if (rand.Next(2) == 0)
+            {
+                return this.a.GenerateString(rand);
+            }
+            else
+            {
+                return this.b.GenerateString(rand);
+            }
+        }
     }
 }

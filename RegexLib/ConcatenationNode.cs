@@ -77,5 +77,10 @@ namespace RegexLib
                 }
             }
         }
+
+        public override string GenerateString(Random rand)
+        {
+            return this.a.GenerateString(rand) + this.b.GenerateString(rand);
+        }
     }
 }

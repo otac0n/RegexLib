@@ -66,5 +66,7 @@ namespace RegexLib
 
             return this.GetMatchesImpl(subject, index);
         }
+
+        public abstract string GenerateString(Random rand);
     }
 }
