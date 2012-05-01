@@ -1,6 +1,8 @@
 %namespace RegexLib.Parsers.JavaScript
 %visibility internal
 
+%option nofiles
+
 pipe                     \|
 carat                    \^
 dollar                   \$
