@@ -40,11 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\utils\gppg\ShiftReduceParserCode.cs">
+      <Link>Parsers\ShiftReduceParserCode.cs</Link>
+    </Compile>
     <Compile Include="AlternationNode.cs" />
     <Compile Include="AtomicGroupNode.cs" />
     <Compile Include="CharacterClassNode.cs" />
     <Compile Include="ConcatenationNode.cs" />
     <Compile Include="Regex.cs" />
+    <Compile Include="Parsers\JavaScript\Parser.g.cs">
+      <DependentUpon>JavaScriptRegExp.y</DependentUpon>
+    </Compile>
+    <Compile Include="Parsers\JavaScript\Lexer.g.cs">
+      <DependentUpon>JavaScriptRegExp.lex</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegexMatch.cs" />
     <Compile Include="RegexNode.cs" />
@@ -53,12 +62,13 @@
     <Compile Include="StringEndAnchorNode.cs" />
     <Compile Include="StringStartAnchorNode.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Parsers\JavaScript\JavaScriptRegExp.lex" />
+    <None Include="Parsers\JavaScript\JavaScriptRegExp.y" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
+    <Exec WorkingDirectory="$(ProjectDir)" Command="&quot;$(SolutionDir)utils\gppg\gplex.exe&quot; /noinfo /nofilename /unicode /out:&quot;Parsers\JavaScript\Lexer.g.cs&quot; &quot;Parsers\JavaScript\JavaScriptRegExp.lex&quot;" Outputs="$(ProjectDir)Parsers\JavaScript\Lexer.g.cs" />
+    <Exec WorkingDirectory="$(ProjectDir)" Command="&quot;$(SolutionDir)utils\gppg\gppg.exe&quot; /noinfo /nofilename /gplex &quot;Parsers\JavaScript\JavaScriptRegExp.y&quot; &gt; &quot;Parsers\JavaScript\Parser.g.cs&quot;" Outputs="$(ProjectDir)Parsers\JavaScript\Parser.g.cs" />
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
