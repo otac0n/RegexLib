@@ -47,7 +47,6 @@
     <Compile Include="AtomicGroupNode.cs" />
     <Compile Include="CharacterClassNode.cs" />
     <Compile Include="ConcatenationNode.cs" />
-    <Compile Include="Regex.cs" />
     <Compile Include="Parsers\JavaScript\Parser.g.cs">
       <DependentUpon>JavaScriptRegExp.y</DependentUpon>
     </Compile>
@@ -55,6 +54,7 @@
       <DependentUpon>JavaScriptRegExp.lex</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Regex.cs" />
     <Compile Include="RegexMatch.cs" />
     <Compile Include="RegexNode.cs" />
     <Compile Include="RegexParser.cs" />
