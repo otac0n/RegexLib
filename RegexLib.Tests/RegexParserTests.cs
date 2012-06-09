@@ -38,6 +38,16 @@ namespace RegexLib.Tests
         }
 
         [Test]
+        public void Parse_WithEmptyString_YieldsCharacterNode()
+        {
+            var actual = RegexParser.Parse(@"", RegexFlavor.JavaScript, RegexOptions.None);
+
+            var expected = (RegexNode)null;
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
         public void Parse_WithSingleCharacter_YieldsCharacterNode()
         {
             var actual = RegexParser.Parse(@"a", RegexFlavor.JavaScript, RegexOptions.None);

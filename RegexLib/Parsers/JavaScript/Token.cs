@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="RegexParser.cs" company="(none)">
+// <copyright file="Token.cs" company="(none)">
 //  Copyright © 2012 John Gietzen.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,52 +23,44 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-namespace RegexLib
+namespace RegexLib.Parsers.JavaScript
 {
-    using System;
-
-    public enum RegexFlavor
+    /// <summary>
+    /// Represents a token.
+    /// </summary>
+    internal class Token
     {
-        JavaScript,
-    }
+        private readonly Tokens type;
+        private readonly string value;
+        private readonly int line;
+        private readonly int column;
 
-    public enum RegexOptions
-    {
-        None = 0,
-    }
-
-    public static class RegexParser
-    {
-        public static RegexNode Parse(string pattern, RegexFlavor flavor, RegexOptions options)
+        public Token(Tokens type, string value, int line, int column)
         {
-            if (pattern == null)
-            {
-                throw new ArgumentNullException("pattern");
-            }
-
-            switch (flavor)
-            {
-                case RegexFlavor.JavaScript:
-                    return JavaScriptParser.Parse(pattern, options);
-
-                default:
-                    throw new NotImplementedException();
-            }
+            this.type = type;
+            this.value = value;
+            this.line = line;
+            this.column = column;
         }
 
-        private static class JavaScriptParser
+        public Tokens Type
         {
-            public static RegexNode Parse(string regexString, RegexOptions options)
-            {
-                var scanner = new RegexLib.Parsers.JavaScript.Scanner();
-                scanner.SetSource(regexString, 0);
-                var parser = new RegexLib.Parsers.JavaScript.Parser(scanner);
-                if (!parser.Parse())
-                {
-                }
+            get { return this.type; }
+        }
 
-                return parser.RootNode;
-            }
+        public string Value
+        {
+            get { return this.value; }
+        }
+
+        public int Line
+        {
+            get { return this.line; }
+        }
+
+        public int Column
+        {
+            get { return this.column; }
         }
     }
 }
