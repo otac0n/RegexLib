@@ -26,3 +26,6 @@ TestResult.xml
 
 # Ignore NuGet files in the root.
 /*.nupkg
+
+# Ignore ANTLR intermediary files.
+*.tokens
