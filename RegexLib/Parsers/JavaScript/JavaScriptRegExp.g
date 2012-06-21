@@ -33,17 +33,14 @@ assertion
 	;
 
 quantifier
-	:	quantifierPrefix '?'
-	|	quantifierPrefix
+	:	quantifierPrefix ('?')?
 	;
 
 quantifierPrefix
 	:	'*'
 	|	'+'
 	|	'?'
-	|	'{' decimalDigits '}'
-	|	'{' decimalDigits ',}'
-	|	'{' decimalDigits ',' decimalDigits '}'
+	|	'{' decimalDigits (',' (decimalDigits)?)? '}'
 	;
 
 atom
@@ -141,15 +138,24 @@ classRanges
 	;
 
 nonEmptyClassRanges
-	:	classAtom
-	|	classAtom nonEmptyClassRangesNoDash
-	|	classAtom '-' classAtom classRanges
+	:	classAtom nonEmptyClassRangesContinued
+	;
+
+nonEmptyClassRangesContinued
+	: /* empty */
+	| nonEmptyClassRangesNoDash
+	| '-' classAtom classRanges
 	;
 
 nonEmptyClassRangesNoDash
-	:	classAtom
-	|	classAtomNoDash nonEmptyClassRangesNoDash
-	|	classAtomNoDash '-' classAtom classRanges
+	:	t='-' classAtom
+	|	t=~'-' classAtomNoDash nonEmptyClassRangesNoDashContinued
+	;
+
+nonEmptyClassRangesNoDashContinued
+	: /* empty */
+	|	nonEmptyClassRangesNoDash
+	|	'-' classAtom classRanges
 	;
 
 classAtom
