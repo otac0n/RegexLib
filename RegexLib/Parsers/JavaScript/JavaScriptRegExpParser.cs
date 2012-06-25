@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.4 C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g 2012-06-20 20:09:12
+// $ANTLR 3.4 C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g 2012-06-25 09:47:22
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -33,19 +33,9 @@ using RewriteRuleITokenStream = Antlr.Runtime.Tree.RewriteRuleTokenStream;
 public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 {
 	internal static readonly string[] tokenNames = new string[] {
-		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "'$'", "'('", "'(:?'", "'(?!'", "'(?='", "')'", "'*'", "'+'", "','", "'-'", "'.'", "'0'", "'1'", "'9'", "'?'", "'A'", "'D'", "'F'", "'S'", "'W'", "'Z'", "'['", "'[^'", "'\\\\'", "'\\\\B'", "'\\\\b'", "']'", "'^'", "'a'", "'b'", "'c'", "'d'", "'f'", "'n'", "'r'", "'s'", "'t'", "'u'", "'v'", "'w'", "'x'", "'z'", "'{'", "'|'", "'}'"
+		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "ControlEscape", "ControlLetter", "DecimalDigit", "DecimalDigits", "DecimalIntegerLiteral", "HexDigit", "HexEscapeSequence", "IdentityEscape", "NonZeroDigit", "UnicodeEscapeSequence", "'$'", "'('", "'(:?'", "'(?!'", "'(?='", "')'", "'*'", "'+'", "','", "'-'", "'.'", "'?'", "'D'", "'S'", "'W'", "'['", "'[^'", "'\\\\'", "'\\\\B'", "'\\\\b'", "']'", "'^'", "'b'", "'c'", "'d'", "'s'", "'w'", "'{'", "'|'", "'}'"
 	};
 	public const int EOF=-1;
-	public const int T__4=4;
-	public const int T__5=5;
-	public const int T__6=6;
-	public const int T__7=7;
-	public const int T__8=8;
-	public const int T__9=9;
-	public const int T__10=10;
-	public const int T__11=11;
-	public const int T__12=12;
-	public const int T__13=13;
 	public const int T__14=14;
 	public const int T__15=15;
 	public const int T__16=16;
@@ -76,11 +66,16 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 	public const int T__41=41;
 	public const int T__42=42;
 	public const int T__43=43;
-	public const int T__44=44;
-	public const int T__45=45;
-	public const int T__46=46;
-	public const int T__47=47;
-	public const int T__48=48;
+	public const int ControlEscape=4;
+	public const int ControlLetter=5;
+	public const int DecimalDigit=6;
+	public const int DecimalDigits=7;
+	public const int DecimalIntegerLiteral=8;
+	public const int HexDigit=9;
+	public const int HexEscapeSequence=10;
+	public const int IdentityEscape=11;
+	public const int NonZeroDigit=12;
+	public const int UnicodeEscapeSequence=13;
 
 	public JavaScriptRegExpParser(ITokenStream input)
 		: this(input, new RecognizerSharedState())
@@ -89,7 +84,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 	public JavaScriptRegExpParser(ITokenStream input, RecognizerSharedState state)
 		: base(input, state)
 	{
-		this.state.ruleMemo = new System.Collections.Generic.Dictionary<int, int>[100+1];
+		this.state.ruleMemo = new System.Collections.Generic.Dictionary<int, int>[80+1];
 
 
 		ITreeAdaptor treeAdaptor = default(ITreeAdaptor);
@@ -248,7 +243,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 			try { DebugEnterDecision(1, false);
 			int LA1_0 = input.LA(1);
 
-			if ((LA1_0==47))
+			if ((LA1_0==42))
 			{
 				alt1 = 1;
 			}
@@ -260,7 +255,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:14:17: '|' disjunction
 				{
 				DebugLocation(14, 17);
-				char_literal4=(IToken)Match(input,47,Follow._47_in_disjunction63); if (state.failed) return retval;
+				char_literal4=(IToken)Match(input,42,Follow._42_in_disjunction63); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				char_literal4_tree = (object)adaptor.Create(char_literal4);
 				adaptor.AddChild(root_0, char_literal4_tree);
@@ -350,7 +345,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				try { DebugEnterDecision(2, false);
 				int LA2_0 = input.LA(1);
 
-				if (((LA2_0>=4 && LA2_0<=8)||(LA2_0>=12 && LA2_0<=17)||(LA2_0>=19 && LA2_0<=29)||(LA2_0>=31 && LA2_0<=45)))
+				if (((LA2_0>=ControlEscape && LA2_0<=18)||(LA2_0>=22 && LA2_0<=24)||(LA2_0>=26 && LA2_0<=33)||(LA2_0>=35 && LA2_0<=40)))
 				{
 					alt2 = 1;
 				}
@@ -447,13 +442,13 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 			try { DebugEnterDecision(4, false);
 			switch (input.LA(1))
 			{
-			case 4:
-			case 31:
+			case 14:
+			case 35:
 				{
 				alt4 = 1;
 				}
 				break;
-			case 29:
+			case 33:
 				{
 				int LA4_2 = input.LA(2);
 
@@ -474,7 +469,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				}
 				}
 				break;
-			case 28:
+			case 32:
 				{
 				int LA4_3 = input.LA(2);
 
@@ -495,7 +490,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				}
 				}
 				break;
-			case 8:
+			case 18:
 				{
 				int LA4_4 = input.LA(2);
 
@@ -516,7 +511,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				}
 				}
 				break;
-			case 7:
+			case 17:
 				{
 				int LA4_5 = input.LA(2);
 
@@ -537,37 +532,32 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				}
 				}
 				break;
-			case 5:
-			case 6:
-			case 12:
-			case 13:
-			case 14:
+			case ControlEscape:
+			case ControlLetter:
+			case DecimalDigit:
+			case DecimalDigits:
+			case DecimalIntegerLiteral:
+			case HexDigit:
+			case HexEscapeSequence:
+			case IdentityEscape:
+			case NonZeroDigit:
+			case UnicodeEscapeSequence:
 			case 15:
 			case 16:
-			case 17:
-			case 19:
-			case 20:
-			case 21:
 			case 22:
 			case 23:
 			case 24:
-			case 25:
 			case 26:
 			case 27:
-			case 32:
-			case 33:
-			case 34:
-			case 35:
+			case 28:
+			case 29:
+			case 30:
+			case 31:
 			case 36:
 			case 37:
 			case 38:
 			case 39:
 			case 40:
-			case 41:
-			case 42:
-			case 43:
-			case 44:
-			case 45:
 				{
 				alt4 = 2;
 				}
@@ -618,7 +608,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				try { DebugEnterDecision(3, false);
 				int LA3_0 = input.LA(1);
 
-				if (((LA3_0>=10 && LA3_0<=11)||LA3_0==18||LA3_0==46))
+				if (((LA3_0>=20 && LA3_0<=21)||LA3_0==25||LA3_0==41))
 				{
 					alt3 = 1;
 				}
@@ -723,32 +713,32 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 			try { DebugEnterDecision(5, false);
 			switch (input.LA(1))
 			{
-			case 31:
+			case 35:
 				{
 				alt5 = 1;
 				}
 				break;
-			case 4:
+			case 14:
 				{
 				alt5 = 2;
 				}
 				break;
-			case 29:
+			case 33:
 				{
 				alt5 = 3;
 				}
 				break;
-			case 28:
+			case 32:
 				{
 				alt5 = 4;
 				}
 				break;
-			case 8:
+			case 18:
 				{
 				alt5 = 5;
 				}
 				break;
-			case 7:
+			case 17:
 				{
 				alt5 = 6;
 				}
@@ -772,7 +762,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(27, 4);
-				char_literal10=(IToken)Match(input,31,Follow._31_in_assertion109); if (state.failed) return retval;
+				char_literal10=(IToken)Match(input,35,Follow._35_in_assertion109); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				char_literal10_tree = (object)adaptor.Create(char_literal10);
 				adaptor.AddChild(root_0, char_literal10_tree);
@@ -787,7 +777,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(28, 4);
-				char_literal11=(IToken)Match(input,4,Follow._4_in_assertion114); if (state.failed) return retval;
+				char_literal11=(IToken)Match(input,14,Follow._14_in_assertion114); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				char_literal11_tree = (object)adaptor.Create(char_literal11);
 				adaptor.AddChild(root_0, char_literal11_tree);
@@ -802,7 +792,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(29, 4);
-				string_literal12=(IToken)Match(input,29,Follow._29_in_assertion119); if (state.failed) return retval;
+				string_literal12=(IToken)Match(input,33,Follow._33_in_assertion119); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				string_literal12_tree = (object)adaptor.Create(string_literal12);
 				adaptor.AddChild(root_0, string_literal12_tree);
@@ -817,7 +807,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(30, 4);
-				string_literal13=(IToken)Match(input,28,Follow._28_in_assertion124); if (state.failed) return retval;
+				string_literal13=(IToken)Match(input,32,Follow._32_in_assertion124); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				string_literal13_tree = (object)adaptor.Create(string_literal13);
 				adaptor.AddChild(root_0, string_literal13_tree);
@@ -832,7 +822,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(31, 4);
-				string_literal14=(IToken)Match(input,8,Follow._8_in_assertion129); if (state.failed) return retval;
+				string_literal14=(IToken)Match(input,18,Follow._18_in_assertion129); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				string_literal14_tree = (object)adaptor.Create(string_literal14);
 				adaptor.AddChild(root_0, string_literal14_tree);
@@ -844,7 +834,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				if (state.failed) return retval;
 				if (state.backtracking == 0) adaptor.AddChild(root_0, disjunction15.Tree);
 				DebugLocation(31, 22);
-				char_literal16=(IToken)Match(input,9,Follow._9_in_assertion133); if (state.failed) return retval;
+				char_literal16=(IToken)Match(input,19,Follow._19_in_assertion133); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				char_literal16_tree = (object)adaptor.Create(char_literal16);
 				adaptor.AddChild(root_0, char_literal16_tree);
@@ -859,7 +849,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(32, 4);
-				string_literal17=(IToken)Match(input,7,Follow._7_in_assertion138); if (state.failed) return retval;
+				string_literal17=(IToken)Match(input,17,Follow._17_in_assertion138); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				string_literal17_tree = (object)adaptor.Create(string_literal17);
 				adaptor.AddChild(root_0, string_literal17_tree);
@@ -871,7 +861,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				if (state.failed) return retval;
 				if (state.backtracking == 0) adaptor.AddChild(root_0, disjunction18.Tree);
 				DebugLocation(32, 22);
-				char_literal19=(IToken)Match(input,9,Follow._9_in_assertion142); if (state.failed) return retval;
+				char_literal19=(IToken)Match(input,19,Follow._19_in_assertion142); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				char_literal19_tree = (object)adaptor.Create(char_literal19);
 				adaptor.AddChild(root_0, char_literal19_tree);
@@ -956,7 +946,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 			try { DebugEnterDecision(6, false);
 			int LA6_0 = input.LA(1);
 
-			if ((LA6_0==18))
+			if ((LA6_0==25))
 			{
 				alt6 = 1;
 			}
@@ -968,7 +958,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:36:22: '?'
 				{
 				DebugLocation(36, 22);
-				char_literal21=(IToken)Match(input,18,Follow._18_in_quantifier156); if (state.failed) return retval;
+				char_literal21=(IToken)Match(input,25,Follow._25_in_quantifier156); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				char_literal21_tree = (object)adaptor.Create(char_literal21);
 				adaptor.AddChild(root_0, char_literal21_tree);
@@ -1016,7 +1006,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 	partial void LeaveRule_quantifierPrefix();
 
 	// $ANTLR start "quantifierPrefix"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:39:1: quantifierPrefix : ( '*' | '+' | '?' | '{' decimalDigits ( ',' ( decimalDigits )? )? '}' );
+	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:39:1: quantifierPrefix : ( '*' | '+' | '?' | '{' DecimalDigits ( ',' ( DecimalDigits )? )? '}' );
 	[GrammarRule("quantifierPrefix")]
 	private AstParserRuleReturnScope<object, IToken> quantifierPrefix()
 	{
@@ -1033,16 +1023,18 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		IToken char_literal23 = default(IToken);
 		IToken char_literal24 = default(IToken);
 		IToken char_literal25 = default(IToken);
+		IToken DecimalDigits26 = default(IToken);
 		IToken char_literal27 = default(IToken);
+		IToken DecimalDigits28 = default(IToken);
 		IToken char_literal29 = default(IToken);
-		AstParserRuleReturnScope<object, IToken> decimalDigits26 = default(AstParserRuleReturnScope<object, IToken>);
-		AstParserRuleReturnScope<object, IToken> decimalDigits28 = default(AstParserRuleReturnScope<object, IToken>);
 
 		object char_literal22_tree = default(object);
 		object char_literal23_tree = default(object);
 		object char_literal24_tree = default(object);
 		object char_literal25_tree = default(object);
+		object DecimalDigits26_tree = default(object);
 		object char_literal27_tree = default(object);
+		object DecimalDigits28_tree = default(object);
 		object char_literal29_tree = default(object);
 		try { DebugEnterRule(GrammarFileName, "quantifierPrefix");
 		DebugLocation(39, 1);
@@ -1050,27 +1042,27 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		{
 			if (state.backtracking > 0 && AlreadyParsedRule(input, 7)) { return retval; }
 
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:40:2: ( '*' | '+' | '?' | '{' decimalDigits ( ',' ( decimalDigits )? )? '}' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:40:2: ( '*' | '+' | '?' | '{' DecimalDigits ( ',' ( DecimalDigits )? )? '}' )
 			int alt9=4;
 			try { DebugEnterDecision(9, false);
 			switch (input.LA(1))
 			{
-			case 10:
+			case 20:
 				{
 				alt9 = 1;
 				}
 				break;
-			case 11:
+			case 21:
 				{
 				alt9 = 2;
 				}
 				break;
-			case 18:
+			case 25:
 				{
 				alt9 = 3;
 				}
 				break;
-			case 46:
+			case 41:
 				{
 				alt9 = 4;
 				}
@@ -1094,7 +1086,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(40, 4);
-				char_literal22=(IToken)Match(input,10,Follow._10_in_quantifierPrefix169); if (state.failed) return retval;
+				char_literal22=(IToken)Match(input,20,Follow._20_in_quantifierPrefix169); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				char_literal22_tree = (object)adaptor.Create(char_literal22);
 				adaptor.AddChild(root_0, char_literal22_tree);
@@ -1109,7 +1101,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(41, 4);
-				char_literal23=(IToken)Match(input,11,Follow._11_in_quantifierPrefix174); if (state.failed) return retval;
+				char_literal23=(IToken)Match(input,21,Follow._21_in_quantifierPrefix174); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				char_literal23_tree = (object)adaptor.Create(char_literal23);
 				adaptor.AddChild(root_0, char_literal23_tree);
@@ -1124,7 +1116,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(42, 4);
-				char_literal24=(IToken)Match(input,18,Follow._18_in_quantifierPrefix179); if (state.failed) return retval;
+				char_literal24=(IToken)Match(input,25,Follow._25_in_quantifierPrefix179); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				char_literal24_tree = (object)adaptor.Create(char_literal24);
 				adaptor.AddChild(root_0, char_literal24_tree);
@@ -1134,30 +1126,30 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				break;
 			case 4:
 				DebugEnterAlt(4);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:43:4: '{' decimalDigits ( ',' ( decimalDigits )? )? '}'
+				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:43:4: '{' DecimalDigits ( ',' ( DecimalDigits )? )? '}'
 				{
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(43, 4);
-				char_literal25=(IToken)Match(input,46,Follow._46_in_quantifierPrefix184); if (state.failed) return retval;
+				char_literal25=(IToken)Match(input,41,Follow._41_in_quantifierPrefix184); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				char_literal25_tree = (object)adaptor.Create(char_literal25);
 				adaptor.AddChild(root_0, char_literal25_tree);
 				}
 				DebugLocation(43, 8);
-				PushFollow(Follow._decimalDigits_in_quantifierPrefix186);
-				decimalDigits26=decimalDigits();
-				PopFollow();
-				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, decimalDigits26.Tree);
+				DecimalDigits26=(IToken)Match(input,DecimalDigits,Follow._DecimalDigits_in_quantifierPrefix186); if (state.failed) return retval;
+				if (state.backtracking == 0) {
+				DecimalDigits26_tree = (object)adaptor.Create(DecimalDigits26);
+				adaptor.AddChild(root_0, DecimalDigits26_tree);
+				}
 				DebugLocation(43, 22);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:43:22: ( ',' ( decimalDigits )? )?
+				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:43:22: ( ',' ( DecimalDigits )? )?
 				int alt8=2;
 				try { DebugEnterSubRule(8);
 				try { DebugEnterDecision(8, false);
 				int LA8_0 = input.LA(1);
 
-				if ((LA8_0==12))
+				if ((LA8_0==22))
 				{
 					alt8 = 1;
 				}
@@ -1166,22 +1158,22 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:43:23: ',' ( decimalDigits )?
+					// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:43:23: ',' ( DecimalDigits )?
 					{
 					DebugLocation(43, 23);
-					char_literal27=(IToken)Match(input,12,Follow._12_in_quantifierPrefix189); if (state.failed) return retval;
+					char_literal27=(IToken)Match(input,22,Follow._22_in_quantifierPrefix189); if (state.failed) return retval;
 					if (state.backtracking == 0) {
 					char_literal27_tree = (object)adaptor.Create(char_literal27);
 					adaptor.AddChild(root_0, char_literal27_tree);
 					}
 					DebugLocation(43, 27);
-					// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:43:27: ( decimalDigits )?
+					// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:43:27: ( DecimalDigits )?
 					int alt7=2;
 					try { DebugEnterSubRule(7);
 					try { DebugEnterDecision(7, false);
 					int LA7_0 = input.LA(1);
 
-					if (())
+					if ((LA7_0==DecimalDigits))
 					{
 						alt7 = 1;
 					}
@@ -1190,14 +1182,14 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:43:28: decimalDigits
+						// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:43:28: DecimalDigits
 						{
 						DebugLocation(43, 28);
-						PushFollow(Follow._decimalDigits_in_quantifierPrefix192);
-						decimalDigits28=decimalDigits();
-						PopFollow();
-						if (state.failed) return retval;
-						if (state.backtracking == 0) adaptor.AddChild(root_0, decimalDigits28.Tree);
+						DecimalDigits28=(IToken)Match(input,DecimalDigits,Follow._DecimalDigits_in_quantifierPrefix192); if (state.failed) return retval;
+						if (state.backtracking == 0) {
+						DecimalDigits28_tree = (object)adaptor.Create(DecimalDigits28);
+						adaptor.AddChild(root_0, DecimalDigits28_tree);
+						}
 
 						}
 						break;
@@ -1213,7 +1205,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				} finally { DebugExitSubRule(8); }
 
 				DebugLocation(43, 46);
-				char_literal29=(IToken)Match(input,48,Follow._48_in_quantifierPrefix198); if (state.failed) return retval;
+				char_literal29=(IToken)Match(input,43,Follow._43_in_quantifierPrefix198); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				char_literal29_tree = (object)adaptor.Create(char_literal29);
 				adaptor.AddChild(root_0, char_literal29_tree);
@@ -1298,7 +1290,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 			try { DebugEnterDecision(10, false);
 			switch (input.LA(1))
 			{
-			case 26:
+			case 30:
 				{
 				int LA10_1 = input.LA(2);
 
@@ -1319,22 +1311,22 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				}
 				}
 				break;
-			case 14:
+			case 24:
 				{
 				alt10 = 2;
 				}
 				break;
-			case 27:
+			case 31:
 				{
 				alt10 = 3;
 				}
 				break;
-			case 25:
+			case 29:
 				{
 				alt10 = 4;
 				}
 				break;
-			case 6:
+			case 16:
 				{
 				int LA10_5 = input.LA(2);
 
@@ -1355,40 +1347,35 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				}
 				}
 				break;
-			case 5:
+			case 15:
 				{
 				alt10 = 5;
 				}
 				break;
-			case 7:
-			case 8:
-			case 12:
-			case 13:
-			case 15:
-			case 16:
+			case ControlEscape:
+			case ControlLetter:
+			case DecimalDigit:
+			case DecimalDigits:
+			case DecimalIntegerLiteral:
+			case HexDigit:
+			case HexEscapeSequence:
+			case IdentityEscape:
+			case NonZeroDigit:
+			case UnicodeEscapeSequence:
 			case 17:
-			case 19:
-			case 20:
-			case 21:
+			case 18:
 			case 22:
 			case 23:
-			case 24:
+			case 26:
+			case 27:
 			case 28:
-			case 29:
 			case 32:
 			case 33:
-			case 34:
-			case 35:
 			case 36:
 			case 37:
 			case 38:
 			case 39:
 			case 40:
-			case 41:
-			case 42:
-			case 43:
-			case 44:
-			case 45:
 				{
 				alt10 = 1;
 				}
@@ -1427,7 +1414,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(48, 4);
-				char_literal31=(IToken)Match(input,14,Follow._14_in_atom214); if (state.failed) return retval;
+				char_literal31=(IToken)Match(input,24,Follow._24_in_atom214); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				char_literal31_tree = (object)adaptor.Create(char_literal31);
 				adaptor.AddChild(root_0, char_literal31_tree);
@@ -1442,7 +1429,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(49, 4);
-				char_literal32=(IToken)Match(input,27,Follow._27_in_atom219); if (state.failed) return retval;
+				char_literal32=(IToken)Match(input,31,Follow._31_in_atom219); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				char_literal32_tree = (object)adaptor.Create(char_literal32);
 				adaptor.AddChild(root_0, char_literal32_tree);
@@ -1478,7 +1465,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(51, 4);
-				char_literal35=(IToken)Match(input,5,Follow._5_in_atom231); if (state.failed) return retval;
+				char_literal35=(IToken)Match(input,15,Follow._15_in_atom231); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				char_literal35_tree = (object)adaptor.Create(char_literal35);
 				adaptor.AddChild(root_0, char_literal35_tree);
@@ -1490,7 +1477,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				if (state.failed) return retval;
 				if (state.backtracking == 0) adaptor.AddChild(root_0, disjunction36.Tree);
 				DebugLocation(51, 20);
-				char_literal37=(IToken)Match(input,9,Follow._9_in_atom235); if (state.failed) return retval;
+				char_literal37=(IToken)Match(input,19,Follow._19_in_atom235); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				char_literal37_tree = (object)adaptor.Create(char_literal37);
 				adaptor.AddChild(root_0, char_literal37_tree);
@@ -1505,7 +1492,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(52, 4);
-				string_literal38=(IToken)Match(input,6,Follow._6_in_atom240); if (state.failed) return retval;
+				string_literal38=(IToken)Match(input,16,Follow._16_in_atom240); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				string_literal38_tree = (object)adaptor.Create(string_literal38);
 				adaptor.AddChild(root_0, string_literal38_tree);
@@ -1517,7 +1504,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				if (state.failed) return retval;
 				if (state.backtracking == 0) adaptor.AddChild(root_0, disjunction39.Tree);
 				DebugLocation(52, 22);
-				char_literal40=(IToken)Match(input,9,Follow._9_in_atom244); if (state.failed) return retval;
+				char_literal40=(IToken)Match(input,19,Follow._19_in_atom244); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				char_literal40_tree = (object)adaptor.Create(char_literal40);
 				adaptor.AddChild(root_0, char_literal40_tree);
@@ -1591,7 +1578,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 			DebugLocation(56, 2);
 
 			set41=(IToken)input.LT(1);
-			if ((input.LA(1)>=6 && input.LA(1)<=8)||(input.LA(1)>=12 && input.LA(1)<=13)||(input.LA(1)>=15 && input.LA(1)<=17)||(input.LA(1)>=19 && input.LA(1)<=24)||input.LA(1)==26||(input.LA(1)>=28 && input.LA(1)<=29)||(input.LA(1)>=32 && input.LA(1)<=45))
+			if ((input.LA(1)>=ControlEscape && input.LA(1)<=UnicodeEscapeSequence)||(input.LA(1)>=16 && input.LA(1)<=18)||(input.LA(1)>=22 && input.LA(1)<=23)||(input.LA(1)>=26 && input.LA(1)<=28)||input.LA(1)==30||(input.LA(1)>=32 && input.LA(1)<=33)||(input.LA(1)>=36 && input.LA(1)<=40))
 			{
 				input.Consume();
 				if (state.backtracking == 0) adaptor.AddChild(root_0, (object)adaptor.Create(set41));
@@ -1669,29 +1656,26 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 			try { DebugEnterDecision(11, false);
 			switch (input.LA(1))
 			{
-			case 15:
+			case DecimalIntegerLiteral:
 				{
 				alt11 = 1;
 				}
 				break;
-			case 34:
-			case 36:
+			case ControlEscape:
+			case HexEscapeSequence:
+			case IdentityEscape:
+			case UnicodeEscapeSequence:
 			case 37:
-			case 38:
-			case 40:
-			case 41:
-			case 42:
-			case 44:
 				{
 				alt11 = 2;
 				}
 				break;
-			case 20:
-			case 22:
-			case 23:
-			case 35:
+			case 26:
+			case 27:
+			case 28:
+			case 38:
 			case 39:
-			case 43:
+			case 40:
 				{
 				alt11 = 3;
 				}
@@ -1715,7 +1699,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(60, 4);
-				PushFollow(Follow._decimalEscape_in_atomEscape321);
+				PushFollow(Follow._decimalEscape_in_atomEscape295);
 				decimalEscape42=decimalEscape();
 				PopFollow();
 				if (state.failed) return retval;
@@ -1730,7 +1714,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(61, 4);
-				PushFollow(Follow._characterEscape_in_atomEscape326);
+				PushFollow(Follow._characterEscape_in_atomEscape300);
 				characterEscape43=characterEscape();
 				PopFollow();
 				if (state.failed) return retval;
@@ -1745,7 +1729,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(62, 4);
-				PushFollow(Follow._characterClassEscape_in_atomEscape331);
+				PushFollow(Follow._characterClassEscape_in_atomEscape305);
 				characterClassEscape44=characterClassEscape();
 				PopFollow();
 				if (state.failed) return retval;
@@ -1788,7 +1772,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 	partial void LeaveRule_characterEscape();
 
 	// $ANTLR start "characterEscape"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:65:1: characterEscape : ( controlEscape | 'c' controlLetter | hexEscapeSequence | unicodeEscapeSequence | identityEscape );
+	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:65:1: characterEscape : ( ControlEscape | 'c' ControlLetter | HexEscapeSequence | UnicodeEscapeSequence | IdentityEscape );
 	[GrammarRule("characterEscape")]
 	private AstParserRuleReturnScope<object, IToken> characterEscape()
 	{
@@ -1801,50 +1785,51 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 
 		object root_0 = default(object);
 
+		IToken ControlEscape45 = default(IToken);
 		IToken char_literal46 = default(IToken);
-		AstParserRuleReturnScope<object, IToken> controlEscape45 = default(AstParserRuleReturnScope<object, IToken>);
-		AstParserRuleReturnScope<object, IToken> controlLetter47 = default(AstParserRuleReturnScope<object, IToken>);
-		AstParserRuleReturnScope<object, IToken> hexEscapeSequence48 = default(AstParserRuleReturnScope<object, IToken>);
-		AstParserRuleReturnScope<object, IToken> unicodeEscapeSequence49 = default(AstParserRuleReturnScope<object, IToken>);
-		AstParserRuleReturnScope<object, IToken> identityEscape50 = default(AstParserRuleReturnScope<object, IToken>);
+		IToken ControlLetter47 = default(IToken);
+		IToken HexEscapeSequence48 = default(IToken);
+		IToken UnicodeEscapeSequence49 = default(IToken);
+		IToken IdentityEscape50 = default(IToken);
 
+		object ControlEscape45_tree = default(object);
 		object char_literal46_tree = default(object);
+		object ControlLetter47_tree = default(object);
+		object HexEscapeSequence48_tree = default(object);
+		object UnicodeEscapeSequence49_tree = default(object);
+		object IdentityEscape50_tree = default(object);
 		try { DebugEnterRule(GrammarFileName, "characterEscape");
 		DebugLocation(65, 1);
 		try
 		{
 			if (state.backtracking > 0 && AlreadyParsedRule(input, 11)) { return retval; }
 
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:66:2: ( controlEscape | 'c' controlLetter | hexEscapeSequence | unicodeEscapeSequence | identityEscape )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:66:2: ( ControlEscape | 'c' ControlLetter | HexEscapeSequence | UnicodeEscapeSequence | IdentityEscape )
 			int alt12=5;
 			try { DebugEnterDecision(12, false);
 			switch (input.LA(1))
 			{
-			case 36:
-			case 37:
-			case 38:
-			case 40:
-			case 42:
+			case ControlEscape:
 				{
 				alt12 = 1;
 				}
 				break;
-			case 34:
+			case 37:
 				{
 				alt12 = 2;
 				}
 				break;
-			case 44:
+			case HexEscapeSequence:
 				{
 				alt12 = 3;
 				}
 				break;
-			case 41:
+			case UnicodeEscapeSequence:
 				{
 				alt12 = 4;
 				}
 				break;
-
+			case IdentityEscape:
 				{
 				alt12 = 5;
 				}
@@ -1863,82 +1848,82 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:66:4: controlEscape
+				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:66:4: ControlEscape
 				{
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(66, 4);
-				PushFollow(Follow._controlEscape_in_characterEscape342);
-				controlEscape45=controlEscape();
-				PopFollow();
-				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, controlEscape45.Tree);
+				ControlEscape45=(IToken)Match(input,ControlEscape,Follow._ControlEscape_in_characterEscape316); if (state.failed) return retval;
+				if (state.backtracking == 0) {
+				ControlEscape45_tree = (object)adaptor.Create(ControlEscape45);
+				adaptor.AddChild(root_0, ControlEscape45_tree);
+				}
 
 				}
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:67:4: 'c' controlLetter
+				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:67:4: 'c' ControlLetter
 				{
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(67, 4);
-				char_literal46=(IToken)Match(input,34,Follow._34_in_characterEscape347); if (state.failed) return retval;
+				char_literal46=(IToken)Match(input,37,Follow._37_in_characterEscape321); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				char_literal46_tree = (object)adaptor.Create(char_literal46);
 				adaptor.AddChild(root_0, char_literal46_tree);
 				}
 				DebugLocation(67, 8);
-				PushFollow(Follow._controlLetter_in_characterEscape349);
-				controlLetter47=controlLetter();
-				PopFollow();
-				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, controlLetter47.Tree);
+				ControlLetter47=(IToken)Match(input,ControlLetter,Follow._ControlLetter_in_characterEscape323); if (state.failed) return retval;
+				if (state.backtracking == 0) {
+				ControlLetter47_tree = (object)adaptor.Create(ControlLetter47);
+				adaptor.AddChild(root_0, ControlLetter47_tree);
+				}
 
 				}
 				break;
 			case 3:
 				DebugEnterAlt(3);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:68:4: hexEscapeSequence
+				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:68:4: HexEscapeSequence
 				{
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(68, 4);
-				PushFollow(Follow._hexEscapeSequence_in_characterEscape354);
-				hexEscapeSequence48=hexEscapeSequence();
-				PopFollow();
-				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, hexEscapeSequence48.Tree);
+				HexEscapeSequence48=(IToken)Match(input,HexEscapeSequence,Follow._HexEscapeSequence_in_characterEscape328); if (state.failed) return retval;
+				if (state.backtracking == 0) {
+				HexEscapeSequence48_tree = (object)adaptor.Create(HexEscapeSequence48);
+				adaptor.AddChild(root_0, HexEscapeSequence48_tree);
+				}
 
 				}
 				break;
 			case 4:
 				DebugEnterAlt(4);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:69:4: unicodeEscapeSequence
+				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:69:4: UnicodeEscapeSequence
 				{
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(69, 4);
-				PushFollow(Follow._unicodeEscapeSequence_in_characterEscape359);
-				unicodeEscapeSequence49=unicodeEscapeSequence();
-				PopFollow();
-				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, unicodeEscapeSequence49.Tree);
+				UnicodeEscapeSequence49=(IToken)Match(input,UnicodeEscapeSequence,Follow._UnicodeEscapeSequence_in_characterEscape333); if (state.failed) return retval;
+				if (state.backtracking == 0) {
+				UnicodeEscapeSequence49_tree = (object)adaptor.Create(UnicodeEscapeSequence49);
+				adaptor.AddChild(root_0, UnicodeEscapeSequence49_tree);
+				}
 
 				}
 				break;
 			case 5:
 				DebugEnterAlt(5);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:70:4: identityEscape
+				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:70:4: IdentityEscape
 				{
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(70, 4);
-				PushFollow(Follow._identityEscape_in_characterEscape364);
-				identityEscape50=identityEscape();
-				PopFollow();
-				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, identityEscape50.Tree);
+				IdentityEscape50=(IToken)Match(input,IdentityEscape,Follow._IdentityEscape_in_characterEscape338); if (state.failed) return retval;
+				if (state.backtracking == 0) {
+				IdentityEscape50_tree = (object)adaptor.Create(IdentityEscape50);
+				adaptor.AddChild(root_0, IdentityEscape50_tree);
+				}
 
 				}
 				break;
@@ -1973,55 +1958,44 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 	}
 	// $ANTLR end "characterEscape"
 
-	partial void EnterRule_controlEscape();
-	partial void LeaveRule_controlEscape();
+	partial void EnterRule_decimalEscape();
+	partial void LeaveRule_decimalEscape();
 
-	// $ANTLR start "controlEscape"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:73:1: controlEscape : ( 'f' | 'n' | 'r' | 't' | 'v' );
-	[GrammarRule("controlEscape")]
-	private AstParserRuleReturnScope<object, IToken> controlEscape()
+	// $ANTLR start "decimalEscape"
+	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:101:1: decimalEscape : DecimalIntegerLiteral ;
+	[GrammarRule("decimalEscape")]
+	private AstParserRuleReturnScope<object, IToken> decimalEscape()
 	{
-		EnterRule_controlEscape();
-		EnterRule("controlEscape", 12);
-		TraceIn("controlEscape", 12);
+		EnterRule_decimalEscape();
+		EnterRule("decimalEscape", 12);
+		TraceIn("decimalEscape", 12);
 		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
 		retval.Start = (IToken)input.LT(1);
-		int controlEscape_StartIndex = input.Index;
+		int decimalEscape_StartIndex = input.Index;
 
 		object root_0 = default(object);
 
-		IToken set51 = default(IToken);
+		IToken DecimalIntegerLiteral51 = default(IToken);
 
-		object set51_tree = default(object);
-		try { DebugEnterRule(GrammarFileName, "controlEscape");
-		DebugLocation(73, 1);
+		object DecimalIntegerLiteral51_tree = default(object);
+		try { DebugEnterRule(GrammarFileName, "decimalEscape");
+		DebugLocation(101, 1);
 		try
 		{
 			if (state.backtracking > 0 && AlreadyParsedRule(input, 12)) { return retval; }
 
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:74:2: ( 'f' | 'n' | 'r' | 't' | 'v' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:102:2: ( DecimalIntegerLiteral )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:102:4: DecimalIntegerLiteral
 			{
 			root_0 = (object)adaptor.Nil();
 
-			DebugLocation(74, 2);
-
-			set51=(IToken)input.LT(1);
-			if ((input.LA(1)>=36 && input.LA(1)<=38)||input.LA(1)==40||input.LA(1)==42)
-			{
-				input.Consume();
-				if (state.backtracking == 0) adaptor.AddChild(root_0, (object)adaptor.Create(set51));
-				state.errorRecovery=false;state.failed=false;
+			DebugLocation(102, 4);
+			DecimalIntegerLiteral51=(IToken)Match(input,DecimalIntegerLiteral,Follow._DecimalIntegerLiteral_in_decimalEscape504); if (state.failed) return retval;
+			if (state.backtracking == 0) {
+			DecimalIntegerLiteral51_tree = (object)adaptor.Create(DecimalIntegerLiteral51);
+			adaptor.AddChild(root_0, DecimalIntegerLiteral51_tree);
 			}
-			else
-			{
-				if (state.backtracking>0) {state.failed=true; return retval;}
-				MismatchedSetException mse = new MismatchedSetException(null,input);
-				DebugRecognitionException(mse);
-				throw mse;
-			}
-
 
 			}
 
@@ -2041,55 +2015,55 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("controlEscape", 12);
-			LeaveRule("controlEscape", 12);
-			LeaveRule_controlEscape();
-			if (state.backtracking > 0) { Memoize(input, 12, controlEscape_StartIndex); }
+			TraceOut("decimalEscape", 12);
+			LeaveRule("decimalEscape", 12);
+			LeaveRule_decimalEscape();
+			if (state.backtracking > 0) { Memoize(input, 12, decimalEscape_StartIndex); }
 
 		}
-		DebugLocation(79, 1);
-		} finally { DebugExitRule(GrammarFileName, "controlEscape"); }
+		DebugLocation(103, 1);
+		} finally { DebugExitRule(GrammarFileName, "decimalEscape"); }
 		return retval;
 
 	}
-	// $ANTLR end "controlEscape"
+	// $ANTLR end "decimalEscape"
 
-	partial void EnterRule_controlLetter();
-	partial void LeaveRule_controlLetter();
+	partial void EnterRule_characterClassEscape();
+	partial void LeaveRule_characterClassEscape();
 
-	// $ANTLR start "controlLetter"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:81:1: controlLetter : ( 'a' .. 'z' | 'A' .. 'Z' ) ;
-	[GrammarRule("controlLetter")]
-	private AstParserRuleReturnScope<object, IToken> controlLetter()
+	// $ANTLR start "characterClassEscape"
+	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:122:1: characterClassEscape : ( 'd' | 'D' | 's' | 'S' | 'w' | 'W' );
+	[GrammarRule("characterClassEscape")]
+	private AstParserRuleReturnScope<object, IToken> characterClassEscape()
 	{
-		EnterRule_controlLetter();
-		EnterRule("controlLetter", 13);
-		TraceIn("controlLetter", 13);
+		EnterRule_characterClassEscape();
+		EnterRule("characterClassEscape", 13);
+		TraceIn("characterClassEscape", 13);
 		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
 		retval.Start = (IToken)input.LT(1);
-		int controlLetter_StartIndex = input.Index;
+		int characterClassEscape_StartIndex = input.Index;
 
 		object root_0 = default(object);
 
 		IToken set52 = default(IToken);
 
 		object set52_tree = default(object);
-		try { DebugEnterRule(GrammarFileName, "controlLetter");
-		DebugLocation(81, 1);
+		try { DebugEnterRule(GrammarFileName, "characterClassEscape");
+		DebugLocation(122, 1);
 		try
 		{
 			if (state.backtracking > 0 && AlreadyParsedRule(input, 13)) { return retval; }
 
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:82:2: ( ( 'a' .. 'z' | 'A' .. 'Z' ) )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:123:2: ( 'd' | 'D' | 's' | 'S' | 'w' | 'W' )
 			DebugEnterAlt(1);
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
 			{
 			root_0 = (object)adaptor.Nil();
 
-			DebugLocation(82, 2);
+			DebugLocation(123, 2);
 
 			set52=(IToken)input.LT(1);
-			if ()
+			if ((input.LA(1)>=26 && input.LA(1)<=28)||(input.LA(1)>=38 && input.LA(1)<=40))
 			{
 				input.Consume();
 				if (state.backtracking == 0) adaptor.AddChild(root_0, (object)adaptor.Create(set52));
@@ -2122,921 +2096,10 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("controlLetter", 13);
-			LeaveRule("controlLetter", 13);
-			LeaveRule_controlLetter();
-			if (state.backtracking > 0) { Memoize(input, 13, controlLetter_StartIndex); }
-
-		}
-		DebugLocation(83, 1);
-		} finally { DebugExitRule(GrammarFileName, "controlLetter"); }
-		return retval;
-
-	}
-	// $ANTLR end "controlLetter"
-
-	partial void EnterRule_hexEscapeSequence();
-	partial void LeaveRule_hexEscapeSequence();
-
-	// $ANTLR start "hexEscapeSequence"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:85:1: hexEscapeSequence : 'x' hexDigit hexDigit ;
-	[GrammarRule("hexEscapeSequence")]
-	private AstParserRuleReturnScope<object, IToken> hexEscapeSequence()
-	{
-		EnterRule_hexEscapeSequence();
-		EnterRule("hexEscapeSequence", 14);
-		TraceIn("hexEscapeSequence", 14);
-		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
-		retval.Start = (IToken)input.LT(1);
-		int hexEscapeSequence_StartIndex = input.Index;
-
-		object root_0 = default(object);
-
-		IToken char_literal53 = default(IToken);
-		AstParserRuleReturnScope<object, IToken> hexDigit54 = default(AstParserRuleReturnScope<object, IToken>);
-		AstParserRuleReturnScope<object, IToken> hexDigit55 = default(AstParserRuleReturnScope<object, IToken>);
-
-		object char_literal53_tree = default(object);
-		try { DebugEnterRule(GrammarFileName, "hexEscapeSequence");
-		DebugLocation(85, 1);
-		try
-		{
-			if (state.backtracking > 0 && AlreadyParsedRule(input, 14)) { return retval; }
-
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:86:2: ( 'x' hexDigit hexDigit )
-			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:86:4: 'x' hexDigit hexDigit
-			{
-			root_0 = (object)adaptor.Nil();
-
-			DebugLocation(86, 4);
-			char_literal53=(IToken)Match(input,44,Follow._44_in_hexEscapeSequence426); if (state.failed) return retval;
-			if (state.backtracking == 0) {
-			char_literal53_tree = (object)adaptor.Create(char_literal53);
-			adaptor.AddChild(root_0, char_literal53_tree);
-			}
-			DebugLocation(86, 8);
-			PushFollow(Follow._hexDigit_in_hexEscapeSequence428);
-			hexDigit54=hexDigit();
-			PopFollow();
-			if (state.failed) return retval;
-			if (state.backtracking == 0) adaptor.AddChild(root_0, hexDigit54.Tree);
-			DebugLocation(86, 17);
-			PushFollow(Follow._hexDigit_in_hexEscapeSequence430);
-			hexDigit55=hexDigit();
-			PopFollow();
-			if (state.failed) return retval;
-			if (state.backtracking == 0) adaptor.AddChild(root_0, hexDigit55.Tree);
-
-			}
-
-			retval.Stop = (IToken)input.LT(-1);
-
-			if (state.backtracking == 0) {
-			retval.Tree = (object)adaptor.RulePostProcessing(root_0);
-			adaptor.SetTokenBoundaries(retval.Tree, retval.Start, retval.Stop);
-			}
-		}
-		catch (RecognitionException re)
-		{
-			ReportError(re);
-			Recover(input,re);
-		retval.Tree = (object)adaptor.ErrorNode(input, retval.Start, input.LT(-1), re);
-
-		}
-		finally
-		{
-			TraceOut("hexEscapeSequence", 14);
-			LeaveRule("hexEscapeSequence", 14);
-			LeaveRule_hexEscapeSequence();
-			if (state.backtracking > 0) { Memoize(input, 14, hexEscapeSequence_StartIndex); }
-
-		}
-		DebugLocation(87, 1);
-		} finally { DebugExitRule(GrammarFileName, "hexEscapeSequence"); }
-		return retval;
-
-	}
-	// $ANTLR end "hexEscapeSequence"
-
-	partial void EnterRule_unicodeEscapeSequence();
-	partial void LeaveRule_unicodeEscapeSequence();
-
-	// $ANTLR start "unicodeEscapeSequence"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:89:1: unicodeEscapeSequence : 'u' hexDigit hexDigit hexDigit hexDigit ;
-	[GrammarRule("unicodeEscapeSequence")]
-	private AstParserRuleReturnScope<object, IToken> unicodeEscapeSequence()
-	{
-		EnterRule_unicodeEscapeSequence();
-		EnterRule("unicodeEscapeSequence", 15);
-		TraceIn("unicodeEscapeSequence", 15);
-		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
-		retval.Start = (IToken)input.LT(1);
-		int unicodeEscapeSequence_StartIndex = input.Index;
-
-		object root_0 = default(object);
-
-		IToken char_literal56 = default(IToken);
-		AstParserRuleReturnScope<object, IToken> hexDigit57 = default(AstParserRuleReturnScope<object, IToken>);
-		AstParserRuleReturnScope<object, IToken> hexDigit58 = default(AstParserRuleReturnScope<object, IToken>);
-		AstParserRuleReturnScope<object, IToken> hexDigit59 = default(AstParserRuleReturnScope<object, IToken>);
-		AstParserRuleReturnScope<object, IToken> hexDigit60 = default(AstParserRuleReturnScope<object, IToken>);
-
-		object char_literal56_tree = default(object);
-		try { DebugEnterRule(GrammarFileName, "unicodeEscapeSequence");
-		DebugLocation(89, 1);
-		try
-		{
-			if (state.backtracking > 0 && AlreadyParsedRule(input, 15)) { return retval; }
-
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:90:2: ( 'u' hexDigit hexDigit hexDigit hexDigit )
-			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:90:4: 'u' hexDigit hexDigit hexDigit hexDigit
-			{
-			root_0 = (object)adaptor.Nil();
-
-			DebugLocation(90, 4);
-			char_literal56=(IToken)Match(input,41,Follow._41_in_unicodeEscapeSequence441); if (state.failed) return retval;
-			if (state.backtracking == 0) {
-			char_literal56_tree = (object)adaptor.Create(char_literal56);
-			adaptor.AddChild(root_0, char_literal56_tree);
-			}
-			DebugLocation(90, 8);
-			PushFollow(Follow._hexDigit_in_unicodeEscapeSequence443);
-			hexDigit57=hexDigit();
-			PopFollow();
-			if (state.failed) return retval;
-			if (state.backtracking == 0) adaptor.AddChild(root_0, hexDigit57.Tree);
-			DebugLocation(90, 17);
-			PushFollow(Follow._hexDigit_in_unicodeEscapeSequence445);
-			hexDigit58=hexDigit();
-			PopFollow();
-			if (state.failed) return retval;
-			if (state.backtracking == 0) adaptor.AddChild(root_0, hexDigit58.Tree);
-			DebugLocation(90, 26);
-			PushFollow(Follow._hexDigit_in_unicodeEscapeSequence447);
-			hexDigit59=hexDigit();
-			PopFollow();
-			if (state.failed) return retval;
-			if (state.backtracking == 0) adaptor.AddChild(root_0, hexDigit59.Tree);
-			DebugLocation(90, 35);
-			PushFollow(Follow._hexDigit_in_unicodeEscapeSequence449);
-			hexDigit60=hexDigit();
-			PopFollow();
-			if (state.failed) return retval;
-			if (state.backtracking == 0) adaptor.AddChild(root_0, hexDigit60.Tree);
-
-			}
-
-			retval.Stop = (IToken)input.LT(-1);
-
-			if (state.backtracking == 0) {
-			retval.Tree = (object)adaptor.RulePostProcessing(root_0);
-			adaptor.SetTokenBoundaries(retval.Tree, retval.Start, retval.Stop);
-			}
-		}
-		catch (RecognitionException re)
-		{
-			ReportError(re);
-			Recover(input,re);
-		retval.Tree = (object)adaptor.ErrorNode(input, retval.Start, input.LT(-1), re);
-
-		}
-		finally
-		{
-			TraceOut("unicodeEscapeSequence", 15);
-			LeaveRule("unicodeEscapeSequence", 15);
-			LeaveRule_unicodeEscapeSequence();
-			if (state.backtracking > 0) { Memoize(input, 15, unicodeEscapeSequence_StartIndex); }
-
-		}
-		DebugLocation(91, 1);
-		} finally { DebugExitRule(GrammarFileName, "unicodeEscapeSequence"); }
-		return retval;
-
-	}
-	// $ANTLR end "unicodeEscapeSequence"
-
-	partial void EnterRule_hexDigit();
-	partial void LeaveRule_hexDigit();
-
-	// $ANTLR start "hexDigit"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:93:1: hexDigit : ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) ;
-	[GrammarRule("hexDigit")]
-	private AstParserRuleReturnScope<object, IToken> hexDigit()
-	{
-		EnterRule_hexDigit();
-		EnterRule("hexDigit", 16);
-		TraceIn("hexDigit", 16);
-		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
-		retval.Start = (IToken)input.LT(1);
-		int hexDigit_StartIndex = input.Index;
-
-		object root_0 = default(object);
-
-		IToken set61 = default(IToken);
-
-		object set61_tree = default(object);
-		try { DebugEnterRule(GrammarFileName, "hexDigit");
-		DebugLocation(93, 1);
-		try
-		{
-			if (state.backtracking > 0 && AlreadyParsedRule(input, 16)) { return retval; }
-
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:94:2: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
-			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
-			{
-			root_0 = (object)adaptor.Nil();
-
-			DebugLocation(94, 2);
-
-			set61=(IToken)input.LT(1);
-			if ()
-			{
-				input.Consume();
-				if (state.backtracking == 0) adaptor.AddChild(root_0, (object)adaptor.Create(set61));
-				state.errorRecovery=false;state.failed=false;
-			}
-			else
-			{
-				if (state.backtracking>0) {state.failed=true; return retval;}
-				MismatchedSetException mse = new MismatchedSetException(null,input);
-				DebugRecognitionException(mse);
-				throw mse;
-			}
-
-
-			}
-
-			retval.Stop = (IToken)input.LT(-1);
-
-			if (state.backtracking == 0) {
-			retval.Tree = (object)adaptor.RulePostProcessing(root_0);
-			adaptor.SetTokenBoundaries(retval.Tree, retval.Start, retval.Stop);
-			}
-		}
-		catch (RecognitionException re)
-		{
-			ReportError(re);
-			Recover(input,re);
-		retval.Tree = (object)adaptor.ErrorNode(input, retval.Start, input.LT(-1), re);
-
-		}
-		finally
-		{
-			TraceOut("hexDigit", 16);
-			LeaveRule("hexDigit", 16);
-			LeaveRule_hexDigit();
-			if (state.backtracking > 0) { Memoize(input, 16, hexDigit_StartIndex); }
-
-		}
-		DebugLocation(95, 1);
-		} finally { DebugExitRule(GrammarFileName, "hexDigit"); }
-		return retval;
-
-	}
-	// $ANTLR end "hexDigit"
-
-	partial void EnterRule_identityEscape();
-	partial void LeaveRule_identityEscape();
-
-	// $ANTLR start "identityEscape"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:97:1: identityEscape : 'a' .. 'z' ;
-	[GrammarRule("identityEscape")]
-	private AstParserRuleReturnScope<object, IToken> identityEscape()
-	{
-		EnterRule_identityEscape();
-		EnterRule("identityEscape", 17);
-		TraceIn("identityEscape", 17);
-		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
-		retval.Start = (IToken)input.LT(1);
-		int identityEscape_StartIndex = input.Index;
-
-		object root_0 = default(object);
-
-		IToken set62 = default(IToken);
-
-		object set62_tree = default(object);
-		try { DebugEnterRule(GrammarFileName, "identityEscape");
-		DebugLocation(97, 1);
-		try
-		{
-			if (state.backtracking > 0 && AlreadyParsedRule(input, 17)) { return retval; }
-
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:98:2: ( 'a' .. 'z' )
-			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
-			{
-			root_0 = (object)adaptor.Nil();
-
-			DebugLocation(98, 2);
-
-			set62=(IToken)input.LT(1);
-			if ()
-			{
-				input.Consume();
-				if (state.backtracking == 0) adaptor.AddChild(root_0, (object)adaptor.Create(set62));
-				state.errorRecovery=false;state.failed=false;
-			}
-			else
-			{
-				if (state.backtracking>0) {state.failed=true; return retval;}
-				MismatchedSetException mse = new MismatchedSetException(null,input);
-				DebugRecognitionException(mse);
-				throw mse;
-			}
-
-
-			}
-
-			retval.Stop = (IToken)input.LT(-1);
-
-			if (state.backtracking == 0) {
-			retval.Tree = (object)adaptor.RulePostProcessing(root_0);
-			adaptor.SetTokenBoundaries(retval.Tree, retval.Start, retval.Stop);
-			}
-		}
-		catch (RecognitionException re)
-		{
-			ReportError(re);
-			Recover(input,re);
-		retval.Tree = (object)adaptor.ErrorNode(input, retval.Start, input.LT(-1), re);
-
-		}
-		finally
-		{
-			TraceOut("identityEscape", 17);
-			LeaveRule("identityEscape", 17);
-			LeaveRule_identityEscape();
-			if (state.backtracking > 0) { Memoize(input, 17, identityEscape_StartIndex); }
-
-		}
-		DebugLocation(99, 1);
-		} finally { DebugExitRule(GrammarFileName, "identityEscape"); }
-		return retval;
-
-	}
-	// $ANTLR end "identityEscape"
-
-	partial void EnterRule_decimalEscape();
-	partial void LeaveRule_decimalEscape();
-
-	// $ANTLR start "decimalEscape"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:101:1: decimalEscape : decimalIntegerLiteral ;
-	[GrammarRule("decimalEscape")]
-	private AstParserRuleReturnScope<object, IToken> decimalEscape()
-	{
-		EnterRule_decimalEscape();
-		EnterRule("decimalEscape", 18);
-		TraceIn("decimalEscape", 18);
-		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
-		retval.Start = (IToken)input.LT(1);
-		int decimalEscape_StartIndex = input.Index;
-
-		object root_0 = default(object);
-
-		AstParserRuleReturnScope<object, IToken> decimalIntegerLiteral63 = default(AstParserRuleReturnScope<object, IToken>);
-
-		try { DebugEnterRule(GrammarFileName, "decimalEscape");
-		DebugLocation(101, 1);
-		try
-		{
-			if (state.backtracking > 0 && AlreadyParsedRule(input, 18)) { return retval; }
-
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:102:2: ( decimalIntegerLiteral )
-			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:102:4: decimalIntegerLiteral
-			{
-			root_0 = (object)adaptor.Nil();
-
-			DebugLocation(102, 4);
-			PushFollow(Follow._decimalIntegerLiteral_in_decimalEscape498);
-			decimalIntegerLiteral63=decimalIntegerLiteral();
-			PopFollow();
-			if (state.failed) return retval;
-			if (state.backtracking == 0) adaptor.AddChild(root_0, decimalIntegerLiteral63.Tree);
-
-			}
-
-			retval.Stop = (IToken)input.LT(-1);
-
-			if (state.backtracking == 0) {
-			retval.Tree = (object)adaptor.RulePostProcessing(root_0);
-			adaptor.SetTokenBoundaries(retval.Tree, retval.Start, retval.Stop);
-			}
-		}
-		catch (RecognitionException re)
-		{
-			ReportError(re);
-			Recover(input,re);
-		retval.Tree = (object)adaptor.ErrorNode(input, retval.Start, input.LT(-1), re);
-
-		}
-		finally
-		{
-			TraceOut("decimalEscape", 18);
-			LeaveRule("decimalEscape", 18);
-			LeaveRule_decimalEscape();
-			if (state.backtracking > 0) { Memoize(input, 18, decimalEscape_StartIndex); }
-
-		}
-		DebugLocation(103, 1);
-		} finally { DebugExitRule(GrammarFileName, "decimalEscape"); }
-		return retval;
-
-	}
-	// $ANTLR end "decimalEscape"
-
-	partial void EnterRule_decimalIntegerLiteral();
-	partial void LeaveRule_decimalIntegerLiteral();
-
-	// $ANTLR start "decimalIntegerLiteral"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:105:1: decimalIntegerLiteral : ( '0' | nonZeroDigit ( decimalDigits )? );
-	[GrammarRule("decimalIntegerLiteral")]
-	private AstParserRuleReturnScope<object, IToken> decimalIntegerLiteral()
-	{
-		EnterRule_decimalIntegerLiteral();
-		EnterRule("decimalIntegerLiteral", 19);
-		TraceIn("decimalIntegerLiteral", 19);
-		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
-		retval.Start = (IToken)input.LT(1);
-		int decimalIntegerLiteral_StartIndex = input.Index;
-
-		object root_0 = default(object);
-
-		IToken char_literal64 = default(IToken);
-		AstParserRuleReturnScope<object, IToken> nonZeroDigit65 = default(AstParserRuleReturnScope<object, IToken>);
-		AstParserRuleReturnScope<object, IToken> decimalDigits66 = default(AstParserRuleReturnScope<object, IToken>);
-
-		object char_literal64_tree = default(object);
-		try { DebugEnterRule(GrammarFileName, "decimalIntegerLiteral");
-		DebugLocation(105, 1);
-		try
-		{
-			if (state.backtracking > 0 && AlreadyParsedRule(input, 19)) { return retval; }
-
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:106:2: ( '0' | nonZeroDigit ( decimalDigits )? )
-			int alt14=2;
-			try { DebugEnterDecision(14, false);
-			int LA14_0 = input.LA(1);
-
-			if ((LA14_0==15))
-			{
-				alt14 = 1;
-			}
-			else if (())
-			{
-				alt14 = 2;
-			}
-			else
-			{
-				if (state.backtracking>0) {state.failed=true; return retval;}
-				NoViableAltException nvae = new NoViableAltException("", 14, 0, input);
-				DebugRecognitionException(nvae);
-				throw nvae;
-			}
-			} finally { DebugExitDecision(14); }
-			switch (alt14)
-			{
-			case 1:
-				DebugEnterAlt(1);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:106:4: '0'
-				{
-				root_0 = (object)adaptor.Nil();
-
-				DebugLocation(106, 4);
-				char_literal64=(IToken)Match(input,15,Follow._15_in_decimalIntegerLiteral511); if (state.failed) return retval;
-				if (state.backtracking == 0) {
-				char_literal64_tree = (object)adaptor.Create(char_literal64);
-				adaptor.AddChild(root_0, char_literal64_tree);
-				}
-
-				}
-				break;
-			case 2:
-				DebugEnterAlt(2);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:107:4: nonZeroDigit ( decimalDigits )?
-				{
-				root_0 = (object)adaptor.Nil();
-
-				DebugLocation(107, 4);
-				PushFollow(Follow._nonZeroDigit_in_decimalIntegerLiteral516);
-				nonZeroDigit65=nonZeroDigit();
-				PopFollow();
-				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, nonZeroDigit65.Tree);
-				DebugLocation(107, 17);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:107:17: ( decimalDigits )?
-				int alt13=2;
-				try { DebugEnterSubRule(13);
-				try { DebugEnterDecision(13, false);
-				int LA13_0 = input.LA(1);
-
-				if (())
-				{
-					alt13 = 1;
-				}
-				} finally { DebugExitDecision(13); }
-				switch (alt13)
-				{
-				case 1:
-					DebugEnterAlt(1);
-					// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:107:17: decimalDigits
-					{
-					DebugLocation(107, 17);
-					PushFollow(Follow._decimalDigits_in_decimalIntegerLiteral518);
-					decimalDigits66=decimalDigits();
-					PopFollow();
-					if (state.failed) return retval;
-					if (state.backtracking == 0) adaptor.AddChild(root_0, decimalDigits66.Tree);
-
-					}
-					break;
-
-				}
-				} finally { DebugExitSubRule(13); }
-
-
-				}
-				break;
-
-			}
-			retval.Stop = (IToken)input.LT(-1);
-
-			if (state.backtracking == 0) {
-			retval.Tree = (object)adaptor.RulePostProcessing(root_0);
-			adaptor.SetTokenBoundaries(retval.Tree, retval.Start, retval.Stop);
-			}
-		}
-		catch (RecognitionException re)
-		{
-			ReportError(re);
-			Recover(input,re);
-		retval.Tree = (object)adaptor.ErrorNode(input, retval.Start, input.LT(-1), re);
-
-		}
-		finally
-		{
-			TraceOut("decimalIntegerLiteral", 19);
-			LeaveRule("decimalIntegerLiteral", 19);
-			LeaveRule_decimalIntegerLiteral();
-			if (state.backtracking > 0) { Memoize(input, 19, decimalIntegerLiteral_StartIndex); }
-
-		}
-		DebugLocation(108, 1);
-		} finally { DebugExitRule(GrammarFileName, "decimalIntegerLiteral"); }
-		return retval;
-
-	}
-	// $ANTLR end "decimalIntegerLiteral"
-
-	partial void EnterRule_nonZeroDigit();
-	partial void LeaveRule_nonZeroDigit();
-
-	// $ANTLR start "nonZeroDigit"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:110:1: nonZeroDigit : '1' .. '9' ;
-	[GrammarRule("nonZeroDigit")]
-	private AstParserRuleReturnScope<object, IToken> nonZeroDigit()
-	{
-		EnterRule_nonZeroDigit();
-		EnterRule("nonZeroDigit", 20);
-		TraceIn("nonZeroDigit", 20);
-		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
-		retval.Start = (IToken)input.LT(1);
-		int nonZeroDigit_StartIndex = input.Index;
-
-		object root_0 = default(object);
-
-		IToken set67 = default(IToken);
-
-		object set67_tree = default(object);
-		try { DebugEnterRule(GrammarFileName, "nonZeroDigit");
-		DebugLocation(110, 1);
-		try
-		{
-			if (state.backtracking > 0 && AlreadyParsedRule(input, 20)) { return retval; }
-
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:111:2: ( '1' .. '9' )
-			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
-			{
-			root_0 = (object)adaptor.Nil();
-
-			DebugLocation(111, 2);
-
-			set67=(IToken)input.LT(1);
-			if ()
-			{
-				input.Consume();
-				if (state.backtracking == 0) adaptor.AddChild(root_0, (object)adaptor.Create(set67));
-				state.errorRecovery=false;state.failed=false;
-			}
-			else
-			{
-				if (state.backtracking>0) {state.failed=true; return retval;}
-				MismatchedSetException mse = new MismatchedSetException(null,input);
-				DebugRecognitionException(mse);
-				throw mse;
-			}
-
-
-			}
-
-			retval.Stop = (IToken)input.LT(-1);
-
-			if (state.backtracking == 0) {
-			retval.Tree = (object)adaptor.RulePostProcessing(root_0);
-			adaptor.SetTokenBoundaries(retval.Tree, retval.Start, retval.Stop);
-			}
-		}
-		catch (RecognitionException re)
-		{
-			ReportError(re);
-			Recover(input,re);
-		retval.Tree = (object)adaptor.ErrorNode(input, retval.Start, input.LT(-1), re);
-
-		}
-		finally
-		{
-			TraceOut("nonZeroDigit", 20);
-			LeaveRule("nonZeroDigit", 20);
-			LeaveRule_nonZeroDigit();
-			if (state.backtracking > 0) { Memoize(input, 20, nonZeroDigit_StartIndex); }
-
-		}
-		DebugLocation(112, 1);
-		} finally { DebugExitRule(GrammarFileName, "nonZeroDigit"); }
-		return retval;
-
-	}
-	// $ANTLR end "nonZeroDigit"
-
-	partial void EnterRule_decimalDigits();
-	partial void LeaveRule_decimalDigits();
-
-	// $ANTLR start "decimalDigits"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:114:1: decimalDigits : ( decimalDigit )+ ;
-	[GrammarRule("decimalDigits")]
-	private AstParserRuleReturnScope<object, IToken> decimalDigits()
-	{
-		EnterRule_decimalDigits();
-		EnterRule("decimalDigits", 21);
-		TraceIn("decimalDigits", 21);
-		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
-		retval.Start = (IToken)input.LT(1);
-		int decimalDigits_StartIndex = input.Index;
-
-		object root_0 = default(object);
-
-		AstParserRuleReturnScope<object, IToken> decimalDigit68 = default(AstParserRuleReturnScope<object, IToken>);
-
-		try { DebugEnterRule(GrammarFileName, "decimalDigits");
-		DebugLocation(114, 1);
-		try
-		{
-			if (state.backtracking > 0 && AlreadyParsedRule(input, 21)) { return retval; }
-
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:115:2: ( ( decimalDigit )+ )
-			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:115:4: ( decimalDigit )+
-			{
-			root_0 = (object)adaptor.Nil();
-
-			DebugLocation(115, 4);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:115:4: ( decimalDigit )+
-			int cnt15=0;
-			try { DebugEnterSubRule(15);
-			while (true)
-			{
-				int alt15=2;
-				try { DebugEnterDecision(15, false);
-				int LA15_0 = input.LA(1);
-
-				if (())
-				{
-					alt15 = 1;
-				}
-
-
-				} finally { DebugExitDecision(15); }
-				switch (alt15)
-				{
-				case 1:
-					DebugEnterAlt(1);
-					// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:115:4: decimalDigit
-					{
-					DebugLocation(115, 4);
-					PushFollow(Follow._decimalDigit_in_decimalDigits544);
-					decimalDigit68=decimalDigit();
-					PopFollow();
-					if (state.failed) return retval;
-					if (state.backtracking == 0) adaptor.AddChild(root_0, decimalDigit68.Tree);
-
-					}
-					break;
-
-				default:
-					if (cnt15 >= 1)
-						goto loop15;
-
-					if (state.backtracking>0) {state.failed=true; return retval;}
-					EarlyExitException eee15 = new EarlyExitException( 15, input );
-					DebugRecognitionException(eee15);
-					throw eee15;
-				}
-				cnt15++;
-			}
-			loop15:
-				;
-
-			} finally { DebugExitSubRule(15); }
-
-
-			}
-
-			retval.Stop = (IToken)input.LT(-1);
-
-			if (state.backtracking == 0) {
-			retval.Tree = (object)adaptor.RulePostProcessing(root_0);
-			adaptor.SetTokenBoundaries(retval.Tree, retval.Start, retval.Stop);
-			}
-		}
-		catch (RecognitionException re)
-		{
-			ReportError(re);
-			Recover(input,re);
-		retval.Tree = (object)adaptor.ErrorNode(input, retval.Start, input.LT(-1), re);
-
-		}
-		finally
-		{
-			TraceOut("decimalDigits", 21);
-			LeaveRule("decimalDigits", 21);
-			LeaveRule_decimalDigits();
-			if (state.backtracking > 0) { Memoize(input, 21, decimalDigits_StartIndex); }
-
-		}
-		DebugLocation(116, 1);
-		} finally { DebugExitRule(GrammarFileName, "decimalDigits"); }
-		return retval;
-
-	}
-	// $ANTLR end "decimalDigits"
-
-	partial void EnterRule_decimalDigit();
-	partial void LeaveRule_decimalDigit();
-
-	// $ANTLR start "decimalDigit"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:118:1: decimalDigit : '0' .. '9' ;
-	[GrammarRule("decimalDigit")]
-	private AstParserRuleReturnScope<object, IToken> decimalDigit()
-	{
-		EnterRule_decimalDigit();
-		EnterRule("decimalDigit", 22);
-		TraceIn("decimalDigit", 22);
-		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
-		retval.Start = (IToken)input.LT(1);
-		int decimalDigit_StartIndex = input.Index;
-
-		object root_0 = default(object);
-
-		IToken set69 = default(IToken);
-
-		object set69_tree = default(object);
-		try { DebugEnterRule(GrammarFileName, "decimalDigit");
-		DebugLocation(118, 1);
-		try
-		{
-			if (state.backtracking > 0 && AlreadyParsedRule(input, 22)) { return retval; }
-
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:119:2: ( '0' .. '9' )
-			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
-			{
-			root_0 = (object)adaptor.Nil();
-
-			DebugLocation(119, 2);
-
-			set69=(IToken)input.LT(1);
-			if ()
-			{
-				input.Consume();
-				if (state.backtracking == 0) adaptor.AddChild(root_0, (object)adaptor.Create(set69));
-				state.errorRecovery=false;state.failed=false;
-			}
-			else
-			{
-				if (state.backtracking>0) {state.failed=true; return retval;}
-				MismatchedSetException mse = new MismatchedSetException(null,input);
-				DebugRecognitionException(mse);
-				throw mse;
-			}
-
-
-			}
-
-			retval.Stop = (IToken)input.LT(-1);
-
-			if (state.backtracking == 0) {
-			retval.Tree = (object)adaptor.RulePostProcessing(root_0);
-			adaptor.SetTokenBoundaries(retval.Tree, retval.Start, retval.Stop);
-			}
-		}
-		catch (RecognitionException re)
-		{
-			ReportError(re);
-			Recover(input,re);
-		retval.Tree = (object)adaptor.ErrorNode(input, retval.Start, input.LT(-1), re);
-
-		}
-		finally
-		{
-			TraceOut("decimalDigit", 22);
-			LeaveRule("decimalDigit", 22);
-			LeaveRule_decimalDigit();
-			if (state.backtracking > 0) { Memoize(input, 22, decimalDigit_StartIndex); }
-
-		}
-		DebugLocation(120, 1);
-		} finally { DebugExitRule(GrammarFileName, "decimalDigit"); }
-		return retval;
-
-	}
-	// $ANTLR end "decimalDigit"
-
-	partial void EnterRule_characterClassEscape();
-	partial void LeaveRule_characterClassEscape();
-
-	// $ANTLR start "characterClassEscape"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:122:1: characterClassEscape : ( 'd' | 'D' | 's' | 'S' | 'w' | 'W' );
-	[GrammarRule("characterClassEscape")]
-	private AstParserRuleReturnScope<object, IToken> characterClassEscape()
-	{
-		EnterRule_characterClassEscape();
-		EnterRule("characterClassEscape", 23);
-		TraceIn("characterClassEscape", 23);
-		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
-		retval.Start = (IToken)input.LT(1);
-		int characterClassEscape_StartIndex = input.Index;
-
-		object root_0 = default(object);
-
-		IToken set70 = default(IToken);
-
-		object set70_tree = default(object);
-		try { DebugEnterRule(GrammarFileName, "characterClassEscape");
-		DebugLocation(122, 1);
-		try
-		{
-			if (state.backtracking > 0 && AlreadyParsedRule(input, 23)) { return retval; }
-
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:123:2: ( 'd' | 'D' | 's' | 'S' | 'w' | 'W' )
-			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
-			{
-			root_0 = (object)adaptor.Nil();
-
-			DebugLocation(123, 2);
-
-			set70=(IToken)input.LT(1);
-			if (input.LA(1)==20||(input.LA(1)>=22 && input.LA(1)<=23)||input.LA(1)==35||input.LA(1)==39||input.LA(1)==43)
-			{
-				input.Consume();
-				if (state.backtracking == 0) adaptor.AddChild(root_0, (object)adaptor.Create(set70));
-				state.errorRecovery=false;state.failed=false;
-			}
-			else
-			{
-				if (state.backtracking>0) {state.failed=true; return retval;}
-				MismatchedSetException mse = new MismatchedSetException(null,input);
-				DebugRecognitionException(mse);
-				throw mse;
-			}
-
-
-			}
-
-			retval.Stop = (IToken)input.LT(-1);
-
-			if (state.backtracking == 0) {
-			retval.Tree = (object)adaptor.RulePostProcessing(root_0);
-			adaptor.SetTokenBoundaries(retval.Tree, retval.Start, retval.Stop);
-			}
-		}
-		catch (RecognitionException re)
-		{
-			ReportError(re);
-			Recover(input,re);
-		retval.Tree = (object)adaptor.ErrorNode(input, retval.Start, input.LT(-1), re);
-
-		}
-		finally
-		{
-			TraceOut("characterClassEscape", 23);
-			LeaveRule("characterClassEscape", 23);
+			TraceOut("characterClassEscape", 13);
+			LeaveRule("characterClassEscape", 13);
 			LeaveRule_characterClassEscape();
-			if (state.backtracking > 0) { Memoize(input, 23, characterClassEscape_StartIndex); }
+			if (state.backtracking > 0) { Memoize(input, 13, characterClassEscape_StartIndex); }
 
 		}
 		DebugLocation(129, 1);
@@ -3055,8 +2118,8 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 	private AstParserRuleReturnScope<object, IToken> characterClass()
 	{
 		EnterRule_characterClass();
-		EnterRule("characterClass", 24);
-		TraceIn("characterClass", 24);
+		EnterRule("characterClass", 14);
+		TraceIn("characterClass", 14);
 		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
 		retval.Start = (IToken)input.LT(1);
 		int characterClass_StartIndex = input.Index;
@@ -3064,46 +2127,46 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		object root_0 = default(object);
 
 		IToken t = default(IToken);
-		IToken char_literal71 = default(IToken);
-		IToken char_literal73 = default(IToken);
-		IToken string_literal74 = default(IToken);
-		IToken char_literal76 = default(IToken);
-		AstParserRuleReturnScope<object, IToken> classRanges72 = default(AstParserRuleReturnScope<object, IToken>);
-		AstParserRuleReturnScope<object, IToken> classRanges75 = default(AstParserRuleReturnScope<object, IToken>);
+		IToken char_literal53 = default(IToken);
+		IToken char_literal55 = default(IToken);
+		IToken string_literal56 = default(IToken);
+		IToken char_literal58 = default(IToken);
+		AstParserRuleReturnScope<object, IToken> classRanges54 = default(AstParserRuleReturnScope<object, IToken>);
+		AstParserRuleReturnScope<object, IToken> classRanges57 = default(AstParserRuleReturnScope<object, IToken>);
 
 		object t_tree = default(object);
-		object char_literal71_tree = default(object);
-		object char_literal73_tree = default(object);
-		object string_literal74_tree = default(object);
-		object char_literal76_tree = default(object);
+		object char_literal53_tree = default(object);
+		object char_literal55_tree = default(object);
+		object string_literal56_tree = default(object);
+		object char_literal58_tree = default(object);
 		try { DebugEnterRule(GrammarFileName, "characterClass");
 		DebugLocation(131, 1);
 		try
 		{
-			if (state.backtracking > 0 && AlreadyParsedRule(input, 24)) { return retval; }
+			if (state.backtracking > 0 && AlreadyParsedRule(input, 14)) { return retval; }
 
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:132:2: ( '[' t=~ '^' classRanges ']' | '[^' classRanges ']' )
-			int alt16=2;
-			try { DebugEnterDecision(16, false);
-			int LA16_0 = input.LA(1);
+			int alt13=2;
+			try { DebugEnterDecision(13, false);
+			int LA13_0 = input.LA(1);
 
-			if ((LA16_0==25))
+			if ((LA13_0==29))
 			{
-				alt16 = 1;
+				alt13 = 1;
 			}
-			else if ((LA16_0==26))
+			else if ((LA13_0==30))
 			{
-				alt16 = 2;
+				alt13 = 2;
 			}
 			else
 			{
 				if (state.backtracking>0) {state.failed=true; return retval;}
-				NoViableAltException nvae = new NoViableAltException("", 16, 0, input);
+				NoViableAltException nvae = new NoViableAltException("", 13, 0, input);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
-			} finally { DebugExitDecision(16); }
-			switch (alt16)
+			} finally { DebugExitDecision(13); }
+			switch (alt13)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -3112,15 +2175,15 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(132, 4);
-				char_literal71=(IToken)Match(input,25,Follow._25_in_characterClass605); if (state.failed) return retval;
+				char_literal53=(IToken)Match(input,29,Follow._29_in_characterClass619); if (state.failed) return retval;
 				if (state.backtracking == 0) {
-				char_literal71_tree = (object)adaptor.Create(char_literal71);
-				adaptor.AddChild(root_0, char_literal71_tree);
+				char_literal53_tree = (object)adaptor.Create(char_literal53);
+				adaptor.AddChild(root_0, char_literal53_tree);
 				}
 				DebugLocation(132, 9);
 
 				t=(IToken)input.LT(1);
-				if ((input.LA(1)>=4 && input.LA(1)<=30)||(input.LA(1)>=32 && input.LA(1)<=48))
+				if ((input.LA(1)>=ControlEscape && input.LA(1)<=34)||(input.LA(1)>=36 && input.LA(1)<=43))
 				{
 					input.Consume();
 					if (state.backtracking == 0) adaptor.AddChild(root_0, (object)adaptor.Create(t));
@@ -3135,16 +2198,16 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				}
 
 				DebugLocation(132, 15);
-				PushFollow(Follow._classRanges_in_characterClass612);
-				classRanges72=classRanges();
+				PushFollow(Follow._classRanges_in_characterClass626);
+				classRanges54=classRanges();
 				PopFollow();
 				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, classRanges72.Tree);
+				if (state.backtracking == 0) adaptor.AddChild(root_0, classRanges54.Tree);
 				DebugLocation(132, 27);
-				char_literal73=(IToken)Match(input,30,Follow._30_in_characterClass614); if (state.failed) return retval;
+				char_literal55=(IToken)Match(input,34,Follow._34_in_characterClass628); if (state.failed) return retval;
 				if (state.backtracking == 0) {
-				char_literal73_tree = (object)adaptor.Create(char_literal73);
-				adaptor.AddChild(root_0, char_literal73_tree);
+				char_literal55_tree = (object)adaptor.Create(char_literal55);
+				adaptor.AddChild(root_0, char_literal55_tree);
 				}
 
 				}
@@ -3156,22 +2219,22 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(133, 4);
-				string_literal74=(IToken)Match(input,26,Follow._26_in_characterClass619); if (state.failed) return retval;
+				string_literal56=(IToken)Match(input,30,Follow._30_in_characterClass633); if (state.failed) return retval;
 				if (state.backtracking == 0) {
-				string_literal74_tree = (object)adaptor.Create(string_literal74);
-				adaptor.AddChild(root_0, string_literal74_tree);
+				string_literal56_tree = (object)adaptor.Create(string_literal56);
+				adaptor.AddChild(root_0, string_literal56_tree);
 				}
 				DebugLocation(133, 9);
-				PushFollow(Follow._classRanges_in_characterClass621);
-				classRanges75=classRanges();
+				PushFollow(Follow._classRanges_in_characterClass635);
+				classRanges57=classRanges();
 				PopFollow();
 				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, classRanges75.Tree);
+				if (state.backtracking == 0) adaptor.AddChild(root_0, classRanges57.Tree);
 				DebugLocation(133, 21);
-				char_literal76=(IToken)Match(input,30,Follow._30_in_characterClass623); if (state.failed) return retval;
+				char_literal58=(IToken)Match(input,34,Follow._34_in_characterClass637); if (state.failed) return retval;
 				if (state.backtracking == 0) {
-				char_literal76_tree = (object)adaptor.Create(char_literal76);
-				adaptor.AddChild(root_0, char_literal76_tree);
+				char_literal58_tree = (object)adaptor.Create(char_literal58);
+				adaptor.AddChild(root_0, char_literal58_tree);
 				}
 
 				}
@@ -3194,10 +2257,10 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("characterClass", 24);
-			LeaveRule("characterClass", 24);
+			TraceOut("characterClass", 14);
+			LeaveRule("characterClass", 14);
 			LeaveRule_characterClass();
-			if (state.backtracking > 0) { Memoize(input, 24, characterClass_StartIndex); }
+			if (state.backtracking > 0) { Memoize(input, 14, characterClass_StartIndex); }
 
 		}
 		DebugLocation(134, 1);
@@ -3216,21 +2279,21 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 	private AstParserRuleReturnScope<object, IToken> classRanges()
 	{
 		EnterRule_classRanges();
-		EnterRule("classRanges", 25);
-		TraceIn("classRanges", 25);
+		EnterRule("classRanges", 15);
+		TraceIn("classRanges", 15);
 		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
 		retval.Start = (IToken)input.LT(1);
 		int classRanges_StartIndex = input.Index;
 
 		object root_0 = default(object);
 
-		AstParserRuleReturnScope<object, IToken> nonEmptyClassRanges77 = default(AstParserRuleReturnScope<object, IToken>);
+		AstParserRuleReturnScope<object, IToken> nonEmptyClassRanges59 = default(AstParserRuleReturnScope<object, IToken>);
 
 		try { DebugEnterRule(GrammarFileName, "classRanges");
 		DebugLocation(136, 1);
 		try
 		{
-			if (state.backtracking > 0 && AlreadyParsedRule(input, 25)) { return retval; }
+			if (state.backtracking > 0 && AlreadyParsedRule(input, 15)) { return retval; }
 
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:137:2: ( ( nonEmptyClassRanges )? )
 			DebugEnterAlt(1);
@@ -3240,34 +2303,34 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 
 			DebugLocation(137, 4);
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:137:4: ( nonEmptyClassRanges )?
-			int alt17=2;
-			try { DebugEnterSubRule(17);
-			try { DebugEnterDecision(17, false);
-			int LA17_0 = input.LA(1);
+			int alt14=2;
+			try { DebugEnterSubRule(14);
+			try { DebugEnterDecision(14, false);
+			int LA14_0 = input.LA(1);
 
-			if (((LA17_0>=4 && LA17_0<=29)||(LA17_0>=31 && LA17_0<=48)))
+			if (((LA14_0>=ControlEscape && LA14_0<=33)||(LA14_0>=35 && LA14_0<=43)))
 			{
-				alt17 = 1;
+				alt14 = 1;
 			}
-			} finally { DebugExitDecision(17); }
-			switch (alt17)
+			} finally { DebugExitDecision(14); }
+			switch (alt14)
 			{
 			case 1:
 				DebugEnterAlt(1);
 				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:137:4: nonEmptyClassRanges
 				{
 				DebugLocation(137, 4);
-				PushFollow(Follow._nonEmptyClassRanges_in_classRanges634);
-				nonEmptyClassRanges77=nonEmptyClassRanges();
+				PushFollow(Follow._nonEmptyClassRanges_in_classRanges648);
+				nonEmptyClassRanges59=nonEmptyClassRanges();
 				PopFollow();
 				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, nonEmptyClassRanges77.Tree);
+				if (state.backtracking == 0) adaptor.AddChild(root_0, nonEmptyClassRanges59.Tree);
 
 				}
 				break;
 
 			}
-			} finally { DebugExitSubRule(17); }
+			} finally { DebugExitSubRule(14); }
 
 
 			}
@@ -3288,10 +2351,10 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("classRanges", 25);
-			LeaveRule("classRanges", 25);
+			TraceOut("classRanges", 15);
+			LeaveRule("classRanges", 15);
 			LeaveRule_classRanges();
-			if (state.backtracking > 0) { Memoize(input, 25, classRanges_StartIndex); }
+			if (state.backtracking > 0) { Memoize(input, 15, classRanges_StartIndex); }
 
 		}
 		DebugLocation(138, 1);
@@ -3310,22 +2373,22 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 	private AstParserRuleReturnScope<object, IToken> nonEmptyClassRanges()
 	{
 		EnterRule_nonEmptyClassRanges();
-		EnterRule("nonEmptyClassRanges", 26);
-		TraceIn("nonEmptyClassRanges", 26);
+		EnterRule("nonEmptyClassRanges", 16);
+		TraceIn("nonEmptyClassRanges", 16);
 		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
 		retval.Start = (IToken)input.LT(1);
 		int nonEmptyClassRanges_StartIndex = input.Index;
 
 		object root_0 = default(object);
 
-		AstParserRuleReturnScope<object, IToken> classAtom78 = default(AstParserRuleReturnScope<object, IToken>);
-		AstParserRuleReturnScope<object, IToken> nonEmptyClassRangesContinued79 = default(AstParserRuleReturnScope<object, IToken>);
+		AstParserRuleReturnScope<object, IToken> classAtom60 = default(AstParserRuleReturnScope<object, IToken>);
+		AstParserRuleReturnScope<object, IToken> nonEmptyClassRangesContinued61 = default(AstParserRuleReturnScope<object, IToken>);
 
 		try { DebugEnterRule(GrammarFileName, "nonEmptyClassRanges");
 		DebugLocation(140, 1);
 		try
 		{
-			if (state.backtracking > 0 && AlreadyParsedRule(input, 26)) { return retval; }
+			if (state.backtracking > 0 && AlreadyParsedRule(input, 16)) { return retval; }
 
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:141:2: ( classAtom nonEmptyClassRangesContinued )
 			DebugEnterAlt(1);
@@ -3334,17 +2397,17 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 			root_0 = (object)adaptor.Nil();
 
 			DebugLocation(141, 4);
-			PushFollow(Follow._classAtom_in_nonEmptyClassRanges646);
-			classAtom78=classAtom();
+			PushFollow(Follow._classAtom_in_nonEmptyClassRanges660);
+			classAtom60=classAtom();
 			PopFollow();
 			if (state.failed) return retval;
-			if (state.backtracking == 0) adaptor.AddChild(root_0, classAtom78.Tree);
+			if (state.backtracking == 0) adaptor.AddChild(root_0, classAtom60.Tree);
 			DebugLocation(141, 14);
-			PushFollow(Follow._nonEmptyClassRangesContinued_in_nonEmptyClassRanges648);
-			nonEmptyClassRangesContinued79=nonEmptyClassRangesContinued();
+			PushFollow(Follow._nonEmptyClassRangesContinued_in_nonEmptyClassRanges662);
+			nonEmptyClassRangesContinued61=nonEmptyClassRangesContinued();
 			PopFollow();
 			if (state.failed) return retval;
-			if (state.backtracking == 0) adaptor.AddChild(root_0, nonEmptyClassRangesContinued79.Tree);
+			if (state.backtracking == 0) adaptor.AddChild(root_0, nonEmptyClassRangesContinued61.Tree);
 
 			}
 
@@ -3364,10 +2427,10 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("nonEmptyClassRanges", 26);
-			LeaveRule("nonEmptyClassRanges", 26);
+			TraceOut("nonEmptyClassRanges", 16);
+			LeaveRule("nonEmptyClassRanges", 16);
 			LeaveRule_nonEmptyClassRanges();
-			if (state.backtracking > 0) { Memoize(input, 26, nonEmptyClassRanges_StartIndex); }
+			if (state.backtracking > 0) { Memoize(input, 16, nonEmptyClassRanges_StartIndex); }
 
 		}
 		DebugLocation(142, 1);
@@ -3386,47 +2449,47 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 	private AstParserRuleReturnScope<object, IToken> nonEmptyClassRangesContinued()
 	{
 		EnterRule_nonEmptyClassRangesContinued();
-		EnterRule("nonEmptyClassRangesContinued", 27);
-		TraceIn("nonEmptyClassRangesContinued", 27);
+		EnterRule("nonEmptyClassRangesContinued", 17);
+		TraceIn("nonEmptyClassRangesContinued", 17);
 		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
 		retval.Start = (IToken)input.LT(1);
 		int nonEmptyClassRangesContinued_StartIndex = input.Index;
 
 		object root_0 = default(object);
 
-		IToken char_literal81 = default(IToken);
-		AstParserRuleReturnScope<object, IToken> nonEmptyClassRangesNoDash80 = default(AstParserRuleReturnScope<object, IToken>);
-		AstParserRuleReturnScope<object, IToken> classAtom82 = default(AstParserRuleReturnScope<object, IToken>);
-		AstParserRuleReturnScope<object, IToken> classRanges83 = default(AstParserRuleReturnScope<object, IToken>);
+		IToken char_literal63 = default(IToken);
+		AstParserRuleReturnScope<object, IToken> nonEmptyClassRangesNoDash62 = default(AstParserRuleReturnScope<object, IToken>);
+		AstParserRuleReturnScope<object, IToken> classAtom64 = default(AstParserRuleReturnScope<object, IToken>);
+		AstParserRuleReturnScope<object, IToken> classRanges65 = default(AstParserRuleReturnScope<object, IToken>);
 
-		object char_literal81_tree = default(object);
+		object char_literal63_tree = default(object);
 		try { DebugEnterRule(GrammarFileName, "nonEmptyClassRangesContinued");
 		DebugLocation(144, 1);
 		try
 		{
-			if (state.backtracking > 0 && AlreadyParsedRule(input, 27)) { return retval; }
+			if (state.backtracking > 0 && AlreadyParsedRule(input, 17)) { return retval; }
 
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:145:2: (| nonEmptyClassRangesNoDash | '-' classAtom classRanges )
-			int alt18=3;
-			try { DebugEnterDecision(18, false);
+			int alt15=3;
+			try { DebugEnterDecision(15, false);
 			switch (input.LA(1))
 			{
-			case 30:
+			case 34:
 				{
-				int LA18_1 = input.LA(2);
+				int LA15_1 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred57_JavaScriptRegExp_fragment)))
+				if ((EvaluatePredicate(synpred47_JavaScriptRegExp_fragment)))
 				{
-					alt18 = 1;
+					alt15 = 1;
 				}
-				else if ((EvaluatePredicate(synpred58_JavaScriptRegExp_fragment)))
+				else if ((EvaluatePredicate(synpred48_JavaScriptRegExp_fragment)))
 				{
-					alt18 = 2;
+					alt15 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 18, 1, input);
+					NoViableAltException nvae = new NoViableAltException("", 15, 1, input);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -3434,39 +2497,40 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				break;
 			case EOF:
 				{
-				alt18 = 1;
+				alt15 = 1;
 				}
 				break;
-			case 13:
+			case 23:
 				{
-				int LA18_3 = input.LA(2);
+				int LA15_3 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred58_JavaScriptRegExp_fragment)))
+				if ((EvaluatePredicate(synpred48_JavaScriptRegExp_fragment)))
 				{
-					alt18 = 2;
+					alt15 = 2;
 				}
 				else if ((true))
 				{
-					alt18 = 3;
+					alt15 = 3;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 18, 3, input);
+					NoViableAltException nvae = new NoViableAltException("", 15, 3, input);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
 				}
 				break;
-			case 4:
-			case 5:
-			case 6:
-			case 7:
-			case 8:
-			case 9:
-			case 10:
-			case 11:
-			case 12:
+			case ControlEscape:
+			case ControlLetter:
+			case DecimalDigit:
+			case DecimalDigits:
+			case DecimalIntegerLiteral:
+			case HexDigit:
+			case HexEscapeSequence:
+			case IdentityEscape:
+			case NonZeroDigit:
+			case UnicodeEscapeSequence:
 			case 14:
 			case 15:
 			case 16:
@@ -3476,17 +2540,16 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 			case 20:
 			case 21:
 			case 22:
-			case 23:
 			case 24:
 			case 25:
 			case 26:
 			case 27:
 			case 28:
 			case 29:
+			case 30:
 			case 31:
 			case 32:
 			case 33:
-			case 34:
 			case 35:
 			case 36:
 			case 37:
@@ -3496,26 +2559,21 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 			case 41:
 			case 42:
 			case 43:
-			case 44:
-			case 45:
-			case 46:
-			case 47:
-			case 48:
 				{
-				alt18 = 2;
+				alt15 = 2;
 				}
 				break;
 			default:
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 18, 0, input);
+					NoViableAltException nvae = new NoViableAltException("", 15, 0, input);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
 			}
 
-			} finally { DebugExitDecision(18); }
-			switch (alt18)
+			} finally { DebugExitDecision(15); }
+			switch (alt15)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -3532,11 +2590,11 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(146, 4);
-				PushFollow(Follow._nonEmptyClassRangesNoDash_in_nonEmptyClassRangesContinued664);
-				nonEmptyClassRangesNoDash80=nonEmptyClassRangesNoDash();
+				PushFollow(Follow._nonEmptyClassRangesNoDash_in_nonEmptyClassRangesContinued678);
+				nonEmptyClassRangesNoDash62=nonEmptyClassRangesNoDash();
 				PopFollow();
 				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, nonEmptyClassRangesNoDash80.Tree);
+				if (state.backtracking == 0) adaptor.AddChild(root_0, nonEmptyClassRangesNoDash62.Tree);
 
 				}
 				break;
@@ -3547,23 +2605,23 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(147, 4);
-				char_literal81=(IToken)Match(input,13,Follow._13_in_nonEmptyClassRangesContinued669); if (state.failed) return retval;
+				char_literal63=(IToken)Match(input,23,Follow._23_in_nonEmptyClassRangesContinued683); if (state.failed) return retval;
 				if (state.backtracking == 0) {
-				char_literal81_tree = (object)adaptor.Create(char_literal81);
-				adaptor.AddChild(root_0, char_literal81_tree);
+				char_literal63_tree = (object)adaptor.Create(char_literal63);
+				adaptor.AddChild(root_0, char_literal63_tree);
 				}
 				DebugLocation(147, 8);
-				PushFollow(Follow._classAtom_in_nonEmptyClassRangesContinued671);
-				classAtom82=classAtom();
+				PushFollow(Follow._classAtom_in_nonEmptyClassRangesContinued685);
+				classAtom64=classAtom();
 				PopFollow();
 				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, classAtom82.Tree);
+				if (state.backtracking == 0) adaptor.AddChild(root_0, classAtom64.Tree);
 				DebugLocation(147, 18);
-				PushFollow(Follow._classRanges_in_nonEmptyClassRangesContinued673);
-				classRanges83=classRanges();
+				PushFollow(Follow._classRanges_in_nonEmptyClassRangesContinued687);
+				classRanges65=classRanges();
 				PopFollow();
 				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, classRanges83.Tree);
+				if (state.backtracking == 0) adaptor.AddChild(root_0, classRanges65.Tree);
 
 				}
 				break;
@@ -3585,10 +2643,10 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("nonEmptyClassRangesContinued", 27);
-			LeaveRule("nonEmptyClassRangesContinued", 27);
+			TraceOut("nonEmptyClassRangesContinued", 17);
+			LeaveRule("nonEmptyClassRangesContinued", 17);
 			LeaveRule_nonEmptyClassRangesContinued();
-			if (state.backtracking > 0) { Memoize(input, 27, nonEmptyClassRangesContinued_StartIndex); }
+			if (state.backtracking > 0) { Memoize(input, 17, nonEmptyClassRangesContinued_StartIndex); }
 
 		}
 		DebugLocation(148, 1);
@@ -3607,8 +2665,8 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 	private AstParserRuleReturnScope<object, IToken> nonEmptyClassRangesNoDash()
 	{
 		EnterRule_nonEmptyClassRangesNoDash();
-		EnterRule("nonEmptyClassRangesNoDash", 28);
-		TraceIn("nonEmptyClassRangesNoDash", 28);
+		EnterRule("nonEmptyClassRangesNoDash", 18);
+		TraceIn("nonEmptyClassRangesNoDash", 18);
 		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
 		retval.Start = (IToken)input.LT(1);
 		int nonEmptyClassRangesNoDash_StartIndex = input.Index;
@@ -3616,39 +2674,39 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		object root_0 = default(object);
 
 		IToken t = default(IToken);
-		AstParserRuleReturnScope<object, IToken> classAtom84 = default(AstParserRuleReturnScope<object, IToken>);
-		AstParserRuleReturnScope<object, IToken> classAtomNoDash85 = default(AstParserRuleReturnScope<object, IToken>);
-		AstParserRuleReturnScope<object, IToken> nonEmptyClassRangesNoDashContinued86 = default(AstParserRuleReturnScope<object, IToken>);
+		AstParserRuleReturnScope<object, IToken> classAtom66 = default(AstParserRuleReturnScope<object, IToken>);
+		AstParserRuleReturnScope<object, IToken> classAtomNoDash67 = default(AstParserRuleReturnScope<object, IToken>);
+		AstParserRuleReturnScope<object, IToken> nonEmptyClassRangesNoDashContinued68 = default(AstParserRuleReturnScope<object, IToken>);
 
 		object t_tree = default(object);
 		try { DebugEnterRule(GrammarFileName, "nonEmptyClassRangesNoDash");
 		DebugLocation(150, 1);
 		try
 		{
-			if (state.backtracking > 0 && AlreadyParsedRule(input, 28)) { return retval; }
+			if (state.backtracking > 0 && AlreadyParsedRule(input, 18)) { return retval; }
 
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:151:2: (t= '-' classAtom |t=~ '-' classAtomNoDash nonEmptyClassRangesNoDashContinued )
-			int alt19=2;
-			try { DebugEnterDecision(19, false);
-			int LA19_0 = input.LA(1);
+			int alt16=2;
+			try { DebugEnterDecision(16, false);
+			int LA16_0 = input.LA(1);
 
-			if ((LA19_0==13))
+			if ((LA16_0==23))
 			{
-				alt19 = 1;
+				alt16 = 1;
 			}
-			else if (((LA19_0>=4 && LA19_0<=12)||(LA19_0>=14 && LA19_0<=48)))
+			else if (((LA16_0>=ControlEscape && LA16_0<=22)||(LA16_0>=24 && LA16_0<=43)))
 			{
-				alt19 = 2;
+				alt16 = 2;
 			}
 			else
 			{
 				if (state.backtracking>0) {state.failed=true; return retval;}
-				NoViableAltException nvae = new NoViableAltException("", 19, 0, input);
+				NoViableAltException nvae = new NoViableAltException("", 16, 0, input);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
-			} finally { DebugExitDecision(19); }
-			switch (alt19)
+			} finally { DebugExitDecision(16); }
+			switch (alt16)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -3657,17 +2715,17 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(151, 5);
-				t=(IToken)Match(input,13,Follow._13_in_nonEmptyClassRangesNoDash686); if (state.failed) return retval;
+				t=(IToken)Match(input,23,Follow._23_in_nonEmptyClassRangesNoDash700); if (state.failed) return retval;
 				if (state.backtracking == 0) {
 				t_tree = (object)adaptor.Create(t);
 				adaptor.AddChild(root_0, t_tree);
 				}
 				DebugLocation(151, 10);
-				PushFollow(Follow._classAtom_in_nonEmptyClassRangesNoDash688);
-				classAtom84=classAtom();
+				PushFollow(Follow._classAtom_in_nonEmptyClassRangesNoDash702);
+				classAtom66=classAtom();
 				PopFollow();
 				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, classAtom84.Tree);
+				if (state.backtracking == 0) adaptor.AddChild(root_0, classAtom66.Tree);
 
 				}
 				break;
@@ -3680,7 +2738,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				DebugLocation(152, 5);
 
 				t=(IToken)input.LT(1);
-				if ((input.LA(1)>=4 && input.LA(1)<=12)||(input.LA(1)>=14 && input.LA(1)<=48))
+				if ((input.LA(1)>=ControlEscape && input.LA(1)<=22)||(input.LA(1)>=24 && input.LA(1)<=43))
 				{
 					input.Consume();
 					if (state.backtracking == 0) adaptor.AddChild(root_0, (object)adaptor.Create(t));
@@ -3695,17 +2753,17 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				}
 
 				DebugLocation(152, 11);
-				PushFollow(Follow._classAtomNoDash_in_nonEmptyClassRangesNoDash698);
-				classAtomNoDash85=classAtomNoDash();
+				PushFollow(Follow._classAtomNoDash_in_nonEmptyClassRangesNoDash712);
+				classAtomNoDash67=classAtomNoDash();
 				PopFollow();
 				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, classAtomNoDash85.Tree);
+				if (state.backtracking == 0) adaptor.AddChild(root_0, classAtomNoDash67.Tree);
 				DebugLocation(152, 27);
-				PushFollow(Follow._nonEmptyClassRangesNoDashContinued_in_nonEmptyClassRangesNoDash700);
-				nonEmptyClassRangesNoDashContinued86=nonEmptyClassRangesNoDashContinued();
+				PushFollow(Follow._nonEmptyClassRangesNoDashContinued_in_nonEmptyClassRangesNoDash714);
+				nonEmptyClassRangesNoDashContinued68=nonEmptyClassRangesNoDashContinued();
 				PopFollow();
 				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, nonEmptyClassRangesNoDashContinued86.Tree);
+				if (state.backtracking == 0) adaptor.AddChild(root_0, nonEmptyClassRangesNoDashContinued68.Tree);
 
 				}
 				break;
@@ -3727,10 +2785,10 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("nonEmptyClassRangesNoDash", 28);
-			LeaveRule("nonEmptyClassRangesNoDash", 28);
+			TraceOut("nonEmptyClassRangesNoDash", 18);
+			LeaveRule("nonEmptyClassRangesNoDash", 18);
 			LeaveRule_nonEmptyClassRangesNoDash();
-			if (state.backtracking > 0) { Memoize(input, 28, nonEmptyClassRangesNoDash_StartIndex); }
+			if (state.backtracking > 0) { Memoize(input, 18, nonEmptyClassRangesNoDash_StartIndex); }
 
 		}
 		DebugLocation(153, 1);
@@ -3749,47 +2807,47 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 	private AstParserRuleReturnScope<object, IToken> nonEmptyClassRangesNoDashContinued()
 	{
 		EnterRule_nonEmptyClassRangesNoDashContinued();
-		EnterRule("nonEmptyClassRangesNoDashContinued", 29);
-		TraceIn("nonEmptyClassRangesNoDashContinued", 29);
+		EnterRule("nonEmptyClassRangesNoDashContinued", 19);
+		TraceIn("nonEmptyClassRangesNoDashContinued", 19);
 		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
 		retval.Start = (IToken)input.LT(1);
 		int nonEmptyClassRangesNoDashContinued_StartIndex = input.Index;
 
 		object root_0 = default(object);
 
-		IToken char_literal88 = default(IToken);
-		AstParserRuleReturnScope<object, IToken> nonEmptyClassRangesNoDash87 = default(AstParserRuleReturnScope<object, IToken>);
-		AstParserRuleReturnScope<object, IToken> classAtom89 = default(AstParserRuleReturnScope<object, IToken>);
-		AstParserRuleReturnScope<object, IToken> classRanges90 = default(AstParserRuleReturnScope<object, IToken>);
+		IToken char_literal70 = default(IToken);
+		AstParserRuleReturnScope<object, IToken> nonEmptyClassRangesNoDash69 = default(AstParserRuleReturnScope<object, IToken>);
+		AstParserRuleReturnScope<object, IToken> classAtom71 = default(AstParserRuleReturnScope<object, IToken>);
+		AstParserRuleReturnScope<object, IToken> classRanges72 = default(AstParserRuleReturnScope<object, IToken>);
 
-		object char_literal88_tree = default(object);
+		object char_literal70_tree = default(object);
 		try { DebugEnterRule(GrammarFileName, "nonEmptyClassRangesNoDashContinued");
 		DebugLocation(155, 1);
 		try
 		{
-			if (state.backtracking > 0 && AlreadyParsedRule(input, 29)) { return retval; }
+			if (state.backtracking > 0 && AlreadyParsedRule(input, 19)) { return retval; }
 
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:156:2: (| nonEmptyClassRangesNoDash | '-' classAtom classRanges )
-			int alt20=3;
-			try { DebugEnterDecision(20, false);
+			int alt17=3;
+			try { DebugEnterDecision(17, false);
 			switch (input.LA(1))
 			{
-			case 30:
+			case 34:
 				{
-				int LA20_1 = input.LA(2);
+				int LA17_1 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred60_JavaScriptRegExp_fragment)))
+				if ((EvaluatePredicate(synpred50_JavaScriptRegExp_fragment)))
 				{
-					alt20 = 1;
+					alt17 = 1;
 				}
-				else if ((EvaluatePredicate(synpred61_JavaScriptRegExp_fragment)))
+				else if ((EvaluatePredicate(synpred51_JavaScriptRegExp_fragment)))
 				{
-					alt20 = 2;
+					alt17 = 2;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 20, 1, input);
+					NoViableAltException nvae = new NoViableAltException("", 17, 1, input);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
@@ -3797,39 +2855,40 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				break;
 			case EOF:
 				{
-				alt20 = 1;
+				alt17 = 1;
 				}
 				break;
-			case 13:
+			case 23:
 				{
-				int LA20_3 = input.LA(2);
+				int LA17_3 = input.LA(2);
 
-				if ((EvaluatePredicate(synpred61_JavaScriptRegExp_fragment)))
+				if ((EvaluatePredicate(synpred51_JavaScriptRegExp_fragment)))
 				{
-					alt20 = 2;
+					alt17 = 2;
 				}
 				else if ((true))
 				{
-					alt20 = 3;
+					alt17 = 3;
 				}
 				else
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 20, 3, input);
+					NoViableAltException nvae = new NoViableAltException("", 17, 3, input);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
 				}
 				break;
-			case 4:
-			case 5:
-			case 6:
-			case 7:
-			case 8:
-			case 9:
-			case 10:
-			case 11:
-			case 12:
+			case ControlEscape:
+			case ControlLetter:
+			case DecimalDigit:
+			case DecimalDigits:
+			case DecimalIntegerLiteral:
+			case HexDigit:
+			case HexEscapeSequence:
+			case IdentityEscape:
+			case NonZeroDigit:
+			case UnicodeEscapeSequence:
 			case 14:
 			case 15:
 			case 16:
@@ -3839,17 +2898,16 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 			case 20:
 			case 21:
 			case 22:
-			case 23:
 			case 24:
 			case 25:
 			case 26:
 			case 27:
 			case 28:
 			case 29:
+			case 30:
 			case 31:
 			case 32:
 			case 33:
-			case 34:
 			case 35:
 			case 36:
 			case 37:
@@ -3859,26 +2917,21 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 			case 41:
 			case 42:
 			case 43:
-			case 44:
-			case 45:
-			case 46:
-			case 47:
-			case 48:
 				{
-				alt20 = 2;
+				alt17 = 2;
 				}
 				break;
 			default:
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 20, 0, input);
+					NoViableAltException nvae = new NoViableAltException("", 17, 0, input);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
 			}
 
-			} finally { DebugExitDecision(20); }
-			switch (alt20)
+			} finally { DebugExitDecision(17); }
+			switch (alt17)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -3895,11 +2948,11 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(157, 4);
-				PushFollow(Follow._nonEmptyClassRangesNoDash_in_nonEmptyClassRangesNoDashContinued716);
-				nonEmptyClassRangesNoDash87=nonEmptyClassRangesNoDash();
+				PushFollow(Follow._nonEmptyClassRangesNoDash_in_nonEmptyClassRangesNoDashContinued730);
+				nonEmptyClassRangesNoDash69=nonEmptyClassRangesNoDash();
 				PopFollow();
 				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, nonEmptyClassRangesNoDash87.Tree);
+				if (state.backtracking == 0) adaptor.AddChild(root_0, nonEmptyClassRangesNoDash69.Tree);
 
 				}
 				break;
@@ -3910,23 +2963,23 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(158, 4);
-				char_literal88=(IToken)Match(input,13,Follow._13_in_nonEmptyClassRangesNoDashContinued721); if (state.failed) return retval;
+				char_literal70=(IToken)Match(input,23,Follow._23_in_nonEmptyClassRangesNoDashContinued735); if (state.failed) return retval;
 				if (state.backtracking == 0) {
-				char_literal88_tree = (object)adaptor.Create(char_literal88);
-				adaptor.AddChild(root_0, char_literal88_tree);
+				char_literal70_tree = (object)adaptor.Create(char_literal70);
+				adaptor.AddChild(root_0, char_literal70_tree);
 				}
 				DebugLocation(158, 8);
-				PushFollow(Follow._classAtom_in_nonEmptyClassRangesNoDashContinued723);
-				classAtom89=classAtom();
+				PushFollow(Follow._classAtom_in_nonEmptyClassRangesNoDashContinued737);
+				classAtom71=classAtom();
 				PopFollow();
 				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, classAtom89.Tree);
+				if (state.backtracking == 0) adaptor.AddChild(root_0, classAtom71.Tree);
 				DebugLocation(158, 18);
-				PushFollow(Follow._classRanges_in_nonEmptyClassRangesNoDashContinued725);
-				classRanges90=classRanges();
+				PushFollow(Follow._classRanges_in_nonEmptyClassRangesNoDashContinued739);
+				classRanges72=classRanges();
 				PopFollow();
 				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, classRanges90.Tree);
+				if (state.backtracking == 0) adaptor.AddChild(root_0, classRanges72.Tree);
 
 				}
 				break;
@@ -3948,10 +3001,10 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("nonEmptyClassRangesNoDashContinued", 29);
-			LeaveRule("nonEmptyClassRangesNoDashContinued", 29);
+			TraceOut("nonEmptyClassRangesNoDashContinued", 19);
+			LeaveRule("nonEmptyClassRangesNoDashContinued", 19);
 			LeaveRule_nonEmptyClassRangesNoDashContinued();
-			if (state.backtracking > 0) { Memoize(input, 29, nonEmptyClassRangesNoDashContinued_StartIndex); }
+			if (state.backtracking > 0) { Memoize(input, 19, nonEmptyClassRangesNoDashContinued_StartIndex); }
 
 		}
 		DebugLocation(159, 1);
@@ -3970,46 +3023,46 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 	private AstParserRuleReturnScope<object, IToken> classAtom()
 	{
 		EnterRule_classAtom();
-		EnterRule("classAtom", 30);
-		TraceIn("classAtom", 30);
+		EnterRule("classAtom", 20);
+		TraceIn("classAtom", 20);
 		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
 		retval.Start = (IToken)input.LT(1);
 		int classAtom_StartIndex = input.Index;
 
 		object root_0 = default(object);
 
-		IToken char_literal91 = default(IToken);
-		AstParserRuleReturnScope<object, IToken> classAtomNoDash92 = default(AstParserRuleReturnScope<object, IToken>);
+		IToken char_literal73 = default(IToken);
+		AstParserRuleReturnScope<object, IToken> classAtomNoDash74 = default(AstParserRuleReturnScope<object, IToken>);
 
-		object char_literal91_tree = default(object);
+		object char_literal73_tree = default(object);
 		try { DebugEnterRule(GrammarFileName, "classAtom");
 		DebugLocation(161, 1);
 		try
 		{
-			if (state.backtracking > 0 && AlreadyParsedRule(input, 30)) { return retval; }
+			if (state.backtracking > 0 && AlreadyParsedRule(input, 20)) { return retval; }
 
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:162:2: ( '-' | classAtomNoDash )
-			int alt21=2;
-			try { DebugEnterDecision(21, false);
-			int LA21_0 = input.LA(1);
+			int alt18=2;
+			try { DebugEnterDecision(18, false);
+			int LA18_0 = input.LA(1);
 
-			if ((LA21_0==13))
+			if ((LA18_0==23))
 			{
-				alt21 = 1;
+				alt18 = 1;
 			}
-			else if (((LA21_0>=4 && LA21_0<=12)||(LA21_0>=14 && LA21_0<=29)||(LA21_0>=31 && LA21_0<=48)))
+			else if (((LA18_0>=ControlEscape && LA18_0<=22)||(LA18_0>=24 && LA18_0<=33)||(LA18_0>=35 && LA18_0<=43)))
 			{
-				alt21 = 2;
+				alt18 = 2;
 			}
 			else
 			{
 				if (state.backtracking>0) {state.failed=true; return retval;}
-				NoViableAltException nvae = new NoViableAltException("", 21, 0, input);
+				NoViableAltException nvae = new NoViableAltException("", 18, 0, input);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
-			} finally { DebugExitDecision(21); }
-			switch (alt21)
+			} finally { DebugExitDecision(18); }
+			switch (alt18)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -4018,10 +3071,10 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(162, 4);
-				char_literal91=(IToken)Match(input,13,Follow._13_in_classAtom736); if (state.failed) return retval;
+				char_literal73=(IToken)Match(input,23,Follow._23_in_classAtom750); if (state.failed) return retval;
 				if (state.backtracking == 0) {
-				char_literal91_tree = (object)adaptor.Create(char_literal91);
-				adaptor.AddChild(root_0, char_literal91_tree);
+				char_literal73_tree = (object)adaptor.Create(char_literal73);
+				adaptor.AddChild(root_0, char_literal73_tree);
 				}
 
 				}
@@ -4033,11 +3086,11 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(163, 4);
-				PushFollow(Follow._classAtomNoDash_in_classAtom741);
-				classAtomNoDash92=classAtomNoDash();
+				PushFollow(Follow._classAtomNoDash_in_classAtom755);
+				classAtomNoDash74=classAtomNoDash();
 				PopFollow();
 				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, classAtomNoDash92.Tree);
+				if (state.backtracking == 0) adaptor.AddChild(root_0, classAtomNoDash74.Tree);
 
 				}
 				break;
@@ -4059,10 +3112,10 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("classAtom", 30);
-			LeaveRule("classAtom", 30);
+			TraceOut("classAtom", 20);
+			LeaveRule("classAtom", 20);
 			LeaveRule_classAtom();
-			if (state.backtracking > 0) { Memoize(input, 30, classAtom_StartIndex); }
+			if (state.backtracking > 0) { Memoize(input, 20, classAtom_StartIndex); }
 
 		}
 		DebugLocation(164, 1);
@@ -4081,48 +3134,48 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 	private AstParserRuleReturnScope<object, IToken> classAtomNoDash()
 	{
 		EnterRule_classAtomNoDash();
-		EnterRule("classAtomNoDash", 31);
-		TraceIn("classAtomNoDash", 31);
+		EnterRule("classAtomNoDash", 21);
+		TraceIn("classAtomNoDash", 21);
 		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
 		retval.Start = (IToken)input.LT(1);
 		int classAtomNoDash_StartIndex = input.Index;
 
 		object root_0 = default(object);
 
-		IToken set93 = default(IToken);
-		IToken char_literal94 = default(IToken);
-		AstParserRuleReturnScope<object, IToken> classEscape95 = default(AstParserRuleReturnScope<object, IToken>);
+		IToken set75 = default(IToken);
+		IToken char_literal76 = default(IToken);
+		AstParserRuleReturnScope<object, IToken> classEscape77 = default(AstParserRuleReturnScope<object, IToken>);
 
-		object set93_tree = default(object);
-		object char_literal94_tree = default(object);
+		object set75_tree = default(object);
+		object char_literal76_tree = default(object);
 		try { DebugEnterRule(GrammarFileName, "classAtomNoDash");
 		DebugLocation(166, 1);
 		try
 		{
-			if (state.backtracking > 0 && AlreadyParsedRule(input, 31)) { return retval; }
+			if (state.backtracking > 0 && AlreadyParsedRule(input, 21)) { return retval; }
 
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:167:2: (~ ( '\\\\' | ']' | '-' ) | '\\\\' classEscape )
-			int alt22=2;
-			try { DebugEnterDecision(22, false);
-			int LA22_0 = input.LA(1);
+			int alt19=2;
+			try { DebugEnterDecision(19, false);
+			int LA19_0 = input.LA(1);
 
-			if (((LA22_0>=4 && LA22_0<=12)||(LA22_0>=14 && LA22_0<=26)||(LA22_0>=28 && LA22_0<=29)||(LA22_0>=31 && LA22_0<=48)))
+			if (((LA19_0>=ControlEscape && LA19_0<=22)||(LA19_0>=24 && LA19_0<=30)||(LA19_0>=32 && LA19_0<=33)||(LA19_0>=35 && LA19_0<=43)))
 			{
-				alt22 = 1;
+				alt19 = 1;
 			}
-			else if ((LA22_0==27))
+			else if ((LA19_0==31))
 			{
-				alt22 = 2;
+				alt19 = 2;
 			}
 			else
 			{
 				if (state.backtracking>0) {state.failed=true; return retval;}
-				NoViableAltException nvae = new NoViableAltException("", 22, 0, input);
+				NoViableAltException nvae = new NoViableAltException("", 19, 0, input);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
-			} finally { DebugExitDecision(22); }
-			switch (alt22)
+			} finally { DebugExitDecision(19); }
+			switch (alt19)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -4132,11 +3185,11 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 
 				DebugLocation(167, 4);
 
-				set93=(IToken)input.LT(1);
-				if ((input.LA(1)>=4 && input.LA(1)<=12)||(input.LA(1)>=14 && input.LA(1)<=26)||(input.LA(1)>=28 && input.LA(1)<=29)||(input.LA(1)>=31 && input.LA(1)<=48))
+				set75=(IToken)input.LT(1);
+				if ((input.LA(1)>=ControlEscape && input.LA(1)<=22)||(input.LA(1)>=24 && input.LA(1)<=30)||(input.LA(1)>=32 && input.LA(1)<=33)||(input.LA(1)>=35 && input.LA(1)<=43))
 				{
 					input.Consume();
-					if (state.backtracking == 0) adaptor.AddChild(root_0, (object)adaptor.Create(set93));
+					if (state.backtracking == 0) adaptor.AddChild(root_0, (object)adaptor.Create(set75));
 					state.errorRecovery=false;state.failed=false;
 				}
 				else
@@ -4157,17 +3210,17 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(168, 4);
-				char_literal94=(IToken)Match(input,27,Follow._27_in_classAtomNoDash768); if (state.failed) return retval;
+				char_literal76=(IToken)Match(input,31,Follow._31_in_classAtomNoDash782); if (state.failed) return retval;
 				if (state.backtracking == 0) {
-				char_literal94_tree = (object)adaptor.Create(char_literal94);
-				adaptor.AddChild(root_0, char_literal94_tree);
+				char_literal76_tree = (object)adaptor.Create(char_literal76);
+				adaptor.AddChild(root_0, char_literal76_tree);
 				}
 				DebugLocation(168, 9);
-				PushFollow(Follow._classEscape_in_classAtomNoDash770);
-				classEscape95=classEscape();
+				PushFollow(Follow._classEscape_in_classAtomNoDash784);
+				classEscape77=classEscape();
 				PopFollow();
 				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, classEscape95.Tree);
+				if (state.backtracking == 0) adaptor.AddChild(root_0, classEscape77.Tree);
 
 				}
 				break;
@@ -4189,10 +3242,10 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("classAtomNoDash", 31);
-			LeaveRule("classAtomNoDash", 31);
+			TraceOut("classAtomNoDash", 21);
+			LeaveRule("classAtomNoDash", 21);
 			LeaveRule_classAtomNoDash();
-			if (state.backtracking > 0) { Memoize(input, 31, classAtomNoDash_StartIndex); }
+			if (state.backtracking > 0) { Memoize(input, 21, classAtomNoDash_StartIndex); }
 
 		}
 		DebugLocation(169, 1);
@@ -4211,74 +3264,71 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 	private AstParserRuleReturnScope<object, IToken> classEscape()
 	{
 		EnterRule_classEscape();
-		EnterRule("classEscape", 32);
-		TraceIn("classEscape", 32);
+		EnterRule("classEscape", 22);
+		TraceIn("classEscape", 22);
 		AstParserRuleReturnScope<object, IToken> retval = new AstParserRuleReturnScope<object, IToken>();
 		retval.Start = (IToken)input.LT(1);
 		int classEscape_StartIndex = input.Index;
 
 		object root_0 = default(object);
 
-		IToken char_literal97 = default(IToken);
-		AstParserRuleReturnScope<object, IToken> decimalEscape96 = default(AstParserRuleReturnScope<object, IToken>);
-		AstParserRuleReturnScope<object, IToken> characterEscape98 = default(AstParserRuleReturnScope<object, IToken>);
-		AstParserRuleReturnScope<object, IToken> characterClassEscape99 = default(AstParserRuleReturnScope<object, IToken>);
+		IToken char_literal79 = default(IToken);
+		AstParserRuleReturnScope<object, IToken> decimalEscape78 = default(AstParserRuleReturnScope<object, IToken>);
+		AstParserRuleReturnScope<object, IToken> characterEscape80 = default(AstParserRuleReturnScope<object, IToken>);
+		AstParserRuleReturnScope<object, IToken> characterClassEscape81 = default(AstParserRuleReturnScope<object, IToken>);
 
-		object char_literal97_tree = default(object);
+		object char_literal79_tree = default(object);
 		try { DebugEnterRule(GrammarFileName, "classEscape");
 		DebugLocation(171, 1);
 		try
 		{
-			if (state.backtracking > 0 && AlreadyParsedRule(input, 32)) { return retval; }
+			if (state.backtracking > 0 && AlreadyParsedRule(input, 22)) { return retval; }
 
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:172:2: ( decimalEscape | 'b' | characterEscape | characterClassEscape )
-			int alt23=4;
-			try { DebugEnterDecision(23, false);
+			int alt20=4;
+			try { DebugEnterDecision(20, false);
 			switch (input.LA(1))
 			{
-			case 15:
+			case DecimalIntegerLiteral:
 				{
-				alt23 = 1;
+				alt20 = 1;
 				}
 				break;
-			case 33:
-				{
-				alt23 = 2;
-				}
-				break;
-			case 34:
 			case 36:
-			case 37:
-			case 38:
-			case 40:
-			case 41:
-			case 42:
-			case 44:
 				{
-				alt23 = 3;
+				alt20 = 2;
 				}
 				break;
-			case 20:
-			case 22:
-			case 23:
-			case 35:
-			case 39:
-			case 43:
+			case ControlEscape:
+			case HexEscapeSequence:
+			case IdentityEscape:
+			case UnicodeEscapeSequence:
+			case 37:
 				{
-				alt23 = 4;
+				alt20 = 3;
+				}
+				break;
+			case 26:
+			case 27:
+			case 28:
+			case 38:
+			case 39:
+			case 40:
+				{
+				alt20 = 4;
 				}
 				break;
 			default:
 				{
 					if (state.backtracking>0) {state.failed=true; return retval;}
-					NoViableAltException nvae = new NoViableAltException("", 23, 0, input);
+					NoViableAltException nvae = new NoViableAltException("", 20, 0, input);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
 			}
 
-			} finally { DebugExitDecision(23); }
-			switch (alt23)
+			} finally { DebugExitDecision(20); }
+			switch (alt20)
 			{
 			case 1:
 				DebugEnterAlt(1);
@@ -4287,11 +3337,11 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(172, 4);
-				PushFollow(Follow._decimalEscape_in_classEscape781);
-				decimalEscape96=decimalEscape();
+				PushFollow(Follow._decimalEscape_in_classEscape795);
+				decimalEscape78=decimalEscape();
 				PopFollow();
 				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, decimalEscape96.Tree);
+				if (state.backtracking == 0) adaptor.AddChild(root_0, decimalEscape78.Tree);
 
 				}
 				break;
@@ -4302,10 +3352,10 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(173, 4);
-				char_literal97=(IToken)Match(input,33,Follow._33_in_classEscape786); if (state.failed) return retval;
+				char_literal79=(IToken)Match(input,36,Follow._36_in_classEscape800); if (state.failed) return retval;
 				if (state.backtracking == 0) {
-				char_literal97_tree = (object)adaptor.Create(char_literal97);
-				adaptor.AddChild(root_0, char_literal97_tree);
+				char_literal79_tree = (object)adaptor.Create(char_literal79);
+				adaptor.AddChild(root_0, char_literal79_tree);
 				}
 
 				}
@@ -4317,11 +3367,11 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(174, 4);
-				PushFollow(Follow._characterEscape_in_classEscape791);
-				characterEscape98=characterEscape();
+				PushFollow(Follow._characterEscape_in_classEscape805);
+				characterEscape80=characterEscape();
 				PopFollow();
 				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, characterEscape98.Tree);
+				if (state.backtracking == 0) adaptor.AddChild(root_0, characterEscape80.Tree);
 
 				}
 				break;
@@ -4332,11 +3382,11 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 				root_0 = (object)adaptor.Nil();
 
 				DebugLocation(175, 4);
-				PushFollow(Follow._characterClassEscape_in_classEscape796);
-				characterClassEscape99=characterClassEscape();
+				PushFollow(Follow._characterClassEscape_in_classEscape810);
+				characterClassEscape81=characterClassEscape();
 				PopFollow();
 				if (state.failed) return retval;
-				if (state.backtracking == 0) adaptor.AddChild(root_0, characterClassEscape99.Tree);
+				if (state.backtracking == 0) adaptor.AddChild(root_0, characterClassEscape81.Tree);
 
 				}
 				break;
@@ -4358,10 +3408,10 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("classEscape", 32);
-			LeaveRule("classEscape", 32);
+			TraceOut("classEscape", 22);
+			LeaveRule("classEscape", 22);
 			LeaveRule_classEscape();
-			if (state.backtracking > 0) { Memoize(input, 32, classEscape_StartIndex); }
+			if (state.backtracking > 0) { Memoize(input, 22, classEscape_StartIndex); }
 
 		}
 		DebugLocation(176, 1);
@@ -4378,8 +3428,8 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 	public void synpred3_JavaScriptRegExp_fragment()
 	{
 		EnterRule_synpred3_JavaScriptRegExp_fragment();
-		EnterRule("synpred3_JavaScriptRegExp_fragment", 35);
-		TraceIn("synpred3_JavaScriptRegExp_fragment", 35);
+		EnterRule("synpred3_JavaScriptRegExp_fragment", 25);
+		TraceIn("synpred3_JavaScriptRegExp_fragment", 25);
 		try
 		{
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:22:4: ( assertion )
@@ -4397,8 +3447,8 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("synpred3_JavaScriptRegExp_fragment", 35);
-			LeaveRule("synpred3_JavaScriptRegExp_fragment", 35);
+			TraceOut("synpred3_JavaScriptRegExp_fragment", 25);
+			LeaveRule("synpred3_JavaScriptRegExp_fragment", 25);
 			LeaveRule_synpred3_JavaScriptRegExp_fragment();
 		}
 	}
@@ -4411,8 +3461,8 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 	public void synpred16_JavaScriptRegExp_fragment()
 	{
 		EnterRule_synpred16_JavaScriptRegExp_fragment();
-		EnterRule("synpred16_JavaScriptRegExp_fragment", 48);
-		TraceIn("synpred16_JavaScriptRegExp_fragment", 48);
+		EnterRule("synpred16_JavaScriptRegExp_fragment", 38);
+		TraceIn("synpred16_JavaScriptRegExp_fragment", 38);
 		try
 		{
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:47:4: ( patternCharacter )
@@ -4430,8 +3480,8 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("synpred16_JavaScriptRegExp_fragment", 48);
-			LeaveRule("synpred16_JavaScriptRegExp_fragment", 48);
+			TraceOut("synpred16_JavaScriptRegExp_fragment", 38);
+			LeaveRule("synpred16_JavaScriptRegExp_fragment", 38);
 			LeaveRule_synpred16_JavaScriptRegExp_fragment();
 		}
 	}
@@ -4444,8 +3494,8 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 	public void synpred19_JavaScriptRegExp_fragment()
 	{
 		EnterRule_synpred19_JavaScriptRegExp_fragment();
-		EnterRule("synpred19_JavaScriptRegExp_fragment", 51);
-		TraceIn("synpred19_JavaScriptRegExp_fragment", 51);
+		EnterRule("synpred19_JavaScriptRegExp_fragment", 41);
+		TraceIn("synpred19_JavaScriptRegExp_fragment", 41);
 		try
 		{
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:50:4: ( characterClass )
@@ -4463,22 +3513,22 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("synpred19_JavaScriptRegExp_fragment", 51);
-			LeaveRule("synpred19_JavaScriptRegExp_fragment", 51);
+			TraceOut("synpred19_JavaScriptRegExp_fragment", 41);
+			LeaveRule("synpred19_JavaScriptRegExp_fragment", 41);
 			LeaveRule_synpred19_JavaScriptRegExp_fragment();
 		}
 	}
 	// $ANTLR end synpred19_JavaScriptRegExp
 
-	partial void EnterRule_synpred57_JavaScriptRegExp_fragment();
-	partial void LeaveRule_synpred57_JavaScriptRegExp_fragment();
+	partial void EnterRule_synpred47_JavaScriptRegExp_fragment();
+	partial void LeaveRule_synpred47_JavaScriptRegExp_fragment();
 
-	// $ANTLR start synpred57_JavaScriptRegExp
-	public void synpred57_JavaScriptRegExp_fragment()
+	// $ANTLR start synpred47_JavaScriptRegExp
+	public void synpred47_JavaScriptRegExp_fragment()
 	{
-		EnterRule_synpred57_JavaScriptRegExp_fragment();
-		EnterRule("synpred57_JavaScriptRegExp_fragment", 89);
-		TraceIn("synpred57_JavaScriptRegExp_fragment", 89);
+		EnterRule_synpred47_JavaScriptRegExp_fragment();
+		EnterRule("synpred47_JavaScriptRegExp_fragment", 69);
+		TraceIn("synpred47_JavaScriptRegExp_fragment", 69);
 		try
 		{
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:146:2: ()
@@ -4490,22 +3540,22 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("synpred57_JavaScriptRegExp_fragment", 89);
-			LeaveRule("synpred57_JavaScriptRegExp_fragment", 89);
-			LeaveRule_synpred57_JavaScriptRegExp_fragment();
+			TraceOut("synpred47_JavaScriptRegExp_fragment", 69);
+			LeaveRule("synpred47_JavaScriptRegExp_fragment", 69);
+			LeaveRule_synpred47_JavaScriptRegExp_fragment();
 		}
 	}
-	// $ANTLR end synpred57_JavaScriptRegExp
+	// $ANTLR end synpred47_JavaScriptRegExp
 
-	partial void EnterRule_synpred58_JavaScriptRegExp_fragment();
-	partial void LeaveRule_synpred58_JavaScriptRegExp_fragment();
+	partial void EnterRule_synpred48_JavaScriptRegExp_fragment();
+	partial void LeaveRule_synpred48_JavaScriptRegExp_fragment();
 
-	// $ANTLR start synpred58_JavaScriptRegExp
-	public void synpred58_JavaScriptRegExp_fragment()
+	// $ANTLR start synpred48_JavaScriptRegExp
+	public void synpred48_JavaScriptRegExp_fragment()
 	{
-		EnterRule_synpred58_JavaScriptRegExp_fragment();
-		EnterRule("synpred58_JavaScriptRegExp_fragment", 90);
-		TraceIn("synpred58_JavaScriptRegExp_fragment", 90);
+		EnterRule_synpred48_JavaScriptRegExp_fragment();
+		EnterRule("synpred48_JavaScriptRegExp_fragment", 70);
+		TraceIn("synpred48_JavaScriptRegExp_fragment", 70);
 		try
 		{
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:146:4: ( nonEmptyClassRangesNoDash )
@@ -4513,7 +3563,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:146:4: nonEmptyClassRangesNoDash
 			{
 			DebugLocation(146, 4);
-			PushFollow(Follow._nonEmptyClassRangesNoDash_in_synpred58_JavaScriptRegExp664);
+			PushFollow(Follow._nonEmptyClassRangesNoDash_in_synpred48_JavaScriptRegExp678);
 			nonEmptyClassRangesNoDash();
 			PopFollow();
 			if (state.failed) return;
@@ -4523,22 +3573,22 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("synpred58_JavaScriptRegExp_fragment", 90);
-			LeaveRule("synpred58_JavaScriptRegExp_fragment", 90);
-			LeaveRule_synpred58_JavaScriptRegExp_fragment();
+			TraceOut("synpred48_JavaScriptRegExp_fragment", 70);
+			LeaveRule("synpred48_JavaScriptRegExp_fragment", 70);
+			LeaveRule_synpred48_JavaScriptRegExp_fragment();
 		}
 	}
-	// $ANTLR end synpred58_JavaScriptRegExp
+	// $ANTLR end synpred48_JavaScriptRegExp
 
-	partial void EnterRule_synpred60_JavaScriptRegExp_fragment();
-	partial void LeaveRule_synpred60_JavaScriptRegExp_fragment();
+	partial void EnterRule_synpred50_JavaScriptRegExp_fragment();
+	partial void LeaveRule_synpred50_JavaScriptRegExp_fragment();
 
-	// $ANTLR start synpred60_JavaScriptRegExp
-	public void synpred60_JavaScriptRegExp_fragment()
+	// $ANTLR start synpred50_JavaScriptRegExp
+	public void synpred50_JavaScriptRegExp_fragment()
 	{
-		EnterRule_synpred60_JavaScriptRegExp_fragment();
-		EnterRule("synpred60_JavaScriptRegExp_fragment", 92);
-		TraceIn("synpred60_JavaScriptRegExp_fragment", 92);
+		EnterRule_synpred50_JavaScriptRegExp_fragment();
+		EnterRule("synpred50_JavaScriptRegExp_fragment", 72);
+		TraceIn("synpred50_JavaScriptRegExp_fragment", 72);
 		try
 		{
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:157:2: ()
@@ -4550,22 +3600,22 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("synpred60_JavaScriptRegExp_fragment", 92);
-			LeaveRule("synpred60_JavaScriptRegExp_fragment", 92);
-			LeaveRule_synpred60_JavaScriptRegExp_fragment();
+			TraceOut("synpred50_JavaScriptRegExp_fragment", 72);
+			LeaveRule("synpred50_JavaScriptRegExp_fragment", 72);
+			LeaveRule_synpred50_JavaScriptRegExp_fragment();
 		}
 	}
-	// $ANTLR end synpred60_JavaScriptRegExp
+	// $ANTLR end synpred50_JavaScriptRegExp
 
-	partial void EnterRule_synpred61_JavaScriptRegExp_fragment();
-	partial void LeaveRule_synpred61_JavaScriptRegExp_fragment();
+	partial void EnterRule_synpred51_JavaScriptRegExp_fragment();
+	partial void LeaveRule_synpred51_JavaScriptRegExp_fragment();
 
-	// $ANTLR start synpred61_JavaScriptRegExp
-	public void synpred61_JavaScriptRegExp_fragment()
+	// $ANTLR start synpred51_JavaScriptRegExp
+	public void synpred51_JavaScriptRegExp_fragment()
 	{
-		EnterRule_synpred61_JavaScriptRegExp_fragment();
-		EnterRule("synpred61_JavaScriptRegExp_fragment", 93);
-		TraceIn("synpred61_JavaScriptRegExp_fragment", 93);
+		EnterRule_synpred51_JavaScriptRegExp_fragment();
+		EnterRule("synpred51_JavaScriptRegExp_fragment", 73);
+		TraceIn("synpred51_JavaScriptRegExp_fragment", 73);
 		try
 		{
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:157:4: ( nonEmptyClassRangesNoDash )
@@ -4573,7 +3623,7 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:157:4: nonEmptyClassRangesNoDash
 			{
 			DebugLocation(157, 4);
-			PushFollow(Follow._nonEmptyClassRangesNoDash_in_synpred61_JavaScriptRegExp716);
+			PushFollow(Follow._nonEmptyClassRangesNoDash_in_synpred51_JavaScriptRegExp730);
 			nonEmptyClassRangesNoDash();
 			PopFollow();
 			if (state.failed) return;
@@ -4583,12 +3633,12 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 		}
 		finally
 		{
-			TraceOut("synpred61_JavaScriptRegExp_fragment", 93);
-			LeaveRule("synpred61_JavaScriptRegExp_fragment", 93);
-			LeaveRule_synpred61_JavaScriptRegExp_fragment();
+			TraceOut("synpred51_JavaScriptRegExp_fragment", 73);
+			LeaveRule("synpred51_JavaScriptRegExp_fragment", 73);
+			LeaveRule_synpred51_JavaScriptRegExp_fragment();
 		}
 	}
-	// $ANTLR end synpred61_JavaScriptRegExp
+	// $ANTLR end synpred51_JavaScriptRegExp
 	#endregion Rules
 
 	#region Synpreds
@@ -4621,103 +3671,91 @@ public partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 	{
 		public static readonly BitSet _disjunction_in_pattern47 = new BitSet(new ulong[]{0x0UL});
 		public static readonly BitSet _EOF_in_pattern49 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _alternative_in_disjunction60 = new BitSet(new ulong[]{0x800000000002UL});
-		public static readonly BitSet _47_in_disjunction63 = new BitSet(new ulong[]{0xBFFFBFFBF1F0UL});
+		public static readonly BitSet _alternative_in_disjunction60 = new BitSet(new ulong[]{0x40000000002UL});
+		public static readonly BitSet _42_in_disjunction63 = new BitSet(new ulong[]{0x5FBFDC7FFF0UL});
 		public static readonly BitSet _disjunction_in_disjunction65 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _term_in_alternative78 = new BitSet(new ulong[]{0x3FFFBFFBF1F2UL});
+		public static readonly BitSet _term_in_alternative78 = new BitSet(new ulong[]{0x1FBFDC7FFF2UL});
 		public static readonly BitSet _assertion_in_term90 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _atom_in_term95 = new BitSet(new ulong[]{0x400000040C02UL});
+		public static readonly BitSet _atom_in_term95 = new BitSet(new ulong[]{0x20002300002UL});
 		public static readonly BitSet _quantifier_in_term97 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _31_in_assertion109 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _4_in_assertion114 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _29_in_assertion119 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _28_in_assertion124 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _8_in_assertion129 = new BitSet(new ulong[]{0xBFFFBFFBF1F0UL});
-		public static readonly BitSet _disjunction_in_assertion131 = new BitSet(new ulong[]{0x200UL});
-		public static readonly BitSet _9_in_assertion133 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _7_in_assertion138 = new BitSet(new ulong[]{0xBFFFBFFBF1F0UL});
-		public static readonly BitSet _disjunction_in_assertion140 = new BitSet(new ulong[]{0x200UL});
-		public static readonly BitSet _9_in_assertion142 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _quantifierPrefix_in_quantifier153 = new BitSet(new ulong[]{0x40002UL});
-		public static readonly BitSet _18_in_quantifier156 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _10_in_quantifierPrefix169 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _11_in_quantifierPrefix174 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _18_in_quantifierPrefix179 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _46_in_quantifierPrefix184 = new BitSet(new ulong[]{0x0UL});
-		public static readonly BitSet _decimalDigits_in_quantifierPrefix186 = new BitSet(new ulong[]{0x1000000001000UL});
-		public static readonly BitSet _12_in_quantifierPrefix189 = new BitSet(new ulong[]{0x1000000000000UL});
-		public static readonly BitSet _decimalDigits_in_quantifierPrefix192 = new BitSet(new ulong[]{0x1000000000000UL});
-		public static readonly BitSet _48_in_quantifierPrefix198 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _35_in_assertion109 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _14_in_assertion114 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _33_in_assertion119 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _32_in_assertion124 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _18_in_assertion129 = new BitSet(new ulong[]{0x5FBFDC7FFF0UL});
+		public static readonly BitSet _disjunction_in_assertion131 = new BitSet(new ulong[]{0x80000UL});
+		public static readonly BitSet _19_in_assertion133 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _17_in_assertion138 = new BitSet(new ulong[]{0x5FBFDC7FFF0UL});
+		public static readonly BitSet _disjunction_in_assertion140 = new BitSet(new ulong[]{0x80000UL});
+		public static readonly BitSet _19_in_assertion142 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _quantifierPrefix_in_quantifier153 = new BitSet(new ulong[]{0x2000002UL});
+		public static readonly BitSet _25_in_quantifier156 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _20_in_quantifierPrefix169 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _21_in_quantifierPrefix174 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _25_in_quantifierPrefix179 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _41_in_quantifierPrefix184 = new BitSet(new ulong[]{0x80UL});
+		public static readonly BitSet _DecimalDigits_in_quantifierPrefix186 = new BitSet(new ulong[]{0x80000400000UL});
+		public static readonly BitSet _22_in_quantifierPrefix189 = new BitSet(new ulong[]{0x80000000080UL});
+		public static readonly BitSet _DecimalDigits_in_quantifierPrefix192 = new BitSet(new ulong[]{0x80000000000UL});
+		public static readonly BitSet _43_in_quantifierPrefix198 = new BitSet(new ulong[]{0x2UL});
 		public static readonly BitSet _patternCharacter_in_atom209 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _14_in_atom214 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _27_in_atom219 = new BitSet(new ulong[]{0x1FFC00D08000UL});
+		public static readonly BitSet _24_in_atom214 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _31_in_atom219 = new BitSet(new ulong[]{0x1E01C002D10UL});
 		public static readonly BitSet _atomEscape_in_atom221 = new BitSet(new ulong[]{0x2UL});
 		public static readonly BitSet _characterClass_in_atom226 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _5_in_atom231 = new BitSet(new ulong[]{0xBFFFBFFBF1F0UL});
-		public static readonly BitSet _disjunction_in_atom233 = new BitSet(new ulong[]{0x200UL});
-		public static readonly BitSet _9_in_atom235 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _6_in_atom240 = new BitSet(new ulong[]{0xBFFFBFFBF1F0UL});
-		public static readonly BitSet _disjunction_in_atom242 = new BitSet(new ulong[]{0x200UL});
-		public static readonly BitSet _9_in_atom244 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _decimalEscape_in_atomEscape321 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _characterEscape_in_atomEscape326 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _characterClassEscape_in_atomEscape331 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _controlEscape_in_characterEscape342 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _34_in_characterEscape347 = new BitSet(new ulong[]{0x0UL});
-		public static readonly BitSet _controlLetter_in_characterEscape349 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _hexEscapeSequence_in_characterEscape354 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _unicodeEscapeSequence_in_characterEscape359 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _identityEscape_in_characterEscape364 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _44_in_hexEscapeSequence426 = new BitSet(new ulong[]{0x0UL});
-		public static readonly BitSet _hexDigit_in_hexEscapeSequence428 = new BitSet(new ulong[]{0x0UL});
-		public static readonly BitSet _hexDigit_in_hexEscapeSequence430 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _41_in_unicodeEscapeSequence441 = new BitSet(new ulong[]{0x0UL});
-		public static readonly BitSet _hexDigit_in_unicodeEscapeSequence443 = new BitSet(new ulong[]{0x0UL});
-		public static readonly BitSet _hexDigit_in_unicodeEscapeSequence445 = new BitSet(new ulong[]{0x0UL});
-		public static readonly BitSet _hexDigit_in_unicodeEscapeSequence447 = new BitSet(new ulong[]{0x0UL});
-		public static readonly BitSet _hexDigit_in_unicodeEscapeSequence449 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _decimalIntegerLiteral_in_decimalEscape498 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _15_in_decimalIntegerLiteral511 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _nonZeroDigit_in_decimalIntegerLiteral516 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _decimalDigits_in_decimalIntegerLiteral518 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _decimalDigit_in_decimalDigits544 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _25_in_characterClass605 = new BitSet(new ulong[]{0x1FFFF7FFFFFF0UL});
-		public static readonly BitSet _set_in_characterClass609 = new BitSet(new ulong[]{0x1FFFFFFFFFFF0UL});
-		public static readonly BitSet _classRanges_in_characterClass612 = new BitSet(new ulong[]{0x40000000UL});
-		public static readonly BitSet _30_in_characterClass614 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _26_in_characterClass619 = new BitSet(new ulong[]{0x1FFFFFFFFFFF0UL});
-		public static readonly BitSet _classRanges_in_characterClass621 = new BitSet(new ulong[]{0x40000000UL});
-		public static readonly BitSet _30_in_characterClass623 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _nonEmptyClassRanges_in_classRanges634 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _classAtom_in_nonEmptyClassRanges646 = new BitSet(new ulong[]{0x1FFFFFFFFFFF0UL});
-		public static readonly BitSet _nonEmptyClassRangesContinued_in_nonEmptyClassRanges648 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _nonEmptyClassRangesNoDash_in_nonEmptyClassRangesContinued664 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _13_in_nonEmptyClassRangesContinued669 = new BitSet(new ulong[]{0x1FFFFBFFFFFF0UL});
-		public static readonly BitSet _classAtom_in_nonEmptyClassRangesContinued671 = new BitSet(new ulong[]{0x1FFFFBFFFFFF0UL});
-		public static readonly BitSet _classRanges_in_nonEmptyClassRangesContinued673 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _13_in_nonEmptyClassRangesNoDash686 = new BitSet(new ulong[]{0x1FFFFBFFFFFF0UL});
-		public static readonly BitSet _classAtom_in_nonEmptyClassRangesNoDash688 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _set_in_nonEmptyClassRangesNoDash695 = new BitSet(new ulong[]{0x1FFFFBFFFDFF0UL});
-		public static readonly BitSet _classAtomNoDash_in_nonEmptyClassRangesNoDash698 = new BitSet(new ulong[]{0x1FFFFFFFFFFF0UL});
-		public static readonly BitSet _nonEmptyClassRangesNoDashContinued_in_nonEmptyClassRangesNoDash700 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _nonEmptyClassRangesNoDash_in_nonEmptyClassRangesNoDashContinued716 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _13_in_nonEmptyClassRangesNoDashContinued721 = new BitSet(new ulong[]{0x1FFFFBFFFFFF0UL});
-		public static readonly BitSet _classAtom_in_nonEmptyClassRangesNoDashContinued723 = new BitSet(new ulong[]{0x1FFFFBFFFFFF0UL});
-		public static readonly BitSet _classRanges_in_nonEmptyClassRangesNoDashContinued725 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _13_in_classAtom736 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _classAtomNoDash_in_classAtom741 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _set_in_classAtomNoDash752 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _27_in_classAtomNoDash768 = new BitSet(new ulong[]{0x1FFE00D08000UL});
-		public static readonly BitSet _classEscape_in_classAtomNoDash770 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _decimalEscape_in_classEscape781 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _33_in_classEscape786 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _characterEscape_in_classEscape791 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _characterClassEscape_in_classEscape796 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _15_in_atom231 = new BitSet(new ulong[]{0x5FBFDC7FFF0UL});
+		public static readonly BitSet _disjunction_in_atom233 = new BitSet(new ulong[]{0x80000UL});
+		public static readonly BitSet _19_in_atom235 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _16_in_atom240 = new BitSet(new ulong[]{0x5FBFDC7FFF0UL});
+		public static readonly BitSet _disjunction_in_atom242 = new BitSet(new ulong[]{0x80000UL});
+		public static readonly BitSet _19_in_atom244 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _decimalEscape_in_atomEscape295 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _characterEscape_in_atomEscape300 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _characterClassEscape_in_atomEscape305 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _ControlEscape_in_characterEscape316 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _37_in_characterEscape321 = new BitSet(new ulong[]{0x20UL});
+		public static readonly BitSet _ControlLetter_in_characterEscape323 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _HexEscapeSequence_in_characterEscape328 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _UnicodeEscapeSequence_in_characterEscape333 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _IdentityEscape_in_characterEscape338 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _DecimalIntegerLiteral_in_decimalEscape504 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _29_in_characterClass619 = new BitSet(new ulong[]{0xFF7FFFFFFF0UL});
+		public static readonly BitSet _set_in_characterClass623 = new BitSet(new ulong[]{0xFFFFFFFFFF0UL});
+		public static readonly BitSet _classRanges_in_characterClass626 = new BitSet(new ulong[]{0x400000000UL});
+		public static readonly BitSet _34_in_characterClass628 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _30_in_characterClass633 = new BitSet(new ulong[]{0xFFFFFFFFFF0UL});
+		public static readonly BitSet _classRanges_in_characterClass635 = new BitSet(new ulong[]{0x400000000UL});
+		public static readonly BitSet _34_in_characterClass637 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _nonEmptyClassRanges_in_classRanges648 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _classAtom_in_nonEmptyClassRanges660 = new BitSet(new ulong[]{0xFFFFFFFFFF0UL});
+		public static readonly BitSet _nonEmptyClassRangesContinued_in_nonEmptyClassRanges662 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _nonEmptyClassRangesNoDash_in_nonEmptyClassRangesContinued678 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _23_in_nonEmptyClassRangesContinued683 = new BitSet(new ulong[]{0xFFBFFFFFFF0UL});
+		public static readonly BitSet _classAtom_in_nonEmptyClassRangesContinued685 = new BitSet(new ulong[]{0xFFBFFFFFFF0UL});
+		public static readonly BitSet _classRanges_in_nonEmptyClassRangesContinued687 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _23_in_nonEmptyClassRangesNoDash700 = new BitSet(new ulong[]{0xFFBFFFFFFF0UL});
+		public static readonly BitSet _classAtom_in_nonEmptyClassRangesNoDash702 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _set_in_nonEmptyClassRangesNoDash709 = new BitSet(new ulong[]{0xFFBFF7FFFF0UL});
+		public static readonly BitSet _classAtomNoDash_in_nonEmptyClassRangesNoDash712 = new BitSet(new ulong[]{0xFFFFFFFFFF0UL});
+		public static readonly BitSet _nonEmptyClassRangesNoDashContinued_in_nonEmptyClassRangesNoDash714 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _nonEmptyClassRangesNoDash_in_nonEmptyClassRangesNoDashContinued730 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _23_in_nonEmptyClassRangesNoDashContinued735 = new BitSet(new ulong[]{0xFFBFFFFFFF0UL});
+		public static readonly BitSet _classAtom_in_nonEmptyClassRangesNoDashContinued737 = new BitSet(new ulong[]{0xFFBFFFFFFF0UL});
+		public static readonly BitSet _classRanges_in_nonEmptyClassRangesNoDashContinued739 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _23_in_classAtom750 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _classAtomNoDash_in_classAtom755 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _set_in_classAtomNoDash766 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _31_in_classAtomNoDash782 = new BitSet(new ulong[]{0x1F01C002D10UL});
+		public static readonly BitSet _classEscape_in_classAtomNoDash784 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _decimalEscape_in_classEscape795 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _36_in_classEscape800 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _characterEscape_in_classEscape805 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _characterClassEscape_in_classEscape810 = new BitSet(new ulong[]{0x2UL});
 		public static readonly BitSet _assertion_in_synpred3_JavaScriptRegExp90 = new BitSet(new ulong[]{0x2UL});
 		public static readonly BitSet _patternCharacter_in_synpred16_JavaScriptRegExp209 = new BitSet(new ulong[]{0x2UL});
 		public static readonly BitSet _characterClass_in_synpred19_JavaScriptRegExp226 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _nonEmptyClassRangesNoDash_in_synpred58_JavaScriptRegExp664 = new BitSet(new ulong[]{0x2UL});
-		public static readonly BitSet _nonEmptyClassRangesNoDash_in_synpred61_JavaScriptRegExp716 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _nonEmptyClassRangesNoDash_in_synpred48_JavaScriptRegExp678 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _nonEmptyClassRangesNoDash_in_synpred51_JavaScriptRegExp730 = new BitSet(new ulong[]{0x2UL});
 	}
 	#endregion Follow sets
 }

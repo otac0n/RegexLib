@@ -40,7 +40,7 @@ quantifierPrefix
 	:	'*'
 	|	'+'
 	|	'?'
-	|	'{' decimalDigits (',' (decimalDigits)?)? '}'
+	|	'{' DecimalDigits (',' (DecimalDigits)?)? '}'
 	;
 
 atom
@@ -63,14 +63,14 @@ atomEscape
 	;
 
 characterEscape
-	:	controlEscape
-	|	'c' controlLetter
-	|	hexEscapeSequence
-	|	unicodeEscapeSequence
-	|	identityEscape
+	:	ControlEscape
+	|	'c' ControlLetter
+	|	HexEscapeSequence
+	|	UnicodeEscapeSequence
+	|	IdentityEscape
 	;
 
-controlEscape
+fragment ControlEscape
 	:	'f'
 	|	'n'
 	|	'r'
@@ -78,44 +78,44 @@ controlEscape
 	|	'v'
 	;
 
-controlLetter
+fragment ControlLetter
 	:	('a'..'z'|'A'..'Z')
 	;
 
-hexEscapeSequence
-	:	'x' hexDigit hexDigit
+fragment HexEscapeSequence
+	:	'x' HexDigit HexDigit
 	;
 
-unicodeEscapeSequence
-	:	'u' hexDigit hexDigit hexDigit hexDigit
+fragment UnicodeEscapeSequence
+	:	'u' HexDigit HexDigit HexDigit HexDigit
 	;
 
-hexDigit
+fragment HexDigit
 	:	('0'..'9'|'a'..'f'|'A'..'F')
 	;
 
-identityEscape
+fragment IdentityEscape
 	:	~('b'|'B'|'0'..'9'|'f'|'n'|'r'|'t'|'v'|'c'|'x'|'u')
 	;
 
 decimalEscape
-	:	decimalIntegerLiteral /* TODO: Negative Lookahead for Decimal */
+	:	DecimalIntegerLiteral /* TODO: Negative Lookahead for Decimal */
 	;
 
-decimalIntegerLiteral
+fragment DecimalIntegerLiteral
 	:	'0'
-	|	nonZeroDigit decimalDigits?
+	|	NonZeroDigit DecimalDigits?
 	;
 	
-nonZeroDigit
+fragment NonZeroDigit
 	:	'1'..'9'
 	;
 
-decimalDigits
-	:	decimalDigit+
+fragment DecimalDigits
+	:	DecimalDigit+
 	;
 
-decimalDigit
+fragment DecimalDigit
 	:	'0'..'9'
 	;
 

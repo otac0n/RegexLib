@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.4 JavaScriptRegExp__.g 2012-06-20 20:09:12
+// $ANTLR 3.4 C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g 2012-06-25 09:47:22
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -29,16 +29,6 @@ using Antlr.Runtime.Misc;
 public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 {
 	public const int EOF=-1;
-	public const int T__4=4;
-	public const int T__5=5;
-	public const int T__6=6;
-	public const int T__7=7;
-	public const int T__8=8;
-	public const int T__9=9;
-	public const int T__10=10;
-	public const int T__11=11;
-	public const int T__12=12;
-	public const int T__13=13;
 	public const int T__14=14;
 	public const int T__15=15;
 	public const int T__16=16;
@@ -69,11 +59,16 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	public const int T__41=41;
 	public const int T__42=42;
 	public const int T__43=43;
-	public const int T__44=44;
-	public const int T__45=45;
-	public const int T__46=46;
-	public const int T__47=47;
-	public const int T__48=48;
+	public const int ControlEscape=4;
+	public const int ControlLetter=5;
+	public const int DecimalDigit=6;
+	public const int DecimalDigits=7;
+	public const int DecimalIntegerLiteral=8;
+	public const int HexDigit=9;
+	public const int HexEscapeSequence=10;
+	public const int IdentityEscape=11;
+	public const int NonZeroDigit=12;
+	public const int UnicodeEscapeSequence=13;
 
     // delegates
     // delegators
@@ -94,365 +89,12 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 
 		OnCreated();
 	}
-	public override string GrammarFileName { get { return "JavaScriptRegExp__.g"; } }
+	public override string GrammarFileName { get { return "C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g"; } }
 
 
 	partial void OnCreated();
 	partial void EnterRule(string ruleName, int ruleIndex);
 	partial void LeaveRule(string ruleName, int ruleIndex);
-
-	partial void EnterRule_T__4();
-	partial void LeaveRule_T__4();
-
-	// $ANTLR start "T__4"
-	[GrammarRule("T__4")]
-	private void mT__4()
-	{
-		EnterRule_T__4();
-		EnterRule("T__4", 1);
-		TraceIn("T__4", 1);
-		try
-		{
-			int _type = T__4;
-			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:7:6: ( '$' )
-			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:7:8: '$'
-			{
-			DebugLocation(7, 8);
-			Match('$'); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally
-		{
-			TraceOut("T__4", 1);
-			LeaveRule("T__4", 1);
-			LeaveRule_T__4();
-		}
-	}
-	// $ANTLR end "T__4"
-
-	partial void EnterRule_T__5();
-	partial void LeaveRule_T__5();
-
-	// $ANTLR start "T__5"
-	[GrammarRule("T__5")]
-	private void mT__5()
-	{
-		EnterRule_T__5();
-		EnterRule("T__5", 2);
-		TraceIn("T__5", 2);
-		try
-		{
-			int _type = T__5;
-			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:8:6: ( '(' )
-			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:8:8: '('
-			{
-			DebugLocation(8, 8);
-			Match('('); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally
-		{
-			TraceOut("T__5", 2);
-			LeaveRule("T__5", 2);
-			LeaveRule_T__5();
-		}
-	}
-	// $ANTLR end "T__5"
-
-	partial void EnterRule_T__6();
-	partial void LeaveRule_T__6();
-
-	// $ANTLR start "T__6"
-	[GrammarRule("T__6")]
-	private void mT__6()
-	{
-		EnterRule_T__6();
-		EnterRule("T__6", 3);
-		TraceIn("T__6", 3);
-		try
-		{
-			int _type = T__6;
-			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:9:6: ( '(:?' )
-			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:9:8: '(:?'
-			{
-			DebugLocation(9, 8);
-			Match("(:?"); 
-
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally
-		{
-			TraceOut("T__6", 3);
-			LeaveRule("T__6", 3);
-			LeaveRule_T__6();
-		}
-	}
-	// $ANTLR end "T__6"
-
-	partial void EnterRule_T__7();
-	partial void LeaveRule_T__7();
-
-	// $ANTLR start "T__7"
-	[GrammarRule("T__7")]
-	private void mT__7()
-	{
-		EnterRule_T__7();
-		EnterRule("T__7", 4);
-		TraceIn("T__7", 4);
-		try
-		{
-			int _type = T__7;
-			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:10:6: ( '(?!' )
-			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:10:8: '(?!'
-			{
-			DebugLocation(10, 8);
-			Match("(?!"); 
-
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally
-		{
-			TraceOut("T__7", 4);
-			LeaveRule("T__7", 4);
-			LeaveRule_T__7();
-		}
-	}
-	// $ANTLR end "T__7"
-
-	partial void EnterRule_T__8();
-	partial void LeaveRule_T__8();
-
-	// $ANTLR start "T__8"
-	[GrammarRule("T__8")]
-	private void mT__8()
-	{
-		EnterRule_T__8();
-		EnterRule("T__8", 5);
-		TraceIn("T__8", 5);
-		try
-		{
-			int _type = T__8;
-			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:11:6: ( '(?=' )
-			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:11:8: '(?='
-			{
-			DebugLocation(11, 8);
-			Match("(?="); 
-
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally
-		{
-			TraceOut("T__8", 5);
-			LeaveRule("T__8", 5);
-			LeaveRule_T__8();
-		}
-	}
-	// $ANTLR end "T__8"
-
-	partial void EnterRule_T__9();
-	partial void LeaveRule_T__9();
-
-	// $ANTLR start "T__9"
-	[GrammarRule("T__9")]
-	private void mT__9()
-	{
-		EnterRule_T__9();
-		EnterRule("T__9", 6);
-		TraceIn("T__9", 6);
-		try
-		{
-			int _type = T__9;
-			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:12:6: ( ')' )
-			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:12:8: ')'
-			{
-			DebugLocation(12, 8);
-			Match(')'); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally
-		{
-			TraceOut("T__9", 6);
-			LeaveRule("T__9", 6);
-			LeaveRule_T__9();
-		}
-	}
-	// $ANTLR end "T__9"
-
-	partial void EnterRule_T__10();
-	partial void LeaveRule_T__10();
-
-	// $ANTLR start "T__10"
-	[GrammarRule("T__10")]
-	private void mT__10()
-	{
-		EnterRule_T__10();
-		EnterRule("T__10", 7);
-		TraceIn("T__10", 7);
-		try
-		{
-			int _type = T__10;
-			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:13:7: ( '*' )
-			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:13:9: '*'
-			{
-			DebugLocation(13, 9);
-			Match('*'); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally
-		{
-			TraceOut("T__10", 7);
-			LeaveRule("T__10", 7);
-			LeaveRule_T__10();
-		}
-	}
-	// $ANTLR end "T__10"
-
-	partial void EnterRule_T__11();
-	partial void LeaveRule_T__11();
-
-	// $ANTLR start "T__11"
-	[GrammarRule("T__11")]
-	private void mT__11()
-	{
-		EnterRule_T__11();
-		EnterRule("T__11", 8);
-		TraceIn("T__11", 8);
-		try
-		{
-			int _type = T__11;
-			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:14:7: ( '+' )
-			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:14:9: '+'
-			{
-			DebugLocation(14, 9);
-			Match('+'); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally
-		{
-			TraceOut("T__11", 8);
-			LeaveRule("T__11", 8);
-			LeaveRule_T__11();
-		}
-	}
-	// $ANTLR end "T__11"
-
-	partial void EnterRule_T__12();
-	partial void LeaveRule_T__12();
-
-	// $ANTLR start "T__12"
-	[GrammarRule("T__12")]
-	private void mT__12()
-	{
-		EnterRule_T__12();
-		EnterRule("T__12", 9);
-		TraceIn("T__12", 9);
-		try
-		{
-			int _type = T__12;
-			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:15:7: ( ',' )
-			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:15:9: ','
-			{
-			DebugLocation(15, 9);
-			Match(','); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally
-		{
-			TraceOut("T__12", 9);
-			LeaveRule("T__12", 9);
-			LeaveRule_T__12();
-		}
-	}
-	// $ANTLR end "T__12"
-
-	partial void EnterRule_T__13();
-	partial void LeaveRule_T__13();
-
-	// $ANTLR start "T__13"
-	[GrammarRule("T__13")]
-	private void mT__13()
-	{
-		EnterRule_T__13();
-		EnterRule("T__13", 10);
-		TraceIn("T__13", 10);
-		try
-		{
-			int _type = T__13;
-			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:16:7: ( '-' )
-			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:16:9: '-'
-			{
-			DebugLocation(16, 9);
-			Match('-'); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally
-		{
-			TraceOut("T__13", 10);
-			LeaveRule("T__13", 10);
-			LeaveRule_T__13();
-		}
-	}
-	// $ANTLR end "T__13"
 
 	partial void EnterRule_T__14();
 	partial void LeaveRule_T__14();
@@ -462,18 +104,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__14()
 	{
 		EnterRule_T__14();
-		EnterRule("T__14", 11);
-		TraceIn("T__14", 11);
+		EnterRule("T__14", 1);
+		TraceIn("T__14", 1);
 		try
 		{
 			int _type = T__14;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:17:7: ( '.' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:7:7: ( '$' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:17:9: '.'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:7:9: '$'
 			{
-			DebugLocation(17, 9);
-			Match('.'); 
+			DebugLocation(7, 9);
+			Match('$'); 
 
 			}
 
@@ -482,8 +124,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__14", 11);
-			LeaveRule("T__14", 11);
+			TraceOut("T__14", 1);
+			LeaveRule("T__14", 1);
 			LeaveRule_T__14();
 		}
 	}
@@ -497,18 +139,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__15()
 	{
 		EnterRule_T__15();
-		EnterRule("T__15", 12);
-		TraceIn("T__15", 12);
+		EnterRule("T__15", 2);
+		TraceIn("T__15", 2);
 		try
 		{
 			int _type = T__15;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:18:7: ( '0' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:8:7: ( '(' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:18:9: '0'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:8:9: '('
 			{
-			DebugLocation(18, 9);
-			Match('0'); 
+			DebugLocation(8, 9);
+			Match('('); 
 
 			}
 
@@ -517,8 +159,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__15", 12);
-			LeaveRule("T__15", 12);
+			TraceOut("T__15", 2);
+			LeaveRule("T__15", 2);
 			LeaveRule_T__15();
 		}
 	}
@@ -532,18 +174,19 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__16()
 	{
 		EnterRule_T__16();
-		EnterRule("T__16", 13);
-		TraceIn("T__16", 13);
+		EnterRule("T__16", 3);
+		TraceIn("T__16", 3);
 		try
 		{
 			int _type = T__16;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:19:7: ( '1' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:9:7: ( '(:?' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:19:9: '1'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:9:9: '(:?'
 			{
-			DebugLocation(19, 9);
-			Match('1'); 
+			DebugLocation(9, 9);
+			Match("(:?"); 
+
 
 			}
 
@@ -552,8 +195,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__16", 13);
-			LeaveRule("T__16", 13);
+			TraceOut("T__16", 3);
+			LeaveRule("T__16", 3);
 			LeaveRule_T__16();
 		}
 	}
@@ -567,18 +210,19 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__17()
 	{
 		EnterRule_T__17();
-		EnterRule("T__17", 14);
-		TraceIn("T__17", 14);
+		EnterRule("T__17", 4);
+		TraceIn("T__17", 4);
 		try
 		{
 			int _type = T__17;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:20:7: ( '9' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:10:7: ( '(?!' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:20:9: '9'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:10:9: '(?!'
 			{
-			DebugLocation(20, 9);
-			Match('9'); 
+			DebugLocation(10, 9);
+			Match("(?!"); 
+
 
 			}
 
@@ -587,8 +231,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__17", 14);
-			LeaveRule("T__17", 14);
+			TraceOut("T__17", 4);
+			LeaveRule("T__17", 4);
 			LeaveRule_T__17();
 		}
 	}
@@ -602,18 +246,19 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__18()
 	{
 		EnterRule_T__18();
-		EnterRule("T__18", 15);
-		TraceIn("T__18", 15);
+		EnterRule("T__18", 5);
+		TraceIn("T__18", 5);
 		try
 		{
 			int _type = T__18;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:21:7: ( '?' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:11:7: ( '(?=' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:21:9: '?'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:11:9: '(?='
 			{
-			DebugLocation(21, 9);
-			Match('?'); 
+			DebugLocation(11, 9);
+			Match("(?="); 
+
 
 			}
 
@@ -622,8 +267,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__18", 15);
-			LeaveRule("T__18", 15);
+			TraceOut("T__18", 5);
+			LeaveRule("T__18", 5);
 			LeaveRule_T__18();
 		}
 	}
@@ -637,18 +282,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__19()
 	{
 		EnterRule_T__19();
-		EnterRule("T__19", 16);
-		TraceIn("T__19", 16);
+		EnterRule("T__19", 6);
+		TraceIn("T__19", 6);
 		try
 		{
 			int _type = T__19;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:22:7: ( 'A' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:12:7: ( ')' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:22:9: 'A'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:12:9: ')'
 			{
-			DebugLocation(22, 9);
-			Match('A'); 
+			DebugLocation(12, 9);
+			Match(')'); 
 
 			}
 
@@ -657,8 +302,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__19", 16);
-			LeaveRule("T__19", 16);
+			TraceOut("T__19", 6);
+			LeaveRule("T__19", 6);
 			LeaveRule_T__19();
 		}
 	}
@@ -672,18 +317,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__20()
 	{
 		EnterRule_T__20();
-		EnterRule("T__20", 17);
-		TraceIn("T__20", 17);
+		EnterRule("T__20", 7);
+		TraceIn("T__20", 7);
 		try
 		{
 			int _type = T__20;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:23:7: ( 'D' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:13:7: ( '*' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:23:9: 'D'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:13:9: '*'
 			{
-			DebugLocation(23, 9);
-			Match('D'); 
+			DebugLocation(13, 9);
+			Match('*'); 
 
 			}
 
@@ -692,8 +337,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__20", 17);
-			LeaveRule("T__20", 17);
+			TraceOut("T__20", 7);
+			LeaveRule("T__20", 7);
 			LeaveRule_T__20();
 		}
 	}
@@ -707,18 +352,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__21()
 	{
 		EnterRule_T__21();
-		EnterRule("T__21", 18);
-		TraceIn("T__21", 18);
+		EnterRule("T__21", 8);
+		TraceIn("T__21", 8);
 		try
 		{
 			int _type = T__21;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:24:7: ( 'F' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:14:7: ( '+' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:24:9: 'F'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:14:9: '+'
 			{
-			DebugLocation(24, 9);
-			Match('F'); 
+			DebugLocation(14, 9);
+			Match('+'); 
 
 			}
 
@@ -727,8 +372,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__21", 18);
-			LeaveRule("T__21", 18);
+			TraceOut("T__21", 8);
+			LeaveRule("T__21", 8);
 			LeaveRule_T__21();
 		}
 	}
@@ -742,18 +387,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__22()
 	{
 		EnterRule_T__22();
-		EnterRule("T__22", 19);
-		TraceIn("T__22", 19);
+		EnterRule("T__22", 9);
+		TraceIn("T__22", 9);
 		try
 		{
 			int _type = T__22;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:25:7: ( 'S' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:15:7: ( ',' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:25:9: 'S'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:15:9: ','
 			{
-			DebugLocation(25, 9);
-			Match('S'); 
+			DebugLocation(15, 9);
+			Match(','); 
 
 			}
 
@@ -762,8 +407,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__22", 19);
-			LeaveRule("T__22", 19);
+			TraceOut("T__22", 9);
+			LeaveRule("T__22", 9);
 			LeaveRule_T__22();
 		}
 	}
@@ -777,18 +422,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__23()
 	{
 		EnterRule_T__23();
-		EnterRule("T__23", 20);
-		TraceIn("T__23", 20);
+		EnterRule("T__23", 10);
+		TraceIn("T__23", 10);
 		try
 		{
 			int _type = T__23;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:26:7: ( 'W' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:16:7: ( '-' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:26:9: 'W'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:16:9: '-'
 			{
-			DebugLocation(26, 9);
-			Match('W'); 
+			DebugLocation(16, 9);
+			Match('-'); 
 
 			}
 
@@ -797,8 +442,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__23", 20);
-			LeaveRule("T__23", 20);
+			TraceOut("T__23", 10);
+			LeaveRule("T__23", 10);
 			LeaveRule_T__23();
 		}
 	}
@@ -812,18 +457,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__24()
 	{
 		EnterRule_T__24();
-		EnterRule("T__24", 21);
-		TraceIn("T__24", 21);
+		EnterRule("T__24", 11);
+		TraceIn("T__24", 11);
 		try
 		{
 			int _type = T__24;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:27:7: ( 'Z' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:17:7: ( '.' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:27:9: 'Z'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:17:9: '.'
 			{
-			DebugLocation(27, 9);
-			Match('Z'); 
+			DebugLocation(17, 9);
+			Match('.'); 
 
 			}
 
@@ -832,8 +477,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__24", 21);
-			LeaveRule("T__24", 21);
+			TraceOut("T__24", 11);
+			LeaveRule("T__24", 11);
 			LeaveRule_T__24();
 		}
 	}
@@ -847,18 +492,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__25()
 	{
 		EnterRule_T__25();
-		EnterRule("T__25", 22);
-		TraceIn("T__25", 22);
+		EnterRule("T__25", 12);
+		TraceIn("T__25", 12);
 		try
 		{
 			int _type = T__25;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:28:7: ( '[' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:18:7: ( '?' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:28:9: '['
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:18:9: '?'
 			{
-			DebugLocation(28, 9);
-			Match('['); 
+			DebugLocation(18, 9);
+			Match('?'); 
 
 			}
 
@@ -867,8 +512,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__25", 22);
-			LeaveRule("T__25", 22);
+			TraceOut("T__25", 12);
+			LeaveRule("T__25", 12);
 			LeaveRule_T__25();
 		}
 	}
@@ -882,19 +527,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__26()
 	{
 		EnterRule_T__26();
-		EnterRule("T__26", 23);
-		TraceIn("T__26", 23);
+		EnterRule("T__26", 13);
+		TraceIn("T__26", 13);
 		try
 		{
 			int _type = T__26;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:29:7: ( '[^' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:19:7: ( 'D' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:29:9: '[^'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:19:9: 'D'
 			{
-			DebugLocation(29, 9);
-			Match("[^"); 
-
+			DebugLocation(19, 9);
+			Match('D'); 
 
 			}
 
@@ -903,8 +547,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__26", 23);
-			LeaveRule("T__26", 23);
+			TraceOut("T__26", 13);
+			LeaveRule("T__26", 13);
 			LeaveRule_T__26();
 		}
 	}
@@ -918,18 +562,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__27()
 	{
 		EnterRule_T__27();
-		EnterRule("T__27", 24);
-		TraceIn("T__27", 24);
+		EnterRule("T__27", 14);
+		TraceIn("T__27", 14);
 		try
 		{
 			int _type = T__27;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:30:7: ( '\\\\' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:20:7: ( 'S' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:30:9: '\\\\'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:20:9: 'S'
 			{
-			DebugLocation(30, 9);
-			Match('\\'); 
+			DebugLocation(20, 9);
+			Match('S'); 
 
 			}
 
@@ -938,8 +582,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__27", 24);
-			LeaveRule("T__27", 24);
+			TraceOut("T__27", 14);
+			LeaveRule("T__27", 14);
 			LeaveRule_T__27();
 		}
 	}
@@ -953,19 +597,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__28()
 	{
 		EnterRule_T__28();
-		EnterRule("T__28", 25);
-		TraceIn("T__28", 25);
+		EnterRule("T__28", 15);
+		TraceIn("T__28", 15);
 		try
 		{
 			int _type = T__28;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:31:7: ( '\\\\B' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:21:7: ( 'W' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:31:9: '\\\\B'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:21:9: 'W'
 			{
-			DebugLocation(31, 9);
-			Match("\\B"); 
-
+			DebugLocation(21, 9);
+			Match('W'); 
 
 			}
 
@@ -974,8 +617,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__28", 25);
-			LeaveRule("T__28", 25);
+			TraceOut("T__28", 15);
+			LeaveRule("T__28", 15);
 			LeaveRule_T__28();
 		}
 	}
@@ -989,19 +632,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__29()
 	{
 		EnterRule_T__29();
-		EnterRule("T__29", 26);
-		TraceIn("T__29", 26);
+		EnterRule("T__29", 16);
+		TraceIn("T__29", 16);
 		try
 		{
 			int _type = T__29;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:32:7: ( '\\\\b' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:22:7: ( '[' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:32:9: '\\\\b'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:22:9: '['
 			{
-			DebugLocation(32, 9);
-			Match("\\b"); 
-
+			DebugLocation(22, 9);
+			Match('['); 
 
 			}
 
@@ -1010,8 +652,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__29", 26);
-			LeaveRule("T__29", 26);
+			TraceOut("T__29", 16);
+			LeaveRule("T__29", 16);
 			LeaveRule_T__29();
 		}
 	}
@@ -1025,18 +667,19 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__30()
 	{
 		EnterRule_T__30();
-		EnterRule("T__30", 27);
-		TraceIn("T__30", 27);
+		EnterRule("T__30", 17);
+		TraceIn("T__30", 17);
 		try
 		{
 			int _type = T__30;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:33:7: ( ']' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:23:7: ( '[^' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:33:9: ']'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:23:9: '[^'
 			{
-			DebugLocation(33, 9);
-			Match(']'); 
+			DebugLocation(23, 9);
+			Match("[^"); 
+
 
 			}
 
@@ -1045,8 +688,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__30", 27);
-			LeaveRule("T__30", 27);
+			TraceOut("T__30", 17);
+			LeaveRule("T__30", 17);
 			LeaveRule_T__30();
 		}
 	}
@@ -1060,18 +703,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__31()
 	{
 		EnterRule_T__31();
-		EnterRule("T__31", 28);
-		TraceIn("T__31", 28);
+		EnterRule("T__31", 18);
+		TraceIn("T__31", 18);
 		try
 		{
 			int _type = T__31;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:34:7: ( '^' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:24:7: ( '\\\\' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:34:9: '^'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:24:9: '\\\\'
 			{
-			DebugLocation(34, 9);
-			Match('^'); 
+			DebugLocation(24, 9);
+			Match('\\'); 
 
 			}
 
@@ -1080,8 +723,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__31", 28);
-			LeaveRule("T__31", 28);
+			TraceOut("T__31", 18);
+			LeaveRule("T__31", 18);
 			LeaveRule_T__31();
 		}
 	}
@@ -1095,18 +738,19 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__32()
 	{
 		EnterRule_T__32();
-		EnterRule("T__32", 29);
-		TraceIn("T__32", 29);
+		EnterRule("T__32", 19);
+		TraceIn("T__32", 19);
 		try
 		{
 			int _type = T__32;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:35:7: ( 'a' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:25:7: ( '\\\\B' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:35:9: 'a'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:25:9: '\\\\B'
 			{
-			DebugLocation(35, 9);
-			Match('a'); 
+			DebugLocation(25, 9);
+			Match("\\B"); 
+
 
 			}
 
@@ -1115,8 +759,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__32", 29);
-			LeaveRule("T__32", 29);
+			TraceOut("T__32", 19);
+			LeaveRule("T__32", 19);
 			LeaveRule_T__32();
 		}
 	}
@@ -1130,18 +774,19 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__33()
 	{
 		EnterRule_T__33();
-		EnterRule("T__33", 30);
-		TraceIn("T__33", 30);
+		EnterRule("T__33", 20);
+		TraceIn("T__33", 20);
 		try
 		{
 			int _type = T__33;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:36:7: ( 'b' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:26:7: ( '\\\\b' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:36:9: 'b'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:26:9: '\\\\b'
 			{
-			DebugLocation(36, 9);
-			Match('b'); 
+			DebugLocation(26, 9);
+			Match("\\b"); 
+
 
 			}
 
@@ -1150,8 +795,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__33", 30);
-			LeaveRule("T__33", 30);
+			TraceOut("T__33", 20);
+			LeaveRule("T__33", 20);
 			LeaveRule_T__33();
 		}
 	}
@@ -1165,18 +810,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__34()
 	{
 		EnterRule_T__34();
-		EnterRule("T__34", 31);
-		TraceIn("T__34", 31);
+		EnterRule("T__34", 21);
+		TraceIn("T__34", 21);
 		try
 		{
 			int _type = T__34;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:37:7: ( 'c' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:27:7: ( ']' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:37:9: 'c'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:27:9: ']'
 			{
-			DebugLocation(37, 9);
-			Match('c'); 
+			DebugLocation(27, 9);
+			Match(']'); 
 
 			}
 
@@ -1185,8 +830,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__34", 31);
-			LeaveRule("T__34", 31);
+			TraceOut("T__34", 21);
+			LeaveRule("T__34", 21);
 			LeaveRule_T__34();
 		}
 	}
@@ -1200,18 +845,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__35()
 	{
 		EnterRule_T__35();
-		EnterRule("T__35", 32);
-		TraceIn("T__35", 32);
+		EnterRule("T__35", 22);
+		TraceIn("T__35", 22);
 		try
 		{
 			int _type = T__35;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:38:7: ( 'd' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:28:7: ( '^' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:38:9: 'd'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:28:9: '^'
 			{
-			DebugLocation(38, 9);
-			Match('d'); 
+			DebugLocation(28, 9);
+			Match('^'); 
 
 			}
 
@@ -1220,8 +865,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__35", 32);
-			LeaveRule("T__35", 32);
+			TraceOut("T__35", 22);
+			LeaveRule("T__35", 22);
 			LeaveRule_T__35();
 		}
 	}
@@ -1235,18 +880,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__36()
 	{
 		EnterRule_T__36();
-		EnterRule("T__36", 33);
-		TraceIn("T__36", 33);
+		EnterRule("T__36", 23);
+		TraceIn("T__36", 23);
 		try
 		{
 			int _type = T__36;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:39:7: ( 'f' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:29:7: ( 'b' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:39:9: 'f'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:29:9: 'b'
 			{
-			DebugLocation(39, 9);
-			Match('f'); 
+			DebugLocation(29, 9);
+			Match('b'); 
 
 			}
 
@@ -1255,8 +900,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__36", 33);
-			LeaveRule("T__36", 33);
+			TraceOut("T__36", 23);
+			LeaveRule("T__36", 23);
 			LeaveRule_T__36();
 		}
 	}
@@ -1270,18 +915,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__37()
 	{
 		EnterRule_T__37();
-		EnterRule("T__37", 34);
-		TraceIn("T__37", 34);
+		EnterRule("T__37", 24);
+		TraceIn("T__37", 24);
 		try
 		{
 			int _type = T__37;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:40:7: ( 'n' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:30:7: ( 'c' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:40:9: 'n'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:30:9: 'c'
 			{
-			DebugLocation(40, 9);
-			Match('n'); 
+			DebugLocation(30, 9);
+			Match('c'); 
 
 			}
 
@@ -1290,8 +935,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__37", 34);
-			LeaveRule("T__37", 34);
+			TraceOut("T__37", 24);
+			LeaveRule("T__37", 24);
 			LeaveRule_T__37();
 		}
 	}
@@ -1305,18 +950,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__38()
 	{
 		EnterRule_T__38();
-		EnterRule("T__38", 35);
-		TraceIn("T__38", 35);
+		EnterRule("T__38", 25);
+		TraceIn("T__38", 25);
 		try
 		{
 			int _type = T__38;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:41:7: ( 'r' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:31:7: ( 'd' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:41:9: 'r'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:31:9: 'd'
 			{
-			DebugLocation(41, 9);
-			Match('r'); 
+			DebugLocation(31, 9);
+			Match('d'); 
 
 			}
 
@@ -1325,8 +970,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__38", 35);
-			LeaveRule("T__38", 35);
+			TraceOut("T__38", 25);
+			LeaveRule("T__38", 25);
 			LeaveRule_T__38();
 		}
 	}
@@ -1340,17 +985,17 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__39()
 	{
 		EnterRule_T__39();
-		EnterRule("T__39", 36);
-		TraceIn("T__39", 36);
+		EnterRule("T__39", 26);
+		TraceIn("T__39", 26);
 		try
 		{
 			int _type = T__39;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:42:7: ( 's' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:32:7: ( 's' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:42:9: 's'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:32:9: 's'
 			{
-			DebugLocation(42, 9);
+			DebugLocation(32, 9);
 			Match('s'); 
 
 			}
@@ -1360,8 +1005,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__39", 36);
-			LeaveRule("T__39", 36);
+			TraceOut("T__39", 26);
+			LeaveRule("T__39", 26);
 			LeaveRule_T__39();
 		}
 	}
@@ -1375,18 +1020,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__40()
 	{
 		EnterRule_T__40();
-		EnterRule("T__40", 37);
-		TraceIn("T__40", 37);
+		EnterRule("T__40", 27);
+		TraceIn("T__40", 27);
 		try
 		{
 			int _type = T__40;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:43:7: ( 't' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:33:7: ( 'w' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:43:9: 't'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:33:9: 'w'
 			{
-			DebugLocation(43, 9);
-			Match('t'); 
+			DebugLocation(33, 9);
+			Match('w'); 
 
 			}
 
@@ -1395,8 +1040,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__40", 37);
-			LeaveRule("T__40", 37);
+			TraceOut("T__40", 27);
+			LeaveRule("T__40", 27);
 			LeaveRule_T__40();
 		}
 	}
@@ -1410,18 +1055,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__41()
 	{
 		EnterRule_T__41();
-		EnterRule("T__41", 38);
-		TraceIn("T__41", 38);
+		EnterRule("T__41", 28);
+		TraceIn("T__41", 28);
 		try
 		{
 			int _type = T__41;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:44:7: ( 'u' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:34:7: ( '{' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:44:9: 'u'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:34:9: '{'
 			{
-			DebugLocation(44, 9);
-			Match('u'); 
+			DebugLocation(34, 9);
+			Match('{'); 
 
 			}
 
@@ -1430,8 +1075,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__41", 38);
-			LeaveRule("T__41", 38);
+			TraceOut("T__41", 28);
+			LeaveRule("T__41", 28);
 			LeaveRule_T__41();
 		}
 	}
@@ -1445,18 +1090,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__42()
 	{
 		EnterRule_T__42();
-		EnterRule("T__42", 39);
-		TraceIn("T__42", 39);
+		EnterRule("T__42", 29);
+		TraceIn("T__42", 29);
 		try
 		{
 			int _type = T__42;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:45:7: ( 'v' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:35:7: ( '|' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:45:9: 'v'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:35:9: '|'
 			{
-			DebugLocation(45, 9);
-			Match('v'); 
+			DebugLocation(35, 9);
+			Match('|'); 
 
 			}
 
@@ -1465,8 +1110,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__42", 39);
-			LeaveRule("T__42", 39);
+			TraceOut("T__42", 29);
+			LeaveRule("T__42", 29);
 			LeaveRule_T__42();
 		}
 	}
@@ -1480,192 +1125,17 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mT__43()
 	{
 		EnterRule_T__43();
-		EnterRule("T__43", 40);
-		TraceIn("T__43", 40);
+		EnterRule("T__43", 30);
+		TraceIn("T__43", 30);
 		try
 		{
 			int _type = T__43;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:46:7: ( 'w' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:36:7: ( '}' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:46:9: 'w'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:36:9: '}'
 			{
-			DebugLocation(46, 9);
-			Match('w'); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally
-		{
-			TraceOut("T__43", 40);
-			LeaveRule("T__43", 40);
-			LeaveRule_T__43();
-		}
-	}
-	// $ANTLR end "T__43"
-
-	partial void EnterRule_T__44();
-	partial void LeaveRule_T__44();
-
-	// $ANTLR start "T__44"
-	[GrammarRule("T__44")]
-	private void mT__44()
-	{
-		EnterRule_T__44();
-		EnterRule("T__44", 41);
-		TraceIn("T__44", 41);
-		try
-		{
-			int _type = T__44;
-			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:47:7: ( 'x' )
-			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:47:9: 'x'
-			{
-			DebugLocation(47, 9);
-			Match('x'); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally
-		{
-			TraceOut("T__44", 41);
-			LeaveRule("T__44", 41);
-			LeaveRule_T__44();
-		}
-	}
-	// $ANTLR end "T__44"
-
-	partial void EnterRule_T__45();
-	partial void LeaveRule_T__45();
-
-	// $ANTLR start "T__45"
-	[GrammarRule("T__45")]
-	private void mT__45()
-	{
-		EnterRule_T__45();
-		EnterRule("T__45", 42);
-		TraceIn("T__45", 42);
-		try
-		{
-			int _type = T__45;
-			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:48:7: ( 'z' )
-			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:48:9: 'z'
-			{
-			DebugLocation(48, 9);
-			Match('z'); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally
-		{
-			TraceOut("T__45", 42);
-			LeaveRule("T__45", 42);
-			LeaveRule_T__45();
-		}
-	}
-	// $ANTLR end "T__45"
-
-	partial void EnterRule_T__46();
-	partial void LeaveRule_T__46();
-
-	// $ANTLR start "T__46"
-	[GrammarRule("T__46")]
-	private void mT__46()
-	{
-		EnterRule_T__46();
-		EnterRule("T__46", 43);
-		TraceIn("T__46", 43);
-		try
-		{
-			int _type = T__46;
-			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:49:7: ( '{' )
-			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:49:9: '{'
-			{
-			DebugLocation(49, 9);
-			Match('{'); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally
-		{
-			TraceOut("T__46", 43);
-			LeaveRule("T__46", 43);
-			LeaveRule_T__46();
-		}
-	}
-	// $ANTLR end "T__46"
-
-	partial void EnterRule_T__47();
-	partial void LeaveRule_T__47();
-
-	// $ANTLR start "T__47"
-	[GrammarRule("T__47")]
-	private void mT__47()
-	{
-		EnterRule_T__47();
-		EnterRule("T__47", 44);
-		TraceIn("T__47", 44);
-		try
-		{
-			int _type = T__47;
-			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:50:7: ( '|' )
-			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:50:9: '|'
-			{
-			DebugLocation(50, 9);
-			Match('|'); 
-
-			}
-
-			state.type = _type;
-			state.channel = _channel;
-		}
-		finally
-		{
-			TraceOut("T__47", 44);
-			LeaveRule("T__47", 44);
-			LeaveRule_T__47();
-		}
-	}
-	// $ANTLR end "T__47"
-
-	partial void EnterRule_T__48();
-	partial void LeaveRule_T__48();
-
-	// $ANTLR start "T__48"
-	[GrammarRule("T__48")]
-	private void mT__48()
-	{
-		EnterRule_T__48();
-		EnterRule("T__48", 45);
-		TraceIn("T__48", 45);
-		try
-		{
-			int _type = T__48;
-			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:51:7: ( '}' )
-			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:51:9: '}'
-			{
-			DebugLocation(51, 9);
+			DebugLocation(36, 9);
 			Match('}'); 
 
 			}
@@ -1675,23 +1145,514 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__48", 45);
-			LeaveRule("T__48", 45);
-			LeaveRule_T__48();
+			TraceOut("T__43", 30);
+			LeaveRule("T__43", 30);
+			LeaveRule_T__43();
 		}
 	}
-	// $ANTLR end "T__48"
+	// $ANTLR end "T__43"
+
+	partial void EnterRule_ControlEscape();
+	partial void LeaveRule_ControlEscape();
+
+	// $ANTLR start "ControlEscape"
+	[GrammarRule("ControlEscape")]
+	private void mControlEscape()
+	{
+		EnterRule_ControlEscape();
+		EnterRule("ControlEscape", 31);
+		TraceIn("ControlEscape", 31);
+		try
+		{
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:74:2: ( 'f' | 'n' | 'r' | 't' | 'v' )
+			DebugEnterAlt(1);
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
+			{
+			DebugLocation(74, 2);
+			if (input.LA(1)=='f'||input.LA(1)=='n'||input.LA(1)=='r'||input.LA(1)=='t'||input.LA(1)=='v')
+			{
+				input.Consume();
+			}
+			else
+			{
+				MismatchedSetException mse = new MismatchedSetException(null,input);
+				DebugRecognitionException(mse);
+				Recover(mse);
+				throw mse;
+			}
+
+
+			}
+
+		}
+		finally
+		{
+			TraceOut("ControlEscape", 31);
+			LeaveRule("ControlEscape", 31);
+			LeaveRule_ControlEscape();
+		}
+	}
+	// $ANTLR end "ControlEscape"
+
+	partial void EnterRule_ControlLetter();
+	partial void LeaveRule_ControlLetter();
+
+	// $ANTLR start "ControlLetter"
+	[GrammarRule("ControlLetter")]
+	private void mControlLetter()
+	{
+		EnterRule_ControlLetter();
+		EnterRule("ControlLetter", 32);
+		TraceIn("ControlLetter", 32);
+		try
+		{
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:82:2: ( ( 'a' .. 'z' | 'A' .. 'Z' ) )
+			DebugEnterAlt(1);
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
+			{
+			DebugLocation(82, 2);
+			if ((input.LA(1)>='A' && input.LA(1)<='Z')||(input.LA(1)>='a' && input.LA(1)<='z'))
+			{
+				input.Consume();
+			}
+			else
+			{
+				MismatchedSetException mse = new MismatchedSetException(null,input);
+				DebugRecognitionException(mse);
+				Recover(mse);
+				throw mse;
+			}
+
+
+			}
+
+		}
+		finally
+		{
+			TraceOut("ControlLetter", 32);
+			LeaveRule("ControlLetter", 32);
+			LeaveRule_ControlLetter();
+		}
+	}
+	// $ANTLR end "ControlLetter"
+
+	partial void EnterRule_HexEscapeSequence();
+	partial void LeaveRule_HexEscapeSequence();
+
+	// $ANTLR start "HexEscapeSequence"
+	[GrammarRule("HexEscapeSequence")]
+	private void mHexEscapeSequence()
+	{
+		EnterRule_HexEscapeSequence();
+		EnterRule("HexEscapeSequence", 33);
+		TraceIn("HexEscapeSequence", 33);
+		try
+		{
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:86:2: ( 'x' HexDigit HexDigit )
+			DebugEnterAlt(1);
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:86:4: 'x' HexDigit HexDigit
+			{
+			DebugLocation(86, 4);
+			Match('x'); 
+			DebugLocation(86, 8);
+			mHexDigit(); 
+			DebugLocation(86, 17);
+			mHexDigit(); 
+
+			}
+
+		}
+		finally
+		{
+			TraceOut("HexEscapeSequence", 33);
+			LeaveRule("HexEscapeSequence", 33);
+			LeaveRule_HexEscapeSequence();
+		}
+	}
+	// $ANTLR end "HexEscapeSequence"
+
+	partial void EnterRule_UnicodeEscapeSequence();
+	partial void LeaveRule_UnicodeEscapeSequence();
+
+	// $ANTLR start "UnicodeEscapeSequence"
+	[GrammarRule("UnicodeEscapeSequence")]
+	private void mUnicodeEscapeSequence()
+	{
+		EnterRule_UnicodeEscapeSequence();
+		EnterRule("UnicodeEscapeSequence", 34);
+		TraceIn("UnicodeEscapeSequence", 34);
+		try
+		{
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:90:2: ( 'u' HexDigit HexDigit HexDigit HexDigit )
+			DebugEnterAlt(1);
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:90:4: 'u' HexDigit HexDigit HexDigit HexDigit
+			{
+			DebugLocation(90, 4);
+			Match('u'); 
+			DebugLocation(90, 8);
+			mHexDigit(); 
+			DebugLocation(90, 17);
+			mHexDigit(); 
+			DebugLocation(90, 26);
+			mHexDigit(); 
+			DebugLocation(90, 35);
+			mHexDigit(); 
+
+			}
+
+		}
+		finally
+		{
+			TraceOut("UnicodeEscapeSequence", 34);
+			LeaveRule("UnicodeEscapeSequence", 34);
+			LeaveRule_UnicodeEscapeSequence();
+		}
+	}
+	// $ANTLR end "UnicodeEscapeSequence"
+
+	partial void EnterRule_HexDigit();
+	partial void LeaveRule_HexDigit();
+
+	// $ANTLR start "HexDigit"
+	[GrammarRule("HexDigit")]
+	private void mHexDigit()
+	{
+		EnterRule_HexDigit();
+		EnterRule("HexDigit", 35);
+		TraceIn("HexDigit", 35);
+		try
+		{
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:94:2: ( ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' ) )
+			DebugEnterAlt(1);
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
+			{
+			DebugLocation(94, 2);
+			if ((input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='F')||(input.LA(1)>='a' && input.LA(1)<='f'))
+			{
+				input.Consume();
+			}
+			else
+			{
+				MismatchedSetException mse = new MismatchedSetException(null,input);
+				DebugRecognitionException(mse);
+				Recover(mse);
+				throw mse;
+			}
+
+
+			}
+
+		}
+		finally
+		{
+			TraceOut("HexDigit", 35);
+			LeaveRule("HexDigit", 35);
+			LeaveRule_HexDigit();
+		}
+	}
+	// $ANTLR end "HexDigit"
+
+	partial void EnterRule_IdentityEscape();
+	partial void LeaveRule_IdentityEscape();
+
+	// $ANTLR start "IdentityEscape"
+	[GrammarRule("IdentityEscape")]
+	private void mIdentityEscape()
+	{
+		EnterRule_IdentityEscape();
+		EnterRule("IdentityEscape", 36);
+		TraceIn("IdentityEscape", 36);
+		try
+		{
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:98:2: (~ ( 'b' | 'B' | '0' .. '9' | 'f' | 'n' | 'r' | 't' | 'v' | 'c' | 'x' | 'u' ) )
+			DebugEnterAlt(1);
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
+			{
+			DebugLocation(98, 2);
+			if ((input.LA(1)>='\u0000' && input.LA(1)<='/')||(input.LA(1)>=':' && input.LA(1)<='A')||(input.LA(1)>='C' && input.LA(1)<='a')||(input.LA(1)>='d' && input.LA(1)<='e')||(input.LA(1)>='g' && input.LA(1)<='m')||(input.LA(1)>='o' && input.LA(1)<='q')||input.LA(1)=='s'||input.LA(1)=='w'||(input.LA(1)>='y' && input.LA(1)<='\uFFFF'))
+			{
+				input.Consume();
+			}
+			else
+			{
+				MismatchedSetException mse = new MismatchedSetException(null,input);
+				DebugRecognitionException(mse);
+				Recover(mse);
+				throw mse;
+			}
+
+
+			}
+
+		}
+		finally
+		{
+			TraceOut("IdentityEscape", 36);
+			LeaveRule("IdentityEscape", 36);
+			LeaveRule_IdentityEscape();
+		}
+	}
+	// $ANTLR end "IdentityEscape"
+
+	partial void EnterRule_DecimalIntegerLiteral();
+	partial void LeaveRule_DecimalIntegerLiteral();
+
+	// $ANTLR start "DecimalIntegerLiteral"
+	[GrammarRule("DecimalIntegerLiteral")]
+	private void mDecimalIntegerLiteral()
+	{
+		EnterRule_DecimalIntegerLiteral();
+		EnterRule("DecimalIntegerLiteral", 37);
+		TraceIn("DecimalIntegerLiteral", 37);
+		try
+		{
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:106:2: ( '0' | NonZeroDigit ( DecimalDigits )? )
+			int alt2=2;
+			try { DebugEnterDecision(2, false);
+			int LA2_0 = input.LA(1);
+
+			if ((LA2_0=='0'))
+			{
+				alt2 = 1;
+			}
+			else if (((LA2_0>='1' && LA2_0<='9')))
+			{
+				alt2 = 2;
+			}
+			else
+			{
+				NoViableAltException nvae = new NoViableAltException("", 2, 0, input);
+				DebugRecognitionException(nvae);
+				throw nvae;
+			}
+			} finally { DebugExitDecision(2); }
+			switch (alt2)
+			{
+			case 1:
+				DebugEnterAlt(1);
+				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:106:4: '0'
+				{
+				DebugLocation(106, 4);
+				Match('0'); 
+
+				}
+				break;
+			case 2:
+				DebugEnterAlt(2);
+				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:107:4: NonZeroDigit ( DecimalDigits )?
+				{
+				DebugLocation(107, 4);
+				mNonZeroDigit(); 
+				DebugLocation(107, 17);
+				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:107:17: ( DecimalDigits )?
+				int alt1=2;
+				try { DebugEnterSubRule(1);
+				try { DebugEnterDecision(1, false);
+				int LA1_0 = input.LA(1);
+
+				if (((LA1_0>='0' && LA1_0<='9')))
+				{
+					alt1 = 1;
+				}
+				} finally { DebugExitDecision(1); }
+				switch (alt1)
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:107:17: DecimalDigits
+					{
+					DebugLocation(107, 17);
+					mDecimalDigits(); 
+
+					}
+					break;
+
+				}
+				} finally { DebugExitSubRule(1); }
+
+
+				}
+				break;
+
+			}
+		}
+		finally
+		{
+			TraceOut("DecimalIntegerLiteral", 37);
+			LeaveRule("DecimalIntegerLiteral", 37);
+			LeaveRule_DecimalIntegerLiteral();
+		}
+	}
+	// $ANTLR end "DecimalIntegerLiteral"
+
+	partial void EnterRule_NonZeroDigit();
+	partial void LeaveRule_NonZeroDigit();
+
+	// $ANTLR start "NonZeroDigit"
+	[GrammarRule("NonZeroDigit")]
+	private void mNonZeroDigit()
+	{
+		EnterRule_NonZeroDigit();
+		EnterRule("NonZeroDigit", 38);
+		TraceIn("NonZeroDigit", 38);
+		try
+		{
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:111:2: ( '1' .. '9' )
+			DebugEnterAlt(1);
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
+			{
+			DebugLocation(111, 2);
+			if ((input.LA(1)>='1' && input.LA(1)<='9'))
+			{
+				input.Consume();
+			}
+			else
+			{
+				MismatchedSetException mse = new MismatchedSetException(null,input);
+				DebugRecognitionException(mse);
+				Recover(mse);
+				throw mse;
+			}
+
+
+			}
+
+		}
+		finally
+		{
+			TraceOut("NonZeroDigit", 38);
+			LeaveRule("NonZeroDigit", 38);
+			LeaveRule_NonZeroDigit();
+		}
+	}
+	// $ANTLR end "NonZeroDigit"
+
+	partial void EnterRule_DecimalDigits();
+	partial void LeaveRule_DecimalDigits();
+
+	// $ANTLR start "DecimalDigits"
+	[GrammarRule("DecimalDigits")]
+	private void mDecimalDigits()
+	{
+		EnterRule_DecimalDigits();
+		EnterRule("DecimalDigits", 39);
+		TraceIn("DecimalDigits", 39);
+		try
+		{
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:115:2: ( ( DecimalDigit )+ )
+			DebugEnterAlt(1);
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:115:4: ( DecimalDigit )+
+			{
+			DebugLocation(115, 4);
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:115:4: ( DecimalDigit )+
+			int cnt3=0;
+			try { DebugEnterSubRule(3);
+			while (true)
+			{
+				int alt3=2;
+				try { DebugEnterDecision(3, false);
+				int LA3_0 = input.LA(1);
+
+				if (((LA3_0>='0' && LA3_0<='9')))
+				{
+					alt3 = 1;
+				}
+
+
+				} finally { DebugExitDecision(3); }
+				switch (alt3)
+				{
+				case 1:
+					DebugEnterAlt(1);
+					// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
+					{
+					DebugLocation(115, 4);
+					input.Consume();
+
+
+					}
+					break;
+
+				default:
+					if (cnt3 >= 1)
+						goto loop3;
+
+					EarlyExitException eee3 = new EarlyExitException( 3, input );
+					DebugRecognitionException(eee3);
+					throw eee3;
+				}
+				cnt3++;
+			}
+			loop3:
+				;
+
+			} finally { DebugExitSubRule(3); }
+
+
+			}
+
+		}
+		finally
+		{
+			TraceOut("DecimalDigits", 39);
+			LeaveRule("DecimalDigits", 39);
+			LeaveRule_DecimalDigits();
+		}
+	}
+	// $ANTLR end "DecimalDigits"
+
+	partial void EnterRule_DecimalDigit();
+	partial void LeaveRule_DecimalDigit();
+
+	// $ANTLR start "DecimalDigit"
+	[GrammarRule("DecimalDigit")]
+	private void mDecimalDigit()
+	{
+		EnterRule_DecimalDigit();
+		EnterRule("DecimalDigit", 40);
+		TraceIn("DecimalDigit", 40);
+		try
+		{
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:119:2: ( '0' .. '9' )
+			DebugEnterAlt(1);
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
+			{
+			DebugLocation(119, 2);
+			if ((input.LA(1)>='0' && input.LA(1)<='9'))
+			{
+				input.Consume();
+			}
+			else
+			{
+				MismatchedSetException mse = new MismatchedSetException(null,input);
+				DebugRecognitionException(mse);
+				Recover(mse);
+				throw mse;
+			}
+
+
+			}
+
+		}
+		finally
+		{
+			TraceOut("DecimalDigit", 40);
+			LeaveRule("DecimalDigit", 40);
+			LeaveRule_DecimalDigit();
+		}
+	}
+	// $ANTLR end "DecimalDigit"
 
 	public override void mTokens()
 	{
-		// JavaScriptRegExp__.g:1:8: ( T__4 | T__5 | T__6 | T__7 | T__8 | T__9 | T__10 | T__11 | T__12 | T__13 | T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 )
-		int alt1=45;
-		try { DebugEnterDecision(1, false);
+		// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:8: ( T__14 | T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 )
+		int alt4=30;
+		try { DebugEnterDecision(4, false);
 		switch (input.LA(1))
 		{
 		case '$':
 			{
-			alt1 = 1;
+			alt4 = 1;
 			}
 			break;
 		case '(':
@@ -1700,31 +1661,31 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 			{
 			case ':':
 				{
-				alt1 = 3;
+				alt4 = 3;
 				}
 				break;
 			case '?':
 				{
-				int LA1_41 = input.LA(3);
+				int LA4_26 = input.LA(3);
 
-				if ((LA1_41=='!'))
+				if ((LA4_26=='!'))
 				{
-					alt1 = 4;
+					alt4 = 4;
 				}
-				else if ((LA1_41=='='))
+				else if ((LA4_26=='='))
 				{
-					alt1 = 5;
+					alt4 = 5;
 				}
 				else
 				{
-					NoViableAltException nvae = new NoViableAltException("", 1, 41, input);
+					NoViableAltException nvae = new NoViableAltException("", 4, 26, input);
 					DebugRecognitionException(nvae);
 					throw nvae;
 				}
 				}
 				break;
 			default:
-				alt1=2;
+				alt4=2;
 				break;
 
 			}
@@ -1733,95 +1694,65 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 			break;
 		case ')':
 			{
-			alt1 = 6;
+			alt4 = 6;
 			}
 			break;
 		case '*':
 			{
-			alt1 = 7;
+			alt4 = 7;
 			}
 			break;
 		case '+':
 			{
-			alt1 = 8;
+			alt4 = 8;
 			}
 			break;
 		case ',':
 			{
-			alt1 = 9;
+			alt4 = 9;
 			}
 			break;
 		case '-':
 			{
-			alt1 = 10;
+			alt4 = 10;
 			}
 			break;
 		case '.':
 			{
-			alt1 = 11;
-			}
-			break;
-		case '0':
-			{
-			alt1 = 12;
-			}
-			break;
-		case '1':
-			{
-			alt1 = 13;
-			}
-			break;
-		case '9':
-			{
-			alt1 = 14;
+			alt4 = 11;
 			}
 			break;
 		case '?':
 			{
-			alt1 = 15;
-			}
-			break;
-		case 'A':
-			{
-			alt1 = 16;
+			alt4 = 12;
 			}
 			break;
 		case 'D':
 			{
-			alt1 = 17;
-			}
-			break;
-		case 'F':
-			{
-			alt1 = 18;
+			alt4 = 13;
 			}
 			break;
 		case 'S':
 			{
-			alt1 = 19;
+			alt4 = 14;
 			}
 			break;
 		case 'W':
 			{
-			alt1 = 20;
-			}
-			break;
-		case 'Z':
-			{
-			alt1 = 21;
+			alt4 = 15;
 			}
 			break;
 		case '[':
 			{
-			int LA1_19 = input.LA(2);
+			int LA4_13 = input.LA(2);
 
-			if ((LA1_19=='^'))
+			if ((LA4_13=='^'))
 			{
-				alt1 = 23;
+				alt4 = 17;
 			}
 			else
 			{
-				alt1 = 22;
+				alt4 = 16;
 			}
 			}
 			break;
@@ -1831,16 +1762,16 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 			{
 			case 'B':
 				{
-				alt1 = 25;
+				alt4 = 19;
 				}
 				break;
 			case 'b':
 				{
-				alt1 = 26;
+				alt4 = 20;
 				}
 				break;
 			default:
-				alt1=24;
+				alt4=18;
 				break;
 
 			}
@@ -1849,512 +1780,332 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 			break;
 		case ']':
 			{
-			alt1 = 27;
+			alt4 = 21;
 			}
 			break;
 		case '^':
 			{
-			alt1 = 28;
-			}
-			break;
-		case 'a':
-			{
-			alt1 = 29;
+			alt4 = 22;
 			}
 			break;
 		case 'b':
 			{
-			alt1 = 30;
+			alt4 = 23;
 			}
 			break;
 		case 'c':
 			{
-			alt1 = 31;
+			alt4 = 24;
 			}
 			break;
 		case 'd':
 			{
-			alt1 = 32;
-			}
-			break;
-		case 'f':
-			{
-			alt1 = 33;
-			}
-			break;
-		case 'n':
-			{
-			alt1 = 34;
-			}
-			break;
-		case 'r':
-			{
-			alt1 = 35;
+			alt4 = 25;
 			}
 			break;
 		case 's':
 			{
-			alt1 = 36;
-			}
-			break;
-		case 't':
-			{
-			alt1 = 37;
-			}
-			break;
-		case 'u':
-			{
-			alt1 = 38;
-			}
-			break;
-		case 'v':
-			{
-			alt1 = 39;
+			alt4 = 26;
 			}
 			break;
 		case 'w':
 			{
-			alt1 = 40;
-			}
-			break;
-		case 'x':
-			{
-			alt1 = 41;
-			}
-			break;
-		case 'z':
-			{
-			alt1 = 42;
+			alt4 = 27;
 			}
 			break;
 		case '{':
 			{
-			alt1 = 43;
+			alt4 = 28;
 			}
 			break;
 		case '|':
 			{
-			alt1 = 44;
+			alt4 = 29;
 			}
 			break;
 		case '}':
 			{
-			alt1 = 45;
+			alt4 = 30;
 			}
 			break;
 		default:
 			{
-				NoViableAltException nvae = new NoViableAltException("", 1, 0, input);
+				NoViableAltException nvae = new NoViableAltException("", 4, 0, input);
 				DebugRecognitionException(nvae);
 				throw nvae;
 			}
 		}
 
-		} finally { DebugExitDecision(1); }
-		switch (alt1)
+		} finally { DebugExitDecision(4); }
+		switch (alt4)
 		{
 		case 1:
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:1:10: T__4
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:10: T__14
 			{
 			DebugLocation(1, 10);
-			mT__4(); 
+			mT__14(); 
 
 			}
 			break;
 		case 2:
 			DebugEnterAlt(2);
-			// JavaScriptRegExp__.g:1:15: T__5
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:16: T__15
 			{
-			DebugLocation(1, 15);
-			mT__5(); 
+			DebugLocation(1, 16);
+			mT__15(); 
 
 			}
 			break;
 		case 3:
 			DebugEnterAlt(3);
-			// JavaScriptRegExp__.g:1:20: T__6
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:22: T__16
 			{
-			DebugLocation(1, 20);
-			mT__6(); 
+			DebugLocation(1, 22);
+			mT__16(); 
 
 			}
 			break;
 		case 4:
 			DebugEnterAlt(4);
-			// JavaScriptRegExp__.g:1:25: T__7
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:28: T__17
 			{
-			DebugLocation(1, 25);
-			mT__7(); 
+			DebugLocation(1, 28);
+			mT__17(); 
 
 			}
 			break;
 		case 5:
 			DebugEnterAlt(5);
-			// JavaScriptRegExp__.g:1:30: T__8
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:34: T__18
 			{
-			DebugLocation(1, 30);
-			mT__8(); 
+			DebugLocation(1, 34);
+			mT__18(); 
 
 			}
 			break;
 		case 6:
 			DebugEnterAlt(6);
-			// JavaScriptRegExp__.g:1:35: T__9
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:40: T__19
 			{
-			DebugLocation(1, 35);
-			mT__9(); 
+			DebugLocation(1, 40);
+			mT__19(); 
 
 			}
 			break;
 		case 7:
 			DebugEnterAlt(7);
-			// JavaScriptRegExp__.g:1:40: T__10
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:46: T__20
 			{
-			DebugLocation(1, 40);
-			mT__10(); 
+			DebugLocation(1, 46);
+			mT__20(); 
 
 			}
 			break;
 		case 8:
 			DebugEnterAlt(8);
-			// JavaScriptRegExp__.g:1:46: T__11
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:52: T__21
 			{
-			DebugLocation(1, 46);
-			mT__11(); 
+			DebugLocation(1, 52);
+			mT__21(); 
 
 			}
 			break;
 		case 9:
 			DebugEnterAlt(9);
-			// JavaScriptRegExp__.g:1:52: T__12
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:58: T__22
 			{
-			DebugLocation(1, 52);
-			mT__12(); 
+			DebugLocation(1, 58);
+			mT__22(); 
 
 			}
 			break;
 		case 10:
 			DebugEnterAlt(10);
-			// JavaScriptRegExp__.g:1:58: T__13
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:64: T__23
 			{
-			DebugLocation(1, 58);
-			mT__13(); 
+			DebugLocation(1, 64);
+			mT__23(); 
 
 			}
 			break;
 		case 11:
 			DebugEnterAlt(11);
-			// JavaScriptRegExp__.g:1:64: T__14
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:70: T__24
 			{
-			DebugLocation(1, 64);
-			mT__14(); 
+			DebugLocation(1, 70);
+			mT__24(); 
 
 			}
 			break;
 		case 12:
 			DebugEnterAlt(12);
-			// JavaScriptRegExp__.g:1:70: T__15
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:76: T__25
 			{
-			DebugLocation(1, 70);
-			mT__15(); 
+			DebugLocation(1, 76);
+			mT__25(); 
 
 			}
 			break;
 		case 13:
 			DebugEnterAlt(13);
-			// JavaScriptRegExp__.g:1:76: T__16
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:82: T__26
 			{
-			DebugLocation(1, 76);
-			mT__16(); 
+			DebugLocation(1, 82);
+			mT__26(); 
 
 			}
 			break;
 		case 14:
 			DebugEnterAlt(14);
-			// JavaScriptRegExp__.g:1:82: T__17
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:88: T__27
 			{
-			DebugLocation(1, 82);
-			mT__17(); 
+			DebugLocation(1, 88);
+			mT__27(); 
 
 			}
 			break;
 		case 15:
 			DebugEnterAlt(15);
-			// JavaScriptRegExp__.g:1:88: T__18
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:94: T__28
 			{
-			DebugLocation(1, 88);
-			mT__18(); 
+			DebugLocation(1, 94);
+			mT__28(); 
 
 			}
 			break;
 		case 16:
 			DebugEnterAlt(16);
-			// JavaScriptRegExp__.g:1:94: T__19
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:100: T__29
 			{
-			DebugLocation(1, 94);
-			mT__19(); 
+			DebugLocation(1, 100);
+			mT__29(); 
 
 			}
 			break;
 		case 17:
 			DebugEnterAlt(17);
-			// JavaScriptRegExp__.g:1:100: T__20
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:106: T__30
 			{
-			DebugLocation(1, 100);
-			mT__20(); 
+			DebugLocation(1, 106);
+			mT__30(); 
 
 			}
 			break;
 		case 18:
 			DebugEnterAlt(18);
-			// JavaScriptRegExp__.g:1:106: T__21
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:112: T__31
 			{
-			DebugLocation(1, 106);
-			mT__21(); 
+			DebugLocation(1, 112);
+			mT__31(); 
 
 			}
 			break;
 		case 19:
 			DebugEnterAlt(19);
-			// JavaScriptRegExp__.g:1:112: T__22
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:118: T__32
 			{
-			DebugLocation(1, 112);
-			mT__22(); 
+			DebugLocation(1, 118);
+			mT__32(); 
 
 			}
 			break;
 		case 20:
 			DebugEnterAlt(20);
-			// JavaScriptRegExp__.g:1:118: T__23
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:124: T__33
 			{
-			DebugLocation(1, 118);
-			mT__23(); 
+			DebugLocation(1, 124);
+			mT__33(); 
 
 			}
 			break;
 		case 21:
 			DebugEnterAlt(21);
-			// JavaScriptRegExp__.g:1:124: T__24
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:130: T__34
 			{
-			DebugLocation(1, 124);
-			mT__24(); 
+			DebugLocation(1, 130);
+			mT__34(); 
 
 			}
 			break;
 		case 22:
 			DebugEnterAlt(22);
-			// JavaScriptRegExp__.g:1:130: T__25
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:136: T__35
 			{
-			DebugLocation(1, 130);
-			mT__25(); 
+			DebugLocation(1, 136);
+			mT__35(); 
 
 			}
 			break;
 		case 23:
 			DebugEnterAlt(23);
-			// JavaScriptRegExp__.g:1:136: T__26
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:142: T__36
 			{
-			DebugLocation(1, 136);
-			mT__26(); 
+			DebugLocation(1, 142);
+			mT__36(); 
 
 			}
 			break;
 		case 24:
 			DebugEnterAlt(24);
-			// JavaScriptRegExp__.g:1:142: T__27
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:148: T__37
 			{
-			DebugLocation(1, 142);
-			mT__27(); 
+			DebugLocation(1, 148);
+			mT__37(); 
 
 			}
 			break;
 		case 25:
 			DebugEnterAlt(25);
-			// JavaScriptRegExp__.g:1:148: T__28
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:154: T__38
 			{
-			DebugLocation(1, 148);
-			mT__28(); 
+			DebugLocation(1, 154);
+			mT__38(); 
 
 			}
 			break;
 		case 26:
 			DebugEnterAlt(26);
-			// JavaScriptRegExp__.g:1:154: T__29
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:160: T__39
 			{
-			DebugLocation(1, 154);
-			mT__29(); 
+			DebugLocation(1, 160);
+			mT__39(); 
 
 			}
 			break;
 		case 27:
 			DebugEnterAlt(27);
-			// JavaScriptRegExp__.g:1:160: T__30
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:166: T__40
 			{
-			DebugLocation(1, 160);
-			mT__30(); 
+			DebugLocation(1, 166);
+			mT__40(); 
 
 			}
 			break;
 		case 28:
 			DebugEnterAlt(28);
-			// JavaScriptRegExp__.g:1:166: T__31
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:172: T__41
 			{
-			DebugLocation(1, 166);
-			mT__31(); 
+			DebugLocation(1, 172);
+			mT__41(); 
 
 			}
 			break;
 		case 29:
 			DebugEnterAlt(29);
-			// JavaScriptRegExp__.g:1:172: T__32
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:178: T__42
 			{
-			DebugLocation(1, 172);
-			mT__32(); 
+			DebugLocation(1, 178);
+			mT__42(); 
 
 			}
 			break;
 		case 30:
 			DebugEnterAlt(30);
-			// JavaScriptRegExp__.g:1:178: T__33
-			{
-			DebugLocation(1, 178);
-			mT__33(); 
-
-			}
-			break;
-		case 31:
-			DebugEnterAlt(31);
-			// JavaScriptRegExp__.g:1:184: T__34
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:184: T__43
 			{
 			DebugLocation(1, 184);
-			mT__34(); 
-
-			}
-			break;
-		case 32:
-			DebugEnterAlt(32);
-			// JavaScriptRegExp__.g:1:190: T__35
-			{
-			DebugLocation(1, 190);
-			mT__35(); 
-
-			}
-			break;
-		case 33:
-			DebugEnterAlt(33);
-			// JavaScriptRegExp__.g:1:196: T__36
-			{
-			DebugLocation(1, 196);
-			mT__36(); 
-
-			}
-			break;
-		case 34:
-			DebugEnterAlt(34);
-			// JavaScriptRegExp__.g:1:202: T__37
-			{
-			DebugLocation(1, 202);
-			mT__37(); 
-
-			}
-			break;
-		case 35:
-			DebugEnterAlt(35);
-			// JavaScriptRegExp__.g:1:208: T__38
-			{
-			DebugLocation(1, 208);
-			mT__38(); 
-
-			}
-			break;
-		case 36:
-			DebugEnterAlt(36);
-			// JavaScriptRegExp__.g:1:214: T__39
-			{
-			DebugLocation(1, 214);
-			mT__39(); 
-
-			}
-			break;
-		case 37:
-			DebugEnterAlt(37);
-			// JavaScriptRegExp__.g:1:220: T__40
-			{
-			DebugLocation(1, 220);
-			mT__40(); 
-
-			}
-			break;
-		case 38:
-			DebugEnterAlt(38);
-			// JavaScriptRegExp__.g:1:226: T__41
-			{
-			DebugLocation(1, 226);
-			mT__41(); 
-
-			}
-			break;
-		case 39:
-			DebugEnterAlt(39);
-			// JavaScriptRegExp__.g:1:232: T__42
-			{
-			DebugLocation(1, 232);
-			mT__42(); 
-
-			}
-			break;
-		case 40:
-			DebugEnterAlt(40);
-			// JavaScriptRegExp__.g:1:238: T__43
-			{
-			DebugLocation(1, 238);
 			mT__43(); 
-
-			}
-			break;
-		case 41:
-			DebugEnterAlt(41);
-			// JavaScriptRegExp__.g:1:244: T__44
-			{
-			DebugLocation(1, 244);
-			mT__44(); 
-
-			}
-			break;
-		case 42:
-			DebugEnterAlt(42);
-			// JavaScriptRegExp__.g:1:250: T__45
-			{
-			DebugLocation(1, 250);
-			mT__45(); 
-
-			}
-			break;
-		case 43:
-			DebugEnterAlt(43);
-			// JavaScriptRegExp__.g:1:256: T__46
-			{
-			DebugLocation(1, 256);
-			mT__46(); 
-
-			}
-			break;
-		case 44:
-			DebugEnterAlt(44);
-			// JavaScriptRegExp__.g:1:262: T__47
-			{
-			DebugLocation(1, 262);
-			mT__47(); 
-
-			}
-			break;
-		case 45:
-			DebugEnterAlt(45);
-			// JavaScriptRegExp__.g:1:268: T__48
-			{
-			DebugLocation(1, 268);
-			mT__48(); 
 
 			}
 			break;
