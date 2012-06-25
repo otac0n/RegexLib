@@ -53,7 +53,7 @@ atom
 	;
 
 patternCharacter
-	:	~('^' | '$' | '\\' | '.' | '*' | '+' | '?' | '(' | ')' | '[' | ']' | '{' | '}' | '|')
+	:	~('^'|'$'|'\\'|'.'|'*'|'+'|'?'|'('|')'|'['|']'|'{'|'}'|'|')
 	;
 
 atomEscape
@@ -79,7 +79,7 @@ controlEscape
 	;
 
 controlLetter
-	:	('a'..'z'|'A'..'Z') 
+	:	('a'..'z'|'A'..'Z')
 	;
 
 hexEscapeSequence
@@ -95,7 +95,7 @@ hexDigit
 	;
 
 identityEscape
-	:	'a'..'z' /* TODO */
+	:	~('b'|'B'|'0'..'9'|'f'|'n'|'r'|'t'|'v'|'c'|'x'|'u')
 	;
 
 decimalEscape
