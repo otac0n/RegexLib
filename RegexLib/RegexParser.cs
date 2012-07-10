@@ -37,6 +37,7 @@ namespace RegexLib
         JavaScript,
     }
 
+    [Flags]
     public enum RegexOptions
     {
         None = 0,
