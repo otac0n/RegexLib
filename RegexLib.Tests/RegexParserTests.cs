@@ -1,5 +1,5 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="RegexParser.cs" company="(none)">
+//-----------------------------------------------------------------------
+// <copyright file="RegexParserTests.cs" company="(none)">
 //  Copyright © 2012 John Gietzen.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -23,52 +23,28 @@
 // <author>John Gietzen</author>
 //-----------------------------------------------------------------------
 
-namespace RegexLib
+namespace RegexLib.Tests
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using Antlr.Runtime;
-    using RegexLib.Parsers.JavaScript;
+    using NUnit.Framework;
 
-    public enum RegexFlavor
+    [TestFixture]
+    public class RegexParserTests
     {
-        JavaScript,
-    }
-
-    public enum RegexOptions
-    {
-        None = 0,
-    }
-
-    public static class RegexParser
-    {
-        public static RegexNode Parse(string pattern, RegexFlavor flavor, RegexOptions options)
+        [Test]
+        public void Parse_WithNullPattern_ThrowsArgumentNullException()
         {
-            if (pattern == null)
-            {
-                throw new ArgumentNullException("pattern");
-            }
-
-            switch (flavor)
-            {
-                case RegexFlavor.JavaScript:
-                    return JavaScriptRegexParser.Parse(pattern, options);
-
-                default:
-                    throw new ArgumentOutOfRangeException("flavor");
-            }
+            Assert.That(() => RegexParser.Parse(null, RegexFlavor.JavaScript, RegexOptions.None), Throws.InstanceOf<ArgumentNullException>());
         }
 
-        private static class JavaScriptRegexParser
+        [Test]
+        public void Parse_WithSingleCharacter_YieldsCharacterClassNode()
         {
-            public static RegexNode Parse(string pattern, RegexOptions options)
-            {
-                var lexer = new JavaScriptRegExpLexer(new ANTLRStringStream(pattern));
-                var parser = new JavaScriptRegExpParser(new CommonTokenStream(lexer));
-                return parser.pattern();
-            }
+            var actual = RegexParser.Parse(@"a", RegexFlavor.JavaScript, RegexOptions.None);
+
+            var expected = new CharacterClassNode('a');
+
+            Assert.That(actual, Is.EqualTo(expected));
         }
     }
 }
