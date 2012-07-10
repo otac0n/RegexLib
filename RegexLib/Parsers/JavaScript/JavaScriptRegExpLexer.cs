@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.4 C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g 2012-07-10 08:08:17
+// $ANTLR 3.4 C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g 2012-07-10 08:12:30
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -73,12 +73,23 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		{
 			int _type = CHAR;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:19:2: ( 'a' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:19:2: (~ ( '\\\\' | '|' | '[' | '{' | '(' ) )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:19:4: 'a'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
 			{
-			DebugLocation(19, 4);
-			Match('a'); 
+			DebugLocation(19, 2);
+			if ((input.LA(1)>='\u0000' && input.LA(1)<='\'')||(input.LA(1)>=')' && input.LA(1)<='Z')||(input.LA(1)>=']' && input.LA(1)<='z')||(input.LA(1)>='}' && input.LA(1)<='\uFFFF'))
+			{
+				input.Consume();
+			}
+			else
+			{
+				MismatchedSetException mse = new MismatchedSetException(null,input);
+				DebugRecognitionException(mse);
+				Recover(mse);
+				throw mse;
+			}
+
 
 			}
 

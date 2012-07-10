@@ -16,5 +16,5 @@ atom returns [RegexNode value]
 	;
 
 CHAR
-	:	'a'
+	:	~('\\' | '|' | '[' | '{' | '(')
 	;

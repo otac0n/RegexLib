@@ -38,11 +38,14 @@ namespace RegexLib.Tests
         }
 
         [Test]
-        public void Parse_WithSingleCharacter_YieldsCharacterClassNode()
+        [TestCase("a", 'a')]
+        [TestCase("b", 'b')]
+        [TestCase("c", 'c')]
+        public void Parse_WithSingleCharacter_YieldsCharacterClassNode(string pattern, char expectedChar)
         {
-            var actual = RegexParser.Parse(@"a", RegexFlavor.JavaScript, RegexOptions.None);
+            var actual = RegexParser.Parse(pattern, RegexFlavor.JavaScript, RegexOptions.None);
 
-            var expected = new CharacterClassNode('a');
+            var expected = new CharacterClassNode(expectedChar);
 
             Assert.That(actual, Is.EqualTo(expected));
         }
