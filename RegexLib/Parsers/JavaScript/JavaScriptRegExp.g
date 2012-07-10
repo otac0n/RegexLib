@@ -8,5 +8,13 @@ options {
 @modifier { internal }
 
 public pattern returns [RegexNode value]
-	:	res='a' EOF { return new CharacterClassNode($res.Text[0]); }
+	:	atom EOF { return $atom.value; }
+	;
+
+atom returns [RegexNode value]
+	:	CHAR { return new CharacterClassNode($CHAR.Text[0]); }
+	;
+
+CHAR
+	:	'a'
 	;

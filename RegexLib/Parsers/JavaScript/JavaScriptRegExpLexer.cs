@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.4 JavaScriptRegExp__.g 2012-07-09 23:07:32
+// $ANTLR 3.4 C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g 2012-07-10 08:08:17
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -31,7 +31,7 @@ namespace  RegexLib.Parsers.JavaScript
 public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 {
 	public const int EOF=-1;
-	public const int T__4=4;
+	public const int CHAR=4;
 
     // delegates
     // delegators
@@ -52,32 +52,32 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 
 		OnCreated();
 	}
-	public override string GrammarFileName { get { return "JavaScriptRegExp__.g"; } }
+	public override string GrammarFileName { get { return "C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g"; } }
 
 
 	partial void OnCreated();
 	partial void EnterRule(string ruleName, int ruleIndex);
 	partial void LeaveRule(string ruleName, int ruleIndex);
 
-	partial void EnterRule_T__4();
-	partial void LeaveRule_T__4();
+	partial void EnterRule_CHAR();
+	partial void LeaveRule_CHAR();
 
-	// $ANTLR start "T__4"
-	[GrammarRule("T__4")]
-	private void mT__4()
+	// $ANTLR start "CHAR"
+	[GrammarRule("CHAR")]
+	private void mCHAR()
 	{
-		EnterRule_T__4();
-		EnterRule("T__4", 1);
-		TraceIn("T__4", 1);
+		EnterRule_CHAR();
+		EnterRule("CHAR", 1);
+		TraceIn("CHAR", 1);
 		try
 		{
-			int _type = T__4;
+			int _type = CHAR;
 			int _channel = DefaultTokenChannel;
-			// JavaScriptRegExp__.g:9:6: ( 'a' )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:19:2: ( 'a' )
 			DebugEnterAlt(1);
-			// JavaScriptRegExp__.g:9:8: 'a'
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:19:4: 'a'
 			{
-			DebugLocation(9, 8);
+			DebugLocation(19, 4);
 			Match('a'); 
 
 			}
@@ -87,21 +87,21 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("T__4", 1);
-			LeaveRule("T__4", 1);
-			LeaveRule_T__4();
+			TraceOut("CHAR", 1);
+			LeaveRule("CHAR", 1);
+			LeaveRule_CHAR();
 		}
 	}
-	// $ANTLR end "T__4"
+	// $ANTLR end "CHAR"
 
 	public override void mTokens()
 	{
-		// JavaScriptRegExp__.g:1:8: ( T__4 )
+		// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:8: ( CHAR )
 		DebugEnterAlt(1);
-		// JavaScriptRegExp__.g:1:10: T__4
+		// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:10: CHAR
 		{
 		DebugLocation(1, 10);
-		mT__4(); 
+		mCHAR(); 
 
 		}
 

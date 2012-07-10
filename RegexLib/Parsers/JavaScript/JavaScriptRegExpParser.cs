@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.4 C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g 2012-07-09 23:07:32
+// $ANTLR 3.4 C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g 2012-07-10 08:08:17
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -31,10 +31,10 @@ namespace  RegexLib.Parsers.JavaScript
  internal  partial class JavaScriptRegExpParser : Antlr.Runtime.Parser
 {
 	internal static readonly string[] tokenNames = new string[] {
-		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "'a'"
+		"<invalid>", "<EOR>", "<DOWN>", "<UP>", "CHAR"
 	};
 	public const int EOF=-1;
-	public const int T__4=4;
+	public const int CHAR=4;
 
 	public JavaScriptRegExpParser(ITokenStream input)
 		: this(input, new RecognizerSharedState())
@@ -59,7 +59,7 @@ namespace  RegexLib.Parsers.JavaScript
 	partial void LeaveRule_pattern();
 
 	// $ANTLR start "pattern"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:10:8: public pattern returns [RegexNode value] : res= 'a' EOF ;
+	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:10:8: public pattern returns [RegexNode value] : atom EOF ;
 	[GrammarRule("pattern")]
 	public RegexNode pattern()
 	{
@@ -69,22 +69,25 @@ namespace  RegexLib.Parsers.JavaScript
 		RegexNode value = default(RegexNode);
 
 
-		IToken res = default(IToken);
+		RegexNode atom1 = default(RegexNode);
 
 		try { DebugEnterRule(GrammarFileName, "pattern");
 		DebugLocation(10, 1);
 		try
 		{
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:11:2: (res= 'a' EOF )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:11:2: ( atom EOF )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:11:4: res= 'a' EOF
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:11:4: atom EOF
 			{
-			DebugLocation(11, 7);
-			res=(IToken)Match(input,4,Follow._4_in_pattern53); 
-			DebugLocation(11, 12);
-			Match(input,EOF,Follow._EOF_in_pattern55); 
-			DebugLocation(11, 16);
-			 return new CharacterClassNode(res.Text[0]); 
+			DebugLocation(11, 4);
+			PushFollow(Follow._atom_in_pattern51);
+			atom1=atom();
+			PopFollow();
+
+			DebugLocation(11, 9);
+			Match(input,EOF,Follow._EOF_in_pattern53); 
+			DebugLocation(11, 13);
+			 return atom1; 
 
 			}
 
@@ -106,14 +109,65 @@ namespace  RegexLib.Parsers.JavaScript
 
 	}
 	// $ANTLR end "pattern"
+
+	partial void EnterRule_atom();
+	partial void LeaveRule_atom();
+
+	// $ANTLR start "atom"
+	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:14:1: atom returns [RegexNode value] : CHAR ;
+	[GrammarRule("atom")]
+	private RegexNode atom()
+	{
+		EnterRule_atom();
+		EnterRule("atom", 2);
+		TraceIn("atom", 2);
+		RegexNode value = default(RegexNode);
+
+
+		IToken CHAR2 = default(IToken);
+
+		try { DebugEnterRule(GrammarFileName, "atom");
+		DebugLocation(14, 1);
+		try
+		{
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:15:2: ( CHAR )
+			DebugEnterAlt(1);
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:15:4: CHAR
+			{
+			DebugLocation(15, 4);
+			CHAR2=(IToken)Match(input,CHAR,Follow._CHAR_in_atom70); 
+			DebugLocation(15, 9);
+			 return new CharacterClassNode(CHAR2.Text[0]); 
+
+			}
+
+		}
+		catch (RecognitionException re)
+		{
+			ReportError(re);
+			Recover(input,re);
+		}
+		finally
+		{
+			TraceOut("atom", 2);
+			LeaveRule("atom", 2);
+			LeaveRule_atom();
+		}
+		DebugLocation(16, 1);
+		} finally { DebugExitRule(GrammarFileName, "atom"); }
+		return value;
+
+	}
+	// $ANTLR end "atom"
 	#endregion Rules
 
 
 	#region Follow sets
 	private static class Follow
 	{
-		public static readonly BitSet _4_in_pattern53 = new BitSet(new ulong[]{0x0UL});
-		public static readonly BitSet _EOF_in_pattern55 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _atom_in_pattern51 = new BitSet(new ulong[]{0x0UL});
+		public static readonly BitSet _EOF_in_pattern53 = new BitSet(new ulong[]{0x2UL});
+		public static readonly BitSet _CHAR_in_atom70 = new BitSet(new ulong[]{0x2UL});
 	}
 	#endregion Follow sets
 }
