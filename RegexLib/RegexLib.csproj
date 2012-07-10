@@ -53,6 +53,7 @@
     <Compile Include="Parsers\JavaScript\JavaScriptRegExpParser.cs">
       <DependentUpon>JavaScriptRegExp.g</DependentUpon>
     </Compile>
+    <Compile Include="RegexParser.cs" />
     <Compile Include="Regex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegexMatch.cs" />
