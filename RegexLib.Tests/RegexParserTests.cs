@@ -146,5 +146,15 @@ namespace RegexLib.Tests
 
             Assert.That(actual, Is.EqualTo(expected));
         }
+
+        [Test]
+        public void Parse_WithDot_YieldsUnconstrainedCharacterClassNode()
+        {
+            var actual = RegexParser.Parse(".", RegexFlavor.JavaScript, RegexOptions.None);
+
+            var expected = new CharacterClassNode();
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
     }
 }

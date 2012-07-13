@@ -7,6 +7,7 @@ tokens {
 	PIPE = '|';
 	CARAT = '^';
 	DOLLAR = '$';
+	DOT = '.';
 }
 
 @lexer::namespace { RegexLib.Parsers.JavaScript }
@@ -42,8 +43,9 @@ assertion returns [RegexNode value]
 
 atom returns [RegexNode value]
 	:	CHAR { return new CharacterClassNode($CHAR.Text[0]); }
+	|	DOT { return new CharacterClassNode(); }
 	;
 
 CHAR
-	:	~('\\' | '|' | '[' | '{' | '(')
+	:	~('^' | '$' | '\\' | '.' | '*' | '+' | '?' | '(' | ')' | '[' | ']' | '{' | '}' | '|')
 	;
