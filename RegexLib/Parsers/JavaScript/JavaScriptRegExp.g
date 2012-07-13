@@ -8,7 +8,15 @@ options {
 @modifier { internal }
 
 public pattern returns [RegexNode value]
-	:	atom EOF { return $atom.value; }
+	:	disjunction EOF { return $disjunction.value; }
+	;
+
+disjunction returns [RegexNode value]
+	:	term=atom (PIPE rest=disjunction)? { return $rest.value != null ? new AlternationNode($term.value, $rest.value) : $term.value; }
+	;
+
+PIPE
+	:	'|'
 	;
 
 atom returns [RegexNode value]

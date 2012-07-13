@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.4 C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g 2012-07-10 08:12:30
+// $ANTLR 3.4 C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g 2012-07-12 19:18:16
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -32,6 +32,7 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 {
 	public const int EOF=-1;
 	public const int CHAR=4;
+	public const int PIPE=5;
 
     // delegates
     // delegators
@@ -59,6 +60,41 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	partial void EnterRule(string ruleName, int ruleIndex);
 	partial void LeaveRule(string ruleName, int ruleIndex);
 
+	partial void EnterRule_PIPE();
+	partial void LeaveRule_PIPE();
+
+	// $ANTLR start "PIPE"
+	[GrammarRule("PIPE")]
+	private void mPIPE()
+	{
+		EnterRule_PIPE();
+		EnterRule("PIPE", 1);
+		TraceIn("PIPE", 1);
+		try
+		{
+			int _type = PIPE;
+			int _channel = DefaultTokenChannel;
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:19:2: ( '|' )
+			DebugEnterAlt(1);
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:19:4: '|'
+			{
+			DebugLocation(19, 4);
+			Match('|'); 
+
+			}
+
+			state.type = _type;
+			state.channel = _channel;
+		}
+		finally
+		{
+			TraceOut("PIPE", 1);
+			LeaveRule("PIPE", 1);
+			LeaveRule_PIPE();
+		}
+	}
+	// $ANTLR end "PIPE"
+
 	partial void EnterRule_CHAR();
 	partial void LeaveRule_CHAR();
 
@@ -67,17 +103,17 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	private void mCHAR()
 	{
 		EnterRule_CHAR();
-		EnterRule("CHAR", 1);
-		TraceIn("CHAR", 1);
+		EnterRule("CHAR", 2);
+		TraceIn("CHAR", 2);
 		try
 		{
 			int _type = CHAR;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:19:2: (~ ( '\\\\' | '|' | '[' | '{' | '(' ) )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:27:2: (~ ( '\\\\' | '|' | '[' | '{' | '(' ) )
 			DebugEnterAlt(1);
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
 			{
-			DebugLocation(19, 2);
+			DebugLocation(27, 2);
 			if ((input.LA(1)>='\u0000' && input.LA(1)<='\'')||(input.LA(1)>=')' && input.LA(1)<='Z')||(input.LA(1)>=']' && input.LA(1)<='z')||(input.LA(1)>='}' && input.LA(1)<='\uFFFF'))
 			{
 				input.Consume();
@@ -98,8 +134,8 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("CHAR", 1);
-			LeaveRule("CHAR", 1);
+			TraceOut("CHAR", 2);
+			LeaveRule("CHAR", 2);
 			LeaveRule_CHAR();
 		}
 	}
@@ -107,15 +143,48 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 
 	public override void mTokens()
 	{
-		// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:8: ( CHAR )
-		DebugEnterAlt(1);
-		// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:10: CHAR
+		// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:8: ( PIPE | CHAR )
+		int alt1=2;
+		try { DebugEnterDecision(1, false);
+		int LA1_0 = input.LA(1);
+
+		if ((LA1_0=='|'))
 		{
-		DebugLocation(1, 10);
-		mCHAR(); 
+			alt1 = 1;
+		}
+		else if (((LA1_0>='\u0000' && LA1_0<='\'')||(LA1_0>=')' && LA1_0<='Z')||(LA1_0>=']' && LA1_0<='z')||(LA1_0>='}' && LA1_0<='\uFFFF')))
+		{
+			alt1 = 2;
+		}
+		else
+		{
+			NoViableAltException nvae = new NoViableAltException("", 1, 0, input);
+			DebugRecognitionException(nvae);
+			throw nvae;
+		}
+		} finally { DebugExitDecision(1); }
+		switch (alt1)
+		{
+		case 1:
+			DebugEnterAlt(1);
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:10: PIPE
+			{
+			DebugLocation(1, 10);
+			mPIPE(); 
+
+			}
+			break;
+		case 2:
+			DebugEnterAlt(2);
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:15: CHAR
+			{
+			DebugLocation(1, 15);
+			mCHAR(); 
+
+			}
+			break;
 
 		}
-
 
 	}
 

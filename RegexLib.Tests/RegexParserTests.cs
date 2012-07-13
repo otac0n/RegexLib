@@ -49,5 +49,33 @@ namespace RegexLib.Tests
 
             Assert.That(actual, Is.EqualTo(expected));
         }
+
+        [Test]
+        public void Parse_WithAlternation_YieldsAlternationNode()
+        {
+            var actual = RegexParser.Parse("a|b", RegexFlavor.JavaScript, RegexOptions.None);
+
+            var expected =
+                new AlternationNode(
+                    new CharacterClassNode('a'),
+                    new CharacterClassNode('b'));
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void Parse_WithMltipleAlternatives_YieldsNestedAlternationNodes()
+        {
+            var actual = RegexParser.Parse("a|b|c", RegexFlavor.JavaScript, RegexOptions.None);
+
+            var expected =
+                new AlternationNode(
+                    new CharacterClassNode('a'),
+                    new AlternationNode(
+                        new CharacterClassNode('b'),
+                        new CharacterClassNode('c')));
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
     }
 }
