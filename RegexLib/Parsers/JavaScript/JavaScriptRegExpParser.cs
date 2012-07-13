@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.4 C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g 2012-07-12 19:57:46
+// $ANTLR 3.4 C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g 2012-07-13 08:02:05
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -260,7 +260,7 @@ namespace  RegexLib.Parsers.JavaScript
 				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:26:16: 
 				{
 				DebugLocation(26, 16);
-				 return null; 
+				 return new EmptyNode(); 
 
 				}
 				break;

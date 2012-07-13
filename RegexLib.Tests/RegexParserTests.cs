@@ -38,6 +38,16 @@ namespace RegexLib.Tests
         }
 
         [Test]
+        public void Parse_WithEmptyPattern_YieldsEmptyNode()
+        {
+            var actual = RegexParser.Parse("", RegexFlavor.JavaScript, RegexOptions.None);
+
+            var expected = new EmptyNode();
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
         [TestCase("a", 'a')]
         [TestCase("b", 'b')]
         [TestCase("c", 'c')]
@@ -58,6 +68,32 @@ namespace RegexLib.Tests
             var expected =
                 new AlternationNode(
                     new CharacterClassNode('a'),
+                    new CharacterClassNode('b'));
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void Parse_WithEmptySecondAlternative_YieldsAlternationNodeWithEmptySecondAlternative()
+        {
+            var actual = RegexParser.Parse("a|", RegexFlavor.JavaScript, RegexOptions.None);
+
+            var expected =
+                new AlternationNode(
+                    new CharacterClassNode('a'),
+                    new EmptyNode());
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void Parse_WithEmptyFirstAlternative_YieldsAlternationNodeWithEmptyFirstAlternative()
+        {
+            var actual = RegexParser.Parse("|b", RegexFlavor.JavaScript, RegexOptions.None);
+
+            var expected =
+                new AlternationNode(
+                    new EmptyNode(),
                     new CharacterClassNode('b'));
 
             Assert.That(actual, Is.EqualTo(expected));

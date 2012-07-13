@@ -23,7 +23,7 @@ disjunction returns [RegexNode value]
 
 alternative returns [RegexNode value]
 	:	terms { return $terms.value; }
-	|	/* empty */ { return null; }
+	|	/* empty */ { return new EmptyNode(); }
 	;
 
 terms returns [RegexNode value]
