@@ -77,5 +77,38 @@ namespace RegexLib.Tests
 
             Assert.That(actual, Is.EqualTo(expected));
         }
+
+        [Test]
+        public void Parse_WithConcatenation_YieldsConcatenationNode()
+        {
+            var actual = RegexParser.Parse("ab", RegexFlavor.JavaScript, RegexOptions.None);
+
+            var expected =
+                new ConcatenationNode(
+                    new CharacterClassNode('a'),
+                    new CharacterClassNode('b'));
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void Parse_WithStartAnchor_YieldsStringStartAnchorNode()
+        {
+            var actual = RegexParser.Parse("^", RegexFlavor.JavaScript, RegexOptions.None);
+
+            var expected = new StringStartAnchorNode();
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void Parse_WithEndAnchor_YieldsStringEndAnchorNode()
+        {
+            var actual = RegexParser.Parse("$", RegexFlavor.JavaScript, RegexOptions.None);
+
+            var expected = new StringEndAnchorNode();
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
     }
 }
