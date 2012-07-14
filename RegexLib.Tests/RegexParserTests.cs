@@ -156,5 +156,31 @@ namespace RegexLib.Tests
 
             Assert.That(actual, Is.EqualTo(expected));
         }
+
+        [Test]
+        [TestCase("*", 0, null, true)]
+        [TestCase("*?", 0, null, false)]
+        [TestCase("?", 0, 1, true)]
+        [TestCase("??", 0, 1, false)]
+        [TestCase("+", 1, null, true)]
+        [TestCase("+?", 1, null, false)]
+        [TestCase("{2}", 2, 2, true)]
+        [TestCase("{2}?", 2, 2, false)]
+        [TestCase("{3,}", 3, null, true)]
+        [TestCase("{3,}?", 3, null, false)]
+        [TestCase("{4,100}", 4, 100, true)]
+        [TestCase("{4,100}?", 4, 100, false)]
+        public void Parse_WithQuantifier_YieldsRepetitionNode(string quantifier, int min, int? max, bool eager)
+        {
+            var actual = RegexParser.Parse("a" + quantifier, RegexFlavor.JavaScript, RegexOptions.None);
+
+            var expected = new RepetitionNode(
+                new CharacterClassNode('a'),
+                min,
+                max,
+                eager);
+
+            Assert.That(actual, Is.EqualTo(expected));
+        }
     }
 }
