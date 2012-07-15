@@ -1,6 +1,6 @@
 ﻿namespace RegexLib.Parsers.JavaScript
 {
-    public class Quantifier
+    internal class Quantifier
     {
         public int Min { get; set; }
 
