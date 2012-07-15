@@ -19,6 +19,9 @@ tokens {
 @lexer::namespace { RegexLib.Parsers.JavaScript }
 @parser::namespace { RegexLib.Parsers.JavaScript }
 @modifier { internal }
+@header {
+	using System.Text;
+}
 
 public pattern returns [RegexNode value]
 	:	disjunction EOF { return $disjunction.value; }
@@ -60,31 +63,40 @@ quantifierPrefix returns [Quantifier value]
 	:	STAR { return new Quantifier { Min = 0 }; }
 	|	PLUS { return new Quantifier { Min = 1 }; }
 	|	QUESTION { return new Quantifier { Min = 0, Max = 1 }; }
-	|	L_CURLY min=DEC_DIGITS (COMMA max=DEC_DIGITS?)? R_CURLY
+	|	L_CURLY min=decimalDigits (COMMA max=decimalDigits?)? R_CURLY
 		{
-			var minValue = int.Parse($min.Text);
+			var minValue = $min.value.Value;
 			if ($COMMA == null)
 			{
 				return new Quantifier { Min = minValue, Max = minValue };
 			}
-			else if ($max == null)
+			else if (!$max.value.HasValue)
 			{
 				return new Quantifier { Min = minValue, Max = null };
 			}
 			else
 			{
-				var maxValue = int.Parse($max.Text);
+				var maxValue = $max.value.Value;
 				return new Quantifier { Min = minValue, Max = maxValue };
 			}
 		}
 	;
 
-DEC_DIGITS
-	:	('0'..'9')+
+decimalDigits returns [int? value]
+	:	(v+=DIGIT)+
+		{
+			var sb = new StringBuilder();
+			$v.ForEach(d => sb.Append(d.Text));
+			return int.Parse(sb.ToString());
+		}
+	;
+
+DIGIT
+	:	'0'..'9'
 	;
 
 atom returns [RegexNode value]
-	:	CHAR { return new CharacterClassNode($CHAR.Text[0]); }
+	:	c=(CHAR | DIGIT | COMMA) { return new CharacterClassNode($c.Text[0]); }
 	|	DOT { return new CharacterClassNode(); }
 	;
 

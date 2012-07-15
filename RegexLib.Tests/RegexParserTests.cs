@@ -51,6 +51,8 @@ namespace RegexLib.Tests
         [TestCase("a", 'a')]
         [TestCase("b", 'b')]
         [TestCase("c", 'c')]
+        [TestCase(",", ',')]
+        [TestCase("0", '0')]
         public void Parse_WithSingleCharacter_YieldsCharacterClassNode(string pattern, char expectedChar)
         {
             var actual = RegexParser.Parse(pattern, RegexFlavor.JavaScript, RegexOptions.None);

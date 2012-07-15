@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.4 C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g 2012-07-14 15:01:24
+// $ANTLR 3.4 C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g 2012-07-15 08:56:15
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -34,7 +34,7 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	public const int CARAT=4;
 	public const int CHAR=5;
 	public const int COMMA=6;
-	public const int DEC_DIGITS=7;
+	public const int DIGIT=7;
 	public const int DOLLAR=8;
 	public const int DOT=9;
 	public const int L_CURLY=10;
@@ -420,68 +420,36 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 	}
 	// $ANTLR end "STAR"
 
-	partial void EnterRule_DEC_DIGITS();
-	partial void LeaveRule_DEC_DIGITS();
+	partial void EnterRule_DIGIT();
+	partial void LeaveRule_DIGIT();
 
-	// $ANTLR start "DEC_DIGITS"
-	[GrammarRule("DEC_DIGITS")]
-	private void mDEC_DIGITS()
+	// $ANTLR start "DIGIT"
+	[GrammarRule("DIGIT")]
+	private void mDIGIT()
 	{
-		EnterRule_DEC_DIGITS();
-		EnterRule("DEC_DIGITS", 11);
-		TraceIn("DEC_DIGITS", 11);
+		EnterRule_DIGIT();
+		EnterRule("DIGIT", 11);
+		TraceIn("DIGIT", 11);
 		try
 		{
-			int _type = DEC_DIGITS;
+			int _type = DIGIT;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:83:2: ( ( '0' .. '9' )+ )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:95:2: ( '0' .. '9' )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:83:4: ( '0' .. '9' )+
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
 			{
-			DebugLocation(83, 4);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:83:4: ( '0' .. '9' )+
-			int cnt1=0;
-			try { DebugEnterSubRule(1);
-			while (true)
+			DebugLocation(95, 2);
+			if ((input.LA(1)>='0' && input.LA(1)<='9'))
 			{
-				int alt1=2;
-				try { DebugEnterDecision(1, false);
-				int LA1_0 = input.LA(1);
-
-				if (((LA1_0>='0' && LA1_0<='9')))
-				{
-					alt1 = 1;
-				}
-
-
-				} finally { DebugExitDecision(1); }
-				switch (alt1)
-				{
-				case 1:
-					DebugEnterAlt(1);
-					// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
-					{
-					DebugLocation(83, 4);
-					input.Consume();
-
-
-					}
-					break;
-
-				default:
-					if (cnt1 >= 1)
-						goto loop1;
-
-					EarlyExitException eee1 = new EarlyExitException( 1, input );
-					DebugRecognitionException(eee1);
-					throw eee1;
-				}
-				cnt1++;
+				input.Consume();
 			}
-			loop1:
-				;
-
-			} finally { DebugExitSubRule(1); }
+			else
+			{
+				MismatchedSetException mse = new MismatchedSetException(null,input);
+				DebugRecognitionException(mse);
+				Recover(mse);
+				throw mse;
+			}
 
 
 			}
@@ -491,12 +459,12 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		}
 		finally
 		{
-			TraceOut("DEC_DIGITS", 11);
-			LeaveRule("DEC_DIGITS", 11);
-			LeaveRule_DEC_DIGITS();
+			TraceOut("DIGIT", 11);
+			LeaveRule("DIGIT", 11);
+			LeaveRule_DIGIT();
 		}
 	}
-	// $ANTLR end "DEC_DIGITS"
+	// $ANTLR end "DIGIT"
 
 	partial void EnterRule_CHAR();
 	partial void LeaveRule_CHAR();
@@ -512,11 +480,11 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		{
 			int _type = CHAR;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:92:2: (~ ( '^' | '$' | '\\\\' | '.' | '*' | '+' | '?' | '(' | ')' | '[' | ']' | '{' | '}' | '|' ) )
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:104:2: (~ ( '^' | '$' | '\\\\' | '.' | '*' | '+' | '?' | '(' | ')' | '[' | ']' | '{' | '}' | '|' ) )
 			DebugEnterAlt(1);
 			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
 			{
-			DebugLocation(92, 2);
+			DebugLocation(104, 2);
 			if ((input.LA(1)>='\u0000' && input.LA(1)<='#')||(input.LA(1)>='%' && input.LA(1)<='\'')||(input.LA(1)>=',' && input.LA(1)<='-')||(input.LA(1)>='/' && input.LA(1)<='>')||(input.LA(1)>='@' && input.LA(1)<='Z')||(input.LA(1)>='_' && input.LA(1)<='z')||(input.LA(1)>='~' && input.LA(1)<='\uFFFF'))
 			{
 				input.Consume();
@@ -546,67 +514,67 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 
 	public override void mTokens()
 	{
-		// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:8: ( CARAT | COMMA | DOLLAR | DOT | L_CURLY | PIPE | PLUS | QUESTION | R_CURLY | STAR | DEC_DIGITS | CHAR )
-		int alt2=12;
-		try { DebugEnterDecision(2, false);
-		int LA2_0 = input.LA(1);
+		// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:8: ( CARAT | COMMA | DOLLAR | DOT | L_CURLY | PIPE | PLUS | QUESTION | R_CURLY | STAR | DIGIT | CHAR )
+		int alt1=12;
+		try { DebugEnterDecision(1, false);
+		int LA1_0 = input.LA(1);
 
-		if ((LA2_0=='^'))
+		if ((LA1_0=='^'))
 		{
-			alt2 = 1;
+			alt1 = 1;
 		}
-		else if ((LA2_0==','))
+		else if ((LA1_0==','))
 		{
-			alt2 = 2;
+			alt1 = 2;
 		}
-		else if ((LA2_0=='$'))
+		else if ((LA1_0=='$'))
 		{
-			alt2 = 3;
+			alt1 = 3;
 		}
-		else if ((LA2_0=='.'))
+		else if ((LA1_0=='.'))
 		{
-			alt2 = 4;
+			alt1 = 4;
 		}
-		else if ((LA2_0=='{'))
+		else if ((LA1_0=='{'))
 		{
-			alt2 = 5;
+			alt1 = 5;
 		}
-		else if ((LA2_0=='|'))
+		else if ((LA1_0=='|'))
 		{
-			alt2 = 6;
+			alt1 = 6;
 		}
-		else if ((LA2_0=='+'))
+		else if ((LA1_0=='+'))
 		{
-			alt2 = 7;
+			alt1 = 7;
 		}
-		else if ((LA2_0=='?'))
+		else if ((LA1_0=='?'))
 		{
-			alt2 = 8;
+			alt1 = 8;
 		}
-		else if ((LA2_0=='}'))
+		else if ((LA1_0=='}'))
 		{
-			alt2 = 9;
+			alt1 = 9;
 		}
-		else if ((LA2_0=='*'))
+		else if ((LA1_0=='*'))
 		{
-			alt2 = 10;
+			alt1 = 10;
 		}
-		else if (((LA2_0>='0' && LA2_0<='9')))
+		else if (((LA1_0>='0' && LA1_0<='9')))
 		{
-			alt2 = 11;
+			alt1 = 11;
 		}
-		else if (((LA2_0>='\u0000' && LA2_0<='#')||(LA2_0>='%' && LA2_0<='\'')||LA2_0=='-'||LA2_0=='/'||(LA2_0>=':' && LA2_0<='>')||(LA2_0>='@' && LA2_0<='Z')||(LA2_0>='_' && LA2_0<='z')||(LA2_0>='~' && LA2_0<='\uFFFF')))
+		else if (((LA1_0>='\u0000' && LA1_0<='#')||(LA1_0>='%' && LA1_0<='\'')||LA1_0=='-'||LA1_0=='/'||(LA1_0>=':' && LA1_0<='>')||(LA1_0>='@' && LA1_0<='Z')||(LA1_0>='_' && LA1_0<='z')||(LA1_0>='~' && LA1_0<='\uFFFF')))
 		{
-			alt2 = 12;
+			alt1 = 12;
 		}
 		else
 		{
-			NoViableAltException nvae = new NoViableAltException("", 2, 0, input);
+			NoViableAltException nvae = new NoViableAltException("", 1, 0, input);
 			DebugRecognitionException(nvae);
 			throw nvae;
 		}
-		} finally { DebugExitDecision(2); }
-		switch (alt2)
+		} finally { DebugExitDecision(1); }
+		switch (alt1)
 		{
 		case 1:
 			DebugEnterAlt(1);
@@ -700,18 +668,18 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 			break;
 		case 11:
 			DebugEnterAlt(11);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:73: DEC_DIGITS
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:73: DIGIT
 			{
 			DebugLocation(1, 73);
-			mDEC_DIGITS(); 
+			mDIGIT(); 
 
 			}
 			break;
 		case 12:
 			DebugEnterAlt(12);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:84: CHAR
+			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:79: CHAR
 			{
-			DebugLocation(1, 84);
+			DebugLocation(1, 79);
 			mCHAR(); 
 
 			}
