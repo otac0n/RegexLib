@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.4 C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g 2012-07-15 08:56:15
+// $ANTLR 3.4 Parsers\\JavaScript\\JavaScriptRegExp.g 2012-07-15 09:22:25
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -61,7 +61,7 @@ namespace  RegexLib.Parsers.JavaScript
 	}
 
 	public override string[] TokenNames { get { return JavaScriptRegExpParser.tokenNames; } }
-	public override string GrammarFileName { get { return "C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g"; } }
+	public override string GrammarFileName { get { return "Parsers\\JavaScript\\JavaScriptRegExp.g"; } }
 
 
 	partial void OnCreated();
@@ -73,7 +73,7 @@ namespace  RegexLib.Parsers.JavaScript
 	partial void LeaveRule_pattern();
 
 	// $ANTLR start "pattern"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:26:8: public pattern returns [RegexNode value] : disjunction EOF ;
+	// Parsers\\JavaScript\\JavaScriptRegExp.g:26:8: public pattern returns [RegexNode value] : disjunction EOF ;
 	[GrammarRule("pattern")]
 	public RegexNode pattern()
 	{
@@ -89,9 +89,9 @@ namespace  RegexLib.Parsers.JavaScript
 		DebugLocation(26, 1);
 		try
 		{
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:27:2: ( disjunction EOF )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:27:2: ( disjunction EOF )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:27:4: disjunction EOF
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:27:4: disjunction EOF
 			{
 			DebugLocation(27, 4);
 			PushFollow(Follow._disjunction_in_pattern141);
@@ -128,7 +128,7 @@ namespace  RegexLib.Parsers.JavaScript
 	partial void LeaveRule_disjunction();
 
 	// $ANTLR start "disjunction"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:30:1: disjunction returns [RegexNode value] : first= alternative ( PIPE rest= disjunction )? ;
+	// Parsers\\JavaScript\\JavaScriptRegExp.g:30:1: disjunction returns [RegexNode value] : first= alternative ( PIPE rest= disjunction )? ;
 	[GrammarRule("disjunction")]
 	private RegexNode disjunction()
 	{
@@ -145,9 +145,9 @@ namespace  RegexLib.Parsers.JavaScript
 		DebugLocation(30, 1);
 		try
 		{
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:31:2: (first= alternative ( PIPE rest= disjunction )? )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:31:2: (first= alternative ( PIPE rest= disjunction )? )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:31:4: first= alternative ( PIPE rest= disjunction )?
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:31:4: first= alternative ( PIPE rest= disjunction )?
 			{
 			DebugLocation(31, 9);
 			PushFollow(Follow._alternative_in_disjunction162);
@@ -155,7 +155,7 @@ namespace  RegexLib.Parsers.JavaScript
 			PopFollow();
 
 			DebugLocation(31, 22);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:31:22: ( PIPE rest= disjunction )?
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:31:22: ( PIPE rest= disjunction )?
 			int alt1=2;
 			try { DebugEnterSubRule(1);
 			try { DebugEnterDecision(1, false);
@@ -170,7 +170,7 @@ namespace  RegexLib.Parsers.JavaScript
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:31:23: PIPE rest= disjunction
+				// Parsers\\JavaScript\\JavaScriptRegExp.g:31:23: PIPE rest= disjunction
 				{
 				DebugLocation(31, 23);
 				Match(input,PIPE,Follow._PIPE_in_disjunction165); 
@@ -214,7 +214,7 @@ namespace  RegexLib.Parsers.JavaScript
 	partial void LeaveRule_alternative();
 
 	// $ANTLR start "alternative"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:34:1: alternative returns [RegexNode value] : ( terms |);
+	// Parsers\\JavaScript\\JavaScriptRegExp.g:34:1: alternative returns [RegexNode value] : ( terms |);
 	[GrammarRule("alternative")]
 	private RegexNode alternative()
 	{
@@ -230,7 +230,7 @@ namespace  RegexLib.Parsers.JavaScript
 		DebugLocation(34, 1);
 		try
 		{
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:35:2: ( terms |)
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:35:2: ( terms |)
 			int alt2=2;
 			try { DebugEnterDecision(2, false);
 			int LA2_0 = input.LA(1);
@@ -254,7 +254,7 @@ namespace  RegexLib.Parsers.JavaScript
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:35:4: terms
+				// Parsers\\JavaScript\\JavaScriptRegExp.g:35:4: terms
 				{
 				DebugLocation(35, 4);
 				PushFollow(Follow._terms_in_alternative188);
@@ -268,7 +268,7 @@ namespace  RegexLib.Parsers.JavaScript
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:36:16: 
+				// Parsers\\JavaScript\\JavaScriptRegExp.g:36:16: 
 				{
 				DebugLocation(36, 16);
 				 return new EmptyNode(); 
@@ -300,7 +300,7 @@ namespace  RegexLib.Parsers.JavaScript
 	partial void LeaveRule_terms();
 
 	// $ANTLR start "terms"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:39:1: terms returns [RegexNode value] : first= term (rest= terms )? ;
+	// Parsers\\JavaScript\\JavaScriptRegExp.g:39:1: terms returns [RegexNode value] : first= term (rest= terms )? ;
 	[GrammarRule("terms")]
 	private RegexNode terms()
 	{
@@ -317,9 +317,9 @@ namespace  RegexLib.Parsers.JavaScript
 		DebugLocation(39, 1);
 		try
 		{
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:40:2: (first= term (rest= terms )? )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:40:2: (first= term (rest= terms )? )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:40:4: first= term (rest= terms )?
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:40:4: first= term (rest= terms )?
 			{
 			DebugLocation(40, 9);
 			PushFollow(Follow._term_in_terms214);
@@ -327,7 +327,7 @@ namespace  RegexLib.Parsers.JavaScript
 			PopFollow();
 
 			DebugLocation(40, 19);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:40:19: (rest= terms )?
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:40:19: (rest= terms )?
 			int alt3=2;
 			try { DebugEnterSubRule(3);
 			try { DebugEnterDecision(3, false);
@@ -342,7 +342,7 @@ namespace  RegexLib.Parsers.JavaScript
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:40:19: rest= terms
+				// Parsers\\JavaScript\\JavaScriptRegExp.g:40:19: rest= terms
 				{
 				DebugLocation(40, 19);
 				PushFollow(Follow._terms_in_terms218);
@@ -384,7 +384,7 @@ namespace  RegexLib.Parsers.JavaScript
 	partial void LeaveRule_term();
 
 	// $ANTLR start "term"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:43:1: term returns [RegexNode value] : ( assertion | atom ( quantifier )? );
+	// Parsers\\JavaScript\\JavaScriptRegExp.g:43:1: term returns [RegexNode value] : ( assertion | atom ( quantifier )? );
 	[GrammarRule("term")]
 	private RegexNode term()
 	{
@@ -402,7 +402,7 @@ namespace  RegexLib.Parsers.JavaScript
 		DebugLocation(43, 1);
 		try
 		{
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:44:2: ( assertion | atom ( quantifier )? )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:44:2: ( assertion | atom ( quantifier )? )
 			int alt5=2;
 			try { DebugEnterDecision(5, false);
 			int LA5_0 = input.LA(1);
@@ -426,7 +426,7 @@ namespace  RegexLib.Parsers.JavaScript
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:44:4: assertion
+				// Parsers\\JavaScript\\JavaScriptRegExp.g:44:4: assertion
 				{
 				DebugLocation(44, 4);
 				PushFollow(Follow._assertion_in_term236);
@@ -440,7 +440,7 @@ namespace  RegexLib.Parsers.JavaScript
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:45:4: atom ( quantifier )?
+				// Parsers\\JavaScript\\JavaScriptRegExp.g:45:4: atom ( quantifier )?
 				{
 				DebugLocation(45, 4);
 				PushFollow(Follow._atom_in_term243);
@@ -448,7 +448,7 @@ namespace  RegexLib.Parsers.JavaScript
 				PopFollow();
 
 				DebugLocation(45, 9);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:45:9: ( quantifier )?
+				// Parsers\\JavaScript\\JavaScriptRegExp.g:45:9: ( quantifier )?
 				int alt4=2;
 				try { DebugEnterSubRule(4);
 				try { DebugEnterDecision(4, false);
@@ -463,7 +463,7 @@ namespace  RegexLib.Parsers.JavaScript
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:45:9: quantifier
+					// Parsers\\JavaScript\\JavaScriptRegExp.g:45:9: quantifier
 					{
 					DebugLocation(45, 9);
 					PushFollow(Follow._quantifier_in_term245);
@@ -507,7 +507,7 @@ namespace  RegexLib.Parsers.JavaScript
 	partial void LeaveRule_assertion();
 
 	// $ANTLR start "assertion"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:48:1: assertion returns [RegexNode value] : ( CARAT | DOLLAR );
+	// Parsers\\JavaScript\\JavaScriptRegExp.g:48:1: assertion returns [RegexNode value] : ( CARAT | DOLLAR );
 	[GrammarRule("assertion")]
 	private RegexNode assertion()
 	{
@@ -521,7 +521,7 @@ namespace  RegexLib.Parsers.JavaScript
 		DebugLocation(48, 1);
 		try
 		{
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:49:2: ( CARAT | DOLLAR )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:49:2: ( CARAT | DOLLAR )
 			int alt6=2;
 			try { DebugEnterDecision(6, false);
 			int LA6_0 = input.LA(1);
@@ -545,7 +545,7 @@ namespace  RegexLib.Parsers.JavaScript
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:49:4: CARAT
+				// Parsers\\JavaScript\\JavaScriptRegExp.g:49:4: CARAT
 				{
 				DebugLocation(49, 4);
 				Match(input,CARAT,Follow._CARAT_in_assertion263); 
@@ -556,7 +556,7 @@ namespace  RegexLib.Parsers.JavaScript
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:50:4: DOLLAR
+				// Parsers\\JavaScript\\JavaScriptRegExp.g:50:4: DOLLAR
 				{
 				DebugLocation(50, 4);
 				Match(input,DOLLAR,Follow._DOLLAR_in_assertion270); 
@@ -590,7 +590,7 @@ namespace  RegexLib.Parsers.JavaScript
 	partial void LeaveRule_quantifier();
 
 	// $ANTLR start "quantifier"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:53:1: quantifier returns [Quantifier value] : q= quantifierPrefix ( QUESTION )? ;
+	// Parsers\\JavaScript\\JavaScriptRegExp.g:53:1: quantifier returns [Quantifier value] : q= quantifierPrefix ( QUESTION )? ;
 	[GrammarRule("quantifier")]
 	private Quantifier quantifier()
 	{
@@ -607,9 +607,9 @@ namespace  RegexLib.Parsers.JavaScript
 		DebugLocation(53, 1);
 		try
 		{
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:54:2: (q= quantifierPrefix ( QUESTION )? )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:54:2: (q= quantifierPrefix ( QUESTION )? )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:54:4: q= quantifierPrefix ( QUESTION )?
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:54:4: q= quantifierPrefix ( QUESTION )?
 			{
 			DebugLocation(54, 5);
 			PushFollow(Follow._quantifierPrefix_in_quantifier289);
@@ -617,7 +617,7 @@ namespace  RegexLib.Parsers.JavaScript
 			PopFollow();
 
 			DebugLocation(54, 23);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:54:23: ( QUESTION )?
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:54:23: ( QUESTION )?
 			int alt7=2;
 			try { DebugEnterSubRule(7);
 			try { DebugEnterDecision(7, false);
@@ -632,7 +632,7 @@ namespace  RegexLib.Parsers.JavaScript
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:54:23: QUESTION
+				// Parsers\\JavaScript\\JavaScriptRegExp.g:54:23: QUESTION
 				{
 				DebugLocation(54, 23);
 				QUESTION6=(IToken)Match(input,QUESTION,Follow._QUESTION_in_quantifier291); 
@@ -675,7 +675,7 @@ namespace  RegexLib.Parsers.JavaScript
 	partial void LeaveRule_quantifierPrefix();
 
 	// $ANTLR start "quantifierPrefix"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:62:1: quantifierPrefix returns [Quantifier value] : ( STAR | PLUS | QUESTION | L_CURLY min= decimalDigits ( COMMA (max= decimalDigits )? )? R_CURLY );
+	// Parsers\\JavaScript\\JavaScriptRegExp.g:62:1: quantifierPrefix returns [Quantifier value] : ( STAR | PLUS | QUESTION | L_CURLY min= decimalDigits ( COMMA (max= decimalDigits )? )? R_CURLY );
 	[GrammarRule("quantifierPrefix")]
 	private Quantifier quantifierPrefix()
 	{
@@ -693,7 +693,7 @@ namespace  RegexLib.Parsers.JavaScript
 		DebugLocation(62, 1);
 		try
 		{
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:63:2: ( STAR | PLUS | QUESTION | L_CURLY min= decimalDigits ( COMMA (max= decimalDigits )? )? R_CURLY )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:63:2: ( STAR | PLUS | QUESTION | L_CURLY min= decimalDigits ( COMMA (max= decimalDigits )? )? R_CURLY )
 			int alt10=4;
 			try { DebugEnterDecision(10, false);
 			switch (input.LA(1))
@@ -731,7 +731,7 @@ namespace  RegexLib.Parsers.JavaScript
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:63:4: STAR
+				// Parsers\\JavaScript\\JavaScriptRegExp.g:63:4: STAR
 				{
 				DebugLocation(63, 4);
 				Match(input,STAR,Follow._STAR_in_quantifierPrefix311); 
@@ -742,7 +742,7 @@ namespace  RegexLib.Parsers.JavaScript
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:64:4: PLUS
+				// Parsers\\JavaScript\\JavaScriptRegExp.g:64:4: PLUS
 				{
 				DebugLocation(64, 4);
 				Match(input,PLUS,Follow._PLUS_in_quantifierPrefix318); 
@@ -753,7 +753,7 @@ namespace  RegexLib.Parsers.JavaScript
 				break;
 			case 3:
 				DebugEnterAlt(3);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:65:4: QUESTION
+				// Parsers\\JavaScript\\JavaScriptRegExp.g:65:4: QUESTION
 				{
 				DebugLocation(65, 4);
 				Match(input,QUESTION,Follow._QUESTION_in_quantifierPrefix325); 
@@ -764,7 +764,7 @@ namespace  RegexLib.Parsers.JavaScript
 				break;
 			case 4:
 				DebugEnterAlt(4);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:66:4: L_CURLY min= decimalDigits ( COMMA (max= decimalDigits )? )? R_CURLY
+				// Parsers\\JavaScript\\JavaScriptRegExp.g:66:4: L_CURLY min= decimalDigits ( COMMA (max= decimalDigits )? )? R_CURLY
 				{
 				DebugLocation(66, 4);
 				Match(input,L_CURLY,Follow._L_CURLY_in_quantifierPrefix332); 
@@ -774,7 +774,7 @@ namespace  RegexLib.Parsers.JavaScript
 				PopFollow();
 
 				DebugLocation(66, 30);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:66:30: ( COMMA (max= decimalDigits )? )?
+				// Parsers\\JavaScript\\JavaScriptRegExp.g:66:30: ( COMMA (max= decimalDigits )? )?
 				int alt9=2;
 				try { DebugEnterSubRule(9);
 				try { DebugEnterDecision(9, false);
@@ -789,12 +789,12 @@ namespace  RegexLib.Parsers.JavaScript
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:66:31: COMMA (max= decimalDigits )?
+					// Parsers\\JavaScript\\JavaScriptRegExp.g:66:31: COMMA (max= decimalDigits )?
 					{
 					DebugLocation(66, 31);
 					COMMA7=(IToken)Match(input,COMMA,Follow._COMMA_in_quantifierPrefix339); 
 					DebugLocation(66, 40);
-					// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:66:40: (max= decimalDigits )?
+					// Parsers\\JavaScript\\JavaScriptRegExp.g:66:40: (max= decimalDigits )?
 					int alt8=2;
 					try { DebugEnterSubRule(8);
 					try { DebugEnterDecision(8, false);
@@ -809,7 +809,7 @@ namespace  RegexLib.Parsers.JavaScript
 					{
 					case 1:
 						DebugEnterAlt(1);
-						// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:66:40: max= decimalDigits
+						// Parsers\\JavaScript\\JavaScriptRegExp.g:66:40: max= decimalDigits
 						{
 						DebugLocation(66, 40);
 						PushFollow(Follow._decimalDigits_in_quantifierPrefix343);
@@ -877,7 +877,7 @@ namespace  RegexLib.Parsers.JavaScript
 	partial void LeaveRule_decimalDigits();
 
 	// $ANTLR start "decimalDigits"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:85:1: decimalDigits returns [int? value] : (v+= DIGIT )+ ;
+	// Parsers\\JavaScript\\JavaScriptRegExp.g:85:1: decimalDigits returns [int? value] : (v+= DIGIT )+ ;
 	[GrammarRule("decimalDigits")]
 	private int? decimalDigits()
 	{
@@ -894,12 +894,12 @@ namespace  RegexLib.Parsers.JavaScript
 		DebugLocation(85, 1);
 		try
 		{
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:86:2: ( (v+= DIGIT )+ )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:86:2: ( (v+= DIGIT )+ )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:86:4: (v+= DIGIT )+
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:86:4: (v+= DIGIT )+
 			{
 			DebugLocation(86, 4);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:86:4: (v+= DIGIT )+
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:86:4: (v+= DIGIT )+
 			int cnt11=0;
 			try { DebugEnterSubRule(11);
 			while (true)
@@ -919,7 +919,7 @@ namespace  RegexLib.Parsers.JavaScript
 				{
 				case 1:
 					DebugEnterAlt(1);
-					// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:86:5: v+= DIGIT
+					// Parsers\\JavaScript\\JavaScriptRegExp.g:86:5: v+= DIGIT
 					{
 					DebugLocation(86, 6);
 					v=(IToken)Match(input,DIGIT,Follow._DIGIT_in_decimalDigits370); 
@@ -977,7 +977,7 @@ namespace  RegexLib.Parsers.JavaScript
 	partial void LeaveRule_atom();
 
 	// $ANTLR start "atom"
-	// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:98:1: atom returns [RegexNode value] : (c= ( CHAR | DIGIT | COMMA ) | DOT );
+	// Parsers\\JavaScript\\JavaScriptRegExp.g:98:1: atom returns [RegexNode value] : (c= ( CHAR | DIGIT | COMMA ) | DOT );
 	[GrammarRule("atom")]
 	private RegexNode atom()
 	{
@@ -993,7 +993,7 @@ namespace  RegexLib.Parsers.JavaScript
 		DebugLocation(98, 1);
 		try
 		{
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:99:2: (c= ( CHAR | DIGIT | COMMA ) | DOT )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:99:2: (c= ( CHAR | DIGIT | COMMA ) | DOT )
 			int alt12=2;
 			try { DebugEnterDecision(12, false);
 			int LA12_0 = input.LA(1);
@@ -1017,7 +1017,7 @@ namespace  RegexLib.Parsers.JavaScript
 			{
 			case 1:
 				DebugEnterAlt(1);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:99:4: c= ( CHAR | DIGIT | COMMA )
+				// Parsers\\JavaScript\\JavaScriptRegExp.g:99:4: c= ( CHAR | DIGIT | COMMA )
 				{
 				DebugLocation(99, 5);
 
@@ -1041,7 +1041,7 @@ namespace  RegexLib.Parsers.JavaScript
 				break;
 			case 2:
 				DebugEnterAlt(2);
-				// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:100:4: DOT
+				// Parsers\\JavaScript\\JavaScriptRegExp.g:100:4: DOT
 				{
 				DebugLocation(100, 4);
 				Match(input,DOT,Follow._DOT_in_atom423); 

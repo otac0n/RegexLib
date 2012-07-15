@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// $ANTLR 3.4 C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g 2012-07-15 08:56:15
+// $ANTLR 3.4 Parsers\\JavaScript\\JavaScriptRegExp.g 2012-07-15 09:22:26
 
 // The variable 'variable' is assigned but its value is never used.
 #pragma warning disable 219
@@ -63,7 +63,7 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 
 		OnCreated();
 	}
-	public override string GrammarFileName { get { return "C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g"; } }
+	public override string GrammarFileName { get { return "Parsers\\JavaScript\\JavaScriptRegExp.g"; } }
 
 
 	partial void OnCreated();
@@ -84,9 +84,9 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		{
 			int _type = CARAT;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:9:7: ( '^' )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:9:7: ( '^' )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:9:9: '^'
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:9:9: '^'
 			{
 			DebugLocation(9, 9);
 			Match('^'); 
@@ -119,9 +119,9 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		{
 			int _type = COMMA;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:10:7: ( ',' )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:10:7: ( ',' )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:10:9: ','
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:10:9: ','
 			{
 			DebugLocation(10, 9);
 			Match(','); 
@@ -154,9 +154,9 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		{
 			int _type = DOLLAR;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:11:8: ( '$' )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:11:8: ( '$' )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:11:10: '$'
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:11:10: '$'
 			{
 			DebugLocation(11, 10);
 			Match('$'); 
@@ -189,9 +189,9 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		{
 			int _type = DOT;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:12:5: ( '.' )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:12:5: ( '.' )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:12:7: '.'
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:12:7: '.'
 			{
 			DebugLocation(12, 7);
 			Match('.'); 
@@ -224,9 +224,9 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		{
 			int _type = L_CURLY;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:13:9: ( '{' )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:13:9: ( '{' )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:13:11: '{'
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:13:11: '{'
 			{
 			DebugLocation(13, 11);
 			Match('{'); 
@@ -259,9 +259,9 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		{
 			int _type = PIPE;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:14:6: ( '|' )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:14:6: ( '|' )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:14:8: '|'
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:14:8: '|'
 			{
 			DebugLocation(14, 8);
 			Match('|'); 
@@ -294,9 +294,9 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		{
 			int _type = PLUS;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:15:6: ( '+' )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:15:6: ( '+' )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:15:8: '+'
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:15:8: '+'
 			{
 			DebugLocation(15, 8);
 			Match('+'); 
@@ -329,9 +329,9 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		{
 			int _type = QUESTION;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:16:10: ( '?' )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:16:10: ( '?' )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:16:12: '?'
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:16:12: '?'
 			{
 			DebugLocation(16, 12);
 			Match('?'); 
@@ -364,9 +364,9 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		{
 			int _type = R_CURLY;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:17:9: ( '}' )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:17:9: ( '}' )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:17:11: '}'
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:17:11: '}'
 			{
 			DebugLocation(17, 11);
 			Match('}'); 
@@ -399,9 +399,9 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		{
 			int _type = STAR;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:18:6: ( '*' )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:18:6: ( '*' )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:18:8: '*'
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:18:8: '*'
 			{
 			DebugLocation(18, 8);
 			Match('*'); 
@@ -434,9 +434,9 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		{
 			int _type = DIGIT;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:95:2: ( '0' .. '9' )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:95:2: ( '0' .. '9' )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:
 			{
 			DebugLocation(95, 2);
 			if ((input.LA(1)>='0' && input.LA(1)<='9'))
@@ -480,9 +480,9 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		{
 			int _type = CHAR;
 			int _channel = DefaultTokenChannel;
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:104:2: (~ ( '^' | '$' | '\\\\' | '.' | '*' | '+' | '?' | '(' | ')' | '[' | ']' | '{' | '}' | '|' ) )
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:104:2: (~ ( '^' | '$' | '\\\\' | '.' | '*' | '+' | '?' | '(' | ')' | '[' | ']' | '{' | '}' | '|' ) )
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:
 			{
 			DebugLocation(104, 2);
 			if ((input.LA(1)>='\u0000' && input.LA(1)<='#')||(input.LA(1)>='%' && input.LA(1)<='\'')||(input.LA(1)>=',' && input.LA(1)<='-')||(input.LA(1)>='/' && input.LA(1)<='>')||(input.LA(1)>='@' && input.LA(1)<='Z')||(input.LA(1)>='_' && input.LA(1)<='z')||(input.LA(1)>='~' && input.LA(1)<='\uFFFF'))
@@ -514,7 +514,7 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 
 	public override void mTokens()
 	{
-		// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:8: ( CARAT | COMMA | DOLLAR | DOT | L_CURLY | PIPE | PLUS | QUESTION | R_CURLY | STAR | DIGIT | CHAR )
+		// Parsers\\JavaScript\\JavaScriptRegExp.g:1:8: ( CARAT | COMMA | DOLLAR | DOT | L_CURLY | PIPE | PLUS | QUESTION | R_CURLY | STAR | DIGIT | CHAR )
 		int alt1=12;
 		try { DebugEnterDecision(1, false);
 		int LA1_0 = input.LA(1);
@@ -578,7 +578,7 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 		{
 		case 1:
 			DebugEnterAlt(1);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:10: CARAT
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:1:10: CARAT
 			{
 			DebugLocation(1, 10);
 			mCARAT(); 
@@ -587,7 +587,7 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 			break;
 		case 2:
 			DebugEnterAlt(2);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:16: COMMA
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:1:16: COMMA
 			{
 			DebugLocation(1, 16);
 			mCOMMA(); 
@@ -596,7 +596,7 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 			break;
 		case 3:
 			DebugEnterAlt(3);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:22: DOLLAR
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:1:22: DOLLAR
 			{
 			DebugLocation(1, 22);
 			mDOLLAR(); 
@@ -605,7 +605,7 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 			break;
 		case 4:
 			DebugEnterAlt(4);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:29: DOT
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:1:29: DOT
 			{
 			DebugLocation(1, 29);
 			mDOT(); 
@@ -614,7 +614,7 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 			break;
 		case 5:
 			DebugEnterAlt(5);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:33: L_CURLY
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:1:33: L_CURLY
 			{
 			DebugLocation(1, 33);
 			mL_CURLY(); 
@@ -623,7 +623,7 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 			break;
 		case 6:
 			DebugEnterAlt(6);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:41: PIPE
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:1:41: PIPE
 			{
 			DebugLocation(1, 41);
 			mPIPE(); 
@@ -632,7 +632,7 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 			break;
 		case 7:
 			DebugEnterAlt(7);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:46: PLUS
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:1:46: PLUS
 			{
 			DebugLocation(1, 46);
 			mPLUS(); 
@@ -641,7 +641,7 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 			break;
 		case 8:
 			DebugEnterAlt(8);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:51: QUESTION
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:1:51: QUESTION
 			{
 			DebugLocation(1, 51);
 			mQUESTION(); 
@@ -650,7 +650,7 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 			break;
 		case 9:
 			DebugEnterAlt(9);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:60: R_CURLY
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:1:60: R_CURLY
 			{
 			DebugLocation(1, 60);
 			mR_CURLY(); 
@@ -659,7 +659,7 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 			break;
 		case 10:
 			DebugEnterAlt(10);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:68: STAR
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:1:68: STAR
 			{
 			DebugLocation(1, 68);
 			mSTAR(); 
@@ -668,7 +668,7 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 			break;
 		case 11:
 			DebugEnterAlt(11);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:73: DIGIT
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:1:73: DIGIT
 			{
 			DebugLocation(1, 73);
 			mDIGIT(); 
@@ -677,7 +677,7 @@ public partial class JavaScriptRegExpLexer : Antlr.Runtime.Lexer
 			break;
 		case 12:
 			DebugEnterAlt(12);
-			// C:\\Users\\otac0n\\Projects\\RegexLib\\RegexLib\\Parsers\\JavaScript\\JavaScriptRegExp.g:1:79: CHAR
+			// Parsers\\JavaScript\\JavaScriptRegExp.g:1:79: CHAR
 			{
 			DebugLocation(1, 79);
 			mCHAR(); 
