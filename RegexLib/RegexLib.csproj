@@ -72,6 +72,6 @@
     <ItemGroup>
       <Parsers Include="Parsers\**\*.g" />
     </ItemGroup>
-    <Exec Condition="'$(NCrunch)'!='1'" WorkingDirectory="$(ProjectDir)" Command="java org.antlr.Tool -message-format vs2005 &quot;@(Parsers)&quot;" />
+    <Exec Condition="'$(NCrunch)'!='1'" WorkingDirectory="$(ProjectDir)" Command="java org.antlr.Tool -make -message-format vs2005 &quot;@(Parsers)&quot;" />
   </Target>
 </Project>
