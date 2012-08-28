@@ -44,6 +44,9 @@
     <Compile Include="AtomicGroupNode.cs" />
     <Compile Include="CharacterClassNode.cs" />
     <Compile Include="ConcatenationNode.cs" />
+    <Compile Include="Parsers\JavaScript\JavaScriptRegExpParser.peg.cs">
+      <DependentUpon>JavaScriptRegExpParser.peg</DependentUpon>
+    </Compile>
     <Compile Include="Pegasus.Common\Cursor.cs" />
     <Compile Include="Pegasus.Common\IParseResult.cs" />
     <Compile Include="Pegasus.Common\ParseResult.cs" />
@@ -58,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Parsers\JavaScript\JavaScriptRegExpParser.peg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Pegasus.1.0.0\tools\Pegasus.targets" />

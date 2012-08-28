@@ -1,0 +1,187 @@
+﻿@namespace RegexLib.Parsers.JavaScript
+@classname JavaScriptRegExpParser
+@accessibility internal
+@using Pegasus.Common
+@using System.Globalization
+@members
+{
+    private static HashSet<UnicodeCategory> unicodeLetterCategories = new HashSet<UnicodeCategory>
+    {
+        UnicodeCategory.UppercaseLetter,
+        UnicodeCategory.LowercaseLetter,
+        UnicodeCategory.TitlecaseLetter,
+        UnicodeCategory.ModifierLetter,
+        UnicodeCategory.OtherLetter,
+        UnicodeCategory.LetterNumber,
+    };
+
+    private static HashSet<UnicodeCategory> unicodeCombiningMarkCategories = new HashSet<UnicodeCategory>
+    {
+        UnicodeCategory.NonSpacingMark,
+        UnicodeCategory.SpacingCombiningMark,
+    };
+
+    private static HashSet<UnicodeCategory> unicodeDigitCategories = new HashSet<UnicodeCategory>
+    {
+        UnicodeCategory.DecimalDigitNumber,
+    };
+
+    private static HashSet<UnicodeCategory> unicodeConnectorPunctuationCategories = new HashSet<UnicodeCategory>
+    {
+        UnicodeCategory.ConnectorPunctuation,
+    };
+}
+
+Pattern
+  = Disjunction
+
+Disjunction
+  = Alternative "|" Disjunction
+  / Alternative
+
+Alternative
+  = Term Alternative
+  / Term
+
+Term
+  = Assertion
+  / Atom Quantifier?
+
+Assertion
+  = "^"
+  / "$"
+  / "\b"
+  / "\B"
+  / "(?=" Disjunction ")"
+  / "(?!" Disjunction ")"
+
+Quantifier
+  = QuantifierPrefix "?"?
+
+QuantifierPrefix
+  = "*"
+  / "+"
+  / "?"
+  / "{" DecimalDigits ("," DecimalDigits?)? "}"
+
+Atom
+  = PatternCharacter
+  / "."
+  / "\\" AtomEscape
+  / CharacterClass
+  / "(" Disjunction ")"
+  / "(?:" Disjunction ")"
+
+PatternCharacter
+  = ![\^$\\.*+?()[\]{}|] SourceCharacter
+
+AtomEscape
+  = DecimalEscape
+  / CharacterEscape
+  / CharacterClassEscape
+
+CharacterEscape
+  = ControlEscape
+  / "c" ControlLetter
+  / HexEscapeSequence
+  / UnicodeEscapeSequence
+  / IdentityEscape
+
+ControlEscape
+  = [fnrtv]
+
+ControlLetter
+  = [a-zA-Z]
+
+IdentityEscape
+  = !IdentifierPart SourceCharacter
+  / "\u200D" // <ZWJ>
+  / "\u200C" // <ZWNJ>
+
+DecimalEscape
+  = DecimalIntegerLiteral !DecimalDigit
+
+CharacterClassEscape
+  = [dDsSwW]
+
+CharacterClass
+  = "[" !"^" ClassRanges "]"
+  / "[^" ClassRanges "]"
+
+ClassRanges
+  = NonemptyClassRanges?
+
+NonemptyClassRanges
+  = ClassAtom "-" ClassAtom ClassRanges
+  / ClassAtom NonemptyClassRangesNoDash
+  / ClassAtom
+
+NonemptyClassRangesNoDash
+  = ClassAtomNoDash "-" ClassAtom ClassRanges
+  / ClassAtomNoDash NonemptyClassRangesNoDash
+  / ClassAtom
+
+ClassAtom
+  = "-"
+  / ClassAtomNoDash
+
+ClassAtomNoDash
+  = ![\\\]\-] SourceCharacter
+  / "\\" ClassEscape
+
+ClassEscape
+  = DecimalEscape
+  / "b"
+  / CharacterEscape
+  / CharacterClassEscape
+
+DecimalDigit
+  = [0-9]
+
+DecimalDigits
+  = DecimalDigit+
+
+SourceCharacter
+  = .
+
+DecimalIntegerLiteral
+  = "0"
+  / NonZeroDigit DecimalDigits?
+
+HexEscapeSequence
+  = "x" HexDigit HexDigit
+
+UnicodeEscapeSequence
+  = "u" HexDigit HexDigit HexDigit HexDigit
+
+NonZeroDigit
+  = [1-9]
+
+HexDigit
+  = [0-9a-fA-F]
+
+IdentifierPart
+  = IdentifierStart
+  / UnicodeCombiningMark
+  / UnicodeDigit
+  / UnicodeConnectorPunctuation
+  / "\u200D" // <ZWJ>
+  / "\u200C" // <ZWNJ>
+
+IdentifierStart
+  = UnicodeLetter
+  / "$"
+  / "_"
+  / "\\" UnicodeEscapeSequence
+
+UnicodeLetter
+  = char:. &{ unicodeLetterCategories.Contains(char.GetUnicodeCategory(@char[0])) }
+
+UnicodeCombiningMark
+  = char:. &{ unicodeCombiningMarkCategories.Contains(char.GetUnicodeCategory(@char[0])) }
+
+UnicodeDigit
+  = char:. &{ unicodeDigitCategories.Contains(char.GetUnicodeCategory(@char[0])) }
+
+UnicodeConnectorPunctuation
+  = char:. &{ unicodeConnectorPunctuationCategories.Contains(char.GetUnicodeCategory(@char[0])) }
