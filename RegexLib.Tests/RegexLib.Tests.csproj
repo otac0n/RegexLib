@@ -55,6 +55,7 @@
     <Compile Include="AtomicGroupNodeTests.cs" />
     <Compile Include="CharacterClassNodeTests.cs" />
     <Compile Include="ConcatenationNodeTests.cs" />
+    <Compile Include="EmptyNodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegexMatchTests.cs" />
     <Compile Include="RegexNodeTests.cs" />

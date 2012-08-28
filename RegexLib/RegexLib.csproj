@@ -44,6 +44,7 @@
     <Compile Include="AtomicGroupNode.cs" />
     <Compile Include="CharacterClassNode.cs" />
     <Compile Include="ConcatenationNode.cs" />
+    <Compile Include="EmptyNode.cs" />
     <Compile Include="Parsers\JavaScript\JavaScriptRegExpParser.peg.cs">
       <DependentUpon>JavaScriptRegExpParser.peg</DependentUpon>
     </Compile>
