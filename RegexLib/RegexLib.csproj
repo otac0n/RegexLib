@@ -44,6 +44,9 @@
     <Compile Include="AtomicGroupNode.cs" />
     <Compile Include="CharacterClassNode.cs" />
     <Compile Include="ConcatenationNode.cs" />
+    <Compile Include="Pegasus.Common\Cursor.cs" />
+    <Compile Include="Pegasus.Common\IParseResult.cs" />
+    <Compile Include="Pegasus.Common\ParseResult.cs" />
     <Compile Include="RegexParser.cs" />
     <Compile Include="Regex.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -53,7 +56,11 @@
     <Compile Include="StringEndAnchorNode.cs" />
     <Compile Include="StringStartAnchorNode.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Pegasus.1.0.0\tools\Pegasus.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
