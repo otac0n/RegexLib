@@ -47,7 +47,7 @@ namespace RegexLib
 
         public override string GenerateString(Random rand)
         {
-            throw new NotImplementedException();
+            return string.Empty;
         }
     }
 }
