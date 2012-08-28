@@ -45,15 +45,24 @@ namespace RegexLib.Parsers.JavaScript
     };
 
 
+        private Dictionary<string, object> storage;
         public string Parse(string subject, string fileName = null)
         {
-            var cursor = new Cursor(subject, 0, fileName);
-            var result = this.Pattern(ref cursor);
-            if (result == null)
+            try
             {
-                throw ExceptionHelper(cursor, () => "Failed to parse 'Pattern'.");
+                this.storage = new Dictionary<string, object>();
+                var cursor = new Cursor(subject, 0, fileName);
+                var result = this.Pattern(ref cursor);
+                if (result == null)
+                {
+                    throw ExceptionHelper(cursor, () => "Failed to parse 'Pattern'.");
+                }
+                return result.Value;
             }
-            return result.Value;
+            finally
+            {
+                this.storage = null;
+            }
         }
 
         private IParseResult<string> Pattern(ref Cursor cursor)
@@ -154,12 +163,12 @@ namespace RegexLib.Parsers.JavaScript
                 r1 = this.Atom(ref cursor);
                 if (r1 != null)
                 {
-                    IParseResult<IList<string>> r2 = null;
+                    IParseResult<IList<Quantifier>> r2 = null;
                     var startCursor1 = cursor;
-                    var l0 = new List<string>();
+                    var l0 = new List<Quantifier>();
                     while (l0.Count < 1)
                     {
-                        IParseResult<string> r3 = null;
+                        IParseResult<Quantifier> r3 = null;
                         r3 = this.Quantifier(ref cursor);
                         if (r3 != null)
                         {
@@ -172,7 +181,7 @@ namespace RegexLib.Parsers.JavaScript
                     }
                     if (l0.Count >= 0)
                     {
-                        r2 = new ParseResult<IList<string>>(startCursor1, cursor, l0.AsReadOnly());
+                        r2 = new ParseResult<IList<Quantifier>>(startCursor1, cursor, l0.AsReadOnly());
                     }
                     else
                     {
@@ -284,165 +293,24 @@ namespace RegexLib.Parsers.JavaScript
             return r0;
         }
 
-        private IParseResult<string> Quantifier(ref Cursor cursor)
+        private IParseResult<Quantifier> Quantifier(ref Cursor cursor)
         {
-            IParseResult<string> r0 = null;
-            var startCursor0 = cursor;
-            IParseResult<string> r1 = null;
-            r1 = this.QuantifierPrefix(ref cursor);
-            if (r1 != null)
-            {
-                IParseResult<IList<string>> r2 = null;
-                var startCursor1 = cursor;
-                var l0 = new List<string>();
-                while (l0.Count < 1)
-                {
-                    IParseResult<string> r3 = null;
-                    r3 = this.ParseLiteral(ref cursor, "?");
-                    if (r3 != null)
-                    {
-                        l0.Add(r3.Value);
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                if (l0.Count >= 0)
-                {
-                    r2 = new ParseResult<IList<string>>(startCursor1, cursor, l0.AsReadOnly());
-                }
-                else
-                {
-                    cursor = startCursor1;
-                }
-                if (r2 != null)
-                {
-                    var len = cursor.Location - startCursor0.Location;
-                    r0 = new ParseResult<string>(startCursor0, cursor, cursor.Subject.Substring(startCursor0.Location, len));
-                }
-                else
-                {
-                    cursor = startCursor0;
-                }
-            }
-            else
-            {
-                cursor = startCursor0;
-            }
-            return r0;
-        }
-
-        private IParseResult<string> QuantifierPrefix(ref Cursor cursor)
-        {
-            IParseResult<string> r0 = null;
-            if (r0 == null)
-            {
-                r0 = this.ParseLiteral(ref cursor, "*");
-            }
-            if (r0 == null)
-            {
-                r0 = this.ParseLiteral(ref cursor, "+");
-            }
-            if (r0 == null)
-            {
-                r0 = this.ParseLiteral(ref cursor, "?");
-            }
+            IParseResult<Quantifier> r0 = null;
             if (r0 == null)
             {
                 var startCursor0 = cursor;
-                IParseResult<string> r1 = null;
-                r1 = this.ParseLiteral(ref cursor, "{");
+                IParseResult<Quantifier> r1 = null;
+                var qStart = cursor;
+                r1 = this.QuantifierPrefix(ref cursor);
+                var qEnd = cursor;
+                var q = ValueOrDefault(r1);
                 if (r1 != null)
                 {
-                    IParseResult<IList<string>> r2 = null;
-                    r2 = this.DecimalDigits(ref cursor);
+                    IParseResult<string> r2 = null;
+                    r2 = this.ParseLiteral(ref cursor, "?");
                     if (r2 != null)
                     {
-                        IParseResult<IList<string>> r3 = null;
-                        var startCursor1 = cursor;
-                        var l0 = new List<string>();
-                        while (l0.Count < 1)
-                        {
-                            IParseResult<string> r4 = null;
-                            var startCursor2 = cursor;
-                            IParseResult<string> r5 = null;
-                            r5 = this.ParseLiteral(ref cursor, ",");
-                            if (r5 != null)
-                            {
-                                IParseResult<IList<IList<string>>> r6 = null;
-                                var startCursor3 = cursor;
-                                var l1 = new List<IList<string>>();
-                                while (l1.Count < 1)
-                                {
-                                    IParseResult<IList<string>> r7 = null;
-                                    r7 = this.DecimalDigits(ref cursor);
-                                    if (r7 != null)
-                                    {
-                                        l1.Add(r7.Value);
-                                    }
-                                    else
-                                    {
-                                        break;
-                                    }
-                                }
-                                if (l1.Count >= 0)
-                                {
-                                    r6 = new ParseResult<IList<IList<string>>>(startCursor3, cursor, l1.AsReadOnly());
-                                }
-                                else
-                                {
-                                    cursor = startCursor3;
-                                }
-                                if (r6 != null)
-                                {
-                                    var len = cursor.Location - startCursor2.Location;
-                                    r4 = new ParseResult<string>(startCursor2, cursor, cursor.Subject.Substring(startCursor2.Location, len));
-                                }
-                                else
-                                {
-                                    cursor = startCursor2;
-                                }
-                            }
-                            else
-                            {
-                                cursor = startCursor2;
-                            }
-                            if (r4 != null)
-                            {
-                                l0.Add(r4.Value);
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-                        if (l0.Count >= 0)
-                        {
-                            r3 = new ParseResult<IList<string>>(startCursor1, cursor, l0.AsReadOnly());
-                        }
-                        else
-                        {
-                            cursor = startCursor1;
-                        }
-                        if (r3 != null)
-                        {
-                            IParseResult<string> r8 = null;
-                            r8 = this.ParseLiteral(ref cursor, "}");
-                            if (r8 != null)
-                            {
-                                var len = cursor.Location - startCursor0.Location;
-                                r0 = new ParseResult<string>(startCursor0, cursor, cursor.Subject.Substring(startCursor0.Location, len));
-                            }
-                            else
-                            {
-                                cursor = startCursor0;
-                            }
-                        }
-                        else
-                        {
-                            cursor = startCursor0;
-                        }
+                        r0 = this.ReturnHelper(startCursor0, cursor, () =>  new Quantifier(q.Min, q.Max, eager: false) );
                     }
                     else
                     {
@@ -454,6 +322,204 @@ namespace RegexLib.Parsers.JavaScript
                     cursor = startCursor0;
                 }
             }
+            if (r0 == null)
+            {
+                r0 = this.QuantifierPrefix(ref cursor);
+            }
+            return r0;
+        }
+
+        private IParseResult<Quantifier> QuantifierPrefix(ref Cursor cursor)
+        {
+            IParseResult<Quantifier> r0 = null;
+            var storageKey = "QuantifierPrefix:" + cursor.Location;
+            if (this.storage.ContainsKey(storageKey))
+            {
+                r0 = (IParseResult<Quantifier>)this.storage[storageKey];
+                if (r0 != null)
+                {
+                    cursor = r0.EndCursor;
+                }
+                return r0;
+            }
+            if (r0 == null)
+            {
+                var startCursor0 = cursor;
+                IParseResult<string> r1 = null;
+                r1 = this.ParseLiteral(ref cursor, "*");
+                if (r1 != null)
+                {
+                    r0 = this.ReturnHelper(startCursor0, cursor, () =>  new Quantifier(min: 0) );
+                }
+                else
+                {
+                    cursor = startCursor0;
+                }
+            }
+            if (r0 == null)
+            {
+                var startCursor1 = cursor;
+                IParseResult<string> r2 = null;
+                r2 = this.ParseLiteral(ref cursor, "+");
+                if (r2 != null)
+                {
+                    r0 = this.ReturnHelper(startCursor1, cursor, () =>  new Quantifier(min: 1) );
+                }
+                else
+                {
+                    cursor = startCursor1;
+                }
+            }
+            if (r0 == null)
+            {
+                var startCursor2 = cursor;
+                IParseResult<string> r3 = null;
+                r3 = this.ParseLiteral(ref cursor, "?");
+                if (r3 != null)
+                {
+                    r0 = this.ReturnHelper(startCursor2, cursor, () =>  new Quantifier(min: 0, max: 1) );
+                }
+                else
+                {
+                    cursor = startCursor2;
+                }
+            }
+            if (r0 == null)
+            {
+                var startCursor3 = cursor;
+                IParseResult<string> r4 = null;
+                r4 = this.ParseLiteral(ref cursor, "{");
+                if (r4 != null)
+                {
+                    IParseResult<int> r5 = null;
+                    var numStart = cursor;
+                    r5 = this.DecimalDigits(ref cursor);
+                    var numEnd = cursor;
+                    var num = ValueOrDefault(r5);
+                    if (r5 != null)
+                    {
+                        IParseResult<string> r6 = null;
+                        r6 = this.ParseLiteral(ref cursor, "}");
+                        if (r6 != null)
+                        {
+                            r0 = this.ReturnHelper(startCursor3, cursor, () =>  new Quantifier(min: num, max: num) );
+                        }
+                        else
+                        {
+                            cursor = startCursor3;
+                        }
+                    }
+                    else
+                    {
+                        cursor = startCursor3;
+                    }
+                }
+                else
+                {
+                    cursor = startCursor3;
+                }
+            }
+            if (r0 == null)
+            {
+                var startCursor4 = cursor;
+                IParseResult<string> r7 = null;
+                r7 = this.ParseLiteral(ref cursor, "{");
+                if (r7 != null)
+                {
+                    IParseResult<int> r8 = null;
+                    var minStart = cursor;
+                    r8 = this.DecimalDigits(ref cursor);
+                    var minEnd = cursor;
+                    var min = ValueOrDefault(r8);
+                    if (r8 != null)
+                    {
+                        IParseResult<string> r9 = null;
+                        r9 = this.ParseLiteral(ref cursor, ",");
+                        if (r9 != null)
+                        {
+                            IParseResult<string> r10 = null;
+                            r10 = this.ParseLiteral(ref cursor, "}");
+                            if (r10 != null)
+                            {
+                                r0 = this.ReturnHelper(startCursor4, cursor, () =>  new Quantifier(min) );
+                            }
+                            else
+                            {
+                                cursor = startCursor4;
+                            }
+                        }
+                        else
+                        {
+                            cursor = startCursor4;
+                        }
+                    }
+                    else
+                    {
+                        cursor = startCursor4;
+                    }
+                }
+                else
+                {
+                    cursor = startCursor4;
+                }
+            }
+            if (r0 == null)
+            {
+                var startCursor5 = cursor;
+                IParseResult<string> r11 = null;
+                r11 = this.ParseLiteral(ref cursor, "{");
+                if (r11 != null)
+                {
+                    IParseResult<int> r12 = null;
+                    var minStart = cursor;
+                    r12 = this.DecimalDigits(ref cursor);
+                    var minEnd = cursor;
+                    var min = ValueOrDefault(r12);
+                    if (r12 != null)
+                    {
+                        IParseResult<string> r13 = null;
+                        r13 = this.ParseLiteral(ref cursor, ",");
+                        if (r13 != null)
+                        {
+                            IParseResult<int> r14 = null;
+                            var maxStart = cursor;
+                            r14 = this.DecimalDigits(ref cursor);
+                            var maxEnd = cursor;
+                            var max = ValueOrDefault(r14);
+                            if (r14 != null)
+                            {
+                                IParseResult<string> r15 = null;
+                                r15 = this.ParseLiteral(ref cursor, "}");
+                                if (r15 != null)
+                                {
+                                    r0 = this.ReturnHelper(startCursor5, cursor, () =>  new Quantifier(min, max) );
+                                }
+                                else
+                                {
+                                    cursor = startCursor5;
+                                }
+                            }
+                            else
+                            {
+                                cursor = startCursor5;
+                            }
+                        }
+                        else
+                        {
+                            cursor = startCursor5;
+                        }
+                    }
+                    else
+                    {
+                        cursor = startCursor5;
+                    }
+                }
+                else
+                {
+                    cursor = startCursor5;
+                }
+            }
+            this.storage[storageKey] = r0;
             return r0;
         }
 
@@ -1136,18 +1202,21 @@ namespace RegexLib.Parsers.JavaScript
             return r0;
         }
 
-        private IParseResult<IList<string>> DecimalDigits(ref Cursor cursor)
+        private IParseResult<int> DecimalDigits(ref Cursor cursor)
         {
-            IParseResult<IList<string>> r0 = null;
+            IParseResult<int> r0 = null;
             var startCursor0 = cursor;
+            IParseResult<IList<string>> r1 = null;
+            var digitsStart = cursor;
+            var startCursor1 = cursor;
             var l0 = new List<string>();
             while (true)
             {
-                IParseResult<string> r1 = null;
-                r1 = this.DecimalDigit(ref cursor);
-                if (r1 != null)
+                IParseResult<string> r2 = null;
+                r2 = this.DecimalDigit(ref cursor);
+                if (r2 != null)
                 {
-                    l0.Add(r1.Value);
+                    l0.Add(r2.Value);
                 }
                 else
                 {
@@ -1156,7 +1225,17 @@ namespace RegexLib.Parsers.JavaScript
             }
             if (l0.Count >= 1)
             {
-                r0 = new ParseResult<IList<string>>(startCursor0, cursor, l0.AsReadOnly());
+                r1 = new ParseResult<IList<string>>(startCursor1, cursor, l0.AsReadOnly());
+            }
+            else
+            {
+                cursor = startCursor1;
+            }
+            var digitsEnd = cursor;
+            var digits = ValueOrDefault(r1);
+            if (r1 != null)
+            {
+                r0 = this.ReturnHelper(startCursor0, cursor, () =>  int.Parse(string.Concat(digits)) );
             }
             else
             {
@@ -1186,12 +1265,12 @@ namespace RegexLib.Parsers.JavaScript
                 r1 = this.NonZeroDigit(ref cursor);
                 if (r1 != null)
                 {
-                    IParseResult<IList<IList<string>>> r2 = null;
+                    IParseResult<IList<int>> r2 = null;
                     var startCursor1 = cursor;
-                    var l0 = new List<IList<string>>();
+                    var l0 = new List<int>();
                     while (l0.Count < 1)
                     {
-                        IParseResult<IList<string>> r3 = null;
+                        IParseResult<int> r3 = null;
                         r3 = this.DecimalDigits(ref cursor);
                         if (r3 != null)
                         {
@@ -1204,7 +1283,7 @@ namespace RegexLib.Parsers.JavaScript
                     }
                     if (l0.Count >= 0)
                     {
-                        r2 = new ParseResult<IList<IList<string>>>(startCursor1, cursor, l0.AsReadOnly());
+                        r2 = new ParseResult<IList<int>>(startCursor1, cursor, l0.AsReadOnly());
                     }
                     else
                     {

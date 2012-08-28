@@ -47,6 +47,7 @@
     <Compile Include="Parsers\JavaScript\JavaScriptRegExpParser.peg.cs">
       <DependentUpon>JavaScriptRegExpParser.peg</DependentUpon>
     </Compile>
+    <Compile Include="Parsers\Quantifier.cs" />
     <Compile Include="Pegasus.Common\Cursor.cs" />
     <Compile Include="Pegasus.Common\IParseResult.cs" />
     <Compile Include="Pegasus.Common\ParseResult.cs" />

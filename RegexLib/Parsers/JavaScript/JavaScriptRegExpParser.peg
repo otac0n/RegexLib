@@ -55,14 +55,17 @@ Assertion
   / "(?=" Disjunction ")"
   / "(?!" Disjunction ")"
 
-Quantifier
-  = QuantifierPrefix "?"?
+Quantifier <Quantifier>
+  = q:QuantifierPrefix "?" { new Quantifier(q.Min, q.Max, eager: false) }
+  / QuantifierPrefix
 
-QuantifierPrefix
-  = "*"
-  / "+"
-  / "?"
-  / "{" DecimalDigits ("," DecimalDigits?)? "}"
+QuantifierPrefix <Quantifier> -memoize
+  = "*"                                             { new Quantifier(min: 0) }
+  / "+"                                             { new Quantifier(min: 1) }
+  / "?"                                             { new Quantifier(min: 0, max: 1) }
+  / "{" num:DecimalDigits                       "}" { new Quantifier(min: num, max: num) }
+  / "{" min:DecimalDigits ","                   "}" { new Quantifier(min) }
+  / "{" min:DecimalDigits "," max:DecimalDigits "}" { new Quantifier(min, max) }
 
 Atom
   = PatternCharacter
@@ -138,8 +141,8 @@ ClassEscape
 DecimalDigit
   = [0-9]
 
-DecimalDigits
-  = DecimalDigit+
+DecimalDigits <int>
+  = digits:DecimalDigit+ { int.Parse(string.Concat(digits)) }
 
 SourceCharacter
   = .
