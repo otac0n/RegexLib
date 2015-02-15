@@ -11,8 +11,10 @@ namespace RegexLib.Parsers.JavaScript
 {
     using System;
     using System.Collections.Generic;
-    using Pegasus.Common;
     using System.Globalization;
+    using System.Linq;
+    using Pegasus.Common;
+    using CharacterRange = RegexLib.CharacterClassNode.CharacterRange;
 
     [System.CodeDom.Compiler.GeneratedCode("Pegasus", "1.0.0.0")]
     internal partial class JavaScriptRegExpParser
@@ -46,7 +48,7 @@ namespace RegexLib.Parsers.JavaScript
 
 
         private Dictionary<string, object> storage;
-        public string Parse(string subject, string fileName = null)
+        public RegexNode Parse(string subject, string fileName = null)
         {
             try
             {
@@ -65,33 +67,38 @@ namespace RegexLib.Parsers.JavaScript
             }
         }
 
-        private IParseResult<string> Pattern(ref Cursor cursor)
+        private IParseResult<RegexNode> Pattern(ref Cursor cursor)
         {
-            IParseResult<string> r0 = null;
+            IParseResult<RegexNode> r0 = null;
             r0 = this.Disjunction(ref cursor);
             return r0;
         }
 
-        private IParseResult<string> Disjunction(ref Cursor cursor)
+        private IParseResult<RegexNode> Disjunction(ref Cursor cursor)
         {
-            IParseResult<string> r0 = null;
+            IParseResult<RegexNode> r0 = null;
             if (r0 == null)
             {
                 var startCursor0 = cursor;
-                IParseResult<string> r1 = null;
+                IParseResult<RegexNode> r1 = null;
+                var firstStart = cursor;
                 r1 = this.Alternative(ref cursor);
+                var firstEnd = cursor;
+                var first = ValueOrDefault(r1);
                 if (r1 != null)
                 {
                     IParseResult<string> r2 = null;
                     r2 = this.ParseLiteral(ref cursor, "|");
                     if (r2 != null)
                     {
-                        IParseResult<string> r3 = null;
+                        IParseResult<RegexNode> r3 = null;
+                        var restStart = cursor;
                         r3 = this.Disjunction(ref cursor);
+                        var restEnd = cursor;
+                        var rest = ValueOrDefault(r3);
                         if (r3 != null)
                         {
-                            var len = cursor.Location - startCursor0.Location;
-                            r0 = new ParseResult<string>(startCursor0, cursor, cursor.Subject.Substring(startCursor0.Location, len));
+                            r0 = this.ReturnHelper(startCursor0, cursor, () =>  new AlternationNode(first, rest) );
                         }
                         else
                         {
@@ -115,22 +122,53 @@ namespace RegexLib.Parsers.JavaScript
             return r0;
         }
 
-        private IParseResult<string> Alternative(ref Cursor cursor)
+        private IParseResult<RegexNode> Alternative(ref Cursor cursor)
         {
-            IParseResult<string> r0 = null;
+            IParseResult<RegexNode> r0 = null;
+            var storageKey = "Alternative:" + cursor.Location;
+            if (this.storage.ContainsKey(storageKey))
+            {
+                r0 = (IParseResult<RegexNode>)this.storage[storageKey];
+                if (r0 != null)
+                {
+                    cursor = r0.EndCursor;
+                }
+                return r0;
+            }
+            if (r0 == null)
+            {
+                r0 = this.Concatenation(ref cursor);
+            }
             if (r0 == null)
             {
                 var startCursor0 = cursor;
-                IParseResult<string> r1 = null;
+                r0 = this.ReturnHelper(startCursor0, cursor, () =>  new EmptyNode() );
+            }
+            this.storage[storageKey] = r0;
+            return r0;
+        }
+
+        private IParseResult<RegexNode> Concatenation(ref Cursor cursor)
+        {
+            IParseResult<RegexNode> r0 = null;
+            if (r0 == null)
+            {
+                var startCursor0 = cursor;
+                IParseResult<RegexNode> r1 = null;
+                var firstStart = cursor;
                 r1 = this.Term(ref cursor);
+                var firstEnd = cursor;
+                var first = ValueOrDefault(r1);
                 if (r1 != null)
                 {
-                    IParseResult<string> r2 = null;
-                    r2 = this.Alternative(ref cursor);
+                    IParseResult<RegexNode> r2 = null;
+                    var restStart = cursor;
+                    r2 = this.Concatenation(ref cursor);
+                    var restEnd = cursor;
+                    var rest = ValueOrDefault(r2);
                     if (r2 != null)
                     {
-                        var len = cursor.Location - startCursor0.Location;
-                        r0 = new ParseResult<string>(startCursor0, cursor, cursor.Subject.Substring(startCursor0.Location, len));
+                        r0 = this.ReturnHelper(startCursor0, cursor, () =>  new ConcatenationNode(first, rest) );
                     }
                     else
                     {
@@ -149,9 +187,19 @@ namespace RegexLib.Parsers.JavaScript
             return r0;
         }
 
-        private IParseResult<string> Term(ref Cursor cursor)
+        private IParseResult<RegexNode> Term(ref Cursor cursor)
         {
-            IParseResult<string> r0 = null;
+            IParseResult<RegexNode> r0 = null;
+            var storageKey = "Term:" + cursor.Location;
+            if (this.storage.ContainsKey(storageKey))
+            {
+                r0 = (IParseResult<RegexNode>)this.storage[storageKey];
+                if (r0 != null)
+                {
+                    cursor = r0.EndCursor;
+                }
+                return r0;
+            }
             if (r0 == null)
             {
                 r0 = this.Assertion(ref cursor);
@@ -159,38 +207,21 @@ namespace RegexLib.Parsers.JavaScript
             if (r0 == null)
             {
                 var startCursor0 = cursor;
-                IParseResult<string> r1 = null;
+                IParseResult<RegexNode> r1 = null;
+                var aStart = cursor;
                 r1 = this.Atom(ref cursor);
+                var aEnd = cursor;
+                var a = ValueOrDefault(r1);
                 if (r1 != null)
                 {
-                    IParseResult<IList<Quantifier>> r2 = null;
-                    var startCursor1 = cursor;
-                    var l0 = new List<Quantifier>();
-                    while (l0.Count < 1)
-                    {
-                        IParseResult<Quantifier> r3 = null;
-                        r3 = this.Quantifier(ref cursor);
-                        if (r3 != null)
-                        {
-                            l0.Add(r3.Value);
-                        }
-                        else
-                        {
-                            break;
-                        }
-                    }
-                    if (l0.Count >= 0)
-                    {
-                        r2 = new ParseResult<IList<Quantifier>>(startCursor1, cursor, l0.AsReadOnly());
-                    }
-                    else
-                    {
-                        cursor = startCursor1;
-                    }
+                    IParseResult<Quantifier> r2 = null;
+                    var qStart = cursor;
+                    r2 = this.Quantifier(ref cursor);
+                    var qEnd = cursor;
+                    var q = ValueOrDefault(r2);
                     if (r2 != null)
                     {
-                        var len = cursor.Location - startCursor0.Location;
-                        r0 = new ParseResult<string>(startCursor0, cursor, cursor.Subject.Substring(startCursor0.Location, len));
+                        r0 = this.ReturnHelper(startCursor0, cursor, () =>  new RepetitionNode(a, q.Min, q.Max, q.Eager) );
                     }
                     else
                     {
@@ -202,55 +233,25 @@ namespace RegexLib.Parsers.JavaScript
                     cursor = startCursor0;
                 }
             }
+            if (r0 == null)
+            {
+                r0 = this.Atom(ref cursor);
+            }
+            this.storage[storageKey] = r0;
             return r0;
         }
 
-        private IParseResult<string> Assertion(ref Cursor cursor)
+        private IParseResult<RegexNode> Assertion(ref Cursor cursor)
         {
-            IParseResult<string> r0 = null;
-            if (r0 == null)
-            {
-                r0 = this.ParseLiteral(ref cursor, "^");
-            }
-            if (r0 == null)
-            {
-                r0 = this.ParseLiteral(ref cursor, "$");
-            }
-            if (r0 == null)
-            {
-                r0 = this.ParseLiteral(ref cursor, "\b");
-            }
-            if (r0 == null)
-            {
-                r0 = this.ParseLiteral(ref cursor, "B");
-            }
+            IParseResult<RegexNode> r0 = null;
             if (r0 == null)
             {
                 var startCursor0 = cursor;
                 IParseResult<string> r1 = null;
-                r1 = this.ParseLiteral(ref cursor, "(?=");
+                r1 = this.ParseLiteral(ref cursor, "^");
                 if (r1 != null)
                 {
-                    IParseResult<string> r2 = null;
-                    r2 = this.Disjunction(ref cursor);
-                    if (r2 != null)
-                    {
-                        IParseResult<string> r3 = null;
-                        r3 = this.ParseLiteral(ref cursor, ")");
-                        if (r3 != null)
-                        {
-                            var len = cursor.Location - startCursor0.Location;
-                            r0 = new ParseResult<string>(startCursor0, cursor, cursor.Subject.Substring(startCursor0.Location, len));
-                        }
-                        else
-                        {
-                            cursor = startCursor0;
-                        }
-                    }
-                    else
-                    {
-                        cursor = startCursor0;
-                    }
+                    r0 = this.ReturnHelper(startCursor0, cursor, () =>  new StringStartAnchorNode() );
                 }
                 else
                 {
@@ -260,34 +261,107 @@ namespace RegexLib.Parsers.JavaScript
             if (r0 == null)
             {
                 var startCursor1 = cursor;
-                IParseResult<string> r4 = null;
-                r4 = this.ParseLiteral(ref cursor, "(?!");
-                if (r4 != null)
+                IParseResult<string> r2 = null;
+                r2 = this.ParseLiteral(ref cursor, "$");
+                if (r2 != null)
                 {
-                    IParseResult<string> r5 = null;
-                    r5 = this.Disjunction(ref cursor);
-                    if (r5 != null)
-                    {
-                        IParseResult<string> r6 = null;
-                        r6 = this.ParseLiteral(ref cursor, ")");
-                        if (r6 != null)
-                        {
-                            var len = cursor.Location - startCursor1.Location;
-                            r0 = new ParseResult<string>(startCursor1, cursor, cursor.Subject.Substring(startCursor1.Location, len));
-                        }
-                        else
-                        {
-                            cursor = startCursor1;
-                        }
-                    }
-                    else
-                    {
-                        cursor = startCursor1;
-                    }
+                    r0 = this.ReturnHelper(startCursor1, cursor, () =>  new StringEndAnchorNode() );
                 }
                 else
                 {
                     cursor = startCursor1;
+                }
+            }
+            if (r0 == null)
+            {
+                var startCursor2 = cursor;
+                IParseResult<string> r3 = null;
+                r3 = this.ParseLiteral(ref cursor, "\b");
+                if (r3 != null)
+                {
+                    r0 = this.ReturnHelper(startCursor2, cursor, () => { throw new NotImplementedException(); });
+                }
+                else
+                {
+                    cursor = startCursor2;
+                }
+            }
+            if (r0 == null)
+            {
+                var startCursor3 = cursor;
+                IParseResult<string> r4 = null;
+                r4 = this.ParseLiteral(ref cursor, "B");
+                if (r4 != null)
+                {
+                    r0 = this.ReturnHelper(startCursor3, cursor, () => { throw new NotImplementedException(); });
+                }
+                else
+                {
+                    cursor = startCursor3;
+                }
+            }
+            if (r0 == null)
+            {
+                var startCursor4 = cursor;
+                IParseResult<string> r5 = null;
+                r5 = this.ParseLiteral(ref cursor, "(?=");
+                if (r5 != null)
+                {
+                    IParseResult<RegexNode> r6 = null;
+                    r6 = this.Disjunction(ref cursor);
+                    if (r6 != null)
+                    {
+                        IParseResult<string> r7 = null;
+                        r7 = this.ParseLiteral(ref cursor, ")");
+                        if (r7 != null)
+                        {
+                            r0 = this.ReturnHelper(startCursor4, cursor, () => { throw new NotImplementedException(); });
+                        }
+                        else
+                        {
+                            cursor = startCursor4;
+                        }
+                    }
+                    else
+                    {
+                        cursor = startCursor4;
+                    }
+                }
+                else
+                {
+                    cursor = startCursor4;
+                }
+            }
+            if (r0 == null)
+            {
+                var startCursor5 = cursor;
+                IParseResult<string> r8 = null;
+                r8 = this.ParseLiteral(ref cursor, "(?!");
+                if (r8 != null)
+                {
+                    IParseResult<RegexNode> r9 = null;
+                    r9 = this.Disjunction(ref cursor);
+                    if (r9 != null)
+                    {
+                        IParseResult<string> r10 = null;
+                        r10 = this.ParseLiteral(ref cursor, ")");
+                        if (r10 != null)
+                        {
+                            r0 = this.ReturnHelper(startCursor5, cursor, () => { throw new NotImplementedException(); });
+                        }
+                        else
+                        {
+                            cursor = startCursor5;
+                        }
+                    }
+                    else
+                    {
+                        cursor = startCursor5;
+                    }
+                }
+                else
+                {
+                    cursor = startCursor5;
                 }
             }
             return r0;
@@ -391,7 +465,7 @@ namespace RegexLib.Parsers.JavaScript
                 r4 = this.ParseLiteral(ref cursor, "{");
                 if (r4 != null)
                 {
-                    IParseResult<int> r5 = null;
+                    IParseResult<string> r5 = null;
                     var numStart = cursor;
                     r5 = this.DecimalDigits(ref cursor);
                     var numEnd = cursor;
@@ -402,7 +476,7 @@ namespace RegexLib.Parsers.JavaScript
                         r6 = this.ParseLiteral(ref cursor, "}");
                         if (r6 != null)
                         {
-                            r0 = this.ReturnHelper(startCursor3, cursor, () =>  new Quantifier(min: num, max: num) );
+                            r0 = this.ReturnHelper(startCursor3, cursor, () => { var numValue = int.Parse(num); return new Quantifier(min: numValue, max: numValue); });
                         }
                         else
                         {
@@ -426,7 +500,7 @@ namespace RegexLib.Parsers.JavaScript
                 r7 = this.ParseLiteral(ref cursor, "{");
                 if (r7 != null)
                 {
-                    IParseResult<int> r8 = null;
+                    IParseResult<string> r8 = null;
                     var minStart = cursor;
                     r8 = this.DecimalDigits(ref cursor);
                     var minEnd = cursor;
@@ -441,7 +515,7 @@ namespace RegexLib.Parsers.JavaScript
                             r10 = this.ParseLiteral(ref cursor, "}");
                             if (r10 != null)
                             {
-                                r0 = this.ReturnHelper(startCursor4, cursor, () =>  new Quantifier(min) );
+                                r0 = this.ReturnHelper(startCursor4, cursor, () => { var minValue = int.Parse(min); return new Quantifier(minValue); });
                             }
                             else
                             {
@@ -470,7 +544,7 @@ namespace RegexLib.Parsers.JavaScript
                 r11 = this.ParseLiteral(ref cursor, "{");
                 if (r11 != null)
                 {
-                    IParseResult<int> r12 = null;
+                    IParseResult<string> r12 = null;
                     var minStart = cursor;
                     r12 = this.DecimalDigits(ref cursor);
                     var minEnd = cursor;
@@ -481,7 +555,7 @@ namespace RegexLib.Parsers.JavaScript
                         r13 = this.ParseLiteral(ref cursor, ",");
                         if (r13 != null)
                         {
-                            IParseResult<int> r14 = null;
+                            IParseResult<string> r14 = null;
                             var maxStart = cursor;
                             r14 = this.DecimalDigits(ref cursor);
                             var maxEnd = cursor;
@@ -492,7 +566,7 @@ namespace RegexLib.Parsers.JavaScript
                                 r15 = this.ParseLiteral(ref cursor, "}");
                                 if (r15 != null)
                                 {
-                                    r0 = this.ReturnHelper(startCursor5, cursor, () =>  new Quantifier(min, max) );
+                                    r0 = this.ReturnHelper(startCursor5, cursor, () => { var minValue = int.Parse(min); var maxValue = int.Parse(max); return new Quantifier(minValue, maxValue); });
                                 }
                                 else
                                 {
@@ -523,35 +597,30 @@ namespace RegexLib.Parsers.JavaScript
             return r0;
         }
 
-        private IParseResult<string> Atom(ref Cursor cursor)
+        private IParseResult<RegexNode> Atom(ref Cursor cursor)
         {
-            IParseResult<string> r0 = null;
-            if (r0 == null)
+            IParseResult<RegexNode> r0 = null;
+            var storageKey = "Atom:" + cursor.Location;
+            if (this.storage.ContainsKey(storageKey))
             {
-                r0 = this.PatternCharacter(ref cursor);
-            }
-            if (r0 == null)
-            {
-                r0 = this.ParseLiteral(ref cursor, ".");
+                r0 = (IParseResult<RegexNode>)this.storage[storageKey];
+                if (r0 != null)
+                {
+                    cursor = r0.EndCursor;
+                }
+                return r0;
             }
             if (r0 == null)
             {
                 var startCursor0 = cursor;
-                IParseResult<string> r1 = null;
-                r1 = this.ParseLiteral(ref cursor, "\\");
+                IParseResult<char> r1 = null;
+                var cStart = cursor;
+                r1 = this.PatternCharacter(ref cursor);
+                var cEnd = cursor;
+                var c = ValueOrDefault(r1);
                 if (r1 != null)
                 {
-                    IParseResult<string> r2 = null;
-                    r2 = this.AtomEscape(ref cursor);
-                    if (r2 != null)
-                    {
-                        var len = cursor.Location - startCursor0.Location;
-                        r0 = new ParseResult<string>(startCursor0, cursor, cursor.Subject.Substring(startCursor0.Location, len));
-                    }
-                    else
-                    {
-                        cursor = startCursor0;
-                    }
+                    r0 = this.ReturnHelper(startCursor0, cursor, () =>  new CharacterClassNode(c, c) );
                 }
                 else
                 {
@@ -560,35 +629,12 @@ namespace RegexLib.Parsers.JavaScript
             }
             if (r0 == null)
             {
-                r0 = this.CharacterClass(ref cursor);
-            }
-            if (r0 == null)
-            {
                 var startCursor1 = cursor;
-                IParseResult<string> r3 = null;
-                r3 = this.ParseLiteral(ref cursor, "(");
-                if (r3 != null)
+                IParseResult<string> r2 = null;
+                r2 = this.ParseLiteral(ref cursor, ".");
+                if (r2 != null)
                 {
-                    IParseResult<string> r4 = null;
-                    r4 = this.Disjunction(ref cursor);
-                    if (r4 != null)
-                    {
-                        IParseResult<string> r5 = null;
-                        r5 = this.ParseLiteral(ref cursor, ")");
-                        if (r5 != null)
-                        {
-                            var len = cursor.Location - startCursor1.Location;
-                            r0 = new ParseResult<string>(startCursor1, cursor, cursor.Subject.Substring(startCursor1.Location, len));
-                        }
-                        else
-                        {
-                            cursor = startCursor1;
-                        }
-                    }
-                    else
-                    {
-                        cursor = startCursor1;
-                    }
+                    r0 = this.ReturnHelper(startCursor1, cursor, () =>  new CharacterClassNode() );
                 }
                 else
                 {
@@ -598,25 +644,18 @@ namespace RegexLib.Parsers.JavaScript
             if (r0 == null)
             {
                 var startCursor2 = cursor;
-                IParseResult<string> r6 = null;
-                r6 = this.ParseLiteral(ref cursor, "(?:");
-                if (r6 != null)
+                IParseResult<string> r3 = null;
+                r3 = this.ParseLiteral(ref cursor, "\\");
+                if (r3 != null)
                 {
-                    IParseResult<string> r7 = null;
-                    r7 = this.Disjunction(ref cursor);
-                    if (r7 != null)
+                    IParseResult<char> r4 = null;
+                    var cStart = cursor;
+                    r4 = this.AtomEscape(ref cursor);
+                    var cEnd = cursor;
+                    var c = ValueOrDefault(r4);
+                    if (r4 != null)
                     {
-                        IParseResult<string> r8 = null;
-                        r8 = this.ParseLiteral(ref cursor, ")");
-                        if (r8 != null)
-                        {
-                            var len = cursor.Location - startCursor2.Location;
-                            r0 = new ParseResult<string>(startCursor2, cursor, cursor.Subject.Substring(startCursor2.Location, len));
-                        }
-                        else
-                        {
-                            cursor = startCursor2;
-                        }
+                        r0 = this.ReturnHelper(startCursor2, cursor, () =>  new CharacterClassNode(c, c) );
                     }
                     else
                     {
@@ -628,12 +667,87 @@ namespace RegexLib.Parsers.JavaScript
                     cursor = startCursor2;
                 }
             }
+            if (r0 == null)
+            {
+                r0 = this.CharacterClass(ref cursor);
+            }
+            if (r0 == null)
+            {
+                var startCursor3 = cursor;
+                IParseResult<string> r5 = null;
+                r5 = this.ParseLiteral(ref cursor, "(");
+                if (r5 != null)
+                {
+                    IParseResult<RegexNode> r6 = null;
+                    var dStart = cursor;
+                    r6 = this.Disjunction(ref cursor);
+                    var dEnd = cursor;
+                    var d = ValueOrDefault(r6);
+                    if (r6 != null)
+                    {
+                        IParseResult<string> r7 = null;
+                        r7 = this.ParseLiteral(ref cursor, ")");
+                        if (r7 != null)
+                        {
+                            r0 = this.ReturnHelper(startCursor3, cursor, () =>  d );
+                        }
+                        else
+                        {
+                            cursor = startCursor3;
+                        }
+                    }
+                    else
+                    {
+                        cursor = startCursor3;
+                    }
+                }
+                else
+                {
+                    cursor = startCursor3;
+                }
+            }
+            if (r0 == null)
+            {
+                var startCursor4 = cursor;
+                IParseResult<string> r8 = null;
+                r8 = this.ParseLiteral(ref cursor, "(?:");
+                if (r8 != null)
+                {
+                    IParseResult<RegexNode> r9 = null;
+                    var dStart = cursor;
+                    r9 = this.Disjunction(ref cursor);
+                    var dEnd = cursor;
+                    var d = ValueOrDefault(r9);
+                    if (r9 != null)
+                    {
+                        IParseResult<string> r10 = null;
+                        r10 = this.ParseLiteral(ref cursor, ")");
+                        if (r10 != null)
+                        {
+                            r0 = this.ReturnHelper(startCursor4, cursor, () =>  d );
+                        }
+                        else
+                        {
+                            cursor = startCursor4;
+                        }
+                    }
+                    else
+                    {
+                        cursor = startCursor4;
+                    }
+                }
+                else
+                {
+                    cursor = startCursor4;
+                }
+            }
+            this.storage[storageKey] = r0;
             return r0;
         }
 
-        private IParseResult<string> PatternCharacter(ref Cursor cursor)
+        private IParseResult<char> PatternCharacter(ref Cursor cursor)
         {
-            IParseResult<string> r0 = null;
+            IParseResult<char> r0 = null;
             var startCursor0 = cursor;
             IParseResult<string> r1 = null;
             var startCursor1 = cursor;
@@ -646,12 +760,14 @@ namespace RegexLib.Parsers.JavaScript
             }
             if (r1 != null)
             {
-                IParseResult<string> r3 = null;
+                IParseResult<char> r3 = null;
+                var cStart = cursor;
                 r3 = this.SourceCharacter(ref cursor);
+                var cEnd = cursor;
+                var c = ValueOrDefault(r3);
                 if (r3 != null)
                 {
-                    var len = cursor.Location - startCursor0.Location;
-                    r0 = new ParseResult<string>(startCursor0, cursor, cursor.Subject.Substring(startCursor0.Location, len));
+                    r0 = this.ReturnHelper(startCursor0, cursor, () =>  c );
                 }
                 else
                 {
@@ -665,9 +781,9 @@ namespace RegexLib.Parsers.JavaScript
             return r0;
         }
 
-        private IParseResult<string> AtomEscape(ref Cursor cursor)
+        private IParseResult<char> AtomEscape(ref Cursor cursor)
         {
-            IParseResult<string> r0 = null;
+            IParseResult<char> r0 = null;
             if (r0 == null)
             {
                 r0 = this.DecimalEscape(ref cursor);
@@ -683,9 +799,9 @@ namespace RegexLib.Parsers.JavaScript
             return r0;
         }
 
-        private IParseResult<string> CharacterEscape(ref Cursor cursor)
+        private IParseResult<char> CharacterEscape(ref Cursor cursor)
         {
-            IParseResult<string> r0 = null;
+            IParseResult<char> r0 = null;
             if (r0 == null)
             {
                 r0 = this.ControlEscape(ref cursor);
@@ -697,12 +813,14 @@ namespace RegexLib.Parsers.JavaScript
                 r1 = this.ParseLiteral(ref cursor, "c");
                 if (r1 != null)
                 {
-                    IParseResult<string> r2 = null;
+                    IParseResult<char> r2 = null;
+                    var cStart = cursor;
                     r2 = this.ControlLetter(ref cursor);
+                    var cEnd = cursor;
+                    var c = ValueOrDefault(r2);
                     if (r2 != null)
                     {
-                        var len = cursor.Location - startCursor0.Location;
-                        r0 = new ParseResult<string>(startCursor0, cursor, cursor.Subject.Substring(startCursor0.Location, len));
+                        r0 = this.ReturnHelper(startCursor0, cursor, () =>  c );
                     }
                     else
                     {
@@ -729,23 +847,105 @@ namespace RegexLib.Parsers.JavaScript
             return r0;
         }
 
-        private IParseResult<string> ControlEscape(ref Cursor cursor)
+        private IParseResult<char> ControlEscape(ref Cursor cursor)
         {
-            IParseResult<string> r0 = null;
-            r0 = this.ParseClass(ref cursor, "ffnnrrttvv");
+            IParseResult<char> r0 = null;
+            if (r0 == null)
+            {
+                var startCursor0 = cursor;
+                IParseResult<string> r1 = null;
+                r1 = this.ParseLiteral(ref cursor, "t");
+                if (r1 != null)
+                {
+                    r0 = this.ReturnHelper(startCursor0, cursor, () =>  '\u0009' );
+                }
+                else
+                {
+                    cursor = startCursor0;
+                }
+            }
+            if (r0 == null)
+            {
+                var startCursor1 = cursor;
+                IParseResult<string> r2 = null;
+                r2 = this.ParseLiteral(ref cursor, "n");
+                if (r2 != null)
+                {
+                    r0 = this.ReturnHelper(startCursor1, cursor, () =>  '\u000A' );
+                }
+                else
+                {
+                    cursor = startCursor1;
+                }
+            }
+            if (r0 == null)
+            {
+                var startCursor2 = cursor;
+                IParseResult<string> r3 = null;
+                r3 = this.ParseLiteral(ref cursor, "v");
+                if (r3 != null)
+                {
+                    r0 = this.ReturnHelper(startCursor2, cursor, () =>  '\u000B' );
+                }
+                else
+                {
+                    cursor = startCursor2;
+                }
+            }
+            if (r0 == null)
+            {
+                var startCursor3 = cursor;
+                IParseResult<string> r4 = null;
+                r4 = this.ParseLiteral(ref cursor, "f");
+                if (r4 != null)
+                {
+                    r0 = this.ReturnHelper(startCursor3, cursor, () =>  '\u000C' );
+                }
+                else
+                {
+                    cursor = startCursor3;
+                }
+            }
+            if (r0 == null)
+            {
+                var startCursor4 = cursor;
+                IParseResult<string> r5 = null;
+                r5 = this.ParseLiteral(ref cursor, "r");
+                if (r5 != null)
+                {
+                    r0 = this.ReturnHelper(startCursor4, cursor, () =>  '\u000D' );
+                }
+                else
+                {
+                    cursor = startCursor4;
+                }
+            }
             return r0;
         }
 
-        private IParseResult<string> ControlLetter(ref Cursor cursor)
+        private IParseResult<char> ControlLetter(ref Cursor cursor)
         {
-            IParseResult<string> r0 = null;
-            r0 = this.ParseClass(ref cursor, "azAZ");
+            IParseResult<char> r0 = null;
+            var startCursor0 = cursor;
+            IParseResult<string> r1 = null;
+            var cStart = cursor;
+            r1 = this.ParseClass(ref cursor, "azAZ");
+            var cEnd = cursor;
+            var c = ValueOrDefault(r1);
+            if (r1 != null)
+            {
+                r0 = this.ReturnHelper(startCursor0, cursor, () =>  (char)((int)c[0] % 32) );
+            }
+            else
+            {
+                cursor = startCursor0;
+            }
             return r0;
         }
 
-        private IParseResult<string> IdentityEscape(ref Cursor cursor)
+        private IParseResult<char> IdentityEscape(ref Cursor cursor)
         {
-            IParseResult<string> r0 = null;
+            IParseResult<char> r0 = null;
             if (r0 == null)
             {
                 var startCursor0 = cursor;
@@ -760,116 +960,14 @@ namespace RegexLib.Parsers.JavaScript
                 }
                 if (r1 != null)
                 {
-                    IParseResult<string> r3 = null;
+                    IParseResult<char> r3 = null;
+                    var cStart = cursor;
                     r3 = this.SourceCharacter(ref cursor);
+                    var cEnd = cursor;
+                    var c = ValueOrDefault(r3);
                     if (r3 != null)
                     {
-                        var len = cursor.Location - startCursor0.Location;
-                        r0 = new ParseResult<string>(startCursor0, cursor, cursor.Subject.Substring(startCursor0.Location, len));
-                    }
-                    else
-                    {
-                        cursor = startCursor0;
-                    }
-                }
-                else
-                {
-                    cursor = startCursor0;
-                }
-            }
-            if (r0 == null)
-            {
-                r0 = this.ParseLiteral(ref cursor, "\u200d");
-            }
-            if (r0 == null)
-            {
-                r0 = this.ParseLiteral(ref cursor, "\u200c");
-            }
-            return r0;
-        }
-
-        private IParseResult<string> DecimalEscape(ref Cursor cursor)
-        {
-            IParseResult<string> r0 = null;
-            var startCursor0 = cursor;
-            IParseResult<string> r1 = null;
-            r1 = this.DecimalIntegerLiteral(ref cursor);
-            if (r1 != null)
-            {
-                IParseResult<string> r2 = null;
-                var startCursor1 = cursor;
-                IParseResult<string> r3 = null;
-                r3 = this.DecimalDigit(ref cursor);
-                cursor = startCursor1;
-                if (r3 == null)
-                {
-                    r2 = new ParseResult<string>(cursor, cursor, string.Empty);
-                }
-                if (r2 != null)
-                {
-                    var len = cursor.Location - startCursor0.Location;
-                    r0 = new ParseResult<string>(startCursor0, cursor, cursor.Subject.Substring(startCursor0.Location, len));
-                }
-                else
-                {
-                    cursor = startCursor0;
-                }
-            }
-            else
-            {
-                cursor = startCursor0;
-            }
-            return r0;
-        }
-
-        private IParseResult<string> CharacterClassEscape(ref Cursor cursor)
-        {
-            IParseResult<string> r0 = null;
-            r0 = this.ParseClass(ref cursor, "ddDDssSSwwWW");
-            return r0;
-        }
-
-        private IParseResult<string> CharacterClass(ref Cursor cursor)
-        {
-            IParseResult<string> r0 = null;
-            if (r0 == null)
-            {
-                var startCursor0 = cursor;
-                IParseResult<string> r1 = null;
-                r1 = this.ParseLiteral(ref cursor, "[");
-                if (r1 != null)
-                {
-                    IParseResult<string> r2 = null;
-                    var startCursor1 = cursor;
-                    IParseResult<string> r3 = null;
-                    r3 = this.ParseLiteral(ref cursor, "^");
-                    cursor = startCursor1;
-                    if (r3 == null)
-                    {
-                        r2 = new ParseResult<string>(cursor, cursor, string.Empty);
-                    }
-                    if (r2 != null)
-                    {
-                        IParseResult<IList<string>> r4 = null;
-                        r4 = this.ClassRanges(ref cursor);
-                        if (r4 != null)
-                        {
-                            IParseResult<string> r5 = null;
-                            r5 = this.ParseLiteral(ref cursor, "]");
-                            if (r5 != null)
-                            {
-                                var len = cursor.Location - startCursor0.Location;
-                                r0 = new ParseResult<string>(startCursor0, cursor, cursor.Subject.Substring(startCursor0.Location, len));
-                            }
-                            else
-                            {
-                                cursor = startCursor0;
-                            }
-                        }
-                        else
-                        {
-                            cursor = startCursor0;
-                        }
+                        r0 = this.ReturnHelper(startCursor0, cursor, () =>  c );
                     }
                     else
                     {
@@ -884,60 +982,62 @@ namespace RegexLib.Parsers.JavaScript
             if (r0 == null)
             {
                 var startCursor2 = cursor;
-                IParseResult<string> r6 = null;
-                r6 = this.ParseLiteral(ref cursor, "[^");
-                if (r6 != null)
+                IParseResult<string> r4 = null;
+                r4 = this.ParseLiteral(ref cursor, "\u200d");
+                if (r4 != null)
                 {
-                    IParseResult<IList<string>> r7 = null;
-                    r7 = this.ClassRanges(ref cursor);
-                    if (r7 != null)
-                    {
-                        IParseResult<string> r8 = null;
-                        r8 = this.ParseLiteral(ref cursor, "]");
-                        if (r8 != null)
-                        {
-                            var len = cursor.Location - startCursor2.Location;
-                            r0 = new ParseResult<string>(startCursor2, cursor, cursor.Subject.Substring(startCursor2.Location, len));
-                        }
-                        else
-                        {
-                            cursor = startCursor2;
-                        }
-                    }
-                    else
-                    {
-                        cursor = startCursor2;
-                    }
+                    r0 = this.ReturnHelper(startCursor2, cursor, () =>  '\u200D' );
                 }
                 else
                 {
                     cursor = startCursor2;
                 }
             }
-            return r0;
-        }
-
-        private IParseResult<IList<string>> ClassRanges(ref Cursor cursor)
-        {
-            IParseResult<IList<string>> r0 = null;
-            var startCursor0 = cursor;
-            var l0 = new List<string>();
-            while (l0.Count < 1)
+            if (r0 == null)
             {
-                IParseResult<string> r1 = null;
-                r1 = this.NonemptyClassRanges(ref cursor);
-                if (r1 != null)
+                var startCursor3 = cursor;
+                IParseResult<string> r5 = null;
+                r5 = this.ParseLiteral(ref cursor, "\u200c");
+                if (r5 != null)
                 {
-                    l0.Add(r1.Value);
+                    r0 = this.ReturnHelper(startCursor3, cursor, () =>  '\u200C' );
                 }
                 else
                 {
-                    break;
+                    cursor = startCursor3;
                 }
             }
-            if (l0.Count >= 0)
+            return r0;
+        }
+
+        private IParseResult<object> DecimalEscape(ref Cursor cursor)
+        {
+            IParseResult<object> r0 = null;
+            var startCursor0 = cursor;
+            IParseResult<int> r1 = null;
+            var iStart = cursor;
+            r1 = this.DecimalIntegerLiteral(ref cursor);
+            var iEnd = cursor;
+            var i = ValueOrDefault(r1);
+            if (r1 != null)
             {
-                r0 = new ParseResult<IList<string>>(startCursor0, cursor, l0.AsReadOnly());
+                IParseResult<string> r2 = null;
+                var startCursor1 = cursor;
+                IParseResult<string> r3 = null;
+                r3 = this.DecimalDigit(ref cursor);
+                cursor = startCursor1;
+                if (r3 == null)
+                {
+                    r2 = new ParseResult<string>(cursor, cursor, string.Empty);
+                }
+                if (r2 != null)
+                {
+                    r0 = this.ReturnHelper(startCursor0, cursor, () =>  i == 0 ? (object)'\0' : (object)i );
+                }
+                else
+                {
+                    cursor = startCursor0;
+                }
             }
             else
             {
@@ -946,30 +1046,163 @@ namespace RegexLib.Parsers.JavaScript
             return r0;
         }
 
-        private IParseResult<string> NonemptyClassRanges(ref Cursor cursor)
+        private IParseResult<CharacterRange[]> CharacterClassEscape(ref Cursor cursor)
         {
-            IParseResult<string> r0 = null;
+            IParseResult<CharacterRange[]> r0 = null;
+            if (r0 == null)
+            {
+                r0 = this.ParseLiteral(ref cursor, "d");
+            }
+            if (r0 == null)
+            {
+                r0 = this.ParseLiteral(ref cursor, "D");
+            }
+            if (r0 == null)
+            {
+                r0 = this.ParseLiteral(ref cursor, "w");
+            }
+            if (r0 == null)
+            {
+                r0 = this.ParseLiteral(ref cursor, "W");
+            }
+            if (r0 == null)
+            {
+                r0 = this.ParseLiteral(ref cursor, "s");
+            }
+            if (r0 == null)
+            {
+                r0 = this.ParseLiteral(ref cursor, "S");
+            }
+            return r0;
+        }
+
+        private IParseResult<CharacterClassNode> CharacterClass(ref Cursor cursor)
+        {
+            IParseResult<CharacterClassNode> r0 = null;
+            var startCursor0 = cursor;
+            IParseResult<string> r1 = null;
+            r1 = this.ParseLiteral(ref cursor, "[");
+            if (r1 != null)
+            {
+                IParseResult<IList<string>> r2 = null;
+                var negStart = cursor;
+                var startCursor1 = cursor;
+                var l0 = new List<string>();
+                while (l0.Count < 1)
+                {
+                    IParseResult<string> r3 = null;
+                    r3 = this.ParseLiteral(ref cursor, "^");
+                    if (r3 != null)
+                    {
+                        l0.Add(r3.Value);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                if (l0.Count >= 0)
+                {
+                    r2 = new ParseResult<IList<string>>(startCursor1, cursor, l0.AsReadOnly());
+                }
+                else
+                {
+                    cursor = startCursor1;
+                }
+                var negEnd = cursor;
+                var neg = ValueOrDefault(r2);
+                if (r2 != null)
+                {
+                    IParseResult<IEnumerable<CharacterRange>> r4 = null;
+                    var rangesStart = cursor;
+                    r4 = this.ClassRanges(ref cursor);
+                    var rangesEnd = cursor;
+                    var ranges = ValueOrDefault(r4);
+                    if (r4 != null)
+                    {
+                        IParseResult<string> r5 = null;
+                        r5 = this.ParseLiteral(ref cursor, "]");
+                        if (r5 != null)
+                        {
+                            r0 = this.ReturnHelper(startCursor0, cursor, () =>  new CharacterClassNode(ranges /*, negated: neg.Any()*/) );
+                        }
+                        else
+                        {
+                            cursor = startCursor0;
+                        }
+                    }
+                    else
+                    {
+                        cursor = startCursor0;
+                    }
+                }
+                else
+                {
+                    cursor = startCursor0;
+                }
+            }
+            else
+            {
+                cursor = startCursor0;
+            }
+            return r0;
+        }
+
+        private IParseResult<IEnumerable<CharacterRange>> ClassRanges(ref Cursor cursor)
+        {
+            IParseResult<IEnumerable<CharacterRange>> r0 = null;
+            if (r0 == null)
+            {
+                r0 = this.NonemptyClassRanges(ref cursor);
+            }
             if (r0 == null)
             {
                 var startCursor0 = cursor;
-                IParseResult<string> r1 = null;
+                r0 = this.ReturnHelper(startCursor0, cursor, () =>  new CharacterRange[0] );
+            }
+            return r0;
+        }
+
+        private IParseResult<IEnumerable<CharacterRange>> NonemptyClassRanges(ref Cursor cursor)
+        {
+            IParseResult<IEnumerable<CharacterRange>> r0 = null;
+            if (r0 == null)
+            {
+                var startCursor0 = cursor;
+                IParseResult<CharacterRange[]> r1 = null;
+                var aStart = cursor;
                 r1 = this.ClassAtom(ref cursor);
+                var aEnd = cursor;
+                var a = ValueOrDefault(r1);
                 if (r1 != null)
                 {
                     IParseResult<string> r2 = null;
                     r2 = this.ParseLiteral(ref cursor, "-");
                     if (r2 != null)
                     {
-                        IParseResult<string> r3 = null;
+                        IParseResult<CharacterRange[]> r3 = null;
+                        var bStart = cursor;
                         r3 = this.ClassAtom(ref cursor);
+                        var bEnd = cursor;
+                        var b = ValueOrDefault(r3);
                         if (r3 != null)
                         {
-                            IParseResult<IList<string>> r4 = null;
+                            IParseResult<IEnumerable<CharacterRange>> r4 = null;
+                            var restStart = cursor;
                             r4 = this.ClassRanges(ref cursor);
+                            var restEnd = cursor;
+                            var rest = ValueOrDefault(r4);
                             if (r4 != null)
                             {
-                                var len = cursor.Location - startCursor0.Location;
-                                r0 = new ParseResult<string>(startCursor0, cursor, cursor.Subject.Substring(startCursor0.Location, len));
+                                r0 = this.ReturnHelper(startCursor0, cursor, () => {
+        if (a.Length > 1 || a[0].MinChar != a[0].MaxChar ||
+            b.Length > 1 || b[0].MinChar != b[0].MaxChar)
+        {
+            throw ExceptionHelper(aStart, () => "SyntaxError");
+        }
+
+        return new[] { new CharacterRange(a[0].MinChar, b[0].MinChar) }.Concat(rest);
+    });
                             }
                             else
                             {
@@ -994,16 +1227,21 @@ namespace RegexLib.Parsers.JavaScript
             if (r0 == null)
             {
                 var startCursor1 = cursor;
-                IParseResult<string> r5 = null;
+                IParseResult<CharacterRange[]> r5 = null;
+                var aStart = cursor;
                 r5 = this.ClassAtom(ref cursor);
+                var aEnd = cursor;
+                var a = ValueOrDefault(r5);
                 if (r5 != null)
                 {
-                    IParseResult<string> r6 = null;
+                    IParseResult<IEnumerable<CharacterRange>> r6 = null;
+                    var restStart = cursor;
                     r6 = this.NonemptyClassRangesNoDash(ref cursor);
+                    var restEnd = cursor;
+                    var rest = ValueOrDefault(r6);
                     if (r6 != null)
                     {
-                        var len = cursor.Location - startCursor1.Location;
-                        r0 = new ParseResult<string>(startCursor1, cursor, cursor.Subject.Substring(startCursor1.Location, len));
+                        r0 = this.ReturnHelper(startCursor1, cursor, () =>  a.Concat(rest) );
                     }
                     else
                     {
@@ -1017,93 +1255,130 @@ namespace RegexLib.Parsers.JavaScript
             }
             if (r0 == null)
             {
+                var aStart = cursor;
                 r0 = this.ClassAtom(ref cursor);
+                var aEnd = cursor;
+                var a = ValueOrDefault(r0);
             }
             return r0;
         }
 
-        private IParseResult<string> NonemptyClassRangesNoDash(ref Cursor cursor)
+        private IParseResult<IEnumerable<CharacterRange>> NonemptyClassRangesNoDash(ref Cursor cursor)
         {
-            IParseResult<string> r0 = null;
+            IParseResult<IEnumerable<CharacterRange>> r0 = null;
+            if (r0 == null)
+            {
+                var startCursor0 = cursor;
+                IParseResult<CharacterRange[]> r1 = null;
+                var aStart = cursor;
+                r1 = this.ClassAtomNoDash(ref cursor);
+                var aEnd = cursor;
+                var a = ValueOrDefault(r1);
+                if (r1 != null)
+                {
+                    IParseResult<string> r2 = null;
+                    r2 = this.ParseLiteral(ref cursor, "-");
+                    if (r2 != null)
+                    {
+                        IParseResult<CharacterRange[]> r3 = null;
+                        var bStart = cursor;
+                        r3 = this.ClassAtom(ref cursor);
+                        var bEnd = cursor;
+                        var b = ValueOrDefault(r3);
+                        if (r3 != null)
+                        {
+                            IParseResult<IEnumerable<CharacterRange>> r4 = null;
+                            var restStart = cursor;
+                            r4 = this.ClassRanges(ref cursor);
+                            var restEnd = cursor;
+                            var rest = ValueOrDefault(r4);
+                            if (r4 != null)
+                            {
+                                r0 = this.ReturnHelper(startCursor0, cursor, () => {
+        if (a.Length > 1 || a[0].MinChar != a[0].MaxChar ||
+            b.Length > 1 || b[0].MinChar != b[0].MaxChar)
+        {
+            throw ExceptionHelper(aStart, () => "SyntaxError");
+        }
+
+        return new[] { new CharacterRange(a[0].MinChar, b[0].MinChar) }.Concat(rest);
+    });
+                            }
+                            else
+                            {
+                                cursor = startCursor0;
+                            }
+                        }
+                        else
+                        {
+                            cursor = startCursor0;
+                        }
+                    }
+                    else
+                    {
+                        cursor = startCursor0;
+                    }
+                }
+                else
+                {
+                    cursor = startCursor0;
+                }
+            }
+            if (r0 == null)
+            {
+                var startCursor1 = cursor;
+                IParseResult<CharacterRange[]> r5 = null;
+                var aStart = cursor;
+                r5 = this.ClassAtomNoDash(ref cursor);
+                var aEnd = cursor;
+                var a = ValueOrDefault(r5);
+                if (r5 != null)
+                {
+                    IParseResult<IEnumerable<CharacterRange>> r6 = null;
+                    var restStart = cursor;
+                    r6 = this.NonemptyClassRangesNoDash(ref cursor);
+                    var restEnd = cursor;
+                    var rest = ValueOrDefault(r6);
+                    if (r6 != null)
+                    {
+                        r0 = this.ReturnHelper(startCursor1, cursor, () =>  a.Concat(rest) );
+                    }
+                    else
+                    {
+                        cursor = startCursor1;
+                    }
+                }
+                else
+                {
+                    cursor = startCursor1;
+                }
+            }
+            if (r0 == null)
+            {
+                var aStart = cursor;
+                r0 = this.ClassAtom(ref cursor);
+                var aEnd = cursor;
+                var a = ValueOrDefault(r0);
+            }
+            return r0;
+        }
+
+        private IParseResult<CharacterRange[]> ClassAtom(ref Cursor cursor)
+        {
+            IParseResult<CharacterRange[]> r0 = null;
             if (r0 == null)
             {
                 var startCursor0 = cursor;
                 IParseResult<string> r1 = null;
-                r1 = this.ClassAtomNoDash(ref cursor);
+                r1 = this.ParseLiteral(ref cursor, "-");
                 if (r1 != null)
                 {
-                    IParseResult<string> r2 = null;
-                    r2 = this.ParseLiteral(ref cursor, "-");
-                    if (r2 != null)
-                    {
-                        IParseResult<string> r3 = null;
-                        r3 = this.ClassAtom(ref cursor);
-                        if (r3 != null)
-                        {
-                            IParseResult<IList<string>> r4 = null;
-                            r4 = this.ClassRanges(ref cursor);
-                            if (r4 != null)
-                            {
-                                var len = cursor.Location - startCursor0.Location;
-                                r0 = new ParseResult<string>(startCursor0, cursor, cursor.Subject.Substring(startCursor0.Location, len));
-                            }
-                            else
-                            {
-                                cursor = startCursor0;
-                            }
-                        }
-                        else
-                        {
-                            cursor = startCursor0;
-                        }
-                    }
-                    else
-                    {
-                        cursor = startCursor0;
-                    }
+                    r0 = this.ReturnHelper(startCursor0, cursor, () =>  new[] { new CharacterRange('-', '-') } );
                 }
                 else
                 {
                     cursor = startCursor0;
                 }
-            }
-            if (r0 == null)
-            {
-                var startCursor1 = cursor;
-                IParseResult<string> r5 = null;
-                r5 = this.ClassAtomNoDash(ref cursor);
-                if (r5 != null)
-                {
-                    IParseResult<string> r6 = null;
-                    r6 = this.NonemptyClassRangesNoDash(ref cursor);
-                    if (r6 != null)
-                    {
-                        var len = cursor.Location - startCursor1.Location;
-                        r0 = new ParseResult<string>(startCursor1, cursor, cursor.Subject.Substring(startCursor1.Location, len));
-                    }
-                    else
-                    {
-                        cursor = startCursor1;
-                    }
-                }
-                else
-                {
-                    cursor = startCursor1;
-                }
-            }
-            if (r0 == null)
-            {
-                r0 = this.ClassAtom(ref cursor);
-            }
-            return r0;
-        }
-
-        private IParseResult<string> ClassAtom(ref Cursor cursor)
-        {
-            IParseResult<string> r0 = null;
-            if (r0 == null)
-            {
-                r0 = this.ParseLiteral(ref cursor, "-");
             }
             if (r0 == null)
             {
@@ -1112,9 +1387,9 @@ namespace RegexLib.Parsers.JavaScript
             return r0;
         }
 
-        private IParseResult<string> ClassAtomNoDash(ref Cursor cursor)
+        private IParseResult<CharacterRange[]> ClassAtomNoDash(ref Cursor cursor)
         {
-            IParseResult<string> r0 = null;
+            IParseResult<CharacterRange[]> r0 = null;
             if (r0 == null)
             {
                 var startCursor0 = cursor;
@@ -1129,12 +1404,14 @@ namespace RegexLib.Parsers.JavaScript
                 }
                 if (r1 != null)
                 {
-                    IParseResult<string> r3 = null;
+                    IParseResult<char> r3 = null;
+                    var cStart = cursor;
                     r3 = this.SourceCharacter(ref cursor);
+                    var cEnd = cursor;
+                    var c = ValueOrDefault(r3);
                     if (r3 != null)
                     {
-                        var len = cursor.Location - startCursor0.Location;
-                        r0 = new ParseResult<string>(startCursor0, cursor, cursor.Subject.Substring(startCursor0.Location, len));
+                        r0 = this.ReturnHelper(startCursor0, cursor, () =>  new[] { new CharacterRange(c, c) } );
                     }
                     else
                     {
@@ -1153,12 +1430,14 @@ namespace RegexLib.Parsers.JavaScript
                 r4 = this.ParseLiteral(ref cursor, "\\");
                 if (r4 != null)
                 {
-                    IParseResult<string> r5 = null;
+                    IParseResult<CharacterRange[]> r5 = null;
+                    var cStart = cursor;
                     r5 = this.ClassEscape(ref cursor);
+                    var cEnd = cursor;
+                    var c = ValueOrDefault(r5);
                     if (r5 != null)
                     {
-                        var len = cursor.Location - startCursor2.Location;
-                        r0 = new ParseResult<string>(startCursor2, cursor, cursor.Subject.Substring(startCursor2.Location, len));
+                        r0 = this.ReturnHelper(startCursor2, cursor, () =>  new[] { c } );
                     }
                     else
                     {
@@ -1173,24 +1452,93 @@ namespace RegexLib.Parsers.JavaScript
             return r0;
         }
 
-        private IParseResult<string> ClassEscape(ref Cursor cursor)
+        private IParseResult<CharacterRange[]> ClassEscape(ref Cursor cursor)
         {
-            IParseResult<string> r0 = null;
+            IParseResult<CharacterRange[]> r0 = null;
             if (r0 == null)
             {
-                r0 = this.DecimalEscape(ref cursor);
+                var startCursor0 = cursor;
+                IParseResult<object> r1 = null;
+                var eStart = cursor;
+                r1 = this.DecimalEscape(ref cursor);
+                var eEnd = cursor;
+                var e = ValueOrDefault(r1);
+                if (r1 != null)
+                {
+                    IParseResult<string> r2 = null;
+                    if (r2 == null)
+                    {
+                        if (e is char)
+                        {
+                            r2 = new ParseResult<string>(cursor, cursor, string.Empty);
+                        }
+                    }
+                    if (r2 == null)
+                    {
+                        var startCursor1 = cursor;
+                        throw this.ExceptionHelper(startCursor1, () =>  "A backreference is invalid in a character class." );
+                    }
+                    if (r2 != null)
+                    {
+                        r0 = this.ReturnHelper(startCursor0, cursor, () =>  new[] { new CharacterRange((char)e, (char)e) } );
+                    }
+                    else
+                    {
+                        cursor = startCursor0;
+                    }
+                }
+                else
+                {
+                    cursor = startCursor0;
+                }
             }
             if (r0 == null)
             {
-                r0 = this.ParseLiteral(ref cursor, "b");
+                var startCursor2 = cursor;
+                IParseResult<string> r3 = null;
+                r3 = this.ParseLiteral(ref cursor, "b");
+                if (r3 != null)
+                {
+                    r0 = this.ReturnHelper(startCursor2, cursor, () =>  new[] { new CharacterRange('\u0008', '\u0008') } );
+                }
+                else
+                {
+                    cursor = startCursor2;
+                }
             }
             if (r0 == null)
             {
-                r0 = this.CharacterEscape(ref cursor);
+                var startCursor3 = cursor;
+                IParseResult<char> r4 = null;
+                var cStart = cursor;
+                r4 = this.CharacterEscape(ref cursor);
+                var cEnd = cursor;
+                var c = ValueOrDefault(r4);
+                if (r4 != null)
+                {
+                    r0 = this.ReturnHelper(startCursor3, cursor, () =>  new[] { new CharacterRange(c, c) } );
+                }
+                else
+                {
+                    cursor = startCursor3;
+                }
             }
             if (r0 == null)
             {
-                r0 = this.CharacterClassEscape(ref cursor);
+                var startCursor4 = cursor;
+                IParseResult<CharacterRange[]> r5 = null;
+                var eStart = cursor;
+                r5 = this.CharacterClassEscape(ref cursor);
+                var eEnd = cursor;
+                var e = ValueOrDefault(r5);
+                if (r5 != null)
+                {
+                    r0 = this.ReturnHelper(startCursor4, cursor, () =>  new[] { e } );
+                }
+                else
+                {
+                    cursor = startCursor4;
+                }
             }
             return r0;
         }
@@ -1202,9 +1550,19 @@ namespace RegexLib.Parsers.JavaScript
             return r0;
         }
 
-        private IParseResult<int> DecimalDigits(ref Cursor cursor)
+        private IParseResult<string> DecimalDigits(ref Cursor cursor)
         {
-            IParseResult<int> r0 = null;
+            IParseResult<string> r0 = null;
+            var storageKey = "DecimalDigits:" + cursor.Location;
+            if (this.storage.ContainsKey(storageKey))
+            {
+                r0 = (IParseResult<string>)this.storage[storageKey];
+                if (r0 != null)
+                {
+                    cursor = r0.EndCursor;
+                }
+                return r0;
+            }
             var startCursor0 = cursor;
             IParseResult<IList<string>> r1 = null;
             var digitsStart = cursor;
@@ -1235,7 +1593,28 @@ namespace RegexLib.Parsers.JavaScript
             var digits = ValueOrDefault(r1);
             if (r1 != null)
             {
-                r0 = this.ReturnHelper(startCursor0, cursor, () =>  int.Parse(string.Concat(digits)) );
+                r0 = this.ReturnHelper(startCursor0, cursor, () =>  string.Concat(digits) );
+            }
+            else
+            {
+                cursor = startCursor0;
+            }
+            this.storage[storageKey] = r0;
+            return r0;
+        }
+
+        private IParseResult<char> SourceCharacter(ref Cursor cursor)
+        {
+            IParseResult<char> r0 = null;
+            var startCursor0 = cursor;
+            IParseResult<string> r1 = null;
+            var cStart = cursor;
+            r1 = this.ParseAny(ref cursor);
+            var cEnd = cursor;
+            var c = ValueOrDefault(r1);
+            if (r1 != null)
+            {
+                r0 = this.ReturnHelper(startCursor0, cursor, () =>  c[0] );
             }
             else
             {
@@ -1244,37 +1623,43 @@ namespace RegexLib.Parsers.JavaScript
             return r0;
         }
 
-        private IParseResult<string> SourceCharacter(ref Cursor cursor)
+        private IParseResult<int> DecimalIntegerLiteral(ref Cursor cursor)
         {
-            IParseResult<string> r0 = null;
-            r0 = this.ParseAny(ref cursor);
-            return r0;
-        }
-
-        private IParseResult<string> DecimalIntegerLiteral(ref Cursor cursor)
-        {
-            IParseResult<string> r0 = null;
-            if (r0 == null)
-            {
-                r0 = this.ParseLiteral(ref cursor, "0");
-            }
+            IParseResult<int> r0 = null;
             if (r0 == null)
             {
                 var startCursor0 = cursor;
                 IParseResult<string> r1 = null;
-                r1 = this.NonZeroDigit(ref cursor);
+                r1 = this.ParseLiteral(ref cursor, "0");
                 if (r1 != null)
                 {
-                    IParseResult<IList<int>> r2 = null;
-                    var startCursor1 = cursor;
-                    var l0 = new List<int>();
+                    r0 = this.ReturnHelper(startCursor0, cursor, () =>  0 );
+                }
+                else
+                {
+                    cursor = startCursor0;
+                }
+            }
+            if (r0 == null)
+            {
+                var startCursor1 = cursor;
+                IParseResult<string> r2 = null;
+                var digitsStart = cursor;
+                var startCursor2 = cursor;
+                IParseResult<string> r3 = null;
+                r3 = this.NonZeroDigit(ref cursor);
+                if (r3 != null)
+                {
+                    IParseResult<IList<string>> r4 = null;
+                    var startCursor3 = cursor;
+                    var l0 = new List<string>();
                     while (l0.Count < 1)
                     {
-                        IParseResult<int> r3 = null;
-                        r3 = this.DecimalDigits(ref cursor);
-                        if (r3 != null)
+                        IParseResult<string> r5 = null;
+                        r5 = this.DecimalDigits(ref cursor);
+                        if (r5 != null)
                         {
-                            l0.Add(r3.Value);
+                            l0.Add(r5.Value);
                         }
                         else
                         {
@@ -1283,53 +1668,76 @@ namespace RegexLib.Parsers.JavaScript
                     }
                     if (l0.Count >= 0)
                     {
-                        r2 = new ParseResult<IList<int>>(startCursor1, cursor, l0.AsReadOnly());
+                        r4 = new ParseResult<IList<string>>(startCursor3, cursor, l0.AsReadOnly());
                     }
                     else
                     {
-                        cursor = startCursor1;
+                        cursor = startCursor3;
                     }
-                    if (r2 != null)
+                    if (r4 != null)
                     {
-                        var len = cursor.Location - startCursor0.Location;
-                        r0 = new ParseResult<string>(startCursor0, cursor, cursor.Subject.Substring(startCursor0.Location, len));
+                        var len = cursor.Location - startCursor2.Location;
+                        r2 = new ParseResult<string>(startCursor2, cursor, cursor.Subject.Substring(startCursor2.Location, len));
                     }
                     else
                     {
-                        cursor = startCursor0;
+                        cursor = startCursor2;
                     }
                 }
                 else
                 {
-                    cursor = startCursor0;
+                    cursor = startCursor2;
+                }
+                var digitsEnd = cursor;
+                var digits = ValueOrDefault(r2);
+                if (r2 != null)
+                {
+                    r0 = this.ReturnHelper(startCursor1, cursor, () =>  int.Parse(digits) );
+                }
+                else
+                {
+                    cursor = startCursor1;
                 }
             }
             return r0;
         }
 
-        private IParseResult<string> HexEscapeSequence(ref Cursor cursor)
+        private IParseResult<char> HexEscapeSequence(ref Cursor cursor)
         {
-            IParseResult<string> r0 = null;
+            IParseResult<char> r0 = null;
             var startCursor0 = cursor;
             IParseResult<string> r1 = null;
             r1 = this.ParseLiteral(ref cursor, "x");
             if (r1 != null)
             {
                 IParseResult<string> r2 = null;
-                r2 = this.HexDigit(ref cursor);
-                if (r2 != null)
+                var digitsStart = cursor;
+                var startCursor1 = cursor;
+                IParseResult<string> r3 = null;
+                r3 = this.HexDigit(ref cursor);
+                if (r3 != null)
                 {
-                    IParseResult<string> r3 = null;
-                    r3 = this.HexDigit(ref cursor);
-                    if (r3 != null)
+                    IParseResult<string> r4 = null;
+                    r4 = this.HexDigit(ref cursor);
+                    if (r4 != null)
                     {
-                        var len = cursor.Location - startCursor0.Location;
-                        r0 = new ParseResult<string>(startCursor0, cursor, cursor.Subject.Substring(startCursor0.Location, len));
+                        var len = cursor.Location - startCursor1.Location;
+                        r2 = new ParseResult<string>(startCursor1, cursor, cursor.Subject.Substring(startCursor1.Location, len));
                     }
                     else
                     {
-                        cursor = startCursor0;
+                        cursor = startCursor1;
                     }
+                }
+                else
+                {
+                    cursor = startCursor1;
+                }
+                var digitsEnd = cursor;
+                var digits = ValueOrDefault(r2);
+                if (r2 != null)
+                {
+                    r0 = this.ReturnHelper(startCursor0, cursor, () =>  (char)Convert.ToInt32(digits, 16) );
                 }
                 else
                 {
@@ -1343,47 +1751,60 @@ namespace RegexLib.Parsers.JavaScript
             return r0;
         }
 
-        private IParseResult<string> UnicodeEscapeSequence(ref Cursor cursor)
+        private IParseResult<char> UnicodeEscapeSequence(ref Cursor cursor)
         {
-            IParseResult<string> r0 = null;
+            IParseResult<char> r0 = null;
             var startCursor0 = cursor;
             IParseResult<string> r1 = null;
             r1 = this.ParseLiteral(ref cursor, "u");
             if (r1 != null)
             {
                 IParseResult<string> r2 = null;
-                r2 = this.HexDigit(ref cursor);
-                if (r2 != null)
+                var digitsStart = cursor;
+                var startCursor1 = cursor;
+                IParseResult<string> r3 = null;
+                r3 = this.HexDigit(ref cursor);
+                if (r3 != null)
                 {
-                    IParseResult<string> r3 = null;
-                    r3 = this.HexDigit(ref cursor);
-                    if (r3 != null)
+                    IParseResult<string> r4 = null;
+                    r4 = this.HexDigit(ref cursor);
+                    if (r4 != null)
                     {
-                        IParseResult<string> r4 = null;
-                        r4 = this.HexDigit(ref cursor);
-                        if (r4 != null)
+                        IParseResult<string> r5 = null;
+                        r5 = this.HexDigit(ref cursor);
+                        if (r5 != null)
                         {
-                            IParseResult<string> r5 = null;
-                            r5 = this.HexDigit(ref cursor);
-                            if (r5 != null)
+                            IParseResult<string> r6 = null;
+                            r6 = this.HexDigit(ref cursor);
+                            if (r6 != null)
                             {
-                                var len = cursor.Location - startCursor0.Location;
-                                r0 = new ParseResult<string>(startCursor0, cursor, cursor.Subject.Substring(startCursor0.Location, len));
+                                var len = cursor.Location - startCursor1.Location;
+                                r2 = new ParseResult<string>(startCursor1, cursor, cursor.Subject.Substring(startCursor1.Location, len));
                             }
                             else
                             {
-                                cursor = startCursor0;
+                                cursor = startCursor1;
                             }
                         }
                         else
                         {
-                            cursor = startCursor0;
+                            cursor = startCursor1;
                         }
                     }
                     else
                     {
-                        cursor = startCursor0;
+                        cursor = startCursor1;
                     }
+                }
+                else
+                {
+                    cursor = startCursor1;
+                }
+                var digitsEnd = cursor;
+                var digits = ValueOrDefault(r2);
+                if (r2 != null)
+                {
+                    r0 = this.ReturnHelper(startCursor0, cursor, () =>  (char)Convert.ToInt32(digits, 16) );
                 }
                 else
                 {
@@ -1463,7 +1884,7 @@ namespace RegexLib.Parsers.JavaScript
                 r1 = this.ParseLiteral(ref cursor, "\\");
                 if (r1 != null)
                 {
-                    IParseResult<string> r2 = null;
+                    IParseResult<char> r2 = null;
                     r2 = this.UnicodeEscapeSequence(ref cursor);
                     if (r2 != null)
                     {

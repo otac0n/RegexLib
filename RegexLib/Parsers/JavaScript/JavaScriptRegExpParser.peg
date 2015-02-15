@@ -1,8 +1,10 @@
 ﻿@namespace RegexLib.Parsers.JavaScript
 @classname JavaScriptRegExpParser
 @accessibility internal
-@using Pegasus.Common
 @using System.Globalization
+@using System.Linq
+@using Pegasus.Common
+@using {CharacterRange = RegexLib.CharacterClassNode.CharacterRange}
 @members
 {
     private static HashSet<UnicodeCategory> unicodeLetterCategories = new HashSet<UnicodeCategory>
@@ -35,25 +37,30 @@
 Pattern
   = Disjunction
 
-Disjunction
-  = Alternative "|" Disjunction
+Disjunction <RegexNode>
+  = first:Alternative "|" rest:Disjunction { new AlternationNode(first, rest) }
   / Alternative
 
-Alternative
-  = Term Alternative
+Alternative <RegexNode> -memoize
+  = Concatenation
+  / { new EmptyNode() }
+
+Concatenation <RegexNode>
+  = first:Term rest:Concatenation { new ConcatenationNode(first, rest) }
   / Term
 
-Term
+Term <RegexNode> -memoize
   = Assertion
-  / Atom Quantifier?
+  / a:Atom q:Quantifier { new RepetitionNode(a, q.Min, q.Max, q.Eager) }
+  / Atom
 
-Assertion
-  = "^"
-  / "$"
-  / "\b"
-  / "\B"
-  / "(?=" Disjunction ")"
-  / "(?!" Disjunction ")"
+Assertion <RegexNode>
+  = "^"                   { new StringStartAnchorNode() }
+  / "$"                   { new StringEndAnchorNode() }
+  / "\b"                  {{ throw new NotImplementedException(); }}
+  / "\B"                  {{ throw new NotImplementedException(); }}
+  / "(?=" Disjunction ")" {{ throw new NotImplementedException(); }}
+  / "(?!" Disjunction ")" {{ throw new NotImplementedException(); }}
 
 Quantifier <Quantifier>
   = q:QuantifierPrefix "?" { new Quantifier(q.Min, q.Max, eager: false) }
@@ -63,99 +70,124 @@ QuantifierPrefix <Quantifier> -memoize
   = "*"                                             { new Quantifier(min: 0) }
   / "+"                                             { new Quantifier(min: 1) }
   / "?"                                             { new Quantifier(min: 0, max: 1) }
-  / "{" num:DecimalDigits                       "}" { new Quantifier(min: num, max: num) }
-  / "{" min:DecimalDigits ","                   "}" { new Quantifier(min) }
-  / "{" min:DecimalDigits "," max:DecimalDigits "}" { new Quantifier(min, max) }
+  / "{" num:DecimalDigits                       "}" {{ var numValue = int.Parse(num); return new Quantifier(min: numValue, max: numValue); }}
+  / "{" min:DecimalDigits ","                   "}" {{ var minValue = int.Parse(min); return new Quantifier(minValue); }}
+  / "{" min:DecimalDigits "," max:DecimalDigits "}" {{ var minValue = int.Parse(min); var maxValue = int.Parse(max); return new Quantifier(minValue, maxValue); }}
 
-Atom
-  = PatternCharacter
-  / "."
-  / "\\" AtomEscape
+Atom <RegexNode> -memoize
+  = c:PatternCharacter      { new CharacterClassNode(c, c) }
+  / "."                     { new CharacterClassNode() }
+  / "\\" c:AtomEscape       { new CharacterClassNode(c, c) }
   / CharacterClass
-  / "(" Disjunction ")"
-  / "(?:" Disjunction ")"
+  / "(" d:Disjunction ")"   { d }
+  / "(?:" d:Disjunction ")" { d }
 
-PatternCharacter
-  = ![\^$\\.*+?()[\]{}|] SourceCharacter
+PatternCharacter <char>
+  = ![\^$\\.*+?()[\]{}|] c:SourceCharacter { c }
 
-AtomEscape
+AtomEscape <char>
   = DecimalEscape
   / CharacterEscape
   / CharacterClassEscape
 
 CharacterEscape
   = ControlEscape
-  / "c" ControlLetter
+  / "c" c:ControlLetter { c }
   / HexEscapeSequence
   / UnicodeEscapeSequence
   / IdentityEscape
 
-ControlEscape
-  = [fnrtv]
+ControlEscape <char>
+  = "t" { '\u0009' } // <HT>
+  / "n" { '\u000A' } // <LF>
+  / "v" { '\u000B' } // <VT>
+  / "f" { '\u000C' } // <FF>
+  / "r" { '\u000D' } // <CR>
 
-ControlLetter
-  = [a-zA-Z]
+ControlLetter <char>
+  = c:[a-zA-Z] { (char)((int)c[0] % 32) }
 
-IdentityEscape
-  = !IdentifierPart SourceCharacter
-  / "\u200D" // <ZWJ>
-  / "\u200C" // <ZWNJ>
+IdentityEscape <char>
+  = !IdentifierPart c:SourceCharacter { c }
+  / "\u200D"                          { '\u200D' } // <ZWJ>
+  / "\u200C"                          { '\u200C' } // <ZWNJ>
 
-DecimalEscape
-  = DecimalIntegerLiteral !DecimalDigit
+DecimalEscape <object>
+  = i:DecimalIntegerLiteral !DecimalDigit { i == 0 ? (object)'\0' : (object)i }
 
-CharacterClassEscape
-  = [dDsSwW]
+CharacterClassEscape <CharacterRange[]>
+  = "d"
+  / "D"
+  / "w"
+  / "W"
+  / "s"
+  / "S"
 
-CharacterClass
-  = "[" !"^" ClassRanges "]"
-  / "[^" ClassRanges "]"
+CharacterClass <CharacterClassNode>
+  = "[" neg:"^"? ranges:ClassRanges "]" { new CharacterClassNode(ranges /*, negated: neg.Any()*/) }
 
-ClassRanges
-  = NonemptyClassRanges?
+ClassRanges <IEnumerable<CharacterRange>>
+  = NonemptyClassRanges
+  / { new CharacterRange[0] }
 
-NonemptyClassRanges
-  = ClassAtom "-" ClassAtom ClassRanges
-  / ClassAtom NonemptyClassRangesNoDash
-  / ClassAtom
+NonemptyClassRanges <IEnumerable<CharacterRange>>
+  = a:ClassAtom "-" b:ClassAtom rest:ClassRanges {{
+        if (a.Length > 1 || a[0].MinChar != a[0].MaxChar ||
+            b.Length > 1 || b[0].MinChar != b[0].MaxChar)
+        {
+            throw ExceptionHelper(aStart, () => "SyntaxError");
+        }
 
-NonemptyClassRangesNoDash
-  = ClassAtomNoDash "-" ClassAtom ClassRanges
-  / ClassAtomNoDash NonemptyClassRangesNoDash
-  / ClassAtom
+        return new[] { new CharacterRange(a[0].MinChar, b[0].MinChar) }.Concat(rest);
+    }}
+  / a:ClassAtom rest:NonemptyClassRangesNoDash   { a.Concat(rest) }
+  / a:ClassAtom
 
-ClassAtom
-  = "-"
+NonemptyClassRangesNoDash <IEnumerable<CharacterRange>>
+  = a:ClassAtomNoDash "-" b:ClassAtom rest:ClassRanges {{
+        if (a.Length > 1 || a[0].MinChar != a[0].MaxChar ||
+            b.Length > 1 || b[0].MinChar != b[0].MaxChar)
+        {
+            throw ExceptionHelper(aStart, () => "SyntaxError");
+        }
+
+        return new[] { new CharacterRange(a[0].MinChar, b[0].MinChar) }.Concat(rest);
+    }}
+  / a:ClassAtomNoDash rest:NonemptyClassRangesNoDash   { a.Concat(rest) }
+  / a:ClassAtom
+
+ClassAtom <CharacterRange[]>
+  = "-" { new[] { new CharacterRange('-', '-') } }
   / ClassAtomNoDash
 
-ClassAtomNoDash
-  = ![\\\]\-] SourceCharacter
-  / "\\" ClassEscape
+ClassAtomNoDash <CharacterRange[]>
+  = ![\\\]\-] c:SourceCharacter { new[] { new CharacterRange(c, c) } }
+  / "\\" c:ClassEscape          { new[] { c } }
 
-ClassEscape
-  = DecimalEscape
-  / "b"
-  / CharacterEscape
-  / CharacterClassEscape
+ClassEscape <CharacterRange[]>
+  = e:DecimalEscape (&{e is char} / #ERROR{ "A backreference is invalid in a character class." }) { new[] { new CharacterRange((char)e, (char)e) } }
+  / "b"                                                                                           { new[] { new CharacterRange('\u0008', '\u0008') } }
+  / c:CharacterEscape                                                                             { new[] { new CharacterRange(c, c) } }
+  / e:CharacterClassEscape                                                                        { new[] { e } }
 
 DecimalDigit
   = [0-9]
 
-DecimalDigits <int>
-  = digits:DecimalDigit+ { int.Parse(string.Concat(digits)) }
+DecimalDigits -memoize
+  = digits:DecimalDigit+ { string.Concat(digits) }
 
-SourceCharacter
-  = .
+SourceCharacter <char>
+  = c:. { c[0] }
 
-DecimalIntegerLiteral
-  = "0"
-  / NonZeroDigit DecimalDigits?
+DecimalIntegerLiteral <int>
+  = "0"                                  { 0 }
+  / digits:(NonZeroDigit DecimalDigits?) { int.Parse(digits) }
 
-HexEscapeSequence
-  = "x" HexDigit HexDigit
+HexEscapeSequence <char>
+  = "x" digits:(HexDigit HexDigit) { (char)Convert.ToInt32(digits, 16) }
 
-UnicodeEscapeSequence
-  = "u" HexDigit HexDigit HexDigit HexDigit
+UnicodeEscapeSequence <char>
+  = "u" digits:(HexDigit HexDigit HexDigit HexDigit) { (char)Convert.ToInt32(digits, 16) }
 
 NonZeroDigit
   = [1-9]
