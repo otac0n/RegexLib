@@ -1,6 +1,6 @@
 # Ignore all */bin/ and */obj/ folders...
-bin/
-obj/
+[Bb]in/
+[Oo]bj/
 
 # Ignore backup files.
 *.orig
@@ -10,8 +10,10 @@ obj/
 *.user
 *.ncb
 _ReSharper.*
-*.Cache
-*.cache
+*.[Cc]ache
+*.ncrunch*
+*.docstates
+*.sln.ide/
 
 # Ignore all MonoDevelop generated files.
 *.userprefs
