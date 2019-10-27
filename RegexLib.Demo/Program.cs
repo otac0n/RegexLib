@@ -1,4 +1,4 @@
-﻿//-----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 // <copyright file="Program.cs" company="(none)">
 //  Copyright © 2012 John Gietzen.
 //
@@ -33,14 +33,14 @@ namespace RegexLib.Demo
         {
             var node =
                 new ConcatenationNode(
-                    new RepetitionNode(new CharacterNode('0', '9'), 3, 3, true),
+                    new RepetitionNode(new CharacterClassNode('0', '9'), 3, 3, true),
                     new ConcatenationNode(
-                        new CharacterNode('-'),
+                        new CharacterClassNode('-'),
                         new ConcatenationNode(
-                            new RepetitionNode(new CharacterNode('0', '9'), 3, 3, true),
+                            new RepetitionNode(new CharacterClassNode('0', '9'), 3, 3, true),
                             new ConcatenationNode(
-                                new CharacterNode('-'),
-                                new RepetitionNode(new CharacterNode('0', '9'), 4, 4, true)))));
+                                new CharacterClassNode('-'),
+                                new RepetitionNode(new CharacterClassNode('0', '9'), 4, 4, true)))));
 
             var rand = new Random();
             for (int i = 0; i < 20; i++)
