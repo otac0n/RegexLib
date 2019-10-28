@@ -1,10 +1,9 @@
-﻿@namespace RegexLib.Parsers.JavaScript
+@namespace RegexLib.Parsers.JavaScript
 @classname JavaScriptRegExpParser
 @accessibility internal
 @using System.Globalization
 @using System.Linq
 @using Pegasus.Common
-@using {CharacterRange = RegexLib.CharacterClassNode.CharacterRange}
 @members
 {
     private static HashSet<UnicodeCategory> unicodeLetterCategories = new HashSet<UnicodeCategory>
