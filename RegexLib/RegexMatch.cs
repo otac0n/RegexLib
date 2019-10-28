@@ -1,40 +1,14 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="RegexMatch.cs" company="(none)">
-//  Copyright © 2012 John Gietzen.
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-// </copyright>
-// <author>John Gietzen</author>
-//-----------------------------------------------------------------------
+// Copyright © John Gietzen. All Rights Reserved. This source is subject to the MIT license. Please see license.md for more information.
 
 namespace RegexLib
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Linq;
 
     public class RegexMatch : IEquatable<RegexMatch>
     {
-        private readonly string subject;
-        private readonly int startIndex;
-        private readonly int length;
-        private readonly string value;
         private readonly RegexMatch[] subMatches;
 
         public RegexMatch(string subject, int startIndex, int length)
@@ -46,63 +20,56 @@ namespace RegexLib
         {
             if (subject == null)
             {
-                throw new ArgumentNullException("subject");
+                throw new ArgumentNullException(nameof(subject));
             }
 
             if (startIndex < 0 || startIndex > subject.Length)
             {
-                throw new ArgumentOutOfRangeException("startIndex");
+                throw new ArgumentOutOfRangeException(nameof(startIndex));
             }
 
             if (length < 0 || (startIndex + length) > subject.Length)
             {
-                throw new ArgumentOutOfRangeException("length");
+                throw new ArgumentOutOfRangeException(nameof(length));
             }
 
             var matchesCopy = subMatches == null ? new RegexMatch[0] : subMatches.ToArray();
             var requiredStartIndex = startIndex;
-            for (int i = 0; i < matchesCopy.Length; i++)
+            for (var i = 0; i < matchesCopy.Length; i++)
             {
                 var subMatch = matchesCopy[i];
                 if (subMatch == null ||
-                    subMatch.startIndex != requiredStartIndex)
+                    subMatch.StartIndex != requiredStartIndex)
                 {
-                    throw new ArgumentOutOfRangeException("subMatches");
+                    throw new ArgumentOutOfRangeException(nameof(subMatches));
                 }
 
-                requiredStartIndex = subMatch.startIndex + subMatch.length;
+                requiredStartIndex = subMatch.StartIndex + subMatch.Length;
             }
 
             if (matchesCopy.Length > 0 && requiredStartIndex != startIndex + length)
             {
-                throw new ArgumentOutOfRangeException("subMatches");
+                throw new ArgumentOutOfRangeException(nameof(subMatches));
             }
 
-            this.subject = subject;
-            this.startIndex = startIndex;
-            this.length = length;
-            this.value = subject.Substring(startIndex, length);
+            this.Subject = subject;
+            this.StartIndex = startIndex;
+            this.Length = length;
+            this.Value = subject.Substring(startIndex, length);
             this.subMatches = matchesCopy;
         }
 
-        public string Subject
-        {
-            get { return this.subject; }
-        }
+        public int Length { get; }
 
-        public int StartIndex
-        {
-            get { return this.startIndex; }
-        }
+        public int StartIndex { get; }
 
-        public int Length
-        {
-            get { return this.length; }
-        }
+        public string Subject { get; }
 
-        public string Value
+        public string Value { get; }
+
+        public static bool operator !=(RegexMatch nodeA, RegexMatch nodeB)
         {
-            get { return this.value; }
+            return !object.Equals(nodeA, nodeB);
         }
 
         public static bool operator ==(RegexMatch nodeA, RegexMatch nodeB)
@@ -110,17 +77,12 @@ namespace RegexLib
             return object.Equals(nodeA, nodeB);
         }
 
-        public static bool operator !=(RegexMatch nodeA, RegexMatch nodeB)
-        {
-            return !object.Equals(nodeA, nodeB);
-        }
-
         public bool Equals(RegexMatch other)
         {
-            bool possiblyEqual = !object.ReferenceEquals(other, null) &&
-                other.subject == this.subject &&
-                other.startIndex == this.startIndex &&
-                other.length == this.length &&
+            var possiblyEqual = other is object &&
+                other.Subject == this.Subject &&
+                other.StartIndex == this.StartIndex &&
+                other.Length == this.Length &&
                 other.subMatches.Length == this.subMatches.Length;
 
             if (!possiblyEqual)
@@ -128,7 +90,7 @@ namespace RegexLib
                 return false;
             }
 
-            for (int i = 0; i < this.subMatches.Length; i++)
+            for (var i = 0; i < this.subMatches.Length; i++)
             {
                 if (this.subMatches[i] != other.subMatches[i])
                 {
@@ -139,24 +101,18 @@ namespace RegexLib
             return true;
         }
 
-        public override bool Equals(object obj)
-        {
-            return this.Equals(obj as RegexMatch);
-        }
+        public override bool Equals(object obj) => this.Equals(obj as RegexMatch);
 
         public override int GetHashCode()
         {
-            int hash = 0x51ED270B;
-            hash = (hash * -0x25555529) + this.subject.GetHashCode();
-            hash = (hash * -0x25555529) + this.value.GetHashCode();
-            hash = (hash * -0x25555529) + this.startIndex.GetHashCode();
+            var hash = 0x51ED270B;
+            hash = (hash * -0x25555529) + this.Subject.GetHashCode();
+            hash = (hash * -0x25555529) + this.Value.GetHashCode();
+            hash = (hash * -0x25555529) + this.StartIndex.GetHashCode();
 
             return hash;
         }
 
-        public override string ToString()
-        {
-            return string.Format("\"{0}\"({1},{2})", this.Value, this.startIndex, this.length);
-        }
+        public override string ToString() => string.Format(CultureInfo.CurrentCulture, "\"{0}\"({1},{2})", this.Value, this.StartIndex, this.Length);
     }
 }

@@ -1,27 +1,4 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="RepetitionNode.cs" company="(none)">
-//  Copyright © 2012 John Gietzen.
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-// </copyright>
-// <author>John Gietzen</author>
-//-----------------------------------------------------------------------
+// Copyright © John Gietzen. All Rights Reserved. This source is subject to the MIT license. Please see license.md for more information.
 
 namespace RegexLib
 {
@@ -32,47 +9,66 @@ namespace RegexLib
 
     public class RepetitionNode : RegexNode
     {
-        private readonly RegexNode repeated;
-        private readonly int min;
-        private readonly int? max;
         private readonly bool eager;
+        private readonly int? max;
+        private readonly int min;
+        private readonly RegexNode repeated;
 
         public RepetitionNode(RegexNode repeated, int min, int? max, bool eager)
         {
-            if (repeated == null)
-            {
-                throw new ArgumentNullException("other");
-            }
+            this.repeated = repeated ?? throw new ArgumentNullException(nameof(repeated));
 
             if (min < 0)
             {
-                throw new ArgumentOutOfRangeException("min");
+                throw new ArgumentOutOfRangeException(nameof(min));
             }
 
             if (max.HasValue && max < min)
             {
-                throw new ArgumentOutOfRangeException("max");
+                throw new ArgumentOutOfRangeException(nameof(max));
             }
 
-            this.repeated = repeated;
             this.min = min;
             this.max = max;
             this.eager = eager;
         }
 
-        public override bool Equals(RegexNode other)
+        public override bool Equals(RegexNode other) =>
+            other is RepetitionNode repetition &&
+            this.repeated == repetition.repeated &&
+            this.min == repetition.min &&
+            this.max == repetition.max &&
+            this.eager == repetition.eager;
+
+        public override string GenerateString(Random rand)
         {
-            var repetition = other as RepetitionNode;
-            return !object.ReferenceEquals(repetition, null) &&
-                this.repeated == repetition.repeated &&
-                this.min == repetition.min &&
-                this.max == repetition.max &&
-                this.eager == repetition.eager;
+            int count;
+            if (this.max.HasValue)
+            {
+                var range = this.max.Value - this.min;
+                count = rand.Next(range + 1) + this.min;
+            }
+            else
+            {
+                count = this.min;
+                while (rand.Next(2) == 0)
+                {
+                    count++;
+                }
+            }
+
+            var result = new StringBuilder();
+            for (var i = 0; i < count; i++)
+            {
+                result.Append(this.repeated.GenerateString(rand));
+            }
+
+            return result.ToString();
         }
 
         public override int GetHashCode()
         {
-            int hash = 0x51ED270B;
+            var hash = 0x51ED270B;
             hash = (hash * -0x25555529) + this.repeated.GetHashCode();
             hash = (hash * -0x25555529) + this.min.GetHashCode();
             hash = (hash * -0x25555529) + this.max.GetHashCode();
@@ -87,6 +83,12 @@ namespace RegexLib
             {
                 yield return blah;
             }
+        }
+
+        private static RegexMatch ComposeMatch(string subject, int originalIndex, List<RegexMatch> subMatches)
+        {
+            var length = subMatches.Sum(m => m.Length);
+            return new RegexMatch(subject, originalIndex, length, subMatches);
         }
 
         private IEnumerable<RegexMatch> GetMatchesRecursive(int rep, string subject, int originalIndex, int index, List<RegexMatch> subMatches)
@@ -126,41 +128,6 @@ namespace RegexLib
             yield break;
         }
 
-        private bool WithinMinMax(int rep)
-        {
-            return rep >= this.min && (this.max == null || rep <= this.max);
-        }
-
-        private static RegexMatch ComposeMatch(string subject, int originalIndex, List<RegexMatch> subMatches)
-        {
-            var length = subMatches.Sum(m => m.Length);
-            return new RegexMatch(subject, originalIndex, length, subMatches);
-        }
-
-        public override string GenerateString(Random rand)
-        {
-            int count;
-            if (this.max.HasValue)
-            {
-                var range = this.max.Value - this.min;
-                count = rand.Next(range + 1) + this.min;
-            }
-            else
-            {
-                count = this.min;
-                while (rand.Next(2) == 0)
-                {
-                    count++;
-                }
-            }
-
-            var result = new StringBuilder();
-            for (int i = 0; i < count; i++)
-            {
-                result.Append(this.repeated.GenerateString(rand));
-            }
-
-            return result.ToString();
-        }
+        private bool WithinMinMax(int rep) => rep >= this.min && (this.max == null || rep <= this.max);
     }
 }

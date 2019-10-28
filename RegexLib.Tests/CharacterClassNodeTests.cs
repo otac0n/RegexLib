@@ -1,27 +1,4 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="CharacterClassNodeTests.cs" company="(none)">
-//  Copyright © 2012 John Gietzen.
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-// </copyright>
-// <author>John Gietzen</author>
-//-----------------------------------------------------------------------
+// Copyright © John Gietzen. All Rights Reserved. This source is subject to the MIT license. Please see license.md for more information.
 
 namespace RegexLib.Tests
 {
@@ -33,7 +10,7 @@ namespace RegexLib.Tests
     public class CharacterClassNodeTests
     {
         [Datapoints]
-        public char[] chars =
+        public char[] Chars =
         {
             '\u0041', // Uppercase Letter
             '\u0061', // Lowercase Letter
@@ -73,49 +50,52 @@ namespace RegexLib.Tests
         }
 
         [Test]
-        public void Equals_WithNullReference_ReturnsFalse()
+        public void Equals_WhenRangesAreEquivalent_ReturnsTrue()
         {
-            var subject = new CharacterClassNode('a');
-
-            Assert.That(subject.Equals(null), Is.False);
-        }
-
-        [Test]
-        public void Equals_WithOtherObject_ReturnsFalse()
-        {
-            var subject = new CharacterClassNode('a');
-            var other = new object();
-
-            Assert.That(subject.Equals(other), Is.False);
-        }
-
-        [Theory]
-        public void Equals_WithOtherCharacterNode_MatchesCharacterEquality(char c1, char c2)
-        {
-            var subject = new CharacterClassNode(c1);
-            var other = new CharacterClassNode(c2);
-
-            var expected = (c1 == c2);
-
-            Assert.That(subject.Equals(other), Is.EqualTo(expected));
-        }
-
-        [Test]
-        public void Equals_WithEqualRanges_ReturnsTrue()
-        {
-            var subject = new CharacterClassNode('a', 'z');
-            var other = new CharacterClassNode('a', 'z');
+            var subject = new CharacterClassNode(
+                new CharacterRange(char.MinValue, 'a'),
+                new CharacterRange('a', 'v'),
+                new CharacterRange('m', 'q'),
+                new CharacterRange('w', 'w'),
+                new CharacterRange('x', 'x'),
+                new CharacterRange('y', 'y'),
+                new CharacterRange('z', char.MaxValue));
+            var other = new CharacterClassNode();
 
             Assert.That(subject.Equals(other), Is.True);
         }
 
         [Test]
-        public void Equals_WithDifferentMinCharacter_ReturnsFalse()
+        public void Equals_WhenRangesAreMerged_ReturnsTrue()
         {
-            var subject = new CharacterClassNode('a', 'z');
-            var other = new CharacterClassNode(char.MinValue, 'z');
+            var subject = new CharacterClassNode(
+                new CharacterRange('a', 'a'),
+                new CharacterRange('b', 'b'),
+                new CharacterRange('c', 'c'));
+            var other = new CharacterClassNode('a', 'c');
 
-            Assert.That(subject.Equals(other), Is.False);
+            Assert.That(subject.Equals(other), Is.True);
+        }
+
+        [Test]
+        public void Equals_WhenRangesAreNotEquivalent_ReturnsFalse()
+        {
+            var subject = new CharacterClassNode();
+            var other = new CharacterClassNode();
+
+            Assert.That(subject.Equals(other), Is.True);
+        }
+
+        [Test]
+        public void Equals_WhenRangesAreSuppressed_ReturnsTrue()
+        {
+            var subject = new CharacterClassNode(
+                new CharacterRange('a', 'c'),
+                new CharacterRange('a', 'b'),
+                new CharacterRange('b', 'c'));
+            var other = new CharacterClassNode('a', 'c');
+
+            Assert.That(subject.Equals(other), Is.True);
         }
 
         [Test]
@@ -123,6 +103,15 @@ namespace RegexLib.Tests
         {
             var subject = new CharacterClassNode('a', 'z');
             var other = new CharacterClassNode('a', char.MaxValue);
+
+            Assert.That(subject.Equals(other), Is.False);
+        }
+
+        [Test]
+        public void Equals_WithDifferentMinCharacter_ReturnsFalse()
+        {
+            var subject = new CharacterClassNode('a', 'z');
+            var other = new CharacterClassNode(char.MinValue, 'z');
 
             Assert.That(subject.Equals(other), Is.False);
         }
@@ -137,6 +126,23 @@ namespace RegexLib.Tests
         }
 
         [Test]
+        public void Equals_WithEqualRanges_ReturnsTrue()
+        {
+            var subject = new CharacterClassNode('a', 'z');
+            var other = new CharacterClassNode('a', 'z');
+
+            Assert.That(subject.Equals(other), Is.True);
+        }
+
+        [Test]
+        public void Equals_WithNullReference_ReturnsFalse()
+        {
+            var subject = new CharacterClassNode('a');
+
+            Assert.That(subject.Equals(null), Is.False);
+        }
+
+        [Test]
         public void Equals_WithOtherAnyCharacterNode_ReturnsTrue()
         {
             var subject = new CharacterClassNode();
@@ -145,53 +151,44 @@ namespace RegexLib.Tests
             Assert.That(subject.Equals(other), Is.True);
         }
 
-        [Test]
-        public void Equals_WhenRangesAreMerged_ReturnsTrue()
+        [Theory]
+        public void Equals_WithOtherCharacterNode_MatchesCharacterEquality(char c1, char c2)
         {
-            var subject = new CharacterClassNode(
-                new CharacterClassNode.CharacterRange('a', 'a'),
-                new CharacterClassNode.CharacterRange('b', 'b'),
-                new CharacterClassNode.CharacterRange('c', 'c'));
-            var other = new CharacterClassNode('a', 'c');
+            var subject = new CharacterClassNode(c1);
+            var other = new CharacterClassNode(c2);
 
-            Assert.That(subject.Equals(other), Is.True);
+            var expected = c1 == c2;
+
+            Assert.That(subject.Equals(other), Is.EqualTo(expected));
         }
 
         [Test]
-        public void Equals_WhenRangesAreSuppressed_ReturnsTrue()
+        public void Equals_WithOtherObject_ReturnsFalse()
         {
-            var subject = new CharacterClassNode(
-                new CharacterClassNode.CharacterRange('a', 'c'),
-                new CharacterClassNode.CharacterRange('a', 'b'),
-                new CharacterClassNode.CharacterRange('b', 'c'));
-            var other = new CharacterClassNode('a', 'c');
+            var subject = new CharacterClassNode('a');
+            var other = new object();
 
-            Assert.That(subject.Equals(other), Is.True);
+            Assert.That(subject.Equals(other), Is.False);
         }
 
         [Test]
-        public void Equals_WhenRangesAreEquivalent_ReturnsTrue()
+        public void GetMatches_AtTheEndOfTheString_YieldsNoElements()
         {
-            var subject = new CharacterClassNode(
-                new CharacterClassNode.CharacterRange(char.MinValue, 'a'),
-                new CharacterClassNode.CharacterRange('a', 'v'),
-                new CharacterClassNode.CharacterRange('m', 'q'),
-                new CharacterClassNode.CharacterRange('w', 'w'),
-                new CharacterClassNode.CharacterRange('x', 'x'),
-                new CharacterClassNode.CharacterRange('y', 'y'),
-                new CharacterClassNode.CharacterRange('z', char.MaxValue));
-            var other = new CharacterClassNode();
+            var subject = new CharacterClassNode('O');
 
-            Assert.That(subject.Equals(other), Is.True);
+            var result = subject.GetMatches("OK", 2);
+
+            Assert.That(result, Is.Empty);
         }
 
         [Test]
-        public void Equals_WhenRangesAreNotEquivalent_ReturnsFalse()
+        public void GetMatches_WhenCharacterIsAvailable_YieldsASingleMatchingElement()
         {
             var subject = new CharacterClassNode();
-            var other = new CharacterClassNode();
 
-            Assert.That(subject.Equals(other), Is.True);
+            var result = subject.GetMatches("OK", 0).Single();
+
+            Assert.That(result.Value, Is.EqualTo("O"));
         }
 
         [Theory]
@@ -237,16 +234,6 @@ namespace RegexLib.Tests
         }
 
         [Test]
-        public void GetMatches_WhenTheCharacterRangeMatchesMin_YieldsASingleMatchingElement()
-        {
-            var subject = new CharacterClassNode('O', 'Z');
-
-            var result = subject.GetMatches("OK", 0).Single();
-
-            Assert.That(result.Value, Is.EqualTo("O"));
-        }
-
-        [Test]
         public void GetMatches_WhenTheCharacterRangeMatchesMax_YieldsASingleMatchingElement()
         {
             var subject = new CharacterClassNode('A', 'O');
@@ -257,23 +244,13 @@ namespace RegexLib.Tests
         }
 
         [Test]
-        public void GetMatches_WhenCharacterIsAvailable_YieldsASingleMatchingElement()
+        public void GetMatches_WhenTheCharacterRangeMatchesMin_YieldsASingleMatchingElement()
         {
-            var subject = new CharacterClassNode();
+            var subject = new CharacterClassNode('O', 'Z');
 
             var result = subject.GetMatches("OK", 0).Single();
 
             Assert.That(result.Value, Is.EqualTo("O"));
-        }
-
-        [Test]
-        public void GetMatches_AtTheEndOfTheString_YieldsNoElements()
-        {
-            var subject = new CharacterClassNode('O');
-
-            var result = subject.GetMatches("OK", 2);
-
-            Assert.That(result, Is.Empty);
         }
     }
 }

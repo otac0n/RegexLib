@@ -1,27 +1,4 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="AlternationNodeTests.cs" company="(none)">
-//  Copyright © 2012 John Gietzen.
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-// </copyright>
-// <author>John Gietzen</author>
-//-----------------------------------------------------------------------
+// Copyright © John Gietzen. All Rights Reserved. This source is subject to the MIT license. Please see license.md for more information.
 
 namespace RegexLib.Tests
 {
@@ -54,6 +31,21 @@ namespace RegexLib.Tests
             Assert.That(subject.Equals(null), Is.False);
         }
 
+        [Theory]
+        public void Equals_WithOtherAlternation_MatchesOnlyIfBothElementsMatch(bool returnEqualsA, bool returnEqualsB)
+        {
+            var subject = new AlternationNode(
+                new StubRegexNode(returnEqualsA),
+                new StubRegexNode(returnEqualsB));
+            var other = new AlternationNode(
+                new StubRegexNode(),
+                new StubRegexNode());
+
+            var expected = returnEqualsA && returnEqualsB;
+
+            Assert.That(subject.Equals(other), Is.EqualTo(expected));
+        }
+
         [Test]
         public void Equals_WithOtherObject_ReturnsFalse()
         {
@@ -65,19 +57,16 @@ namespace RegexLib.Tests
             Assert.That(subject.Equals(other), Is.False);
         }
 
-        [Theory]
-        public void Equals_WithOtherAlternation_MatchesOnlyIfBothElementsMatch(bool returnEqualsA, bool returnEqualsB)
+        [Test]
+        public void GetMatches_WhenNeitherMatch_YieldsNone()
         {
             var subject = new AlternationNode(
-                new StubRegexNode(returnEqualsA),
-                new StubRegexNode(returnEqualsB));
-            var other = new AlternationNode(
                 new StubRegexNode(),
                 new StubRegexNode());
 
-            var expected = (returnEqualsA && returnEqualsB);
+            var result = subject.GetMatches("OK", 0);
 
-            Assert.That(subject.Equals(other), Is.EqualTo(expected));
+            Assert.That(result, Is.Empty);
         }
 
         [Test]
@@ -121,18 +110,6 @@ namespace RegexLib.Tests
             var result = subject.GetMatches("OK", 0).ToList();
 
             Assert.That(result, Is.EquivalentTo(aMatches.Concat(bMatches)));
-        }
-
-        [Test]
-        public void GetMatches_WhenNeitherMatch_YieldsNone()
-        {
-            var subject = new AlternationNode(
-                new StubRegexNode(),
-                new StubRegexNode());
-
-            var result = subject.GetMatches("OK", 0);
-
-            Assert.That(result, Is.Empty);
         }
     }
 }

@@ -1,27 +1,4 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="RegexNodeTests.cs" company="(none)">
-//  Copyright © 2012 John Gietzen.
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-// </copyright>
-// <author>John Gietzen</author>
-//-----------------------------------------------------------------------
+// Copyright © John Gietzen. All Rights Reserved. This source is subject to the MIT license. Please see license.md for more information.
 
 namespace RegexLib.Tests
 {
@@ -31,15 +8,6 @@ namespace RegexLib.Tests
     [TestFixture]
     public class RegexNodeTests
     {
-        [Test]
-        public void OpEquality_WithBothNodesNullReference_ReturnsTrue()
-        {
-            var subjectA = (RegexNode)null;
-            var subjectB = (RegexNode)null;
-
-            Assert.That(subjectA == subjectB, Is.True);
-        }
-
         [Theory]
         public void Equals_WithAnyOtherNode_ReturnsValueOfIEqualityEquals(bool expected)
         {
@@ -59,6 +27,40 @@ namespace RegexLib.Tests
             var result = ((object)subject).Equals(null);
 
             Assert.That(result, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void GetMatches_WithAnIndexPassedTheEndOfTheString_ThrowsArgumentOutOfRangeException()
+        {
+            var subject = new StubRegexNode();
+
+            Assert.That(() => subject.GetMatches("OK", 3), Throws.InstanceOf<ArgumentOutOfRangeException>());
+        }
+
+        [Test]
+        public void GetMatches_WithAnNegativeIndex_ThrowsArgumentOutOfRangeException()
+        {
+            var subject = new StubRegexNode();
+
+            Assert.That(() => subject.GetMatches("OK", -1), Throws.InstanceOf<ArgumentOutOfRangeException>());
+        }
+
+        [Test]
+        public void GetMatches_WithANullString_ThrowsArgumentNullException()
+        {
+            var subject = new StubRegexNode();
+
+            Assert.That(() => subject.GetMatches(null, 0), Throws.InstanceOf<ArgumentNullException>());
+        }
+
+        [Test]
+        public void GetMatches_WithAValidStringAndIndex_ReturnsTheEnumerable()
+        {
+            var subject = new StubRegexNode();
+
+            var result = subject.GetMatches("OK", 1);
+
+            Assert.That(result, Is.Not.Null);
         }
 
         [Theory]
@@ -88,9 +90,18 @@ namespace RegexLib.Tests
             var subject = new StubRegexNode(expected);
             var other = new StubRegexNode();
 
-            var result = (subject == other);
+            var result = subject == other;
 
             Assert.That(result, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void OpEquality_WithBothNodesNullReference_ReturnsTrue()
+        {
+            var subjectA = (RegexNode)null;
+            var subjectB = (RegexNode)null;
+
+            Assert.That(subjectA == subjectB, Is.True);
         }
 
         [Theory]
@@ -98,43 +109,9 @@ namespace RegexLib.Tests
         {
             var subject = new StubRegexNode(returnEquals);
 
-            var result = (subject == null);
+            var result = subject == null;
 
             Assert.That(result, Is.False);
-        }
-
-        [Test]
-        public void GetMatches_WithANullString_ThrowsArgumentNullException()
-        {
-            var subject = new StubRegexNode();
-
-            Assert.That(() => subject.GetMatches(null, 0), Throws.InstanceOf<ArgumentNullException>());
-        }
-
-        [Test]
-        public void GetMatches_WithAnNegativeIndex_ThrowsArgumentOutOfRangeException()
-        {
-            var subject = new StubRegexNode();
-
-            Assert.That(() => subject.GetMatches("OK", -1), Throws.InstanceOf<ArgumentOutOfRangeException>());
-        }
-
-        [Test]
-        public void GetMatches_WithAnIndexPassedTheEndOfTheString_ThrowsArgumentOutOfRangeException()
-        {
-            var subject = new StubRegexNode();
-
-            Assert.That(() => subject.GetMatches("OK", 3), Throws.InstanceOf<ArgumentOutOfRangeException>());
-        }
-
-        [Test]
-        public void GetMatches_WithAValidStringAndIndex_ReturnsTheEnumerable()
-        {
-            var subject = new StubRegexNode();
-
-            var result = subject.GetMatches("OK", 1);
-
-            Assert.That(result, Is.Not.Null);
         }
     }
 }
