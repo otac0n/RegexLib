@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+    <Authors>John Gietzen</Authors>
+    <Copyright>Copyright © 2019 $(Authors)</Copyright>
+    <Product>RegexLib</Product>
+    <NeutralLanguage>en-US</NeutralLanguage>
+  </PropertyGroup>
+</Project>

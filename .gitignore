@@ -6,14 +6,16 @@
 *.orig
 
 # Ignore all Visual Studio generated files.
+*.sln.ide/
+.vs/
 *.suo
 *.user
 *.ncb
 _ReSharper.*
 *.[Cc]ache
+_NCrunch*/
 *.ncrunch*
 *.docstates
-*.sln.ide/
 
 # Ignore all MonoDevelop generated files.
 *.userprefs
@@ -26,5 +28,5 @@ Thumbs.db
 TestResult.xml
 *.VisualState.xml
 
-# Ignore NuGet files in the root.
-/*.nupkg
+# Ignore NuGet packages (let package restore handle these)
+/packages/

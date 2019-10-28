@@ -1,27 +1,4 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="RegexNode.cs" company="(none)">
-//  Copyright © 2012 John Gietzen.
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-// </copyright>
-// <author>John Gietzen</author>
-//-----------------------------------------------------------------------
+// Copyright © John Gietzen. All Rights Reserved. This source is subject to the MIT license. Please see license.md for more information.
 
 namespace RegexLib
 {
@@ -30,43 +7,40 @@ namespace RegexLib
 
     public abstract class RegexNode : IEquatable<RegexNode>
     {
-        public static bool operator ==(RegexNode nodeA, RegexNode nodeB)
-        {
-            return object.Equals(nodeA, nodeB);
-        }
-
         public static bool operator !=(RegexNode nodeA, RegexNode nodeB)
         {
             return !object.Equals(nodeA, nodeB);
         }
 
-        public abstract bool Equals(RegexNode other);
-
-        public override bool Equals(object obj)
+        public static bool operator ==(RegexNode nodeA, RegexNode nodeB)
         {
-            return this.Equals(obj as RegexNode);
+            return object.Equals(nodeA, nodeB);
         }
 
-        public abstract override int GetHashCode();
+        public abstract bool Equals(RegexNode other);
 
-        protected abstract IEnumerable<RegexMatch> GetMatchesImpl(string subject, int index);
+        public override bool Equals(object obj) => this.Equals(obj as RegexNode);
+
+        public abstract string GenerateString(Random rand);
+
+        public abstract override int GetHashCode();
 
         public IEnumerable<RegexMatch> GetMatches(string subject, int index)
         {
             if (subject == null)
             {
-                throw new ArgumentNullException("subject");
+                throw new ArgumentNullException(nameof(subject));
             }
 
             if (index < 0 ||
                 index > subject.Length)
             {
-                throw new ArgumentOutOfRangeException("index");
+                throw new ArgumentOutOfRangeException(nameof(index));
             }
 
             return this.GetMatchesImpl(subject, index);
         }
 
-        public abstract string GenerateString(Random rand);
+        protected abstract IEnumerable<RegexMatch> GetMatchesImpl(string subject, int index);
     }
 }

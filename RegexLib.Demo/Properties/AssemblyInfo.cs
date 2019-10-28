@@ -2,6 +2,6 @@
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("RegexLib.Tests")]
+[assembly: AssemblyTitle("RegexLib.Demo")]
 [assembly: AssemblyDescription("A library for creating, consuming, and inspecting regular expressions.")]
 [assembly: Guid("ae986f0a-a244-46ad-89ea-8962dadf548a")]
