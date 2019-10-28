@@ -26,6 +26,7 @@
 namespace RegexLib
 {
     using System;
+    using RegexLib.Parsers;
 
     public enum RegexFlavor
     {
@@ -45,18 +46,10 @@ namespace RegexLib
             switch (flavor)
             {
                 case RegexFlavor.JavaScript:
-                    return JavaScriptRegexParser.Parse(pattern, options);
+                    return new RegexLib.Parsers.JavaScript.JavaScriptRegExpParser(/* TODO: options */).Parse(pattern);
 
                 default:
                     throw new ArgumentOutOfRangeException("flavor");
-            }
-        }
-
-        private static class JavaScriptRegexParser
-        {
-            public static RegexNode Parse(string pattern, RegexOptions options)
-            {
-                throw new NotImplementedException();
             }
         }
     }

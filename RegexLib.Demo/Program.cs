@@ -8,16 +8,7 @@ namespace RegexLib.Demo
     {
         private static void Main(string[] args)
         {
-            var node =
-                new ConcatenationNode(
-                    new RepetitionNode(new CharacterClassNode('0', '9'), 3, 3, true),
-                    new ConcatenationNode(
-                        new CharacterClassNode('-'),
-                        new ConcatenationNode(
-                            new RepetitionNode(new CharacterClassNode('0', '9'), 3, 3, true),
-                            new ConcatenationNode(
-                                new CharacterClassNode('-'),
-                                new RepetitionNode(new CharacterClassNode('0', '9'), 4, 4, true)))));
+            var node = RegexParser.Parse("[0-9]{3}-[0-9]{3}-[0-9]{4}", RegexFlavor.JavaScript, RegexOptions.None);
 
             var rand = new Random();
             for (var i = 0; i < 20; i++)
