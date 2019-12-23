@@ -3,6 +3,7 @@
 namespace RegexLib.Demo
 {
     using System;
+    using System.Linq;
 
     internal class Program
     {
@@ -14,6 +15,13 @@ namespace RegexLib.Demo
             for (var i = 0; i < 20; i++)
             {
                 Console.WriteLine(node.GenerateString(rand));
+            }
+
+            Console.WriteLine();
+
+            foreach (var str in node.Take(20))
+            {
+                Console.WriteLine(str);
             }
 
             Console.ReadKey(true);

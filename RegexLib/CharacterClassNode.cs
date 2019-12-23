@@ -85,6 +85,17 @@ namespace RegexLib
             return new string((char)(this.ranges[range].MinChar + offset), 1);
         }
 
+        public override IEnumerator<string> GetEnumerator()
+        {
+            foreach (var range in this.ranges)
+            {
+                for (var c = range.MinChar; c <= range.MaxChar; c++)
+                {
+                    yield return new string(c, 1);
+                }
+            }
+        }
+
         public override int GetHashCode()
         {
             var hash = 0x51ED270B;

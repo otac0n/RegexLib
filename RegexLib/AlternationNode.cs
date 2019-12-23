@@ -33,6 +33,39 @@ namespace RegexLib
             }
         }
 
+        public override IEnumerator<string> GetEnumerator()
+        {
+            IEnumerator<string> bEnum = null;
+            try
+            {
+                var bActive = true;
+                bEnum = this.b.GetEnumerator();
+                foreach (var a in this.a)
+                {
+                    yield return a;
+                    if (bActive = bActive && bEnum.MoveNext())
+                    {
+                        yield return bEnum.Current;
+                    }
+                }
+
+                if (bActive)
+                {
+                    while (bEnum.MoveNext())
+                    {
+                        yield return bEnum.Current;
+                    }
+                }
+            }
+            finally
+            {
+                if (bEnum is IDisposable disposable)
+                {
+                    disposable.Dispose();
+                }
+            }
+        }
+
         public override int GetHashCode()
         {
             var hash = 0x51ED270B;

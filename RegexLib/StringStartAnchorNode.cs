@@ -14,6 +14,8 @@ namespace RegexLib
             throw new NotImplementedException();
         }
 
+        public override IEnumerator<string> GetEnumerator() => throw new NotImplementedException();
+
         public override int GetHashCode() => 0;
 
         protected override IEnumerable<RegexMatch> GetMatchesImpl(string subject, int index)

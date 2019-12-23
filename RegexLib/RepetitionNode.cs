@@ -66,6 +66,84 @@ namespace RegexLib
             return result.ToString();
         }
 
+        public override IEnumerator<string> GetEnumerator()
+        {
+            if (this.min == 0)
+            {
+                yield return string.Empty;
+            }
+
+            IEnumerator<string> repEnum = null;
+            try
+            {
+                repEnum = this.repeated.GetEnumerator();
+                var repList = new List<string>();
+                var repActive = true;
+                var maxBins = this.min;
+
+                while (repActive || (!this.max.HasValue || maxBins < this.max))
+                {
+                    if (repActive = repActive && repEnum.MoveNext())
+                    {
+                        repList.Add(repEnum.Current);
+
+                        for (var bins = Math.Max(1, this.min); bins <= maxBins; bins++)
+                        {
+                            var indices = new int[bins]; // TODO: Cache the allocation. Array.Clear(indices, 0, bins);
+
+                            int ix;
+                            do
+                            {
+                                if (indices.Any(i => i == repList.Count - 1))
+                                {
+                                    yield return string.Concat(Array.ConvertAll(indices, i => repList[i]));
+                                }
+
+                                ix = bins - 1;
+                                while (ix >= 0 && ++indices[ix] >= repList.Count)
+                                {
+                                    indices[ix] = 0;
+                                    ix -= 1;
+                                }
+                            }
+                            while (ix >= 0);
+                        }
+                    }
+
+                    if (repList.Count > 0)
+                    {
+                        if (maxBins < this.max)
+                        {
+                            maxBins++;
+
+                            var indices = new int[maxBins]; // TODO: Cache the allocation. Array.Clear(indices, 0, maxBins);
+
+                            int ix;
+                            do
+                            {
+                                yield return string.Concat(Array.ConvertAll(indices, i => repList[i]));
+
+                                ix = maxBins - 1;
+                                while (ix >= 0 && ++indices[ix] >= repList.Count)
+                                {
+                                    indices[ix] = 0;
+                                    ix -= 1;
+                                }
+                            }
+                            while (ix >= 0);
+                        }
+                    }
+                }
+            }
+            finally
+            {
+                if (repEnum is IDisposable disposable)
+                {
+                    disposable.Dispose();
+                }
+            }
+        }
+
         public override int GetHashCode()
         {
             var hash = 0x51ED270B;

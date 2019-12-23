@@ -3,9 +3,10 @@
 namespace RegexLib
 {
     using System;
+    using System.Collections;
     using System.Collections.Generic;
 
-    public abstract class RegexNode : IEquatable<RegexNode>
+    public abstract class RegexNode : IEquatable<RegexNode>, IEnumerable<string>
     {
         public static bool operator !=(RegexNode nodeA, RegexNode nodeB)
         {
@@ -22,6 +23,10 @@ namespace RegexLib
         public override bool Equals(object obj) => this.Equals(obj as RegexNode);
 
         public abstract string GenerateString(Random rand);
+
+        public abstract IEnumerator<string> GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
 
         public abstract override int GetHashCode();
 

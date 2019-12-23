@@ -26,6 +26,8 @@ namespace RegexLib
 
         public override string GenerateString(Random rand) => this.regexNode.GenerateString(rand);
 
+        public override IEnumerator<string> GetEnumerator() => throw new NotImplementedException();
+
         public override int GetHashCode()
         {
             var hash = 0x51ED270B;

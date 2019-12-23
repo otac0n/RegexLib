@@ -23,6 +23,66 @@ namespace RegexLib
 
         public override string GenerateString(Random rand) => this.a.GenerateString(rand) + this.b.GenerateString(rand);
 
+        public override IEnumerator<string> GetEnumerator()
+        {
+            IEnumerator<string> aEnum = null;
+            try
+            {
+                aEnum = this.a.GetEnumerator();
+                IEnumerator<string> bEnum = null;
+                try
+                {
+                    bEnum = this.b.GetEnumerator();
+                    var aList = new List<string>();
+                    var bList = new List<string>();
+                    var aActive = true;
+                    var bActive = true;
+
+                    string value;
+                    while (aActive || bActive)
+                    {
+                        if (bActive = bActive && bEnum.MoveNext())
+                        {
+                            value = bEnum.Current;
+
+                            for (var i = 0; i < aList.Count; i++)
+                            {
+                                yield return aList[i] + value;
+                            }
+
+                            bList.Add(value);
+                        }
+
+                        if (aActive = aActive && aEnum.MoveNext())
+                        {
+                            value = aEnum.Current;
+
+                            for (var i = 0; i < bList.Count; i++)
+                            {
+                                yield return value + bList[i];
+                            }
+
+                            aList.Add(value);
+                        }
+                    }
+                }
+                finally
+                {
+                    if (bEnum is IDisposable disposable)
+                    {
+                        disposable.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (aEnum is IDisposable disposable)
+                {
+                    disposable.Dispose();
+                }
+            }
+        }
+
         public override int GetHashCode()
         {
             var hash = 0x51ED270B;

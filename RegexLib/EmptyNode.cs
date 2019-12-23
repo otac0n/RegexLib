@@ -1,27 +1,4 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="EmptyNode.cs" company="(none)">
-//  Copyright © 2012 John Gietzen.
-//
-//  Permission is hereby granted, free of charge, to any person obtaining a copy
-//  of this software and associated documentation files (the "Software"), to deal
-//  in the Software without restriction, including without limitation the rights
-//  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//  copies of the Software, and to permit persons to whom the Software is
-//  furnished to do so, subject to the following conditions:
-//
-//  The above copyright notice and this permission notice shall be included in
-//  all copies or substantial portions of the Software.
-//
-//  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//  THE SOFTWARE.
-// </copyright>
-// <author>Katie Gietzen</author>
-//-----------------------------------------------------------------------
+// Copyright © John Gietzen. All Rights Reserved. This source is subject to the MIT license. Please see license.md for more information.
 
 namespace RegexLib
 {
@@ -30,24 +7,20 @@ namespace RegexLib
 
     public class EmptyNode : RegexNode
     {
-        public override bool Equals(RegexNode other)
+        public override bool Equals(RegexNode other) => other is EmptyNode;
+
+        public override string GenerateString(Random rand) => string.Empty;
+
+        public override IEnumerator<string> GetEnumerator()
         {
-            return other is EmptyNode;
+            yield return string.Empty;
         }
 
-        public override int GetHashCode()
-        {
-            return 0;
-        }
+        public override int GetHashCode() => 0;
 
         protected override IEnumerable<RegexMatch> GetMatchesImpl(string subject, int index)
         {
             yield return new RegexMatch(subject, index, 0);
-        }
-
-        public override string GenerateString(Random rand)
-        {
-            return string.Empty;
         }
     }
 }
