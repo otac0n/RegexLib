@@ -32,8 +32,8 @@
     };
 }
 
-Pattern
-  = Disjunction
+Pattern <RegexNode>
+  = p:Disjunction EOF { p }
 
 Disjunction <RegexNode>
   = first:Alternative "|" rest:Disjunction { new AlternationNode(first, rest) }
@@ -218,3 +218,5 @@ UnicodeDigit
 
 UnicodeConnectorPunctuation
   = char:. &{ unicodeConnectorPunctuationCategories.Contains(char.GetUnicodeCategory(@char[0])) }
+
+EOF = !.
