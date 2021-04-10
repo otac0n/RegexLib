@@ -9,7 +9,7 @@ namespace RegexLib.Demo
     {
         private static void Main(string[] args)
         {
-            var node = RegexParser.Parse("[0-9]{3}-[0-9]{3}-[0-9]{4}", RegexFlavor.JavaScript, RegexOptions.None);
+            var node = RegexParser.Parse(@"\d{3}-\d{3}-\d{4}", RegexFlavor.JavaScript, RegexOptions.None);
 
             var rand = new Random();
             for (var i = 0; i < 20; i++)
@@ -17,7 +17,7 @@ namespace RegexLib.Demo
                 Console.WriteLine(node.GenerateString(rand));
             }
 
-            Console.WriteLine();
+            Console.WriteLine(new string('=', 70));
 
             foreach (var str in node.Take(20))
             {
