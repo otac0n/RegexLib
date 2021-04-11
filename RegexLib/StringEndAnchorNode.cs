@@ -11,10 +11,11 @@ namespace RegexLib
 
         public override string GenerateString(Random rand)
         {
-            throw new NotImplementedException();
+            return string.Empty;
+            //throw new NotImplementedException();
         }
 
-        public override IEnumerator<string> GetEnumerator() => throw new NotImplementedException();
+        public override IEnumerator<string> GetEnumerator() => ((IEnumerable<string>)new[] { string.Empty }).GetEnumerator(); // throw new NotImplementedException();
 
         public override int GetHashCode() => 0;
 
